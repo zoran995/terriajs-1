@@ -113,7 +113,7 @@
     "svg-sprite-loader": "^0.3.0",
     "terriajs-jasmine-ajax": "^3.2.1",
     "terriajs-server": "^2.6.2",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "2.4.2"
   },
   "scripts": {
     "prepublish": "gulp post-npm-install",
