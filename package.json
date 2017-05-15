@@ -28,7 +28,7 @@
     "d3-scale": "^1.0.1",
     "d3-selection": "^1.0.0",
     "d3-shape": "^1.0.0",
-    "d3-transition": "^1.0.0",
+    "d3-transition": "1.0.4",
     "dateformat": "^2.0.0",
     "dompurify": "^0.8.3",
     "extract-text-webpack-plugin": "^2.1.0",
