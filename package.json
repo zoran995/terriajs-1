@@ -22,7 +22,7 @@
     "class-list": "^0.1.1",
     "classnames": "^2.2.3",
     "create-react-class": "^15.5.2",
-    "d3-array": "^1.0.0",
+    "d3-array": "^1.2.1",
     "d3-axis": "^1.0.0",
     "d3-collection": "^1.0.0",
     "d3-scale": "^1.0.1",
