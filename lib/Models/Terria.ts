@@ -50,6 +50,7 @@ export default class Terria {
     readonly beforeViewerChanged = new CesiumEvent();
     readonly afterViewerChanged = new CesiumEvent();
     readonly workbench = new Workbench();
+    parameters = {};
     readonly catalog = new Catalog(this);
     readonly currentViewer = new NoViewer(this);
 
@@ -133,6 +134,9 @@ export default class Terria {
         var baseUri = new URI(options.configUrl).filename('');
 
         return loadJson5(options.configUrl).then((config: any) => {
+            // TODO - update test paramter
+            this.parameters = config.parameters;
+
             const initializationUrls = config.initializationUrls;
             return when.all(initializationUrls.map((initializationUrl: string) => {
                 return loadJson5(buildInitUrlFromFragment('init/', generateInitializationUrl(baseUri, initializationUrl)).toString()).then((initData: any) => {
