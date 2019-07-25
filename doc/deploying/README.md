@@ -8,7 +8,7 @@ Deploying TerriaMap itself:
 
 Deploying other services for use with TerriaJS:
 
-* [Setting Up a Region Mapping Server](setting-up-a-region-mapping-server.md): Set up a server for use with TerriaJS's region mapping feature.
+* [Setting Up Region Mapping](boundary-tiles-regionmapping.md): Create and host mapbox vector tiles from polygon boundary geometries for TerriaJS' region mapping feature.
 * [Setting Up Geoserver](setting-up-geoserver.md): Configure [GeoServer](http://geoserver.org/) for effective use with TerriaJS.
 
 Using a TerriaMap in other applications:
