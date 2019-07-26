@@ -1,0 +1,3 @@
+*Region mapping* is the process of matching a value in a CSV file to a pre-defined boundary, such as a postcode, local government area or electorate. The default recognised boundaries for a TerriaMap [come with TerriaJS](https://github.com/TerriaJS/terriajs/blob/master/wwwroot/data/regionMapping.json). A TerriaMap can override these by [setting the `regionMappingDefinitionsUrl` config parameter](https://github.com/TerriaJS/TerriaMap/blob/master/wwwroot/config.json#L65) and providing region mapping definitions in your TerriaMap at the path `wwwroot/data/regionMapping.json`.
+
+Scripts and the associated docs for preparing vector tiles can be found in [TerriaJS/boundary-tiles](https://github.com/TerriaJS/boundary-tiles). 
