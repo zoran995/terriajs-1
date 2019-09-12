@@ -1,4 +1,5 @@
 import React from "react";
+import debounce from "lodash.debounce";
 import createReactClass from "create-react-class";
 import PropTypes from "prop-types";
 import "mutationobserver-shim";
@@ -15,8 +16,8 @@ import classNames from "classnames";
 
 import Styles from "./map-column.scss";
 
-const isIE = FeatureDetection.isInternetExplorer();
-const chromeVersion = FeatureDetection.chromeVersion();
+const isIE =
+  FeatureDetection.isInternetExplorer() || FeatureDetection.isChrome();
 
 /**
  * Right-hand column that contains the map, controls that sit over the map and sometimes the bottom dock containing
@@ -49,10 +50,20 @@ const MapColumn = createReactClass({
 
   addBottomDock(bottomDock) {
     if (isIE) {
+      this.bottomDock = bottomDock;
       this.observer.observe(bottomDock, {
         childList: true,
         subtree: true
       });
+      this.resizeMapCell();
+    }
+  },
+
+  newMapInner(mapInner) {
+    if (isIE) {
+      this.mapInner = mapInner;
+
+      this.resizeMapCell();
     }
   },
 
@@ -65,42 +76,40 @@ const MapColumn = createReactClass({
   },
 
   resizeMapCell() {
-    if (this.mapCell) {
+    if (this.mapInner) {
+      const dockHeight = (this.bottomDock && this.bottomDock.offsetHeight) || 0;
+      const heightToSet =
+        dockHeight === 0 ? "100%" : `calc(100% - ${dockHeight}px)`;
       this.setState({
-        height: this.mapCell.offsetHeight
+        height: heightToSet
       });
     }
+  },
+  resizeMapCellWithDebounce() {
+    return debounce(this.resizeMapCell, 200);
   },
 
   componentWillUnmount() {
     if (isIE) {
-      window.removeEventListener("resize", this.resizeMapCell, false);
+      window.removeEventListener(
+        "resize",
+        this.resizeMapCellWithDebounce,
+        false
+      );
       this.observer.disconnect();
     }
   },
 
   render() {
-    // TODO: remove? see: https://bugs.chromium.org/p/chromium/issues/detail?id=1001663
-    const isAboveChrome75 =
-      chromeVersion && chromeVersion[0] && Number(chromeVersion[0]) > 75;
-    const mapCellClass = classNames(Styles.mapCell, {
-      [Styles.mapCellChrome]: isAboveChrome75
-    });
+    const mapWrapperHeight = isIE ? this.state.height : undefined;
     return (
-      <div
-        className={classNames(Styles.mapInner, {
-          [Styles.mapInnerChrome]: isAboveChrome75
-        })}
-      >
-        <div className={Styles.mapRow}>
+      <div className={Styles.mapInner} ref={this.newMapInner}>
+        <div className={Styles.mapRow} style={{ height: mapWrapperHeight }}>
           <div
-            className={classNames(mapCellClass, Styles.mapCellMap)}
+            className={classNames(Styles.mapCell, Styles.mapCellMap)}
             ref={this.newMapCell}
           >
-            <div
-              className={Styles.mapWrapper}
-              style={{ height: this.state.height || (isIE ? "100vh" : "100%") }}
-            >
+            <div className={Styles.mapWrapper}>
               <TerriaViewerWrapper
                 terria={this.props.terria}
                 viewState={this.props.viewState}
@@ -150,7 +159,7 @@ const MapColumn = createReactClass({
             </If>
           </div>
           <If condition={this.props.terria.configParameters.printDisclaimer}>
-            <div className={classNames(mapCellClass, "print")}>
+            <div className={classNames(Styles.mapCell, "print")}>
               <a
                 className={Styles.printDisclaimer}
                 href={this.props.terria.configParameters.printDisclaimer.url}
@@ -162,7 +171,7 @@ const MapColumn = createReactClass({
         </div>
         <If condition={!this.props.viewState.hideMapUi()}>
           <div className={Styles.mapRow}>
-            <div className={mapCellClass}>
+            <div className={Styles.mapCell}>
               <BottomDock
                 terria={this.props.terria}
                 viewState={this.props.viewState}
