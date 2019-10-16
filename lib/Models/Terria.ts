@@ -293,7 +293,7 @@ export default class Terria {
           }
 
           if (config.aspects) {
-            return this.loadMagdaConfig(config);
+            return this.loadMagdaConfig(config, options.configUrl);
           }
 
           const initializationUrls: string[] = config.initializationUrls;
@@ -620,7 +620,7 @@ export default class Terria {
     this.mainViewer.homeCamera = CameraView.fromJson(homeCameraInit);
   }
 
-  loadMagdaConfig(config: any) {
+  loadMagdaConfig(config: any, configUrl: string) {
     const aspects = config.aspects;
     const configParams =
       aspects["terria-config"] && aspects["terria-config"].parameters;
@@ -634,10 +634,14 @@ export default class Terria {
       this.updateParameters(configParams);
     }
     if (aspects.group && aspects.group.members) {
+      // We should use the same baseUrl that the record came in as for the initial member definition
+      const configUrlURI = new URI(configUrl);
+      const baseUrl = `${configUrlURI.protocol()}://${configUrlURI.hostname()}`;
+
       // Transform the Magda catalog structure to the Terria one.
       const members = aspects.group.members.map((member: any) => {
         return magdaRecordToCatalogMemberDefinition({
-          magdaBaseUrl: "http://saas.terria.io",
+          magdaBaseUrl: baseUrl,
           record: member
         });
       });
