@@ -8,6 +8,7 @@
 !lib/**/*.ts
 !lib/**/*.tsx
 !lib/**/*.scss
+!lib/Language/**/*.json
 
 !test/**/
 !test/**/*.js
