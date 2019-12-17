@@ -1,0 +1,17 @@
+@import "~terriajs-variables";
+@import "../../Sass/common/mixins";
+
+.container {
+  padding: $padding-small 0px;
+  border-top: 1px solid $grey-lighter2;
+  text-align: center;
+  & .title {
+    font-size: $font-size-small;
+  }
+  & .result {
+    margin: 10px;
+    font-weight: $font-weight-bold;
+    line-height: 20px;
+    height: 20px;
+  }
+}

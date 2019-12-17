@@ -43,7 +43,8 @@ export const MeasureTool = createReactClass({
         onPointClicked: this.onPointClicked,
         onPointMoved: this.onPointMoved,
         onCleanUp: this.onCleanUp,
-        onMakeDialogMessage: this.onMakeDialogMessage
+        onMakeDialogMessage: this.onMakeDialogMessage,
+        shouldRender: true
       })
     };
   },

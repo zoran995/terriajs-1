@@ -65,23 +65,28 @@ const MapInteractionWindow = createReactClass({
     const windowClass = classNames(Styles.window, {
       [Styles.isActive]: interactionMode
     });
-
+    const shouldRender = defined(interactionMode)
+      ? interactionMode.render
+      : true;
     return (
-      <div className={windowClass} aria-hidden={!interactionMode}>
-        <div className={Styles.content}>
-          {interactionMode && parseCustomHtmlToReact(interactionMode.message())}
+      <If condition={shouldRender}>
+        <div className={windowClass} aria-hidden={!interactionMode}>
+          <div className={Styles.content}>
+            {interactionMode &&
+              parseCustomHtmlToReact(interactionMode.message())}
+          </div>
+          {interactionMode &&
+            interactionMode.customUi &&
+            interactionMode.customUi()}
+          <button
+            type="button"
+            onClick={interactionMode && interactionMode.onCancel}
+            className={Styles.btn}
+          >
+            {interactionMode && interactionMode.buttonText}
+          </button>
         </div>
-        {interactionMode &&
-          interactionMode.customUi &&
-          interactionMode.customUi()}
-        <button
-          type="button"
-          onClick={interactionMode && interactionMode.onCancel}
-          className={Styles.btn}
-        >
-          {interactionMode && interactionMode.buttonText}
-        </button>
-      </div>
+      </If>
     );
   }
 });

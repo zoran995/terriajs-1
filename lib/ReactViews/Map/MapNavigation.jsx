@@ -9,7 +9,7 @@ import Styles from "./map-navigation.scss";
 import ToggleSplitterTool from "./Navigation/ToggleSplitterTool";
 import ViewerMode from "../../Models/ViewerMode";
 import ZoomControl from "./Navigation/ZoomControl.jsx";
-
+import MeasureToolButton from "./Navigation/MeasureToolButton.jsx";
 import classNames from "classnames";
 import defined from "terriajs-cesium/Source/Core/defined";
 
@@ -60,6 +60,16 @@ const MapNavigation = createReactClass({
           <If condition={!this.props.terria.configParameters.disableSplitter}>
             <div className={Styles.control}>
               <ToggleSplitterTool terria={this.props.viewState.terria} />
+            </div>
+          </If>
+          <If
+            condition={!this.props.terria.configParameters.disableMeasureTool}
+          >
+            <div className={Styles.control}>
+              <MeasureToolButton
+                terria={this.props.viewState.terria}
+                viewState={this.props.viewState}
+              />
             </div>
           </If>
           <For each="item" of={this.props.navItems} index="i">

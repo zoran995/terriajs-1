@@ -8,6 +8,7 @@ import DragDropNotification from "./../DragDropNotification.jsx";
 import ExplorerWindow from "./../ExplorerWindow/ExplorerWindow.jsx";
 import FeatureInfoPanel from "./../FeatureInfo/FeatureInfoPanel.jsx";
 import FeedbackForm from "../Feedback/FeedbackForm.jsx";
+import MeasureToolPanel from "../Measure/MeasureToolPanel.jsx";
 import MapColumn from "./MapColumn.jsx";
 import MapInteractionWindow from "./../Notification/MapInteractionWindow.jsx";
 import MapNavigation from "./../Map/MapNavigation.jsx";
@@ -292,6 +293,15 @@ const StandardUserInterface = createReactClass({
           >
             <aside className={Styles.feedback}>
               <FeedbackForm viewState={this.props.viewState} />
+            </aside>
+          </If>
+
+          <If condition={!this.props.viewState.hideMapUi()}>
+            <aside className={Styles.feedback}>
+              <MeasureToolPanel
+                viewState={this.props.viewState}
+                terria={terria}
+              />
             </aside>
           </If>
 
