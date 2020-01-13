@@ -14,6 +14,12 @@ import classNames from "classnames";
 import Styles from "./viewing-controls.scss";
 import { withTranslation } from "react-i18next";
 
+import GeoJsonCatalogItem from "../../../Models/GeoJsonCatalogItem";
+import CompositeCatalogItem from "../../../Models/CompositeCatalogItem";
+import CsvCatalogItem from "../../../Models/CsvCatalogItem";
+import SensorObservationServiceCatalogItem from "../../../Models/SensorObservationServiceCatalogItem";
+import CzmlCatalogItem from "../../../Models/CzmlCatalogItem";
+
 import createCatalogMemberFromType from "../../../Models/createCatalogMemberFromType";
 import addUserCatalogMember from "../../../Models/addUserCatalogMember";
 import ImagerySplitDirection from "terriajs-cesium/Source/Scene/ImagerySplitDirection";
@@ -34,6 +40,33 @@ const ViewingControls = createReactClass({
 
   zoomTo() {
     this.props.item.zoomToAndUseClock();
+  },
+
+  attributeTable() {
+    if (this.props.item instanceof CsvCatalogItem) {
+      console.log("csv");
+      console.log(this.props.item.name);
+      console.log(this.props.item.nameInCatalog);
+      console.log(this.props.item.description);
+      console.log(this.props.item.dataSource.tableStructure.columns);
+
+      console.log(
+        this.props.item.dataSource.entities.values[0].properties.getValue()
+      );
+      // const that = this;
+      const props = this.props.item.dataSource.entities.values[0].properties.getValue();
+      this.props.item.dataSource.tableStructure.columns.forEach(function(
+        column
+      ) {
+        console.log(column.name);
+        console.log(props[column.name]);
+      });
+    } else if (this.props.item instanceof GeoJsonCatalogItem) {
+      console.log("geojson");
+    } else if (this.props.item instanceof CzmlCatalogItem) {
+      console.log("czml");
+    }
+    console.log(this.props.item);
   },
 
   openFeature() {
@@ -166,6 +199,16 @@ const ViewingControls = createReactClass({
           </li>
           <span className={Styles.separator} />
         </If>
+        <li className={classNames(Styles.zoom, classList)}>
+          <button
+            type="button"
+            onClick={this.attributeTable}
+            title="Attribute table"
+            className={Styles.btn}
+          >
+            Attribute table
+          </button>
+        </li>
         <If condition={canSplit}>
           <li className={classNames(Styles.split, classList)}>
             <button

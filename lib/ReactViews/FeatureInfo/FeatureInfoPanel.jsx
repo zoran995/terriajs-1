@@ -75,10 +75,17 @@ export const FeatureInfoPanel = createReactClass({
                 // Panel is closed, refrain from setting selectedFeature
                 return;
               }
-
+              const featureNotDrawn = pickedFeatures.features.filter(x =>
+                defined(determineIsFeatureDrawn(terria.dataSources, x))
+              );
+              if (featureNotDrawn.length < 1) {
+                // Clicked only on drawn feature, refrain from setting selectedFeature
+                terria.selectedFeature = undefined;
+                return;
+              }
               // We only show features that are associated with a catalog item, so make sure the one we select to be
               // open initially is one we're actually going to show.
-              const featuresShownAtAll = pickedFeatures.features.filter(x =>
+              const featuresShownAtAll = featureNotDrawn.filter(x =>
                 defined(determineCatalogItem(terria.nowViewing, x))
               );
               terria.selectedFeature = featuresShownAtAll.filter(
@@ -431,6 +438,26 @@ function getFeaturesGroupedByCatalogItems(terria) {
   });
 
   return { catalogItems, featureCatalogItemPairs };
+}
+
+function determineIsFeatureDrawn(dataSources, feature) {
+  if (!defined(dataSources)) {
+    return undefined;
+  }
+  if (
+    defined(feature.entityCollection) &&
+    defined(feature.entityCollection.owner)
+  ) {
+    if (
+      !(
+        feature.entityCollection.owner.name === "drawnPoints" &&
+        dataSources.contains(feature.entityCollection.owner)
+      )
+    )
+      return feature;
+  }
+
+  return;
 }
 
 /**

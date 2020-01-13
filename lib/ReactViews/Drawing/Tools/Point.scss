@@ -1,0 +1,111 @@
+@import "~terriajs-variables";
+@import "../../../Sass/common/mixins";
+
+.feature-item {
+  background: $dark-with-overlay;
+  color: $text-light;
+  font-family: $font-pop;
+  margin: $padding $padding 0 $padding;
+  // border: 1px solid $overlay;
+  border-radius: 2px;
+  width: calc(100% - 20px);
+
+  &.workbench-item:global(.ui-sortable-item) {
+    cursor: auto;
+    float: none;
+  }
+
+  .is-open {
+    @media (min-width: $sm) {
+      .btn--toggle {
+        padding-left: 8px;
+      }
+    }
+  }
+}
+
+.header {
+  composes: list-reset from "../../../Sass/common/_base.scss";
+  width: 100%;
+}
+
+.header-clearfix {
+  composes: clearfix from "../../../Sass/common/_base.scss";
+}
+
+.visibilityColumn {
+  composes: col from "../../../Sass/common/_base.scss";
+  composes: col-1 from "../../../Sass/common/_base.scss";
+  padding: 8px 10px;
+  //remove additional space below inline element
+  button {
+    display: block;
+  }
+  svg {
+    height: 14px;
+    width: 14px;
+    fill: #fff;
+  }
+}
+
+.btn-visibility {
+  composes: btn from "../../../Sass/common/_buttons.scss";
+}
+
+.nameColumn {
+  composes: col from "../../../Sass/common/_base.scss";
+  composes: col-10 from "../../../Sass/common/_base.scss";
+  padding: 5px;
+  text-align: left;
+}
+
+.toggleColumn {
+  composes: col from "../../../Sass/common/_base.scss";
+  composes: col-1 from "../../../Sass/common/_base.scss";
+  padding: 5px;
+  float: right;
+  //remove additional space below inline element
+  svg {
+    height: 18px;
+    width: 18px;
+    fill: #fff;
+  }
+}
+
+.btn-toggle {
+  composes: btn from "../../../Sass/common/_buttons.scss";
+  display: block;
+}
+
+.inner {
+  composes: clearfix from "../../../Sass/common/_base.scss";
+  padding: $padding;
+  border-top: 1px solid $border-color;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.control {
+  composes: list-reset from "../../../Sass/common/_base.scss";
+  height: 18px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    display: block;
+    float: left;
+    box-sizing: border-box;
+  }
+}
+
+.separator {
+  border-left: solid 1px $border-color;
+}
+
+.draggable {
+  font-size: 0.9rem;
+  cursor: move;
+}

@@ -40,6 +40,9 @@ const MenuBar = createReactClass({
   },
 
   onStoryButtonClick() {
+    if (!this.props.viewState.storyBuilderShown) {
+      this.props.viewState.drawingPanelShown = false;
+    }
     this.props.viewState.storyBuilderShown = !this.props.viewState
       .storyBuilderShown;
     this.props.terria.currentViewer.notifyRepaintRequired();
@@ -48,6 +51,19 @@ const MenuBar = createReactClass({
       triggerResize();
     }, this.props.animationDuration || 1);
     this.props.viewState.toggleFeaturePrompt("story", false, true);
+  },
+
+  onDrawingButtonClick() {
+    if (!this.props.viewState.drawingPanelShown) {
+      this.props.viewState.storyBuilderShown = false;
+    }
+    this.props.viewState.drawingPanelShown = !this.props.viewState
+      .drawingPanelShown;
+    this.props.terria.currentViewer.notifyRepaintRequired();
+    // Allow any animations to finish, then trigger a resize.
+    setTimeout(function() {
+      triggerResize();
+    }, this.props.animationDuration || 1);
   },
   dismissAction() {
     this.props.viewState.toggleFeaturePrompt("story", false, true);
@@ -63,6 +79,7 @@ const MenuBar = createReactClass({
     const mapGuidesLocationPrompted = this.props.terria.getLocalProperty(
       "mapGuidesLocationPrompted"
     );
+    const drawingEnabled = true; // this.props.terria.configParameters.drawingEnabled;
     const storyEnabled = this.props.terria.configParameters.storyEnabled;
     const enableTools = this.props.terria.getUserProperty("tools") === "1";
 
@@ -95,6 +112,18 @@ const MenuBar = createReactClass({
         onClick={this.handleClick}
       >
         <ul className={Styles.menu}>
+          <If condition={drawingEnabled}>
+            <li className={Styles.menuItem}>
+              <button
+                className={Styles.drawingBtn}
+                type="button"
+                onClick={this.onDrawingButtonClick}
+              >
+                <Icon glyph={Icon.GLYPHS.story} />
+                <span>Drawing</span>
+              </button>
+            </li>
+          </If>
           <If condition={storyEnabled}>
             <li className={Styles.menuItem}>
               <button

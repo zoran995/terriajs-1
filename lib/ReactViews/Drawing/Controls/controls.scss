@@ -1,0 +1,23 @@
+@import "~terriajs-variables";
+
+.btn {
+  composes: btn from "../../../Sass/common/_buttons.scss";
+  color: $text-light;
+
+  &.btn {
+    padding: 0;
+    font-size: $font-size-mini;
+  }
+}
+
+.remove {
+  text-align: right;
+  svg {
+    height: 12px;
+    width: 12px;
+    margin: 4px;
+    fill: #fff;
+    vertical-align: bottom;
+    display: inline-block;
+  }
+}

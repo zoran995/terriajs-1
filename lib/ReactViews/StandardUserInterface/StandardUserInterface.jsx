@@ -8,6 +8,8 @@ import DragDropNotification from "./../DragDropNotification.jsx";
 import ExplorerWindow from "./../ExplorerWindow/ExplorerWindow.jsx";
 import FeatureInfoPanel from "./../FeatureInfo/FeatureInfoPanel.jsx";
 import FeedbackForm from "../Feedback/FeedbackForm.jsx";
+import RightSidePanel from "../RightSidePanel/RightSidePanel.jsx";
+
 import MapColumn from "./MapColumn.jsx";
 import MapInteractionWindow from "./../Notification/MapInteractionWindow.jsx";
 import MapNavigation from "./../Map/MapNavigation.jsx";
@@ -21,7 +23,7 @@ import SidePanel from "./../SidePanel/SidePanel.jsx";
 import processCustomElements from "./processCustomElements";
 import FullScreenButton from "./../SidePanel/FullScreenButton.jsx";
 import StoryPanel from "./../Story/StoryPanel.jsx";
-import StoryBuilder from "./../Story/StoryBuilder.jsx";
+// import StoryBuilder from "./../Story/StoryBuilder.jsx";
 
 import SatelliteGuide from "../Guide/SatelliteGuide.jsx";
 import WelcomeMessage from "../WelcomeMessage/WelcomeMessage.jsx";
@@ -160,6 +162,9 @@ const StandardUserInterface = createReactClass({
       this.props.viewState.storyShown &&
       !this.props.viewState.explorerPanelIsVisible &&
       !this.props.viewState.storyBuilderShown;
+    const showDrawingPanel =
+      this.props.viewState.drawingPanelShown &&
+      !this.shouldUseMobileInterface();
     return (
       <div className={Styles.storyWrapper}>
         <WelcomeMessage viewState={this.props.viewState} />
@@ -329,9 +334,18 @@ const StandardUserInterface = createReactClass({
             <StoryPanel terria={terria} viewState={this.props.viewState} />
           )}
         </div>
-        {this.props.terria.configParameters.storyEnabled && (
+        {/* {this.props.terria.configParameters.storyEnabled && (
           <StoryBuilder
             isVisible={showStoryBuilder}
+            terria={terria}
+            viewState={this.props.viewState}
+            animationDuration={animationDuration}
+          />
+        )} */}
+        {/* this.props.terria.configParameters.drawingEnabled */ true && (
+          <RightSidePanel
+            storyVisible={showStoryBuilder}
+            drawingVisible={showDrawingPanel}
             terria={terria}
             viewState={this.props.viewState}
             animationDuration={animationDuration}

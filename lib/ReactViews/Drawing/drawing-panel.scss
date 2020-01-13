@@ -1,0 +1,168 @@
+@import "~terriajs-variables";
+@import "../../Sass/common/mixins";
+.drawing-panel {
+  font-family: $font-base;
+  flex-basis: 400px;
+  max-width: 400px;
+  color: $text-light;
+  font-size: $font-size-mid-small;
+  background: $dark;
+  display: block;
+  transition: all 0.25s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  &.isVisible {
+    visibility: visible;
+    margin-right: 0;
+  }
+  &.isHidden {
+    visibility: hidden;
+    margin-right: -400px;
+  }
+}
+
+.title {
+  composes: clearfix from "../../Sass/common/_base.scss";
+  composes: list-reset from "../../Sass/common/_base.scss";
+
+  align-items: baseline;
+  padding-left: $padding-small + $padding;
+  padding-right: $padding-small + $padding;
+  padding-top: $padding-small;
+  padding-bottom: $padding-small;
+  color: $text-light;
+  height: $drawing-title-height;
+  line-height: $drawing-title-height;
+  border-bottom: 1px solid $overlay;
+  li {
+    display: inline-block;
+    float: left;
+    font-size: $font-size-mid-small;
+    font-weight: $font-weight-bold;
+    &:last-child {
+      float: right;
+    }
+  }
+}
+
+.hide-button {
+  composes: btn from "../../Sass/common/_buttons.scss";
+  color: $text-light;
+  font-size: $font-size-mid-small;
+  text-transform: uppercase;
+  padding: $padding $padding $padding 5 * $padding;
+  border: 0;
+  svg {
+    height: $font-size-mid-small;
+    width: $font-size-mid-small;
+    fill: $text-light;
+    vertical-align: middle;
+    display: inline-block;
+    use {
+      pointer-events: none;
+    }
+  }
+  &:hover,
+  &:focus {
+    svg {
+      fill: $color-primary;
+    }
+  }
+}
+
+.tools-list {
+  composes: list-reset from "../../Sass/common/_base.scss";
+  composes: clearfix from "../../Sass/common/_base.scss";
+
+  padding: $padding;
+  border-bottom: 1px solid $overlay;
+}
+
+.tools-list__item {
+  padding: 0 $padding;
+  &:last-child {
+    padding: 0;
+  }
+  &:first-child {
+    padding: 0;
+  }
+  composes: col from "../../Sass/common/_base.scss";
+  composes: col-4 from "../../Sass/common/_base.scss";
+}
+
+.btn--tool {
+  composes: btn from "../../Sass/common/_buttons.scss";
+  composes: btn-primary from "../../Sass/common/_buttons.scss";
+
+  line-height: $input-height;
+  font-size: $font-size-mid-small;
+  padding: 0;
+
+  svg {
+    position: absolute;
+    left: $padding-small;
+    height: $input-glyph-height;
+    width: $input-glyph-height;
+    margin: $input-glyph-margin;
+    display: block;
+    fill: #ffffff;
+  }
+
+  &:hover,
+  &:focus {
+    background: $text-light;
+    @if variable-exists(modal-selected) {
+      color: $modal-selected;
+    } @else {
+      color: $color-primary;
+    }
+  }
+}
+
+.tool-selected {
+  background: $text-light;
+  @if variable-exists(modal-selected) {
+    color: $modal-selected;
+  } @else {
+    color: $color-primary;
+  }
+}
+
+.data {
+  height: calc(100vh - 121px);
+  overflow: auto;
+  &.isActive {
+    opacity: 0.7;
+  }
+}
+
+.remove-button {
+  composes: btn from "../../Sass/common/_buttons.scss";
+  color: $text-light;
+  font-size: $font-size-mid-mini;
+  padding: 0;
+  svg {
+    height: 12px;
+    width: 12px;
+    margin: 4px;
+    fill: #ffffff;
+    vertical-align: bottom;
+    display: inline-block;
+  }
+}
+
+.data-content {
+  composes: list-reset from "../../Sass/common/_base.scss";
+  composes: scrollbars from "../../Sass/common/_base.scss";
+  position: relative;
+  height: calc(100vh - #{$workbench-header + $logo-height});
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @media (max-width: $sm) {
+    height: calc(100% - #{$mobile-modal-top-height});
+  }
+}
+
+.footer {
+  padding: $padding;
+}

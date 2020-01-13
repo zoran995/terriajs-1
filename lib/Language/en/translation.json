@@ -10,6 +10,14 @@
     "measureTool" : "Measure Tool",
     "measureDistance": "Measure distance between locations"
   },
+  "drawing" : {
+    "title" : "Drawing tool",
+    "badgeLabel" : "Drawn data",
+    "zoomTo" : "Zoom to",
+    "text" : "Label",
+    "style" : "Style",
+    "removeData" : "Remove"
+  },
   "location" : {
     "errorGettingLocation" : "Error getting location",
     "browserCannotProvide" : "Your browser cannot provide your location.",
@@ -215,7 +223,8 @@
     "promptHtml2" : "<0><0>INTRODUCING</0><1>Data Stories</1><2>Create and share interactive stories directly from your map.</2></0>",
     "story" : "Story",
     "dismissText" : "Got it, thanks!",
-    "mobileViewStory" : "View Stories {{storiesLength}}"
+    "mobileViewStory" : "View Stories {{storiesLength}}",
+    "hideStoryPanel" : "Hide"
   },
   "satelliteGuidance" : {
     "menuTitle" : "You can access map guides at any time by looking in the <0>help menu</0>.",

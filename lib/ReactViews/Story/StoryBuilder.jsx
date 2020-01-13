@@ -16,6 +16,9 @@ import triggerResize from "../../Core/triggerResize";
 import Loader from "../Loader";
 import Styles from "./story-builder.scss";
 import { withTranslation, Trans } from "react-i18next";
+import CustomDataSource from "terriajs-cesium/Source/DataSources/CustomDataSource";
+import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
+import Color from "terriajs-cesium/Source/Core/Color";
 
 const StoryBuilder = createReactClass({
   displayName: "StoryBuilder",
@@ -288,6 +291,18 @@ const StoryBuilder = createReactClass({
   },
 
   render() {
+    const dataSource = new CustomDataSource();
+
+    dataSource.entities.add({
+      name: "Red line on terrain",
+      polyline: {
+        positions: Cartesian3.fromDegreesArray([8, 45, 9, 46]),
+        width: 5,
+        material: Color.RED,
+        clampToGround: true
+      }
+    });
+    this.props.terria.dataSources.add(dataSource);
     const { t } = this.props;
     const hasStories =
       defined(this.props.terria.stories) &&
