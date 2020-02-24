@@ -107,6 +107,11 @@ const ViewingControls = createReactClass({
     item.exportData();
   },
 
+  openAttributeTable(item) {
+    this.props.viewState.attributeTablePanelIsVisible = true;
+    item.terria.attributeTableCatalogItem = item;
+  },
+
   render() {
     const item = this.props.item;
     const canZoom =
@@ -188,6 +193,19 @@ const ViewingControls = createReactClass({
               title={t("workbench.exportDataTitle")}
             >
               {t("workbench.exportData")}
+            </button>
+          </li>
+          <span className={Styles.separator} />
+        </If>
+        <If condition={defined(item.attributeTable)}>
+          <li className={classNames(Styles.info, classList)}>
+            <button
+              type="button"
+              onClick={() => this.openAttributeTable(item)}
+              title={t("workbench.attributeTable")}
+              className={Styles.btn}
+            >
+              {t("workbench.attributeTable")}
             </button>
           </li>
           <span className={Styles.separator} />

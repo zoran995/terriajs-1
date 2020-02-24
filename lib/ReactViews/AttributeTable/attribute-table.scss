@@ -1,0 +1,34 @@
+@import "~terriajs-variables";
+@import "../../Sass/common/mixins";
+
+.tableWrap {
+  color: black;
+  & span.pull-right {
+    float: right;
+  }
+
+  & * {
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      width: 10px; /* for vertical scrollbars */
+      height: 8px; /* for horizontal scrollbars */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(#888, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(#888, 0.6);
+    }
+
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & .scroll {
+    color: red;
+  }
+}

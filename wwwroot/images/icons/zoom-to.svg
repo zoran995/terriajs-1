@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <g id="zoom-to-instance">
+    <path d="M33.1562 35.7584C29.6566 38.7196 25.17 40.4694 20.2347 40.4694C9.10785 40.4694 0 31.4064 0 20.2347C0 9.10785 9.10785 0 20.2347 0C31.4064 0 40.4694 9.06298 40.4694 20.2347C40.4694 25.1251 38.6747 29.6566 35.7584 33.1562L51.4616 48.8594C52.1795 49.5772 52.1795 50.7437 51.4616 51.4616C51.1027 51.8205 50.654 52 50.1605 52C49.667 52 49.2183 51.8205 48.8594 51.4616L33.1562 35.7584ZM36.7903 20.2347C36.7903 11.1268 29.3874 3.67903 20.2347 3.67903C11.1268 3.67903 3.67903 11.1268 3.67903 20.2347C3.67903 29.3425 11.082 36.7903 20.2347 36.7903C29.3874 36.7903 36.7903 29.3874 36.7903 20.2347Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    <g id="Group" transform="translate(11.39999 11.39999)">
+      <path d="M0 1L4.3 1" transform="translate(1 0)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M4.2 1L0 1" transform="translate(12.4 0)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M1 0L1 4.3" transform="translate(0 1)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M1 0L1 4.3" transform="translate(15.6 1)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M0 1L4.3 1" transform="translate(1 15.6)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M4.2 1L0 1" transform="translate(12.4 15.6)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M1 0L1 4.2" transform="translate(0 12.4)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+      <path d="M1 0L1 4.2" transform="translate(15.6 12.4)" id="Line" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
+    </g>
+  </g>
+</svg>

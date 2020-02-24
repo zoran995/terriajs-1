@@ -1,0 +1,89 @@
+@import "~terriajs-variables";
+@import "../../Sass/common/mixins";
+
+.panel {
+  background: $feature-info-bg;
+  color: $feature-info-color;
+  border-radius: $radius-small;
+  display: none;
+
+  svg {
+    fill: $feature-info-color;
+  }
+
+  a {
+    @include link($feature-info-bg);
+  }
+}
+
+.is-collapsed {
+  .body {
+    display: none;
+  }
+}
+
+.is-visible {
+  display: block;
+}
+
+.is-translucent {
+  opacity: 0.6;
+}
+
+.header {
+  background: $feature-info-header-bg;
+  padding-right: $input-height;
+  line-height: $modal-header-height;
+}
+
+.btnPanelHeading {
+  padding: 0px 8px;
+  color: $feature-info-btn-color;
+  width: 100%;
+}
+
+.btn--close-attribute-table,
+.btnToggleAttributeTable {
+  composes: btn from "../../Sass/common/_buttons.scss";
+  vertical-align: middle;
+  &:hover,
+  &:focus {
+    svg {
+      fill: $color-primary;
+    }
+  }
+  svg {
+    height: 23px;
+    width: 23px;
+    display: block;
+    fill: $feature-info-btn-color;
+  }
+}
+
+.btn--close-attribute-table {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  svg {
+    width: 15px;
+    height: 26px;
+  }
+}
+
+.btnToggleAttributeTable {
+  padding: $padding;
+}
+
+.no-results {
+  composes: no-results from "../../Sass/common/_labels.scss";
+}
+
+.body {
+  composes: list-reset from "../../Sass/common/_base.scss";
+  composes: scrollbars from "../../Sass/common/_base.scss";
+
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: calc(80vh - #{$padding * 2 + $btn-default-line-height});
+  font-size: $font-size-feature-info;
+}

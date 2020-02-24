@@ -7,6 +7,7 @@ import DragDropFile from "./../DragDropFile.jsx";
 import DragDropNotification from "./../DragDropNotification.jsx";
 import ExplorerWindow from "./../ExplorerWindow/ExplorerWindow.jsx";
 import FeatureInfoPanel from "./../FeatureInfo/FeatureInfoPanel.jsx";
+import AttributeTablePanel from "./../AttributeTable/AttributeTablePanel.jsx";
 import FeedbackForm from "../Feedback/FeedbackForm.jsx";
 import MapColumn from "./MapColumn.jsx";
 import MapInteractionWindow from "./../Notification/MapInteractionWindow.jsx";
@@ -294,6 +295,28 @@ const StandardUserInterface = createReactClass({
               <FeedbackForm viewState={this.props.viewState} />
             </aside>
           </If>
+
+          <div
+            className={classNames(
+              Styles.attributeTable,
+              this.props.viewState.topElement === "AttributeTable"
+                ? "top-element"
+                : "",
+              {
+                [Styles.attributeTableFullScreen]: this.props.viewState
+                  .isMapFullScreen
+              }
+            )}
+            tabIndex={0}
+            onClick={() => {
+              this.props.viewState.topElement = "AttributeTable";
+            }}
+          >
+            <AttributeTablePanel
+              terria={terria}
+              viewState={this.props.viewState}
+            />
+          </div>
 
           <div
             className={classNames(

@@ -1,0 +1,13 @@
+@import "~terriajs-variables";
+@import "../../../Sass/common/mixins";
+
+.filter-input {
+  composes: input from "../../../Sass/common/_form.scss";
+  height: 30px;
+}
+
+.outer-div {
+  float: left;
+  margin-right: 0;
+  max-width: "100%";
+}
