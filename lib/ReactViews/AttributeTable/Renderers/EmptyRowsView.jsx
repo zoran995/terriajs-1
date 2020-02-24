@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import Styles from "./renderers.scss";
 import { withTranslation } from "react-i18next";
-import { i18next } from "i18next";
 
 const EmptyRowsView = createReactClass({
   propTypes: {
