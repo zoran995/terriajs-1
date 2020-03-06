@@ -6,6 +6,7 @@ import createReactClass from "create-react-class";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Styles from "./legend.scss";
+import projection from "../../../Map/projection";
 
 const LocationBar = createReactClass({
   displayName: "LocationBar",
@@ -39,20 +40,12 @@ const LocationBar = createReactClass({
         onClick={this.toggleUseProjection}
       >
         <Choose>
-          <When condition={!this.props.mouseCoords.useProjection}>
-            <div className={Styles.section}>
-              <span>{t("legend.lat")}</span>
-              <span>{this.props.mouseCoords.latitude}</span>
-            </div>
-            <div className={Styles.section}>
-              <span>{t("legend.lon")}</span>
-              <span>{this.props.mouseCoords.longitude}</span>
-            </div>
-          </When>
-          <Otherwise>
+          <When
+            condition={this.props.mouseCoords.projection === projection.UTM}
+          >
             <div className={Styles.sectionShort}>
               <span>{t("legend.zone")}</span>
-              <span>{this.props.mouseCoords.utmZone}</span>
+              <span>{this.props.mouseCoords.zone}</span>
             </div>
             <div className={Styles.section}>
               <span>{t("legend.e")}</span>
@@ -61,6 +54,30 @@ const LocationBar = createReactClass({
             <div className={Styles.section}>
               <span>{t("legend.n")}</span>
               <span>{this.props.mouseCoords.north}</span>
+            </div>
+          </When>
+          <When condition={this.props.mouseCoords.projection === projection.GK}>
+            <div className={Styles.sectionShort}>
+              <span>{t("legend.zone")}</span>
+              <span>{this.props.mouseCoords.zone}</span>
+            </div>
+            <div className={Styles.section}>
+              <span>{t("legend.e")}</span>
+              <span>{this.props.mouseCoords.east}</span>
+            </div>
+            <div className={Styles.section}>
+              <span>{t("legend.n")}</span>
+              <span>{this.props.mouseCoords.north}</span>
+            </div>
+          </When>
+          <Otherwise>
+            <div className={Styles.section}>
+              <span>{t("legend.lat")}</span>
+              <span>{this.props.mouseCoords.latitude}</span>
+            </div>
+            <div className={Styles.section}>
+              <span>{t("legend.lon")}</span>
+              <span>{this.props.mouseCoords.longitude}</span>
             </div>
           </Otherwise>
         </Choose>
