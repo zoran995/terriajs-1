@@ -3,13 +3,9 @@
 import ObserveModelMixin from "../ObserveModelMixin";
 import React from "react";
 import createReactClass from "create-react-class";
-import parseCustomMarkdownToReact from "../Custom/parseCustomMarkdownToReact";
 import PropTypes from "prop-types";
-import sendFeedback from "../../Models/sendFeedback.js";
 import Styles from "./overview-map-panel.scss";
-import Icon from "../Icon.jsx";
 import classNames from "classnames";
-import { withTranslation, Trans } from "react-i18next";
 import OverviewMap from "./OverviewMap.jsx";
 
 const OverviewMapPanel = createReactClass({
@@ -43,7 +39,6 @@ const OverviewMapPanel = createReactClass({
   },
 
   render() {
-    const { t } = this.props;
     const visible = this.props.viewState.overviewMapIsVisible;
     const overviewMapClassNames = classNames(Styles.form, {
       [Styles.isOpen]: this.props.viewState.overviewMapIsVisible
@@ -63,4 +58,4 @@ const OverviewMapPanel = createReactClass({
   }
 });
 
-module.exports = withTranslation()(OverviewMapPanel);
+module.exports = OverviewMapPanel;
