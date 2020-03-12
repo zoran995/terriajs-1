@@ -65,6 +65,33 @@ $distance-bg: rgba($dark, 0.9);
   }
 }
 
+.overviewMap {
+  composes: baseLegend;
+  // Adjust colors to match btn--map.
+  background-color: $charcoal-grey;
+  color: $text-light;
+  &:hover {
+    background: $color-primary;
+  }
+  &:hover {
+    background: $color-primary;
+  }
+  .section-overview {
+    max-width: 20px;
+    margin-right: 0;
+    padding: 0;
+  }
+  text-align: center;
+  padding: 5px;
+
+  svg {
+    fill: $text-light;
+    margin: auto;
+    width: calc(100% - 5px);
+    height: calc(100% - 5px);
+  }
+}
+
 .distanceLegend {
   &:hover {
     background: $charcoal-grey;

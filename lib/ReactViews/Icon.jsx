@@ -77,7 +77,9 @@ const GLYPHS = {
   circleEmpty: require("../../wwwroot/images/icons/circle-empty.svg"),
   story: require("../../wwwroot/images/icons/story.svg"),
   recapture: require("../../wwwroot/images/icons/recapture.svg"),
-  menuDotted: require("../../wwwroot/images/icons/menu-dotted.svg")
+  menuDotted: require("../../wwwroot/images/icons/menu-dotted.svg"),
+  overviewMapOpened: require("../../wwwroot/images/icons/overview-map-opened.svg"),
+  overviewMapClosed: require("../../wwwroot/images/icons/overview-map-closed.svg")
 };
 
 const Icon = createReactClass({

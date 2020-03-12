@@ -7,6 +7,7 @@ import TerriaViewerWrapper from "../Map/TerriaViewerWrapper.jsx";
 import LocationBar from "../Map/Legend/LocationBar.jsx";
 import DistanceLegend from "../Map/Legend/DistanceLegend.jsx";
 import FeedbackButton from "../Feedback/FeedbackButton.jsx";
+import OverviewMapButton from "../Map/Legend/OverviewMapButton.jsx";
 import ObserveModelMixin from "../ObserveModelMixin";
 import BottomDock from "../BottomDock/BottomDock.jsx";
 import defined from "terriajs-cesium/Source/Core/defined";
@@ -116,6 +117,7 @@ const MapColumn = createReactClass({
                   mouseCoords={this.props.viewState.mouseCoords}
                 />
                 <DistanceLegend terria={this.props.terria} />
+                <OverviewMapButton viewState={this.props.viewState} />
               </div>
             </If>
             <If

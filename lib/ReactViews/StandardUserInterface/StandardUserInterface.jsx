@@ -8,6 +8,7 @@ import DragDropNotification from "./../DragDropNotification.jsx";
 import ExplorerWindow from "./../ExplorerWindow/ExplorerWindow.jsx";
 import FeatureInfoPanel from "./../FeatureInfo/FeatureInfoPanel.jsx";
 import FeedbackForm from "../Feedback/FeedbackForm.jsx";
+import OverviewMapPanel from "../OverviewMap/OverviewMapPanel.jsx";
 import MapColumn from "./MapColumn.jsx";
 import MapInteractionWindow from "./../Notification/MapInteractionWindow.jsx";
 import MapNavigation from "./../Map/MapNavigation.jsx";
@@ -305,6 +306,13 @@ const StandardUserInterface = createReactClass({
               <FeedbackForm viewState={this.props.viewState} />
             </aside>
           </If>
+
+          <div className={Styles.feedback}>
+            <OverviewMapPanel
+              viewState={this.props.viewState}
+              terria={this.props.terria}
+            />
+          </div>
 
           <div
             className={classNames(
