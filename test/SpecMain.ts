@@ -23,6 +23,7 @@ spy(event => {
 beforeEach(function() {
   i18next.init({
     lng: "cimode",
+    fallbackLng: "cimode",
     debug: false
   });
 });
