@@ -39,12 +39,6 @@ const mapConfigInlineInitString = JSON.stringify(mapConfigInlineInitJson);
 const mapConfigDereferencedJson = require("../../wwwroot/test/Magda/map-config-dereferenced.json");
 const mapConfigDereferencedString = JSON.stringify(mapConfigDereferencedJson);
 
-// i18nOptions for CI
-const i18nOptions = {
-  // Skip calling i18next.init in specs
-  skipInit: true
-};
-
 describe("Terria", function() {
   let terria: Terria;
 
@@ -107,8 +101,7 @@ describe("Terria", function() {
 
         terria
           .start({
-            configUrl: "test/Magda/map-config-basic.json",
-            i18nOptions
+            configUrl: "test/Magda/map-config-basic.json"
           })
           .then(function() {
             expect(terria.catalog.group.uniqueId).toEqual("/");
@@ -128,8 +121,7 @@ describe("Terria", function() {
 
         terria
           .start({
-            configUrl: "test/Magda/map-config-basic.json",
-            i18nOptions
+            configUrl: "test/Magda/map-config-basic.json"
           })
           .then(function() {
             expect(terria.initSources.length).toEqual(1);
@@ -158,8 +150,7 @@ describe("Terria", function() {
 
         terria
           .start({
-            configUrl: "test/Magda/map-config-v7.json",
-            i18nOptions
+            configUrl: "test/Magda/map-config-v7.json"
           })
           .then(function() {
             console.log(terria);
@@ -181,8 +172,7 @@ describe("Terria", function() {
         // no init sources before starting
         expect(terria.initSources.length).toEqual(0);
         await terria.start({
-          configUrl: "test/Magda/map-config-inline-init.json",
-          i18nOptions
+          configUrl: "test/Magda/map-config-inline-init.json"
         });
 
         const inlineInit = mapConfigInlineInitJson.aspects["terria-init"];
@@ -211,8 +201,7 @@ describe("Terria", function() {
         });
         terria
           .start({
-            configUrl: "test/Magda/map-config-dereferenced.json",
-            i18nOptions
+            configUrl: "test/Magda/map-config-dereferenced.json"
           })
           .then(function() {
             const groupAspect = mapConfigDereferencedJson.aspects["group"];
@@ -409,9 +398,7 @@ describe("Terria", function() {
           locationSearchProviders: []
         });
 
-        await Promise.all(
-          [terria, newTerria].map(t => t.start({ configUrl, i18nOptions }))
-        );
+        await Promise.all([terria, newTerria].map(t => t.start({ configUrl })));
 
         terria.catalog.group.addMembersFromJson(CommonStrata.definition, [
           {
@@ -565,8 +552,7 @@ describe("Terria", function() {
         });
 
         await terria.start({
-          configUrl,
-          i18nOptions
+          configUrl
         });
         jasmine.Ajax.stubRequest(configUrl).andReturn({
           responseText: JSON.stringify(
@@ -575,8 +561,7 @@ describe("Terria", function() {
         });
 
         await newTerria.start({
-          configUrl,
-          i18nOptions
+          configUrl
         });
         // Don't allow more requests to configUrl once Terrias are set up
         jasmine.Ajax.stubRequest(configUrl).andError({});
@@ -736,8 +721,7 @@ describe("Terria", function() {
     it("initializes proxy with parameters from config file", function(done) {
       terria
         .start({
-          configUrl: "test/init/configProxy.json",
-          i18nOptions
+          configUrl: "test/init/configProxy.json"
         })
         .then(function() {
           expect(terria.corsProxy.baseProxyUrl).toBe("/myproxy/");
