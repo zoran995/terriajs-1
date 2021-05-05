@@ -1,4 +1,4 @@
-import { DomElement } from "domhandler";
+import { DomElement } from "domhandler-2";
 import { runInAction } from "mobx";
 import React, { ReactElement } from "react";
 import createGuid from "terriajs-cesium/Source/Core/createGuid";

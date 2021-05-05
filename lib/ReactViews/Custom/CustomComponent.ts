@@ -1,4 +1,4 @@
-import { DomElement } from "domhandler";
+import { DomElement } from "domhandler-2";
 import { ReactElement } from "react";
 import Feature from "../../Models/Feature";
 import { BaseModel } from "../../Models/Model";

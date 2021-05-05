@@ -1,4 +1,4 @@
-import { DomElement } from "domhandler";
+import { DomElement } from "domhandler-2";
 import React, { ReactElement } from "react";
 import { TooltipWithButtonLauncher } from "../Generic/TooltipWrapper";
 import CustomComponent, { ProcessNodeContext } from "./CustomComponent";

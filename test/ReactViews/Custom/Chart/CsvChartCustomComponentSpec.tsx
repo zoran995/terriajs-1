@@ -1,4 +1,4 @@
-import { DomElement } from "domhandler";
+import { DomElement } from "domhandler-2";
 import CsvCatalogItem from "../../../../lib/Models/CsvCatalogItem";
 import Feature from "../../../../lib/Models/Feature";
 import StubCatalogItem from "../../../../lib/Models/StubCatalogItem";

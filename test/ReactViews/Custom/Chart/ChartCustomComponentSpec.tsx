@@ -1,4 +1,4 @@
-import { DomElement } from "domhandler";
+import { DomElement } from "domhandler-2";
 import { ReactChild } from "react";
 import ChartableMixin from "../../../../lib/ModelMixins/ChartableMixin";
 import CreateModel from "../../../../lib/Models/CreateModel";
