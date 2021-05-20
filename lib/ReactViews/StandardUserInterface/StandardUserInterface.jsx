@@ -51,6 +51,8 @@ export const showStoryPrompt = (viewState, terria) => {
     viewState.toggleFeaturePrompt("story", true);
 };
 const GlobalTerriaStyles = createGlobalStyle`
+  ${p => p.theme.fontImports ?? ""}
+
   // Theme-ify sass classes until they are removed
 
   // We override the primary, secondary, map and share buttons here as they
@@ -224,7 +226,12 @@ const StandardUserInterface = observer(
 
     render() {
       const { t } = this.props;
-      const mergedTheme = combine(this.props.themeOverrides, terriaTheme, true);
+      // Merge theme in order of highest priority: themeOverrides props -> theme config parameter -> default terriaTheme
+      const mergedTheme = combine(
+        this.props.themeOverrides,
+        combine(this.props.terria.configParameters.theme, terriaTheme, true),
+        true
+      );
       const theme = mergedTheme;
 
       const customElements = processCustomElements(
@@ -277,7 +284,7 @@ const StandardUserInterface = observer(
                 `}
               >
                 <div className={Styles.uiInner}>
-                  <If condition={!this.props.viewState.hideMapUi()}>
+                  <If condition={!this.props.viewState.hideMapUi}>
                     <Small>
                       <MobileHeader
                         terria={terria}
@@ -311,6 +318,7 @@ const StandardUserInterface = observer(
                       >
                         <Branding
                           terria={terria}
+                          viewState={this.props.viewState}
                           version={this.props.version}
                         />
                         <SidePanel
@@ -363,7 +371,7 @@ const StandardUserInterface = observer(
                         condition={
                           this.props.terria.configParameters
                             .experimentalFeatures &&
-                          !this.props.viewState.hideMapUi()
+                          !this.props.viewState.hideMapUi
                         }
                       >
                         <ExperimentalFeatures
@@ -377,7 +385,7 @@ const StandardUserInterface = observer(
                 </div>
               </div>
 
-              <If condition={!this.props.viewState.hideMapUi()}>
+              <If condition={!this.props.viewState.hideMapUi}>
                 <Medium>
                   <TrainerBar
                     terria={terria}
@@ -407,12 +415,11 @@ const StandardUserInterface = observer(
                 condition={
                   !customElements.feedback.length &&
                   this.props.terria.configParameters.feedbackUrl &&
-                  !this.props.viewState.hideMapUi()
+                  !this.props.viewState.hideMapUi &&
+                  this.props.viewState.feedbackFormIsVisible
                 }
               >
-                <aside className={Styles.feedback}>
-                  <FeedbackForm viewState={this.props.viewState} />
-                </aside>
+                <FeedbackForm viewState={this.props.viewState} />
               </If>
 
               <div
