@@ -1158,10 +1158,7 @@ class WebMapServiceCatalogItem
         "width",
         "height",
         "bbox",
-        "layers",
-        // This is here as a temporary fix until Cesium implements this fix
-        // https://github.com/CesiumGS/cesium/issues/9021
-        "version"
+        "layers"
       ];
 
       const baseUrl = queryParametersToRemove.reduce(
