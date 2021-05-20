@@ -1187,6 +1187,10 @@ class WebMapServiceCatalogItem
         parameters: parameters,
         getFeatureInfoParameters: {
           ...dimensionParameters,
+          feature_count:
+            1 +
+            (this.maximumShownFeatureInfos ||
+              this.terria.configParameters.defaultMaximumShownFeatureInfos)!,
           styles: this.styles === undefined ? "" : this.styles
         },
         tileWidth: this.tileWidth,
