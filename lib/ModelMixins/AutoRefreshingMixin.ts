@@ -13,12 +13,14 @@ import MappableMixin from "./MappableMixin";
 
 type AutoRefreshing = Model<AutoRefreshingTraits>;
 
-export default function AutoRefreshingMixin<
-  T extends Constructor<AutoRefreshing>
->(Base: T) {
+function AutoRefreshingMixin<T extends Constructor<AutoRefreshing>>(Base: T) {
   abstract class AutoRefreshingMixin extends MappableMixin(Base) {
     private autoRefreshDisposer: IReactionDisposer | undefined;
     private autorunRefreshEnableDisposer: IReactionDisposer | undefined;
+
+    get hasAutoRefreshingMixin() {
+      return true;
+    }
 
     /** Return the interval in seconds to poll for updates. */
     abstract get refreshInterval(): number | undefined;
@@ -98,3 +100,14 @@ export default function AutoRefreshingMixin<
 
   return AutoRefreshingMixin;
 }
+
+namespace AutoRefreshingMixin {
+  export interface Instance
+    extends InstanceType<ReturnType<typeof AutoRefreshingMixin>> {}
+
+  export function isMixedInto(model: any): model is Instance {
+    return model && model.hasAutoRefreshingMixin;
+  }
+}
+
+export default AutoRefreshingMixin;
