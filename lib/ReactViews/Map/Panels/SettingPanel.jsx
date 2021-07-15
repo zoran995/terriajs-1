@@ -317,7 +317,11 @@ class SettingPanel extends React.Component {
             {this.activeMapName}
           </label>
           <ul className={Styles.baseMapSelector}>
-            <For each="baseMap" index="i" of={this.props.terria.baseMaps}>
+            <For
+              each="baseMap"
+              index="i"
+              of={this.props.terria.baseMaps.useItems}
+            >
               <li key={i} className={Styles.listItemFourCols}>
                 <button
                   className={classNames(Styles.btnBaseMap, {

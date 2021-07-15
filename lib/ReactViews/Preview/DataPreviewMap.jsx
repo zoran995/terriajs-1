@@ -131,7 +131,7 @@ class DataPreviewMap extends React.Component {
     this.isZoomedToExtent = false;
 
     // Find preview basemap using `terria.previewBaseMapId`
-    const initPreviewBaseMap = this.props.terria.baseMaps.find(
+    const initPreviewBaseMap = this.props.terria.baseMaps.useItems.find(
       baseMap =>
         baseMap.mappable.uniqueId === this.props.terria.previewBaseMapId
     );
@@ -139,8 +139,8 @@ class DataPreviewMap extends React.Component {
       this.previewViewer.setBaseMap(initPreviewBaseMap.mappable);
     } else {
       this.previewViewer.setBaseMap(
-        this.props.terria.baseMaps.length > 0
-          ? this.props.terria.baseMaps[0].mappable
+        this.props.terria.baseMaps.useItems.length > 0
+          ? this.props.terria.baseMaps.useItems[0].mappable
           : undefined
       );
     }
