@@ -52,10 +52,8 @@ import { defaultTerms, Term } from "../ReactViewModels/defaultTerms";
 import NotificationState from "../ReactViewModels/NotificationState";
 import { shareConvertNotification } from "../ReactViews/Notification/shareConvertNotification";
 import MappableTraits from "../Traits/TraitsClasses/MappableTraits";
-import { BaseMapViewModel } from "../ViewModels/BaseMapViewModel";
 import TerriaViewer from "../ViewModels/TerriaViewer";
-import { BaseMapModel } from "./BaseMaps/BaseMapModel";
-import { defaultBaseMaps } from "./BaseMaps/defaultBaseMaps";
+import { BaseMapsModel } from "./BaseMaps/BaseMapModel";
 import CameraView from "./CameraView";
 import CatalogGroup from "./CatalogGroupNew";
 import CatalogMemberFactory from "./CatalogMemberFactory";
@@ -87,7 +85,6 @@ import updateModelFromJson from "./updateModelFromJson";
 import upsertModelFromJson from "./upsertModelFromJson";
 import ViewerMode from "./ViewerMode";
 import Workbench from "./Workbench";
-import { BaseMapItems } from "./BaseMaps/BaseMapItems";
 // import overrides from "../Overrides/defaults.jsx";
 
 interface ConfigParameters {
@@ -326,7 +323,7 @@ export default class Terria {
   readonly workbench = new Workbench();
   readonly overlays = new Workbench();
   readonly catalog = new Catalog(this);
-  readonly baseMaps = new BaseMapItems(this);
+  readonly baseMapsModel = new BaseMapsModel("basemaps", this);
   readonly timelineClock = new Clock({ shouldAnimate: false });
   // readonly overrides: any = overrides; // TODO: add options.functionOverrides like in master
 
@@ -431,14 +428,6 @@ export default class Terria {
       { text: "map.extraCreditLinks.disclaimer", url: "about.html#disclaimer" }
     ]
   };
-
-  /** ID of basemap pulled from initData - this wil be used **before** `initBaseMapName` */
-  initBaseMapId: string | undefined;
-
-  /** Name of basemap pulled from initData - this is for compatibility with sharelinks which use baseMapName instead of baseMapId. This will be used if `initBaseMapId` can't be resolved */
-  initBaseMapName: string | undefined;
-
-  previewBaseMapId: string = "basemap-positron";
 
   @observable
   pickedFeatures: PickedFeatures | undefined;
@@ -806,31 +795,36 @@ export default class Terria {
   }
 
   async loadPersistedOrInitBaseMap() {
+    const baseMapItems = this.baseMapsModel.baseMapItems;
     // Set baseMap fallback to first option
-    let baseMap = this.baseMaps.useItems[0].mappable;
+    let baseMap = baseMapItems[0];
     const persistedBaseMapId = this.getLocalProperty("basemap");
-    const baseMapSearch = this.baseMaps.useItems.find(
-      baseMapItem => baseMapItem.mappable.uniqueId === persistedBaseMapId
+    const baseMapSearch = baseMapItems.find(
+      baseMapItem => baseMapItem.item?.uniqueId === persistedBaseMapId
     );
-    if (baseMapSearch) {
-      baseMap = baseMapSearch.mappable;
+    if (baseMapSearch?.item && MappableMixin.isMixedInto(baseMapSearch.item)) {
+      baseMap = baseMapSearch;
     } else {
-      // Try to find basemap using initBaseMapId and initBaseMapName
+      // Try to find basemap using defaultBaseMapId and defaultBaseMapName
       const baseMapSearch =
-        this.baseMaps.useItems.find(
-          baseMapItem => baseMapItem.mappable.uniqueId === this.initBaseMapId
-        ) ??
-        this.baseMaps.useItems.find(
+        baseMapItems.find(
           baseMapItem =>
-            CatalogMemberMixin.isMixedInto(baseMapItem.mappable) &&
-            baseMapItem.mappable.name === this.initBaseMapName
+            baseMapItem.item?.uniqueId === this.baseMapsModel.defaultBaseMapId
+        ) ??
+        baseMapItems.find(
+          baseMapItem =>
+            CatalogMemberMixin.isMixedInto(baseMapItem) &&
+            (<any>baseMapItem.item).name ===
+              this.baseMapsModel.defaultBaseMapName
         );
-      if (baseMapSearch) {
-        baseMap = baseMapSearch.mappable;
+      if (
+        baseMapSearch?.item &&
+        MappableMixin.isMixedInto(baseMapSearch.item)
+      ) {
+        baseMap = baseMapSearch;
       }
     }
-
-    await this.mainViewer.setBaseMap(baseMap);
+    await this.mainViewer.setBaseMap(<MappableMixin.MappableMixin>baseMap.item);
   }
 
   get isLoadingInitSources(): boolean {
@@ -1230,50 +1224,17 @@ export default class Terria {
       }
     }
 
-    if (isJsonString(initData.baseMapId)) {
-      this.initBaseMapId = initData.baseMapId;
+    this.baseMapsModel.initializeDefaultBaseMaps().catchError(error => {
+      errors.push(error);
+    });
+
+    if (isJsonObject(initData.baseMaps)) {
+      this.baseMapsModel
+        .loadFromJson(CommonStrata.definition, initData.baseMaps)
+        .catchError(error => {
+          errors.push(error);
+        });
     }
-
-    if (isJsonString(initData.baseMapName)) {
-      this.initBaseMapName = initData.baseMapName;
-    }
-
-    if (isJsonString(initData.previewBaseMapId)) {
-      this.previewBaseMapId = initData.previewBaseMapId;
-    }
-
-    this.baseMaps.initializeDefaultBaseMaps();
-    if (
-      initData.baseMapItems &&
-      Array.isArray(initData.baseMapItems) &&
-      initData.baseMapItems.length > 0
-    ) {
-      this.baseMaps
-        .addFromJson(<BaseMapModel[]>(<unknown>initData.baseMapItems), this)
-        .catchError(e => errors.push(e));
-    }
-
-    const useBaseMaps = Array.isArray(initData.baseMapIds)
-      ? initData.baseMapIds.slice()
-      : [];
-
-    const useBaseMapItems = filterOutUndefined(
-      useBaseMaps.map(baseMapId => {
-        if (typeof baseMapId !== "string") {
-          errors.push(
-            new TerriaError({
-              sender: this,
-              title: "Invalid ID of basemap",
-              message: "A basemap ID in the `useBaseMaps` is not a string."
-            })
-          );
-        } else {
-          return baseMapId;
-        }
-      })
-    );
-
-    runInAction(() => this.baseMaps.setItemsToUse(useBaseMapItems));
 
     if (isJsonObject(initData.homeCamera)) {
       this.loadHomeCamera(initData.homeCamera);
