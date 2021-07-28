@@ -125,7 +125,7 @@ export const FeatureInfoSection = observer(
         };
       }
       if (this.props.catalogItem) {
-        propertyData.terria.currentTime = this.props.catalogItem.discreteTime;
+        propertyData.terria.currentTime = this.props.catalogItem.currentDiscreteTimeTag;
       }
       propertyData.terria.timeSeries = getTimeSeriesChartContext(
         this.props.catalogItem,
