@@ -102,7 +102,7 @@ export const WelcomeMessagePure = props => {
     setShouldOpenHelp(false);
     setShouldOpenSearch(false);
     if (persist) {
-      viewState.terria.setLocalProperty(LOCAL_PROPERTY_KEY, true);
+      viewState.terria.localPropertyService.set(LOCAL_PROPERTY_KEY, true);
     }
   };
 
@@ -141,7 +141,7 @@ export const WelcomeMessagePure = props => {
             );
           }
           // Show where help is when never previously prompted
-          if (!viewState.terria.getLocalProperty("helpPrompted")) {
+          if (!viewState.terria.localPropertyService.get("helpPrompted")) {
             runInAction(() => {
               viewState.toggleFeaturePrompt("help", true, false);
             });

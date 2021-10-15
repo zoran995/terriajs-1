@@ -325,7 +325,7 @@ class Compass extends React.Component<PropTypes, IStateTypes> {
     const { t } = this.props;
     const active = this.state.active;
     const description = t("compass.description");
-    const showGuidance = !this.props.viewState.terria.getLocalProperty(
+    const showGuidance = !this.props.viewState.terria.localPropertyService.get(
       COMPASS_LOCAL_PROPERTY_KEY
     );
 

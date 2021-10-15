@@ -59,7 +59,7 @@ const SharePanel = observer(
         isOpen: false,
         shortenUrls:
           this.props.shortenUrls &&
-          this.props.terria.getLocalProperty("shortenShareUrls"),
+          this.props.terria.localPropertyService.get("shortenShareUrls"),
         shareUrl: "",
         creatingPrintView: false,
         creatingDownload: false
@@ -172,7 +172,7 @@ const SharePanel = observer(
     },
 
     shouldShorten() {
-      const localStoragePref = this.props.terria.getLocalProperty(
+      const localStoragePref = this.props.terria.localPropertyService.get(
         "shortenShareUrls"
       );
 
@@ -184,9 +184,9 @@ const SharePanel = observer(
 
     onShortenClicked(e) {
       if (this.shouldShorten()) {
-        this.props.terria.setLocalProperty("shortenShareUrls", false);
+        this.props.terria.localPropertyService.set("shortenShareUrls", false);
       } else if (this.isUrlShortenable()) {
-        this.props.terria.setLocalProperty("shortenShareUrls", true);
+        this.props.terria.localPropertyService.set("shortenShareUrls", true);
       } else {
         return;
       }

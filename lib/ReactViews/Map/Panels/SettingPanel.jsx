@@ -73,7 +73,7 @@ class SettingPanel extends React.Component {
     if (baseMap) {
       const baseMapId = baseMap.uniqueId;
       if (baseMapId) {
-        this.props.terria.setLocalProperty("basemap", baseMapId);
+        this.props.terria.localPropertyService.set("basemap", baseMapId);
       }
     }
   }
@@ -103,7 +103,7 @@ class SettingPanel extends React.Component {
       console.error(`Trying to select ViewerMode ${viewer} that doesn't exist`);
     }
     // We store the user's chosen viewer mode for future use.
-    this.props.terria.setLocalProperty("viewermode", viewer);
+    this.props.terria.localPropertyService.set("viewermode", viewer);
     this.props.terria.currentViewer.notifyRepaintRequired();
   }
 

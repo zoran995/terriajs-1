@@ -388,7 +388,9 @@ export default class ViewState {
           this.terria.configParameters.showInAppGuides &&
           hasTimeWMS === true &&
           // // only show it once
-          !this.terria.getLocalProperty(`${SATELLITE_HELP_PROMPT_KEY}Prompted`)
+          !this.terria.localPropertyService.get(
+            `${SATELLITE_HELP_PROMPT_KEY}Prompted`
+          )
         ) {
           this.setShowSatelliteGuidance(true);
           this.toggleFeaturePrompt(SATELLITE_HELP_PROMPT_KEY, true, true);
@@ -401,7 +403,7 @@ export default class ViewState {
       (storyShown: boolean | null) => {
         if (storyShown === false) {
           // only show it once
-          if (!this.terria.getLocalProperty("storyPrompted")) {
+          if (!this.terria.localPropertyService.get("storyPrompted")) {
             this.toggleFeaturePrompt("story", true, false);
           }
         }
@@ -674,14 +676,14 @@ export default class ViewState {
     if (
       state &&
       featureIndexInPrompts < 0 &&
-      !this.terria.getLocalProperty(`${feature}Prompted`)
+      !this.terria.localPropertyService.get(`${feature}Prompted`)
     ) {
       this.featurePrompts.push(feature);
     } else if (!state && featureIndexInPrompts >= 0) {
       this.featurePrompts.splice(featureIndexInPrompts, 1);
     }
     if (persistent) {
-      this.terria.setLocalProperty(`${feature}Prompted`, true);
+      this.terria.localPropertyService.set(`${feature}Prompted`, true);
     }
   }
 
