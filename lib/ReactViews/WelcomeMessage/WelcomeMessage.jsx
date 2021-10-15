@@ -64,7 +64,7 @@ class WelcomeMessage extends React.Component {
     const viewState = this.props.viewState;
     const shouldShow =
       (viewState.terria.configParameters.showWelcomeMessage &&
-        !viewState.terria.getLocalProperty(LOCAL_PROPERTY_KEY)) ||
+        !viewState.terria.localPropertyService.get(LOCAL_PROPERTY_KEY)) ||
       false;
 
     this.props.viewState.setShowWelcomeMessage(shouldShow);
@@ -103,7 +103,7 @@ export const WelcomeMessagePure = props => {
     setShouldOpenHelp(false);
     setShouldOpenSearch(false);
     if (persist) {
-      viewState.terria.setLocalProperty(LOCAL_PROPERTY_KEY, true);
+      viewState.terria.localPropertyService.set(LOCAL_PROPERTY_KEY, true);
     }
   };
 
@@ -142,7 +142,7 @@ export const WelcomeMessagePure = props => {
             );
           }
           // Show where help is when never previously prompted
-          if (!viewState.terria.getLocalProperty("helpPrompted")) {
+          if (!viewState.terria.localPropertyService.get("helpPrompted")) {
             runInAction(() => {
               viewState.toggleFeaturePrompt("help", true, false);
             });

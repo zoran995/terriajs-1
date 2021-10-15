@@ -191,7 +191,7 @@ export default function GyroscopeGuidance(props) {
               onClose={() => {
                 setControlPanelOpen(false);
                 props.onClose();
-                props.viewState.terria.setLocalProperty(
+                props.viewState.terria.localPropertyService.set(
                   COMPASS_LOCAL_PROPERTY_KEY,
                   true
                 );

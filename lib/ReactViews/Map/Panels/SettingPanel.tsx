@@ -71,7 +71,7 @@ class SettingPanel extends React.Component<PropTypes> {
     if (baseMap) {
       const baseMapId = baseMap.uniqueId;
       if (baseMapId) {
-        this.props.terria.setLocalProperty("basemap", baseMapId);
+        this.props.terria.localPropertyService.set("basemap", baseMapId);
       }
     }
   }
@@ -98,7 +98,7 @@ class SettingPanel extends React.Component<PropTypes> {
     this.showTerrainOnSide(sides.both, undefined);
     setViewerMode(viewer, mainViewer);
     // We store the user's chosen viewer mode for future use.
-    this.props.terria.setLocalProperty("viewermode", viewer);
+    this.props.terria.localPropertyService.set("viewermode", viewer);
     this.props.terria.currentViewer.notifyRepaintRequired();
   }
 
@@ -133,7 +133,7 @@ class SettingPanel extends React.Component<PropTypes> {
 
   onBaseMaximumScreenSpaceErrorChange(bmsse: number) {
     this.props.terria.setBaseMaximumScreenSpaceError(bmsse);
-    this.props.terria.setLocalProperty(
+    this.props.terria.localPropertyService.set(
       "baseMaximumScreenSpaceError",
       bmsse.toString()
     );
@@ -143,7 +143,7 @@ class SettingPanel extends React.Component<PropTypes> {
     this.props.terria.setUseNativeResolution(
       !this.props.terria.useNativeResolution
     );
-    this.props.terria.setLocalProperty(
+    this.props.terria.localPropertyService.set(
       "useNativeResolution",
       this.props.terria.useNativeResolution
     );

@@ -35,6 +35,7 @@ import {
 import { isLatLonHeight } from "../Core/LatLonHeight";
 import loadJson from "../Core/loadJson";
 import loadJson5 from "../Core/loadJson5";
+import { LocalPropertyStorageService } from "../Core/LocalPropertyStorageService";
 import Result from "../Core/Result";
 import ServerConfig from "../Core/ServerConfig";
 import TerriaError, {
@@ -479,6 +480,8 @@ export default class Terria {
     storyRouteUrlPrefix: undefined
   };
 
+  localPropertyService: LocalPropertyStorageService;
+
   @observable
   pickedFeatures: PickedFeatures | undefined;
 
@@ -598,6 +601,7 @@ export default class Terria {
       }
     }
 
+    this.localPropertyService = new LocalPropertyStorageService(this.appName);
     this.analytics = options.analytics;
     if (!defined(this.analytics)) {
       if (typeof window !== "undefined" && defined((<any>window).ga)) {
@@ -904,6 +908,7 @@ export default class Terria {
           options.i18nOptions
         );
       }
+      this.localPropertyService.appName = this.appName;
     }
     setCustomRequestSchedulerDomainLimits(
       this.configParameters.customRequestSchedulerLimits
@@ -955,18 +960,18 @@ export default class Terria {
     if (hashViewerMode && isViewerMode(hashViewerMode)) {
       setViewerMode(hashViewerMode, this.mainViewer);
     } else if (persistViewerMode) {
-      const viewerMode = <string>this.getLocalProperty("viewermode");
+      const viewerMode = <string>this.localPropertyService.get("viewermode");
       if (isDefined(viewerMode) && isViewerMode(viewerMode)) {
         setViewerMode(viewerMode, this.mainViewer);
       }
-    }
-    const useNativeResolution = this.getLocalProperty("useNativeResolution");
-    if (typeof useNativeResolution === "boolean") {
-      this.setUseNativeResolution(useNativeResolution);
+      const useNativeResolution = this.localPropertyService.get("useNativeResolution");
+      if (typeof useNativeResolution === "boolean") {
+        this.setUseNativeResolution(useNativeResolution);
+      }
     }
 
     const baseMaximumScreenSpaceError = parseFloat(
-      this.getLocalProperty("baseMaximumScreenSpaceError")?.toString() || ""
+      this.localPropertyService.get("baseMaximumScreenSpaceError")?.toString() || ""
     );
     if (!isNaN(baseMaximumScreenSpaceError)) {
       this.setBaseMaximumScreenSpaceError(baseMaximumScreenSpaceError);
@@ -987,7 +992,7 @@ export default class Terria {
     const baseMapItems = this.baseMapsModel.baseMapItems;
     // Set baseMap fallback to first option
     let baseMap = baseMapItems[0];
-    const persistedBaseMapId = this.getLocalProperty("basemap");
+    const persistedBaseMapId = this.localPropertyService.get("basemap");
     const baseMapSearch = baseMapItems.find(
       baseMapItem => baseMapItem.item?.uniqueId === persistedBaseMapId
     );
@@ -1898,36 +1903,6 @@ export default class Terria {
 
   getUserProperty(key: string) {
     return undefined;
-  }
-
-  getLocalProperty(key: string): string | boolean | null {
-    try {
-      if (!defined(window.localStorage)) {
-        return null;
-      }
-    } catch (e) {
-      // SecurityError can arise if 3rd party cookies are blocked in Chrome and we're served in an iFrame
-      return null;
-    }
-    var v = window.localStorage.getItem(this.appName + "." + key);
-    if (v === "true") {
-      return true;
-    } else if (v === "false") {
-      return false;
-    }
-    return v;
-  }
-
-  setLocalProperty(key: string, value: string | boolean): boolean {
-    try {
-      if (!defined(window.localStorage)) {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-    window.localStorage.setItem(this.appName + "." + key, value.toString());
-    return true;
   }
 }
 
