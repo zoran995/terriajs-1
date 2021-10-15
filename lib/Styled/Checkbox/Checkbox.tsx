@@ -4,7 +4,7 @@ import React, {
   memo,
   Ref,
   useCallback,
-  useState
+  useState,
 } from "react";
 import { useUID } from "react-uid";
 import { TextSpan } from "../Text";
@@ -24,9 +24,9 @@ const Checkbox = memo(
       defaultChecked = false,
       isIndeterminate = false,
       onChange: onChangeProps,
-      label,
       name,
       value,
+      children,
       ...rest
     } = props;
 
@@ -48,6 +48,20 @@ const Checkbox = memo(
     const isChecked =
       isCheckedProp === undefined ? isCheckedState : isCheckedProp;
     const id = useUID();
+
+    // Add props to children
+    const childrenWithProps = React.Children.map(children, (child) => {
+      // Checking isValidElement is the safe way and avoids a typescript
+      // error too.
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          isDisabled,
+          isChecked,
+          css: `font-size: inherit`,
+        });
+      }
+      return child;
+    });
     return (
       <TextSpan
         as={"label"}
@@ -61,16 +75,17 @@ const Checkbox = memo(
             outline: 3px solid #c390f9;
           }
           ${!isDisabled &&
-            `
+          `
             &:hover svg {
               opacity: 0.6;
             }
           `}
           ${isDisabled &&
-            `
+          `
             cursor: not-allowed;
           `}
         `}
+        {...rest}
       >
         <HiddenCheckbox
           disabled={isDisabled}
@@ -85,17 +100,9 @@ const Checkbox = memo(
           isIndeterminate={isIndeterminate}
           isChecked={isChecked}
           isDisabled={isDisabled}
-          label=""
         />
         <SpacingSpan right={1} />
-        <TextSpan
-          isDisabled={isDisabled}
-          css={`
-            font-size: inherit;
-          `}
-        >
-          {label}
-        </TextSpan>
+        {childrenWithProps}
       </TextSpan>
     );
   })
