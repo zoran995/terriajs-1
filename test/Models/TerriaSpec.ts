@@ -1191,7 +1191,7 @@ describe("Terria", function() {
 
   describe("mapSettings", function() {
     it("properly interprets map hash parameter", async () => {
-      const getLocalPropertySpy = spyOn(terria, "getLocalProperty");
+      const getLocalPropertySpy = spyOn(terria.localPropertyService, "get");
       //@ts-ignore
       const location: Location = {
         href: "http://test.com/#map=2d"
@@ -1204,8 +1204,8 @@ describe("Terria", function() {
 
     it("properly resolves persisted map viewer", async () => {
       const getLocalPropertySpy = spyOn(
-        terria,
-        "getLocalProperty"
+        terria.localPropertyService,
+        "get"
       ).and.returnValue("2d");
       await terria.start({ configUrl: "" });
       await terria.loadPersistedMapSettings();
@@ -1215,8 +1215,8 @@ describe("Terria", function() {
 
     it("properly interprets wrong map hash parameter and resolves persisted value", async () => {
       const getLocalPropertySpy = spyOn(
-        terria,
-        "getLocalProperty"
+        terria.localPropertyService,
+        "get"
       ).and.returnValue("3dsmooth");
       //@ts-ignore
       const location: Location = {
