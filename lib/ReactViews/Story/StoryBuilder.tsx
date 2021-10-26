@@ -1,8 +1,6 @@
-import createReactClass from "create-react-class";
-import { runInAction, toJS, action } from "mobx";
-import { observer, useLocalStore } from "mobx-react";
-import PropTypes from "prop-types";
-import React, { useState, useRef } from "react";
+import { action, toJS } from "mobx";
+import { observer } from "mobx-react";
+import React from "react";
 import Sortable from "react-anything-sortable";
 import {
   Trans,
@@ -10,30 +8,26 @@ import {
   withTranslation,
   WithTranslation
 } from "react-i18next";
-import styled, { withTheme, DefaultTheme } from "styled-components";
+import styled, { DefaultTheme, withTheme } from "styled-components";
 import combine from "terriajs-cesium/Source/Core/combine";
 import createGuid from "terriajs-cesium/Source/Core/createGuid";
-import defined from "terriajs-cesium/Source/Core/defined";
-const dataStoriesImg = require("../../../wwwroot/images/data-stories-getting-started.jpg");
+import { Category, StoryAction } from "../../Core/Analytics/analyticEvents";
 import triggerResize from "../../Core/triggerResize";
+import ViewState from "../../ReactViewModels/ViewState";
 import Box from "../../Styled/Box";
 import Button, { RawButton } from "../../Styled/Button";
+import Icon, { StyledIcon } from "../../Styled/Icon";
 import Spacing from "../../Styled/Spacing";
 import Text, { TextSpan } from "../../Styled/Text";
 import BadgeBar from "../BadgeBar";
 import measureElement, { MeasureElementProps } from "../HOCs/measureElement";
-import Icon, { StyledIcon } from "../../Styled/Icon";
 import VideoGuide from "../Map/Panels/HelpPanel/VideoGuide";
 import { getShareData } from "../Map/Panels/SharePanel/BuildShareLink";
 import SharePanel from "../Map/Panels/SharePanel/SharePanel.jsx";
-import Styles from "./story-builder.scss";
 import Story from "./Story";
+import Styles from "./story-builder.scss";
 import StoryEditor from "./StoryEditor.jsx";
-import {
-  Category,
-  StoryAction
-} from "../../Core/AnalyticEvents/analyticEvents";
-import ViewState from "../../ReactViewModels/ViewState";
+const dataStoriesImg = require("../../../wwwroot/images/data-stories-getting-started.jpg");
 
 const STORY_VIDEO = "storyVideo";
 

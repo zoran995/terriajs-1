@@ -78,3 +78,15 @@ export enum StoryAction {
   viewScene = "view scene",
   datasetView = "dataset view"
 }
+
+export type Actions =
+  | SearchAction
+  | LaunchAction
+  | HelpAction
+  | TimeLineAction
+  | ViewAction
+  | DataSourceAction
+  | DatatabAction
+  | GuideAction
+  | ShareAction
+  | StoryAction;

@@ -1,11 +1,8 @@
 import { autorun, computed, observable, runInAction } from "mobx";
 import { fromPromise } from "mobx-utils";
-import {
-  Category,
-  SearchAction
-} from "../../Core/AnalyticEvents/analyticEvents";
 import isDefined from "../../Core/isDefined";
 import { TerriaErrorSeverity } from "../../Core/TerriaError";
+import { Category, SearchAction } from "../../Core/Analytics/analyticEvents";
 import GroupMixin from "../../ModelMixins/GroupMixin";
 import ReferenceMixin from "../../ModelMixins/ReferenceMixin";
 import { BaseModel } from "../Definition/Model";
@@ -13,6 +10,7 @@ import Terria from "../Terria";
 import SearchProvider from "./SearchProvider";
 import SearchProviderResults from "./SearchProviderResults";
 import SearchResult from "./SearchResult";
+
 interface CatalogSearchProviderOptions {
   terria: Terria;
 }

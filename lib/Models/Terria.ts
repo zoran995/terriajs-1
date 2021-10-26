@@ -12,14 +12,16 @@ import RuntimeError from "terriajs-cesium/Source/Core/RuntimeError";
 import Entity from "terriajs-cesium/Source/DataSources/Entity";
 import ImagerySplitDirection from "terriajs-cesium/Source/Scene/ImagerySplitDirection";
 import URI from "urijs";
-import { Category, LaunchAction } from "../Core/AnalyticEvents/analyticEvents";
+import { Category, LaunchAction } from "../Core/Analytics/analyticEvents";
+import { BaseAnalytics } from "../Core/Analytics/BaseAnalytics";
+import { IConsoleAnalyticsParams } from "../Core/Analytics/ConsoleAnalytics";
+import { IGoogleAnalyticsParams } from "../Core/Analytics/GoogleAnalytics";
+import { setAnalytics } from "../Core/Analytics/setAnalytics";
 import AsyncLoader from "../Core/AsyncLoader";
 import Class from "../Core/Class";
-import ConsoleAnalytics from "../Core/ConsoleAnalytics";
 import CorsProxy from "../Core/CorsProxy";
 import filterOutUndefined from "../Core/filterOutUndefined";
 import getDereferencedIfExists from "../Core/getDereferencedIfExists";
-import GoogleAnalytics from "../Core/GoogleAnalytics";
 import hashEntity from "../Core/hashEntity";
 import instanceOf from "../Core/instanceOf";
 import isDefined from "../Core/isDefined";
@@ -211,10 +213,6 @@ interface ConfigParameters {
   experimentalFeatures?: boolean;
   magdaReferenceHeaders?: MagdaReferenceHeaders;
   locationSearchBoundingBox?: number[];
-  /**
-   * A Google API key for [Google Analytics](https://analytics.google.com).  If specified, TerriaJS will send various events about how it's used to Google Analytics.
-   */
-  googleAnalyticsKey?: string;
 
   /**
    * Error service provider configuration.
@@ -295,6 +293,15 @@ interface ConfigParameters {
    * Prefix to which `:story-id` is added to fetch JSON for stories when using /story/:story-id routes. Should end in /
    */
   storyRouteUrlPrefix?: string;
+
+  /**
+   * Parameters for analytics according to specified platform. Supported
+   * platforms are Google and console.
+   * If google is used, TerriaJS will send various events about how it's used to
+   * Google Analytics.
+   * If console is used TerriaJS will log various events in console.
+   */
+  analyticsParams: IGoogleAnalyticsParams | IConsoleAnalyticsParams | undefined;
 }
 
 interface StartOptions {
@@ -312,22 +319,6 @@ interface StartOptions {
   i18nOptions?: I18nStartOptions;
 }
 
-interface Analytics {
-  start: (
-    userParameters: Partial<{
-      logToConsole: boolean;
-      googleAnalyticsKey: any;
-      googleAnalyticsOptions: any;
-    }>
-  ) => void;
-  logEvent: (
-    category: string,
-    action: string,
-    label?: string,
-    value?: string
-  ) => void;
-}
-
 interface TerriaOptions {
   /**
    * Override detecting base href from document.baseURI.
@@ -339,7 +330,7 @@ interface TerriaOptions {
    * Normally "build/TerriaJS/" in any TerriaMap and "./" in specs
    */
   baseUrl?: string;
-  analytics?: Analytics;
+  analytics?: BaseAnalytics;
 }
 
 interface HomeCameraInit {
@@ -403,10 +394,10 @@ export default class Terria {
 
   /**
    * Gets or sets the instance to which to report Google Analytics-style log events.
-   * If a global `ga` function is defined, this defaults to `GoogleAnalytics`.  Otherwise, it defaults
+   * If a global `gtag` function is defined, this defaults to `GoogleAnalytics`.  Otherwise, it defaults
    * to `ConsoleAnalytics`.
    */
-  readonly analytics: Analytics | undefined;
+  readonly analytics: BaseAnalytics | undefined;
 
   /**
    * Gets the stack of layers active on the timeline.
@@ -446,7 +437,6 @@ export default class Terria {
     experimentalFeatures: undefined,
     magdaReferenceHeaders: undefined,
     locationSearchBoundingBox: undefined,
-    googleAnalyticsKey: undefined,
     errorService: undefined,
     globalDisclaimer: undefined,
     theme: {},
@@ -477,7 +467,8 @@ export default class Terria {
       { text: "map.extraCreditLinks.disclaimer", url: "about.html#disclaimer" }
     ],
     printDisclaimer: undefined,
-    storyRouteUrlPrefix: undefined
+    storyRouteUrlPrefix: undefined,
+    analyticsParams: undefined
   };
 
   localPropertyService: LocalPropertyStorageService;
@@ -603,13 +594,6 @@ export default class Terria {
 
     this.localPropertyService = new LocalPropertyStorageService(this.appName);
     this.analytics = options.analytics;
-    if (!defined(this.analytics)) {
-      if (typeof window !== "undefined" && defined((<any>window).ga)) {
-        this.analytics = new GoogleAnalytics();
-      } else {
-        this.analytics = new ConsoleAnalytics();
-      }
-    }
   }
 
   /** Raise error to user.
@@ -914,7 +898,11 @@ export default class Terria {
       this.configParameters.customRequestSchedulerLimits
     );
 
-    this.analytics?.start(this.configParameters);
+    if (!isDefined(this.analytics)) {
+      //@ts-ignore
+      this.analytics = setAnalytics(this.configParameters.analyticsParams);
+    }
+
     this.analytics?.logEvent(
       Category.launch,
       LaunchAction.url,
@@ -964,14 +952,18 @@ export default class Terria {
       if (isDefined(viewerMode) && isViewerMode(viewerMode)) {
         setViewerMode(viewerMode, this.mainViewer);
       }
-      const useNativeResolution = this.localPropertyService.get("useNativeResolution");
+      const useNativeResolution = this.localPropertyService.get(
+        "useNativeResolution"
+      );
       if (typeof useNativeResolution === "boolean") {
         this.setUseNativeResolution(useNativeResolution);
       }
     }
 
     const baseMaximumScreenSpaceError = parseFloat(
-      this.localPropertyService.get("baseMaximumScreenSpaceError")?.toString() || ""
+      this.localPropertyService
+        .get("baseMaximumScreenSpaceError")
+        ?.toString() || ""
     );
     if (!isNaN(baseMaximumScreenSpaceError)) {
       this.setBaseMaximumScreenSpaceError(baseMaximumScreenSpaceError);

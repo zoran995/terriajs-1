@@ -4,25 +4,21 @@ import { observer } from "mobx-react";
 import React from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { Swipeable } from "react-swipeable";
-import {
-  Category,
-  StoryAction
-} from "../../../Core/AnalyticEvents/analyticEvents";
+import { DefaultTheme, withTheme } from "styled-components";
+import { Category, StoryAction } from "../../../Core/Analytics/analyticEvents";
+import { animateEnd } from "../../../Core/animation";
 import getPath from "../../../Core/getPath";
 import TerriaError from "../../../Core/TerriaError";
 import Terria from "../../../Models/Terria";
-import { Story } from "../Story";
 import ViewState from "../../../ReactViewModels/ViewState";
-import Styles from "../story-panel.scss";
-import { animateEnd } from "../../../Core/animation";
-import TitleBar from "./TitleBar";
-import FooterBar from "./StoryFooterBar";
-import StoryBody from "./StoryBody";
 import Box from "../../../Styled/Box";
 import Hr from "../../../Styled/Hr";
-import { DefaultTheme, withTheme } from "styled-components";
 import { onStoryButtonClick } from "../../Map/StoryButton/StoryButton";
-import { exit } from "../../Transitions/FadeIn/fade-in.scss";
+import { Story } from "../Story";
+import Styles from "../story-panel.scss";
+import StoryBody from "./StoryBody";
+import FooterBar from "./StoryFooterBar";
+import TitleBar from "./TitleBar";
 
 /**
  *

@@ -1,22 +1,19 @@
-import React from "react";
-import defined from "terriajs-cesium/Source/Core/defined";
-import createReactClass from "create-react-class";
-import { observer } from "mobx-react";
-
-import PropTypes from "prop-types";
-
 import classNames from "classnames";
-import MobileMenuItem from "./MobileMenuItem";
+import createReactClass from "create-react-class";
+import { runInAction } from "mobx";
+import { observer } from "mobx-react";
+import PropTypes from "prop-types";
+import React from "react";
+import { withTranslation } from "react-i18next";
+import defined from "terriajs-cesium/Source/Core/defined";
+import { Category, HelpAction } from "../../Core/Analytics/analyticEvents";
+import { useTranslationIfExists } from "../../Language/languageHelpers";
+// import HelpMenuPanelBasic from "../HelpScreens/HelpMenuPanelBasic";
+import LangPanel from "../Map/Panels/LangPanel/LangPanel";
 import SettingPanel from "../Map/Panels/SettingPanel";
 import SharePanel from "../Map/Panels/SharePanel/SharePanel";
-// import HelpMenuPanelBasic from "../HelpScreens/HelpMenuPanelBasic";
-import { withTranslation } from "react-i18next";
-
 import Styles from "./mobile-menu.scss";
-import { runInAction } from "mobx";
-import LangPanel from "../Map/Panels/LangPanel/LangPanel";
-import { useTranslationIfExists } from "../../Language/languageHelpers";
-import { Category, HelpAction } from "../../Core/AnalyticEvents/analyticEvents";
+import MobileMenuItem from "./MobileMenuItem";
 
 const MobileMenu = observer(
   createReactClass({
