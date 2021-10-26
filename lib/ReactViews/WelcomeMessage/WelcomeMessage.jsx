@@ -63,7 +63,7 @@ class WelcomeMessage extends React.Component {
     const viewState = this.props.viewState;
     const shouldShow =
       (viewState.terria.configParameters.showWelcomeMessage &&
-        !viewState.terria.getLocalProperty(LOCAL_PROPERTY_KEY)) ||
+        !viewState.terria.localPropertyService.get(LOCAL_PROPERTY_KEY)) ||
       false;
 
     this.props.viewState.setShowWelcomeMessage(shouldShow);
