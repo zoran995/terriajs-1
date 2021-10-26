@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { observable, runInAction } from "mobx";
 import defaultValue from "terriajs-cesium/Source/Core/defaultValue";
 import defined from "terriajs-cesium/Source/Core/defined";
@@ -5,16 +6,12 @@ import Ellipsoid from "terriajs-cesium/Source/Core/Ellipsoid";
 import CesiumMath from "terriajs-cesium/Source/Core/Math";
 import Rectangle from "terriajs-cesium/Source/Core/Rectangle";
 import Resource from "terriajs-cesium/Source/Core/Resource";
+import { Category, SearchAction } from "../../Core/Analytics/analyticEvents";
 import loadJsonp from "../../Core/loadJsonp";
-import SearchProvider from "./SearchProvider";
-import SearchResult from "./SearchResult";
 import Terria from "../Terria";
+import SearchProvider from "./SearchProvider";
 import SearchProviderResults from "./SearchProviderResults";
-import i18next from "i18next";
-import {
-  Category,
-  SearchAction
-} from "../../Core/AnalyticEvents/analyticEvents";
+import SearchResult from "./SearchResult";
 
 interface BingMapsSearchProviderOptions {
   terria: Terria;

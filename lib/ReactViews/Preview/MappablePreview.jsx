@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import defined from "terriajs-cesium/Source/Core/defined";
+import {
+  Category,
+  DataSourceAction
+} from "../../Core/Analytics/analyticEvents";
 import getPath from "../../Core/getPath";
 import MappableMixin from "../../ModelMixins/MappableMixin";
 import measureElement from "../HOCs/measureElement";
@@ -11,10 +15,6 @@ import SharePanel from "../Map/Panels/SharePanel/SharePanel.jsx";
 import DataPreviewMap from "./DataPreviewMap";
 import Description from "./Description";
 import Styles from "./mappable-preview.scss";
-import {
-  Category,
-  DataSourceAction
-} from "../../Core/AnalyticEvents/analyticEvents";
 import WarningBox from "./WarningBox";
 
 /**

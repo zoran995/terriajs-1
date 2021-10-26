@@ -10,24 +10,21 @@ import combine from "terriajs-cesium/Source/Core/combine";
 import createGuid from "terriajs-cesium/Source/Core/createGuid";
 import defined from "terriajs-cesium/Source/Core/defined";
 import dataStoriesImg from "../../../wwwroot/images/data-stories-getting-started.jpg";
+import { Category, StoryAction } from "../../Core/Analytics/analyticEvents";
 import triggerResize from "../../Core/triggerResize";
 import Box from "../../Styled/Box";
 import Button, { RawButton } from "../../Styled/Button";
+import Icon, { StyledIcon } from "../../Styled/Icon";
 import Spacing from "../../Styled/Spacing";
 import Text, { TextSpan } from "../../Styled/Text";
 import BadgeBar from "../BadgeBar";
 import measureElement from "../HOCs/measureElement";
-import Icon, { StyledIcon } from "../../Styled/Icon";
 import VideoGuide from "../Map/Panels/HelpPanel/VideoGuide";
 import { getShareData } from "../Map/Panels/SharePanel/BuildShareLink";
 import SharePanel from "../Map/Panels/SharePanel/SharePanel.jsx";
-import Styles from "./story-builder.scss";
 import Story from "./Story";
+import Styles from "./story-builder.scss";
 import StoryEditor from "./StoryEditor.jsx";
-import {
-  Category,
-  StoryAction
-} from "../../Core/AnalyticEvents/analyticEvents";
 
 const STORY_VIDEO = "storyVideo";
 

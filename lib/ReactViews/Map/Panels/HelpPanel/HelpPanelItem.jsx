@@ -6,7 +6,7 @@ import styled, { withTheme } from "styled-components";
 import {
   Category,
   HelpAction
-} from "../../../../Core/AnalyticEvents/analyticEvents";
+} from "../../../../Core/Analytics/analyticEvents";
 import Icon, { StyledIcon } from "../../../../Styled/Icon";
 import Text from "../../../../Styled/Text";
 import { useTranslationIfExists } from "./../../../../Language/languageHelpers";

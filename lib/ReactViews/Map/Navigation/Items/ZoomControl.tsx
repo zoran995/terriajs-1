@@ -11,7 +11,7 @@ import Scene from "terriajs-cesium/Source/Scene/Scene";
 import {
   Category,
   ViewAction
-} from "../../../../Core/AnalyticEvents/analyticEvents";
+} from "../../../../Core/Analytics/analyticEvents";
 import isDefined from "../../../../Core/isDefined";
 import Box from "../../../../Styled/Box";
 import { RawButton } from "../../../../Styled/Button";

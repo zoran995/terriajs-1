@@ -9,7 +9,7 @@ import addedByUser from "../../Core/addedByUser";
 import {
   Category,
   DataSourceAction
-} from "../../Core/AnalyticEvents/analyticEvents";
+} from "../../Core/Analytics/analyticEvents";
 import getPath from "../../Core/getPath";
 import CatalogFunctionMixin from "../../ModelMixins/CatalogFunctionMixin";
 import removeUserAddedData from "../../Models/Catalog/removeUserAddedData";

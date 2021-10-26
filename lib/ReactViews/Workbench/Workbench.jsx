@@ -4,19 +4,19 @@ import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React from "react";
 import { withTranslation } from "react-i18next";
+import {
+  Category,
+  DataSourceAction
+} from "../../Core/Analytics/analyticEvents";
 import getPath from "../../Core/getPath";
 // eslint-disable-next-line no-unused-vars
 import Terria from "../../Models/Terria";
 // eslint-disable-next-line no-unused-vars
 import ViewState from "../../ReactViewModels/ViewState";
-import BadgeBar from "../BadgeBar";
 import Icon from "../../Styled/Icon";
+import BadgeBar from "../BadgeBar";
 import Styles from "./workbench.scss";
 import WorkbenchList from "./WorkbenchList";
-import {
-  Category,
-  DataSourceAction
-} from "../../Core/AnalyticEvents/analyticEvents";
 
 /**
  * @typedef {object} Props

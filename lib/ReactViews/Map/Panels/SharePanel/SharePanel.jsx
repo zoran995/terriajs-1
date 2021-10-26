@@ -7,9 +7,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Trans, withTranslation } from "react-i18next";
 import defined from "terriajs-cesium/Source/Core/defined";
+import {
+  Category,
+  ShareAction
+} from "../../../../Core/Analytics/analyticEvents";
 import printWindow from "../../../../Core/printWindow";
-import Clipboard from "../../../Clipboard";
 import Icon from "../../../../Styled/Icon";
+import Clipboard from "../../../Clipboard";
 import Loader from "../../../Loader";
 import MenuPanel from "../../../StandardUserInterface/customizable/MenuPanel";
 import Input from "../../../Styled/Input/Input.jsx";
@@ -23,10 +27,6 @@ import {
 import PrintView from "./PrintView";
 import Styles from "./share-panel.scss";
 import StorySharePanel from "./StorySharePanel";
-import {
-  Category,
-  ShareAction
-} from "../../../../Core/AnalyticEvents/analyticEvents";
 
 const SharePanel = observer(
   createReactClass({

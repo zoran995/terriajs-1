@@ -6,10 +6,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { Swipeable } from "react-swipeable";
-import {
-  Category,
-  StoryAction
-} from "../../Core/AnalyticEvents/analyticEvents";
+import { Category, StoryAction } from "../../Core/Analytics/analyticEvents";
 import getPath from "../../Core/getPath";
 import TerriaError from "../../Core/TerriaError";
 import Icon from "../../Styled/Icon";

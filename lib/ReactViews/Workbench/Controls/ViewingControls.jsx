@@ -16,7 +16,7 @@ import when from "terriajs-cesium/Source/ThirdParty/when";
 import {
   Category,
   DataSourceAction
-} from "../../../Core/AnalyticEvents/analyticEvents";
+} from "../../../Core/Analytics/analyticEvents";
 import getDereferencedIfExists from "../../../Core/getDereferencedIfExists";
 import getPath from "../../../Core/getPath";
 import PickedFeatures from "../../../Map/PickedFeatures";

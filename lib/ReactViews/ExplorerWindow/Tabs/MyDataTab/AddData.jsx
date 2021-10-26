@@ -5,7 +5,7 @@ import { Trans, withTranslation } from "react-i18next";
 import {
   Category,
   DatatabAction
-} from "../../../../Core/AnalyticEvents/analyticEvents";
+} from "../../../../Core/Analytics/analyticEvents";
 import getDataType from "../../../../Core/getDataType";
 import TimeVarying from "../../../../ModelMixins/TimeVarying";
 import addUserCatalogMember from "../../../../Models/Catalog/addUserCatalogMember";

@@ -24,23 +24,18 @@
 
  *
  */
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames";
-import Styles from "./guide.scss";
-
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Category, GuideAction } from "../../Core/Analytics/analyticEvents";
+import Box from "../../Styled/Box";
+import Button from "../../Styled/Button";
 // import createReactClass from "create-react-class";
 // // import knockout from "terriajs-cesium/Source/ThirdParty/knockout";
-
 import Spacing from "../../Styled/Spacing";
 import Text from "../../Styled/Text";
-import { useTranslation } from "react-i18next";
-import Button from "../../Styled/Button";
-import Box from "../../Styled/Box";
-import {
-  Category,
-  GuideAction
-} from "../../Core/AnalyticEvents/analyticEvents";
+import Styles from "./guide.scss";
 
 const GuideProgress = props => {
   // doesn't work for IE11
