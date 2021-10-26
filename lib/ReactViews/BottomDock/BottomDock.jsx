@@ -18,8 +18,7 @@ const BottomDock = observer(
     propTypes: {
       terria: PropTypes.object.isRequired,
       viewState: PropTypes.object.isRequired,
-      heightFromMeasureElementHOC: PropTypes.number,
-      domElementRef: PropTypes.func
+      heightFromMeasureElementHOC: PropTypes.number
     },
 
     handleClick() {
@@ -51,7 +50,6 @@ const BottomDock = observer(
               : ""
           }`}
           ref={element => {
-            this.props.domElementRef(element);
             this.refToMeasure = element;
           }}
           tabIndex={0}

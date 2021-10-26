@@ -1,27 +1,25 @@
-import React from "react";
+import classNames from "classnames";
 import createReactClass from "create-react-class";
-import PropTypes from "prop-types";
+import { observer } from "mobx-react";
 import "mutationobserver-shim";
-
-import TerriaViewerWrapper from "../Map/TerriaViewerWrapper";
-import DistanceLegend from "../Map/Legend/DistanceLegend";
-// import FeedbackButton from "../Feedback/FeedbackButton";
-import LocationBar from "../Map/Legend/LocationBar";
-import MapNavigation from "../Map/Navigation/MapNavigation";
-import MenuBar from "../Map/MenuBar";
-import MapDataCount from "../BottomDock/MapDataCount";
+import PropTypes from "prop-types";
+import React from "react";
+import { withTranslation } from "react-i18next";
 // import defined from "terriajs-cesium/Source/Core/defined";
 import FeatureDetection from "terriajs-cesium/Source/Core/FeatureDetection";
 import BottomDock from "../BottomDock/BottomDock";
-import classNames from "classnames";
-import { withTranslation } from "react-i18next";
-import Toast from "./Toast";
+import MapDataCount from "../BottomDock/MapDataCount";
 import Loader from "../Loader";
-import Styles from "./map-column.scss";
-import { observer } from "mobx-react";
+import DistanceLegend from "../Map/Legend/DistanceLegend";
+// import FeedbackButton from "../Feedback/FeedbackButton";
+import LocationBar from "../Map/Legend/LocationBar";
+import MenuBar from "../Map/MenuBar";
+import MapNavigation from "../Map/Navigation/MapNavigation";
+import TerriaViewerWrapper from "../Map/TerriaViewerWrapper";
 import SlideUpFadeIn from "../Transitions/SlideUpFadeIn/SlideUpFadeIn";
+import Styles from "./map-column.scss";
+import Toast from "./Toast";
 
-const isIE = FeatureDetection.isInternetExplorer();
 const chromeVersion = FeatureDetection.chromeVersion();
 
 /**
@@ -49,46 +47,6 @@ const MapColumn = observer(
       return {};
     },
 
-    /* eslint-disable-next-line camelcase */
-    UNSAFE_componentWillMount() {
-      if (isIE) {
-        this.observer = new MutationObserver(this.resizeMapCell);
-        window.addEventListener("resize", this.resizeMapCell, false);
-      }
-    },
-
-    addBottomDock(bottomDock) {
-      if (isIE) {
-        this.observer.observe(bottomDock, {
-          childList: true,
-          subtree: true
-        });
-      }
-    },
-
-    newMapCell(mapCell) {
-      if (isIE) {
-        this.mapCell = mapCell;
-
-        this.resizeMapCell();
-      }
-    },
-
-    resizeMapCell() {
-      if (this.mapCell) {
-        this.setState({
-          height: this.mapCell.offsetHeight
-        });
-      }
-    },
-
-    componentWillUnmount() {
-      if (isIE) {
-        window.removeEventListener("resize", this.resizeMapCell, false);
-        this.observer.disconnect();
-      }
-    },
-
     render() {
       const { customElements } = this.props;
       // const { t } = this.props;
@@ -105,10 +63,7 @@ const MapColumn = observer(
           })}
         >
           <div className={Styles.mapRow}>
-            <div
-              className={classNames(mapCellClass, Styles.mapCellMap)}
-              ref={this.newMapCell}
-            >
+            <div className={classNames(mapCellClass, Styles.mapCellMap)}>
               <If condition={!this.props.viewState.hideMapUi}>
                 <div
                   css={`
@@ -138,7 +93,7 @@ const MapColumn = observer(
               <div
                 className={Styles.mapWrapper}
                 style={{
-                  height: this.state.height || (isIE ? "100vh" : "100%")
+                  height: this.state.height || "100%"
                 }}
               >
                 <TerriaViewerWrapper
@@ -174,28 +129,6 @@ const MapColumn = observer(
                   <DistanceLegend terria={this.props.terria} />
                 </div>
               </If>
-              {/* TODO: re-implement/support custom feedbacks */}
-              {/* <If
-                condition={
-                  !this.props.customFeedbacks.length &&
-                  this.props.terria.configParameters.feedbackUrl &&
-                  !this.props.viewState.hideMapUi
-                }
-              >
-                <div
-                  className={classNames(Styles.feedbackButtonWrapper, {
-                    [Styles.withTimeSeriesControls]: defined(
-                      this.props.terria.timelineStack.top
-                    )
-                  })}
-                >
-                  <FeedbackButton
-                    viewState={this.props.viewState}
-                    btnText={t("feedback.feedbackBtnText")}
-                  />
-                </div>
-              </If> */}
-
               <If
                 condition={
                   this.props.customFeedbacks.length &&
@@ -229,7 +162,6 @@ const MapColumn = observer(
                 <BottomDock
                   terria={this.props.terria}
                   viewState={this.props.viewState}
-                  domElementRef={this.addBottomDock}
                 />
               </div>
             </div>
