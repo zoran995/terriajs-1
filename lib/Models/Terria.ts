@@ -46,7 +46,7 @@ import { getUriWithoutPath } from "../Core/uriHelpers";
 import PickedFeatures, {
   featureBelongsToCatalogItem,
   isProviderCoordsMap
-} from "../Map/PickedFeatures";
+} from "../Map/PickedFeatures/PickedFeatures";
 import CatalogMemberMixin, { getName } from "../ModelMixins/CatalogMemberMixin";
 import GroupMixin from "../ModelMixins/GroupMixin";
 import MappableMixin, { isDataSource } from "../ModelMixins/MappableMixin";
@@ -96,6 +96,7 @@ import Internationalization, {
 import MapInteractionMode from "./MapInteractionMode";
 import NoViewer from "./NoViewer";
 import CatalogIndex from "./SearchProviders/CatalogIndex";
+import SelectableDimensionWorkflow from "./SelectableDimensions/SelectableDimensionWorkflow";
 import ShareDataService from "./ShareDataService";
 import TimelineStack from "./TimelineStack";
 import { isViewerMode, setViewerMode } from "./ViewerMode";
@@ -481,6 +482,9 @@ export default class Terria {
   @observable
   mapInteractionModeStack: MapInteractionMode[] = [];
 
+  @observable
+  selectableDimensionWorkflow?: SelectableDimensionWorkflow;
+
   @computed
   get baseMapContrastColor() {
     return (
@@ -511,6 +515,7 @@ export default class Terria {
   @observable terrainSplitDirection: ImagerySplitDirection =
     ImagerySplitDirection.NONE;
 
+  @observable isWorkflowPanelActive = false;
   @observable depthTestAgainstTerrainEnabled = false;
 
   @observable stories: any[] = [];

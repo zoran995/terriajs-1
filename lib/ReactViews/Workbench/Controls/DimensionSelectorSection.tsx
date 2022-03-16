@@ -1,25 +1,47 @@
+"use strict";
+
 import i18next from "i18next";
+import { debounce } from "lodash-es";
+import { action, runInAction } from "mobx";
 import { observer } from "mobx-react";
-import React from "react";
+import React, { useState } from "react";
+import { ChromePicker } from "react-color";
 import { WithTranslation, withTranslation } from "react-i18next";
-import styled from "styled-components";
+import ReactSelect from "react-select";
+import { useTheme } from "styled-components";
+import isDefined from "../../../Core/isDefined";
 import CommonStrata from "../../../Models/Definition/CommonStrata";
 import { BaseModel } from "../../../Models/Definition/Model";
 import SelectableDimensions, {
   filterSelectableDimensions,
+  isButton,
+  isCheckbox,
+  isColor,
+  isEnum,
+  isGroup,
+  isNumeric,
+  isText,
   Placement,
   SelectableDimension,
-  SelectableDimensionCheckboxGroup,
-  SelectableDimensionGroup
-} from "../../../Models/SelectableDimensions";
+  SelectableDimensionButton,
+  SelectableDimensionCheckbox,
+  SelectableDimensionColor,
+  SelectableDimensionEnum,
+  SelectableDimensionGroup,
+  SelectableDimensionNumeric,
+  SelectableDimensionText
+} from "../../../Models/SelectableDimensions/SelectableDimensions";
 import Box from "../../../Styled/Box";
+import { RawButton } from "../../../Styled/Button";
 import Checkbox from "../../../Styled/Checkbox";
-import Select from "../../../Styled/Select";
+import Input from "../../../Styled/Input";
 import Spacing from "../../../Styled/Spacing";
-import Text from "../../../Styled/Text";
+import Text, { TextSpan } from "../../../Styled/Text";
+import Collapsible from "../../Custom/Collapsible/Collapsible";
+import { parseCustomMarkdownToReactWithOptions } from "../../Custom/parseCustomMarkdownToReact";
 
 interface PropsType extends WithTranslation {
-  item: SelectableDimensions & BaseModel;
+  item: BaseModel;
   /** Placement used to filter selectableDimensions.placement (eg 'belowLegend) */
   placement: Placement;
 }
@@ -28,12 +50,15 @@ interface PropsType extends WithTranslation {
 class DimensionSelectorSection extends React.Component<PropsType> {
   render() {
     const item = this.props.item;
+    if (!SelectableDimensions.is(item)) {
+      return null;
+    }
 
     const selectableDimensions = filterSelectableDimensions(
       this.props.placement
     )(item.selectableDimensions);
 
-    if (selectableDimensions.length === 0) {
+    if (!isDefined(selectableDimensions) || selectableDimensions.length === 0) {
       return null;
     }
 
@@ -42,8 +67,8 @@ class DimensionSelectorSection extends React.Component<PropsType> {
         {selectableDimensions.map((dim, i) => (
           <DimensionSelector
             key={`${item.uniqueId}-${dim.id}-fragment`}
-            item={item}
-            dimension={dim}
+            id={`${item.uniqueId}-${dim.id}`}
+            dim={dim}
           />
         ))}
       </Box>
@@ -52,122 +77,105 @@ class DimensionSelectorSection extends React.Component<PropsType> {
 }
 
 export const DimensionSelector: React.FC<{
-  item: BaseModel;
-  dimension: SelectableDimension;
-}> = observer(({ item, dimension: dim }) => {
-  const setDimensionValue = (dimension: SelectableDimension, value: string) => {
-    if (dimension.type !== "group") {
-      dimension.setDimensionValue(CommonStrata.user, value);
-    }
-  };
-
+  id: string;
+  dim: SelectableDimension;
+}> = ({ id, dim }) => {
   return (
-    <DimensionSelectorContainer>
+    <Box displayInlineBlock fullWidth styledPadding="5px 0">
+      {/* Render label for all SelectableDimensions except for groups */}
       {dim.name && dim.type !== "group" ? (
         <>
-          <label htmlFor={`${item.uniqueId}-${dim.id}`}>
+          <label htmlFor={id}>
             <Text textLight medium as="span">
-              {dim.name}:
+              {parseCustomMarkdownToReactWithOptions(dim.name, {
+                inline: true
+              })}
+              :
             </Text>
           </label>
           <Spacing bottom={1} />
         </>
       ) : null}
-      {dim.type === "checkbox" && (
-        /* Checkbox Selectable Dimension */
-        <Checkbox
-          isChecked={dim.selectedId === "true"}
-          onChange={evt =>
-            setDimensionValue(dim, evt.target.checked ? "true" : "false")
-          }
-        >
-          <Text>
-            {dim.options?.find(opt => opt.id === dim.selectedId)?.name ??
-              (dim.selectedId === "true" ? "Enabled" : "Disabled")}
-          </Text>
-        </Checkbox>
-      )}
-      {(dim.type === undefined || dim.type === "select") && (
-        /* Select (dropdown) Selectable Dimension (default) */
-        <Select
-          light
-          name={dim.id}
-          id={`${item.uniqueId}-${dim.id}`}
-          value={
-            typeof dim.selectedId === "undefined"
-              ? "__undefined__"
-              : dim.selectedId
-          }
-          onChange={(evt: React.ChangeEvent<HTMLSelectElement>) =>
-            setDimensionValue(dim, evt.target.value)
-          }
-        >
-          {/* If no value as been selected -> add option */}
-          {(typeof dim.selectedId === "undefined" || dim.allowUndefined) && (
-            <option key="__undefined__" value="">
-              {dim.undefinedLabel ??
-                i18next.t("workbench.dimensionsSelector.undefinedLabel")}
-            </option>
-          )}
-          {dim.options!.map(option => (
-            <option key={option.id} value={option.id}>
-              {option.name || option.id}
-            </option>
-          ))}
-        </Select>
-      )}
-      {dim.type === "checkbox-group" && (
-        <DimensionSelectorCheckboxGroup item={item} dimension={dim} />
-      )}
-      {dim.type === "group" && (
-        <DimensionSelectorGroup item={item} dimension={dim} />
-      )}
-    </DimensionSelectorContainer>
+      {isCheckbox(dim) && <DimensionSelectorCheckbox id={id} dim={dim} />}
+      {isEnum(dim) && <DimensionSelectorSelect id={id} dim={dim} />}
+      {isGroup(dim) && <DimensionSelectorGroup id={id} dim={dim} />}
+      {isNumeric(dim) && <DimensionSelectorNumeric id={id} dim={dim} />}
+      {isText(dim) && <DimensionSelectorText id={id} dim={dim} />}
+      {isButton(dim) && <DimensionSelectorButton id={id} dim={dim} />}
+      {isColor(dim) && <DimensionSelectorColor id={id} dim={dim} />}
+    </Box>
   );
-});
+};
 
-/**
- * Component to render a SelectableDimensionGroup.
- */
-export const DimensionSelectorCheckboxGroup: React.FC<{
-  item: BaseModel;
-  dimension: SelectableDimensionCheckboxGroup;
-}> = ({ item, dimension: dim }) => {
+export const DimensionSelectorSelect: React.FC<{
+  id: string;
+  dim: SelectableDimensionEnum;
+}> = ({ id, dim }) => {
+  const theme = useTheme();
+
+  const undefinedOption = {
+    value: undefined,
+    label:
+      dim.undefinedLabel ??
+      i18next.t("workbench.dimensionsSelector.undefinedLabel")
+  };
+
+  let options = dim.options?.map(option => ({
+    value: option.id,
+    label: option.name ?? option.id
+  }));
+
+  const selectedOption = dim.selectedId
+    ? options?.find(option => option.value === dim.selectedId)
+    : undefinedOption;
+
+  if (!options) return null;
+
+  if (typeof dim.selectedId === "undefined" || dim.allowUndefined) {
+    options = [undefinedOption, ...options];
+  }
+
   return (
-    <CheckboxDetails open={dim.selectedId === "true"}>
-      <summary>
-        <Checkbox
-          isChecked={dim.selectedId === "true"}
-          onChange={evt =>
-            dim.setDimensionValue(
-              CommonStrata.user,
-              evt.target.checked ? "true" : "false"
-            )
-          }
-          css={`
-            /* Stretch the checkbox to full-width so that clicking anywhere fires a checkbox event */
-            flex-grow: 1;
-          `}
-        >
-          <Text>
-            {dim.options?.find(opt => opt.id === dim.selectedId)?.name ??
-              (dim.selectedId === "true" ? "Enabled" : "Disabled")}
-          </Text>
-        </Checkbox>
-      </summary>
-      <div>
-        {/* recursively render nested dimensions */}
-        {filterSelectableDimensions(dim.placement || "default")(
-          dim.selectableDimensions
-        ).map(nestedDim => (
-          <DimensionSelector
-            item={item}
-            dimension={nestedDim}
-            key={`${item.uniqueId}-${dim.id}-${nestedDim.id}`}
-          />
-        ))}
-      </div>
-    </CheckboxDetails>
+    <ReactSelect
+      css={`
+        color: ${theme.dark};
+      `}
+      options={options}
+      value={selectedOption}
+      onChange={evt => {
+        runInAction(() =>
+          dim.setDimensionValue(CommonStrata.user, evt?.value ?? "")
+        );
+      }}
+      isClearable={dim.allowUndefined}
+      isSearchable={!dim.optionRenderer}
+      formatOptionLabel={dim.optionRenderer}
+    />
+  );
+};
+
+export const DimensionSelectorCheckbox: React.FC<{
+  id: string;
+  dim: SelectableDimensionCheckbox;
+}> = ({ id, dim }) => {
+  return (
+    <Checkbox
+      name={id}
+      isChecked={dim.selectedId === "true"}
+      onChange={evt =>
+        runInAction(() =>
+          dim.setDimensionValue(
+            CommonStrata.user,
+            evt.target.checked ? "true" : "false"
+          )
+        )
+      }
+    >
+      <Text>
+        {dim.options?.find(opt => opt.id === dim.selectedId)?.name ??
+          (dim.selectedId === "true" ? "Enabled" : "Disabled")}
+      </Text>
+    </Checkbox>
   );
 };
 
@@ -175,51 +183,201 @@ export const DimensionSelectorCheckboxGroup: React.FC<{
  * Component to render a SelectableDimensionGroup.
  */
 export const DimensionSelectorGroup: React.FC<{
-  item: BaseModel;
-  dimension: SelectableDimensionGroup;
-}> = ({ item, dimension: dim }) => {
+  id: string;
+  dim: SelectableDimensionGroup;
+}> = ({ id, dim }) => {
   return (
-    <details>
-      <summary>
-        <Text textLight medium as="span">
-          {dim.name}
-        </Text>
-      </summary>
-      <div>
-        {/* recursively render nested dimensions */}
-        {filterSelectableDimensions(dim.placement || "default")(
-          dim.selectableDimensions
-        ).map(nestedDim => (
-          <DimensionSelector
-            item={item}
-            dimension={nestedDim}
-            key={`${item.uniqueId}-${dim.id}-${nestedDim.id}`}
-          />
-        ))}
-      </div>
-    </details>
+    <Collapsible
+      title={dim.name ?? dim.id ?? ""}
+      btnRight
+      bodyBoxProps={{
+        displayInlineBlock: true,
+        fullWidth: true
+      }}
+      bodyTextProps={{ medium: true }}
+      isOpen={dim.isOpen}
+      onToggle={dim.onToggle}
+    >
+      {/* recursively render nested dimensions */}
+      {filterSelectableDimensions()(dim.selectableDimensions).map(nestedDim => (
+        <DimensionSelector
+          id={`${id}-${nestedDim.id}`}
+          dim={nestedDim}
+          key={`${id}-${nestedDim.id}`}
+        />
+      ))}
+    </Collapsible>
   );
 };
 
-/**
- * Container component
- */
-const DimensionSelectorContainer = styled.div`
-  margin-top: 10px;
+export const DimensionSelectorNumeric: React.FC<{
+  id: string;
+  dim: SelectableDimensionNumeric;
+}> = ({ id, dim }) => {
+  return (
+    <Input
+      styledHeight={"34px"}
+      light
+      border
+      type="number"
+      name={id}
+      value={dim.value}
+      min={dim.min}
+      max={dim.max}
+      onChange={evt => {
+        runInAction(() =>
+          dim.setDimensionValue(CommonStrata.user, parseFloat(evt.target.value))
+        );
+      }}
+    />
+  );
+};
 
-  summary {
-    cursor: pointer;
-  }
-  > details > div {
-    padding-left: 20px;
-  }
-`;
+export const DimensionSelectorText: React.FC<{
+  id: string;
+  dim: SelectableDimensionText;
+}> = ({ id, dim }) => {
+  return (
+    <Input
+      styledHeight={"34px"}
+      light
+      border
+      name={id}
+      value={dim.value}
+      onChange={evt => {
+        runInAction(() =>
+          dim.setDimensionValue(CommonStrata.user, evt.target.value)
+        );
+      }}
+    />
+  );
+};
 
-const CheckboxDetails = styled.details`
-  summary {
-    display: flex;
-    list-style: none;
-  }
-`;
+export const DimensionSelectorButton: React.FC<{
+  id: string;
+  dim: SelectableDimensionButton;
+}> = ({ id, dim }) => {
+  return (
+    <RawButton
+      onClick={() =>
+        runInAction(() => dim.setDimensionValue(CommonStrata.user, true))
+      }
+      activeStyles
+    >
+      {parseCustomMarkdownToReactWithOptions(dim.value ?? "", { inline: true })}
+    </RawButton>
+  );
+};
+
+const debounceSetColorDimensionValue = debounce(
+  action((dim: SelectableDimensionColor, value: string) => {
+    // Only update value if it has changed
+    dim.value !== value
+      ? dim.setDimensionValue(CommonStrata.user, value)
+      : null;
+  }),
+  100
+);
+
+export const DimensionSelectorColor: React.FC<{
+  id: string;
+  dim: SelectableDimensionColor;
+}> = observer(({ id, dim }) => {
+  const [open, setIsOpen] = useState(false);
+  return (
+    <div>
+      {dim.value ? (
+        <div
+          css={{
+            padding: "5px",
+            background: "#fff",
+            borderRadius: "1px",
+            boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+            display: "inline-block",
+            cursor: "pointer"
+          }}
+          onClick={() => setIsOpen(true)}
+        >
+          <div
+            css={{
+              width: "36px",
+              height: "14px",
+              borderRadius: "2px",
+              background: dim.value ?? "#aaa"
+            }}
+          ></div>
+        </div>
+      ) : null}
+      {/* Show "Add" button if value is undefined */}
+      {!dim.value ? (
+        <>
+          &nbsp;
+          <RawButton
+            onClick={() =>
+              runInAction(() =>
+                dim.setDimensionValue(CommonStrata.user, "#000000")
+              )
+            }
+            activeStyles
+            fullHeight
+          >
+            <TextSpan small light css={{ margin: 0 }}>
+              Add
+            </TextSpan>
+          </RawButton>
+        </>
+      ) : null}
+      {/* Show "Clear" button if `allowUndefined` */}
+      {dim.value && dim.allowUndefined ? (
+        <>
+          &nbsp;
+          <RawButton
+            onClick={() =>
+              runInAction(() =>
+                dim.setDimensionValue(CommonStrata.user, undefined)
+              )
+            }
+            activeStyles
+            fullHeight
+          >
+            <TextSpan small light css={{ margin: 0 }}>
+              Clear
+            </TextSpan>
+          </RawButton>
+        </>
+      ) : null}
+      {open ? (
+        <div
+          css={{
+            position: "absolute",
+            zIndex: "2"
+          }}
+        >
+          <div
+            css={{
+              position: "fixed",
+              top: "0px",
+              right: "0px",
+              bottom: "0px",
+              left: "0px",
+              width: "340px"
+            }}
+            onClick={() => setIsOpen(false)}
+          />
+          <ChromePicker
+            css={{ transform: "translate(50px, -50%);" }}
+            color={dim.value}
+            onChangeComplete={evt => {
+              const colorString = isDefined(evt.rgb.a)
+                ? `rgba(${evt.rgb.r},${evt.rgb.g},${evt.rgb.b},${evt.rgb.a})`
+                : `rgb(${evt.rgb.r},${evt.rgb.g},${evt.rgb.b})`;
+              debounceSetColorDimensionValue(dim, colorString);
+            }}
+          />
+        </div>
+      ) : null}
+    </div>
+  );
+});
 
 export default withTranslation()(DimensionSelectorSection);

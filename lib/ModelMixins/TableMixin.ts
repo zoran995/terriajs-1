@@ -15,14 +15,18 @@ import isDefined from "../Core/isDefined";
 import { isLatLonHeight } from "../Core/LatLonHeight";
 import makeRealPromise from "../Core/makeRealPromise";
 import TerriaError from "../Core/TerriaError";
-import ConstantColorMap from "../Map/ConstantColorMap";
-import RegionProviderList from "../Map/RegionProviderList";
+import ConstantColorMap from "../Map/ColorMap/ConstantColorMap";
+import RegionProviderList from "../Map/Region/RegionProviderList";
 import CommonStrata from "../Models/Definition/CommonStrata";
 import Model from "../Models/Definition/Model";
 import updateModelFromJson from "../Models/Definition/updateModelFromJson";
 import SelectableDimensions, {
-  SelectableDimension
-} from "../Models/SelectableDimensions";
+  SelectableDimension,
+  SelectableDimensionEnum
+} from "../Models/SelectableDimensions/SelectableDimensions";
+import TableStylingWorkflow from "../Models/SelectableDimensions/TableStylingWorkflow";
+import ViewingControls, { ViewingControl } from "../Models/ViewingControls";
+import Icon from "../Styled/Icon";
 import createLongitudeLatitudeFeaturePerId from "../Table/createLongitudeLatitudeFeaturePerId";
 import createLongitudeLatitudeFeaturePerRow from "../Table/createLongitudeLatitudeFeaturePerRow";
 import createRegionMappedImageryProvider from "../Table/createRegionMappedImageryProvider";
@@ -48,7 +52,7 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
     extends ExportableMixin(
       ChartableMixin(DiscretelyTimeVaryingMixin(CatalogMemberMixin(Base)))
     )
-    implements SelectableDimensions {
+    implements SelectableDimensions, ViewingControls {
     /**
      * The default {@link TableStyle}, which is used for styling
      * only when there are no styles defined.
@@ -439,13 +443,36 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
       ]);
     }
 
+    @computed get viewingControls(): ViewingControl[] {
+      return filterOutUndefined([
+        ...super.viewingControls,
+        this.activeStyle // Note we want falsy here for activeStyle ("" is equivalent to undefined)
+          ? {
+              id: TableStylingWorkflow.type,
+              name: "Edit Style",
+              onClick: action(
+                viewState =>
+                  (viewState.terria.selectableDimensionWorkflow = new TableStylingWorkflow(
+                    this
+                  ))
+              ),
+              icon: { glyph: Icon.GLYPHS.layers }
+            }
+          : undefined
+      ]);
+    }
+
     @computed
     get selectableDimensions(): SelectableDimension[] {
       return filterOutUndefined([
         this.timeDisableDimension,
         ...super.selectableDimensions,
-        this.regionColumnDimensions,
-        this.regionProviderDimensions,
+        this.enableManualRegionMapping
+          ? this.regionColumnDimensions
+          : undefined,
+        this.enableManualRegionMapping
+          ? this.regionProviderDimensions
+          : undefined,
         this.styleDimensions,
         this.outlierFilterDimension
       ]);
@@ -455,11 +482,12 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
      * Takes {@link TableStyle}s and returns a SelectableDimension which can be rendered in a Select dropdown
      */
     @computed
-    get styleDimensions(): SelectableDimension | undefined {
+    get styleDimensions(): SelectableDimensionEnum | undefined {
       if (this.mapItems.length === 0 && !this.enableManualRegionMapping) {
         return;
       }
       return {
+        type: "select",
         id: "activeStyle",
         name: "Display Variable",
         options: this.tableStyles
@@ -475,7 +503,7 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
         undefinedLabel: this.showDisableStyleOption
           ? i18next.t("models.tableData.styleDisabledLabel")
           : undefined,
-        setDimensionValue: (stratumId: string, styleId: string) => {
+        setDimensionValue: (stratumId: string, styleId) => {
           this.setTrait(stratumId, "activeStyle", styleId);
         }
       };
@@ -486,9 +514,8 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
      * {@link TableTraits#enableManualRegionMapping} must be enabled.
      */
     @computed
-    get regionProviderDimensions(): SelectableDimension | undefined {
+    get regionProviderDimensions(): SelectableDimensionEnum | undefined {
       if (
-        !this.enableManualRegionMapping ||
         !Array.isArray(this.regionProviderList?.regionProviders) ||
         !isDefined(this.activeTableStyle.regionColumn)
       ) {
@@ -508,7 +535,10 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
         ),
         allowUndefined: true,
         selectedId: this.activeTableStyle.regionColumn?.regionType?.regionType,
-        setDimensionValue: (stratumId: string, regionType: string) => {
+        setDimensionValue: (
+          stratumId: string,
+          regionType: string | undefined
+        ) => {
           let columnTraits = this.columns?.find(
             column => column.name === this.activeTableStyle.regionColumn?.name
           );
@@ -536,10 +566,7 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
      */
     @computed
     get regionColumnDimensions(): SelectableDimension | undefined {
-      if (
-        !this.enableManualRegionMapping ||
-        !Array.isArray(this.regionProviderList?.regionProviders)
-      ) {
+      if (!Array.isArray(this.regionProviderList?.regionProviders)) {
         return;
       }
 
@@ -553,7 +580,10 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
           };
         }),
         selectedId: this.activeTableStyle.regionColumn?.name,
-        setDimensionValue: (stratumId: string, regionCol: string) => {
+        setDimensionValue: (
+          stratumId: string,
+          regionCol: string | undefined
+        ) => {
           this.defaultStyle.setTrait(stratumId, "regionColumn", regionCol);
         }
       };
@@ -581,7 +611,7 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
         selectedId: this.activeTableStyle.colorTraits.zScoreFilterEnabled
           ? "true"
           : "false",
-        setDimensionValue: (stratumId: string, value: string) => {
+        setDimensionValue: (stratumId: string, value) => {
           updateModelFromJson(this, stratumId, {
             defaultStyle: {
               color: { zScoreFilterEnabled: value === "true" }
@@ -616,7 +646,7 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
         ],
         selectedId:
           this.defaultStyle.time.timeColumn === null ? "false" : "true",
-        setDimensionValue: (stratumId: string, value: string) => {
+        setDimensionValue: (stratumId: string, value) => {
           // We have to set showDisableTimeOption to true - or this will hide when time column is disabled
           this.setTrait(stratumId, "showDisableTimeOption", true);
           this.defaultStyle.time.setTrait(
@@ -680,6 +710,20 @@ function TableMixin<T extends Constructor<Model<TableTraits>>>(Base: T) {
       } else {
         return [];
       }
+    }
+
+    /** This is a temporary button which shows in the Legend in the Workbench, if custom styling has been applied. */
+    @computed get legendButton() {
+      return this.activeTableStyle.isCustom
+        ? {
+            title: "Custom",
+            onClick: action(() => {
+              this.terria.selectableDimensionWorkflow = new TableStylingWorkflow(
+                this
+              );
+            })
+          }
+        : undefined;
     }
 
     findFirstColumnByType(type: TableColumnType): TableColumn | undefined {

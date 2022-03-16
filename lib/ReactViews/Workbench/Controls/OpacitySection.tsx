@@ -9,15 +9,15 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 import CommonStrata from "../../../Models/Definition/CommonStrata";
 import hasTraits from "../../../Models/Definition/hasTraits";
+import { BaseModel } from "../../../Models/Definition/Model";
 import Box from "../../../Styled/Box";
 import Spacing from "../../../Styled/Spacing";
 import Text from "../../../Styled/Text";
 import OpacityTraits from "../../../Traits/TraitsClasses/OpacityTraits";
 import RasterLayerTraits from "../../../Traits/TraitsClasses/RasterLayerTraits";
-import CatalogMemberMixin from "../../../ModelMixins/CatalogMemberMixin";
 
 interface IProps extends WithTranslation {
-  item: CatalogMemberMixin.Instance;
+  item: BaseModel;
   t: TFunction;
 }
 
