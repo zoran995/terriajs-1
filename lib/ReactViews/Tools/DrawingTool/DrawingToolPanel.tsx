@@ -150,11 +150,11 @@ class DrawingToolPanel extends React.Component<PropsType> {
             <Spacing bottom={2} />
             <Box fullWidth>
               <ToolButton
-                primary
+                toolButton
                 fullWidth
                 roundLeft
                 onClick={this.onStartDrawing}
-                splitter={this.drawing.isDrawing}
+                toolActive={this.drawing.isDrawing}
               >
                 {!this.drawing.isDrawing
                   ? t("drawingTool.start")
@@ -162,11 +162,11 @@ class DrawingToolPanel extends React.Component<PropsType> {
               </ToolButton>
               <Spacing marginRight={1} />
               <ToolButton
-                primary
+                toolButton
                 fullWidth
                 roundRight
                 onClick={this.onStartDelete}
-                splitter={this.drawing.isDeleting}
+                toolActive={this.drawing.isDeleting}
                 disabled={!this.drawing.isDeleteEnabled}
               >
                 {!this.drawing.isDeleting
@@ -570,7 +570,7 @@ const ColorInner = styled(Box).attrs({
   ${(props) =>
     props.selected &&
     `
-    border: 4px solid ${props.theme.darkWithOverlay};
+    border: 4px solid ${props.theme.dark};
   `}
 `;
 

@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "module": "esNext",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true,
     "allowJs": true,
     "jsx": "react",

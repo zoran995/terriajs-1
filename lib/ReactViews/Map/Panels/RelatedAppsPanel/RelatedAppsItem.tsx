@@ -90,11 +90,11 @@ const AppItem: React.FC<AppItemProps> = (props) => {
         paddedVertically={2}
         css={`
           ${!props.lastItem &&
-          `border-bottom: 2px solid ${props.theme.textDark};`} \
+          `border-bottom: 2px solid ${props.theme.textDark};`}
           &:hover {
-            background: ${props.theme.darkWithOverlay};
+            background: #084380;
             svg {
-              fill: ${props.theme.dark};
+              fill: ${props.theme.textLight};
             }
             svg.arrow-right {
               fill: ${props.theme.textLight};
@@ -106,7 +106,7 @@ const AppItem: React.FC<AppItemProps> = (props) => {
         <Box paddedRatio={2} fullWidth>
           <IconWrapper>
             {imageUrl && (
-              <StyledIcon light styledWidth={"50px"} glyph={{ id: imageUrl }} />
+              <StyledIcon styledWidth={"50px"} glyph={{ id: imageUrl }} />
             )}
             {/* <img
               src={imageUrl}
@@ -150,7 +150,7 @@ const AppItem: React.FC<AppItemProps> = (props) => {
 
 const IconWrapper = styled(Box)`
   svg {
-    fill: ${(props) => props.theme.darkWithOverlay};
+    fill: ${(props) => props.theme.darkLighter};
   }
 `;
 

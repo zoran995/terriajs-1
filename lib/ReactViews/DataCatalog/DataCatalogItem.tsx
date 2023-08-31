@@ -8,6 +8,7 @@ import { DataSourceAction } from "../../Core/AnalyticEvents/analyticEvents";
 import getPath from "../../Core/getPath";
 import CatalogFunctionMixin from "../../ModelMixins/CatalogFunctionMixin";
 import CatalogMemberMixin from "../../ModelMixins/CatalogMemberMixin";
+import GeoShopMixin from "../../ModelMixins/GeoshopMixin";
 import removeUserAddedData from "../../Models/Catalog/removeUserAddedData";
 import Terria from "../../Models/Terria";
 import ViewState from "../../ReactViewModels/ViewState";
@@ -15,6 +16,7 @@ import CatalogItem, { ButtonState } from "./CatalogItem";
 import toggleItemOnMapFromCatalog, {
   Op as ToggleOnMapOp
 } from "./toggleItemOnMapFromCatalog";
+import { checkIfAccessAllowed } from "../../Core/checkIfAccessAllowed";
 
 interface Props {
   item: CatalogMemberMixin.Instance;
@@ -45,10 +47,17 @@ export default observer(function DataCatalogItem({
     ? viewState.userDataPreviewedItem === item
     : viewState.previewedItem === item;
 
-  const setPreviewedItem = () =>
-    viewState
-      .viewCatalogMember(item)
-      .then((result) => result.raiseError(viewState.terria));
+  const setPreviewedItem = () => {
+    let accessAllowed = true;
+    if (CatalogMemberMixin.isMixedInto(item)) {
+      accessAllowed = checkIfAccessAllowed(item, viewState.terria);
+    }
+    if (accessAllowed) {
+      return viewState
+        .viewCatalogMember(item)
+        .then((result) => result.raiseError(viewState.terria));
+    }
+  };
 
   const toggleEnable = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const keepCatalogOpen = event.shiftKey || event.ctrlKey;
@@ -99,6 +108,14 @@ export default observer(function DataCatalogItem({
       selected={isSelected}
       text={item.nameInCatalog!}
       isPrivate={item.isPrivate}
+      geoshopProductId={
+        GeoShopMixin.isMixedInto(item) ? item.productId : undefined
+      }
+      isGeoShopSelectionAvailable={
+        GeoShopMixin.isMixedInto(item)
+          ? item.isGeoShopSelectionAvailable
+          : false
+      }
       title={getPath(item, " -> ")}
       btnState={btnState}
       onBtnClick={onBtnClicked}

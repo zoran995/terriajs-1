@@ -6,12 +6,14 @@ import React from "react";
 import styled from "styled-components";
 import withControlledVisibility from "../../HOCs/withControlledVisibility";
 import { useViewState } from "../../Context";
-import LangPanel from "../Panels/LangPanel/LangPanel";
+import LanguageSwitcher, {
+  Direction
+} from "../../LanguageSwitcher/LanguageSwitcher";
+import HelpButton from "./HelpButton/HelpButton";
 import SettingPanel from "../Panels/SettingPanel";
 import SharePanel from "../Panels/SharePanel/SharePanel";
 import ToolsPanel from "../Panels/ToolsPanel/ToolsPanel";
 import StoryButton from "./StoryButton/StoryButton";
-import HelpButton from "./HelpButton/HelpButton";
 
 import Styles from "./menu-bar.scss";
 
@@ -73,12 +75,15 @@ const MenuBar = observer((props) => {
           <li className={Styles.menuItem}>
             <HelpButton viewState={viewState} />
           </li>
-
           {terria.configParameters?.languageConfiguration?.enabled ? (
             <li className={Styles.menuItem}>
-              <LangPanel
-                terria={terria}
-                smallScreen={viewState.useSmallScreenInterface}
+              <LanguageSwitcher
+                viewState={viewState}
+                direction={Direction.Down}
+                neverCollapse={true}
+                hideArrowIcon={true}
+                dark
+                styledMinWidth="110px"
               />
             </li>
           ) : null}

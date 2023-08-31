@@ -30,6 +30,7 @@ const SelectableDimensionWorkflow: React.FC = observer(() => {
       closeButtonText={t("compare.done")}
       onClose={action(() => {
         terria.selectableDimensionWorkflow = undefined;
+        terria.isWorkflowPanelActive = false;
       })}
       footer={terria.selectableDimensionWorkflow.footer}
     >

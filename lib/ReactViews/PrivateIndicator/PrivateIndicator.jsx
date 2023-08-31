@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
 import Icon from "../../Styled/Icon";
-import IconWrapper from "../../Styled/IconWrapper";
+import { BoxSpan } from "../../Styled/Box";
 
 PrivateIndicator.propTypes = {
   inWorkbench: PropTypes.bool
@@ -13,23 +13,16 @@ export default function PrivateIndicator(props) {
   const { t } = useTranslation();
 
   return (
-    <IconWrapper
-      marginRight={!props.inWorkbench}
-      title={t("catalogItem.privateIndicatorTitle")}
-      inWorkbench={props.inWorkbench}
-      css={`
-        margin-top: -1px;
-        ${(p) => p.inWorkbench && `margin-right: 2px;`}
-
-        svg {
+    <BoxSpan centered title={t("catalogItem.privateIndicatorTitle")}>
+      <Icon
+        glyph={Icon.GLYPHS.lock}
+        css={`
           width: 15px;
           height: 15px;
-          fill: ${(p) =>
-            p.inWorkbench ? p.theme.textLight : p.theme.colorPrimary};
-        }
-      `}
-    >
-      <Icon glyph={Icon.GLYPHS.lock} />
-    </IconWrapper>
+          fill: currentColor;
+        `}
+        {...props}
+      />
+    </BoxSpan>
   );
 }

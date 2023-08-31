@@ -36,14 +36,17 @@
 .btn--catalogShare {
   font-size: $font-size-data-preview;
   background: transparent;
-  color: $color-primary;
+  color: $dark-with-overlay !important;
   box-shadow: none;
   svg {
-    fill: $color-primary;
+    fill: $dark-with-overlay !important;
   }
   &:hover,
   &:focus {
-    color: $text-light;
+    color: $text-light !important;
+    svg {
+      fill: $text-light !important;
+    }
   }
 }
 
@@ -54,6 +57,6 @@
   // not in design but should give life to the button?
   &:hover,
   &:focus {
-    color: $color-primary;
+    color: $dark-with-overlay;
   }
 }

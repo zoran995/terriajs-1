@@ -273,7 +273,11 @@ export default class WebMapServiceCapabilitiesStratum extends LoadableStratum(
       }
     }
 
-    return result;
+    if (this.catalogItem.onlyFirstLegend && result.length > 0) {
+      return [result[0]];
+    } else {
+      return result;
+    }
   }
 
   @computed

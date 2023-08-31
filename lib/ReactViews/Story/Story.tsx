@@ -88,7 +88,7 @@ const StoryMenuButton = styled(RawButton)`
   &:hover,
   &:focus {
     color: ${(props) => props.theme.textLight};
-    background-color: ${(props) => props.theme.colorPrimary};
+    background-color: ${(props) => props.theme.darkWithOverlay};
 
     svg {
       fill: ${(props) => props.theme.textLight};
@@ -326,7 +326,7 @@ const MenuButton = styled(RawButton)`
   &:hover,
   &:focus {
     opacity: 0.9;
-    background-color: ${(props) => props.theme.dark};
+    background-color: ${(props) => props.theme.darkWithOverlay};
   }
 `;
 

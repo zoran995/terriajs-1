@@ -104,7 +104,7 @@ const DropdownPanel = createReactClass({
             ${(p) =>
               p.isOpen &&
               `&:not(.foo) {
-                background: ${p.theme.colorPrimary};
+                background: ${p.theme.darkWithOverlay};
                 svg {
                   fill: ${p.theme.textLight};
                 }

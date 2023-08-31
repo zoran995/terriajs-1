@@ -1,6 +1,6 @@
 {
   "name": "@zoran995/geoportaljs",
-  "version": "8.3.6-geoportal-0",
+  "version": "8.3.6-geoportal-rugip-1",
   "description": "Geospatial data visualization platform.",
   "license": "Apache-2.0",
   "engines": {
@@ -233,7 +233,7 @@
     "react-shallow-testutils": "^3.0.0",
     "react-test-renderer": "^16.3.2",
     "regenerator-runtime": "^0.13.2",
-    "terriajs-server": "npm:@zoran995/geoportal-server@0.0.1-alpha",
+    "terriajs-server": "npm:@zoran995/geoportal-server-private@0.0.1-alpha-rugip-1",
     "yaml": "^1.10.0"
   },
   "scripts": {

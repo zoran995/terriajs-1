@@ -322,6 +322,10 @@
       "cadastralMunicipality": "Katastarska opština",
       "parcelNumber": "Broj parcele"
     },
+    "access": {
+      "title": "Pretraga parcela",
+      "message": "Ne možete pokrenuti alat pretraga parcela dok ne dodate sloj sa katastarskim parcelama na kartu. Da bi se dodali ovaj sloj na kartu izaberite opciju istraži podatke i dodajte sloj na kartu.\nUkoliko nemate pravo pristupa sloju katastarskih parcela isto možete zatražiti slanjem mejla na adresu e-pošte {{email}} ili koristeći opciju povratnih informacija iz donjeg desnog ugla preglednika."
+    },
     "errors": {
       "missingInputErrorTitle": "Neočekivani unos",
       "missingInputError": "Neočekivani unos, molimo provjerite vrijednost koju ste unijeli.",
@@ -490,7 +494,7 @@
   "helpPanel": {
     "btnText": "Pomoć",
     "menuPaneTitle": "Ovdje smo da pomognemo",
-    "menuPaneBody": "Pronađite korisne savjete o korišćenju {{appName}} tako što ćete provjeriti dole navedene vodiče ili kontaktirati tim na [info@terria.io](mailto:info@terria.io)",
+    "menuPaneBody": "Pronađite korisne savjete o korišćenju {{appName}} tako što ćete provjeriti dole navedene vodiče ili kontaktirati tim na [geoportal.podrska@rgurs.org](mailto:geoportal.podrska@rgurs.org)",
     "promptMessage": "Ovdje pronađite obilazak, video zapise sa uputstvima i drugi sadržaj pomoći",
     "dismissText": "Shvatio, hvala!",
     "takeTour": "Krenite u obilazak"
@@ -750,7 +754,9 @@
       "undefinedLabel": "Nije specificirano"
     },
     "searchItem": "Pretraga",
-    "searchItemTitle": "Pretraga"
+    "searchItemTitle": "Pretraga",
+    "geoshopBuy": "Kupovina",
+    "geoshopBuyTitle": "Kupovina"
   },
   "dateTime": {
     "back": "Vrati se",
@@ -1007,7 +1013,9 @@
     "extraCreditLinks": {
       "dataAttribution": "Licence podataka",
       "disclaimer": "Odricanje od odgovornosti",
-      "basemap": "Podloga"
+      "basemap": "Podloga",
+      "dataProvider": "Podatke obezbijedio:",
+      "about": "O nama"
     }
   },
   "models": {
@@ -1400,6 +1408,8 @@
       "likenessesError": "Lista sličnosti i lista kodova regiona ne sadrže isti broj elemenata."
     },
     "raiseError": {
+      "privateDataErrorTitle": "Nemate pravo pristupa",
+      "privateDataErrorMessage": "Nemate pravo pristupa stavci kataloga: <p style=\"text-align:center\">{{name}}</p> Da biste dobili pristup ovoj stavci kataloga neophodno je da se prijavite na sistem sa nalogom koji ima pravo pristupa ovoj stavci kataloga.\n\n Ukoliko nemate dodijeljeno pravo pristupa ovoj stavci kataloga isto možete zahtijevati slanjem mejla na adresu e-pošte {{email}} ili koristeći opciju povratnih informacija iz donjeg desnog ugla preglednika.",
       "errorTitle": "Došlo je do greške",
       "notificationFeedback": "Za pitanja ili slanje povratne informacije, kliknite ovdje.",
       "developerDetails": "Detalji za programere"
@@ -1768,6 +1778,12 @@
     "additionalTools": "Ostali alati",
     "additionalToolsTitle": "Prikaži još alata"
   },
+  "aboutPanel": {
+    "title": "O nama",
+    "about": "Geoportal predstavlja jedinstvenu tačku pristupa geoprostornim podacima i servisima dobijenim iz različitih izvora, od lokalnog, preko nacionalnog do globalnog nivoa, na sveobuhvatan način.",
+    "technology": "Tehnologije",
+    "technologyText": "Geoportal Republičke uprave za geodetske-imovinsko pravne poslove (RUGIPP) je u potpunosti izgrađen na softverskim komponentama otvorenog koda. Tako je interaktivno 3D kartografsko okruženje razvijeno pomoću CesiumJS biblioteke, pozadinske procese odrađuju GeoServer i GeoWebCache, dok su podaci smješteni u PostgreSQL bazi podataka sa PostGIS proširenjem za prostorne podatke. Metapodaci su implementirani koristeći GeoNetwork softverski paket. U 2D vizuelaciji možete uživati zahvaljujući Leaflet biblioteci otvorenog koda."
+  },
   "itemSearchTool": {
     "toolLoadError": "Greška prilikom učitavanja alata za pretragu.",
     "title": "Pretraži {{itemName}}",
@@ -1807,5 +1823,38 @@
   },
   "toast": {
     "mapIsZooming": "Učitavanje idealnog zuma..."
-  }
+  },
+  "geoshop": {
+    "indicatorTitle": "Moguće je kupiti ovaj proizvod, otvorite podmeni da biste vidjeli detalje",
+    "catalogLinkRedirectTitle": "Pregledajte ovaj set podataka u geoprodavnici",
+    "catalogLinkSelectionTitle": "Pregledajte ovaj set podataka u geoprodavnici ili ga dodajte na mapu da biste izvršili selekciju podataka za kupovinu",
+    "catalogDescription": {
+      "name": "Kupovina podataka",
+      "description": "Ovaj set podataka je dostupan za kupovinu putem GeoProdavnice Republičke uprave za geodetske i imovinsko-pravne poslove.",
+      "selectionDescription": "Kupovinu podataka iz ovog seta podataka možete obaviti selektovanjem podataka od interesa na mapi, dodajte set podataka u korpu i pratite uputstva za kupovinu.",
+      "selectionButton": "Dodaj na mapu",
+      "redirectText": "Kliknite ovdje kako biste pregledali set podataka na GeoProdavnici."
+    },
+    "adding-item-error-occurred": "Došlo je do greške",
+    "adding-item-success": "Dodato u korpu",
+    "adding-item-success-text": "Izabrani proivod je uspješno dodat u korpu. Možete nastaviti dodavati proizvode u korpu ili završiti kupovinu. Kliknite ispod da pregledate korpu. ",
+    "view-cart": "Pregledajte korpu",
+    "workflow": {
+      "done": "Gotovo",
+      "add-to-cart": "Dodaj u korpu",
+      "product-description-panel-title": "Opis proizvoda",
+      "item-count": "Broj selektovanih elemenata {{itemCount}}",
+      "product-name": "Naziv: {{name}}",
+      "product-description": "Opis: {{description}}",
+      "format-panel-title": "Format",
+      "format-type": "Tip formata: {{formatType}}",
+      "format-description": "Opis: {{description}}",
+      "attributes-panel-title": "Atributi"
+    },
+    "feature-prompt": {
+      "message": "Ovaj set podataka je dostupan za kupovinu u eProdavnici. Kliknite ovdje da bi ste pokrenuli proces kupovine.",
+      "dismissText": "Shvatio, hvala!"
+    }
+  },
+  "domainError__cart__cart__item-already-in-cart": "Proizvod je već dodat u korpu"
 }

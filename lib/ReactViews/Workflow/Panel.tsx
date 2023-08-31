@@ -66,16 +66,18 @@ export const Panel: React.FC<PanelProps> = (props) => {
 };
 
 /** Simple PanelButton - this mimics style of CollapsibleTitleBar */
-export const PanelButton: React.FC<{ onClick: () => void; title: string }> = ({
-  onClick,
-  title
-}) => (
+export const PanelButton: React.FC<{
+  onClick: () => void;
+  title: string;
+  disabled: boolean;
+}> = ({ onClick, title, disabled }) => (
   <Wrapper>
     <CollapsibleTitleBar
       onClick={onClick}
       fullWidth
       isOpen={false}
       activeStyles
+      disabled={disabled}
     >
       <Title css={{ textAlign: "center" }}>{title}</Title>
     </CollapsibleTitleBar>

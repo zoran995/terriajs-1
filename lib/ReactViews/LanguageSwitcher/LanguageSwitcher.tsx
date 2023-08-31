@@ -56,52 +56,50 @@ const LanguageSwitcher: React.FC<PropsType> = (props: PropsType) => {
   const opened = up ? GLYPHS.opened : GLYPHS.closed;
   const closed = up ? GLYPHS.closed : GLYPHS.opened;
   return (
-    <Box alignItemsFlexEnd={up}>
-      <Box fullWidth>
-        <MapIconButton
-          primary={isOpen}
-          dark={props.dark}
-          buttonRef={props.navigation ? languageSwitcherRef : undefined}
-          className={undefined}
-          onClick={openMenu}
-          title={i18n.language}
-          iconElement={() => <Icon glyph={GLYPHS.globe} />}
-          expandInPlace={!props.neverCollapse}
-          neverCollapse={isOpen || props.neverCollapse}
-          css={`
-            ${isOpen &&
-            `border-radius: ${up ? "0 0 16px 16px" : "16px 16px 0 0"}`};
-            ${props.styledMinWidth && `min-width: ${props.styledMinWidth};`}
-          `}
-        >
-          {isOpen && (
-            <LanguageSwitcherContent
-              isOpen={isOpen}
-              closeMenu={closeMenu}
-              supportedLanguages={supportedLanguages}
-              up={up}
-              viewState={props.viewState}
+    <Box fullWidth alignItemsFlexEnd={up}>
+      <MapIconButton
+        primary={isOpen}
+        dark={props.dark}
+        buttonRef={props.navigation ? languageSwitcherRef : undefined}
+        className={undefined}
+        onClick={openMenu}
+        title={i18n.language}
+        iconElement={() => <Icon glyph={GLYPHS.globe} />}
+        expandInPlace={!props.neverCollapse}
+        neverCollapse={isOpen || props.neverCollapse}
+        css={`
+          ${isOpen &&
+          `border-radius: ${up ? "0 0 16px 16px" : "16px 16px 0 0"}`};
+          ${props.styledMinWidth && `min-width: ${props.styledMinWidth};`}
+        `}
+      >
+        {isOpen && (
+          <LanguageSwitcherContent
+            isOpen={isOpen}
+            closeMenu={closeMenu}
+            supportedLanguages={supportedLanguages}
+            up={up}
+            viewState={props.viewState}
+          />
+        )}
+        <BoxSpan centered justifySpaceBetween>
+          {!props.hideArrowIcon && (
+            <StyledIcon
+              // (You need light text on a dark theme, and vice versa)
+              //fillColor={isLightTheme ? theme.textDarker : false}
+              //light={isDarkTheme}
+              styledWidth="10px!important"
+              glyph={isOpen ? opened : closed}
+              css={`
+                width: 10px;
+              `}
             />
           )}
-          <BoxSpan centered justifySpaceBetween>
-            {!props.hideArrowIcon && (
-              <StyledIcon
-                // (You need light text on a dark theme, and vice versa)
-                //fillColor={isLightTheme ? theme.textDarker : false}
-                //light={isDarkTheme}
-                styledWidth="10px!important"
-                glyph={isOpen ? opened : closed}
-                css={`
-                  width: 10px;
-                `}
-              />
-            )}
-            <TextSpan noFontSize textAlignLeft>
-              {languageName}
-            </TextSpan>
-          </BoxSpan>
-        </MapIconButton>
-      </Box>
+          <TextSpan noFontSize textAlignLeft>
+            {languageName}
+          </TextSpan>
+        </BoxSpan>
+      </MapIconButton>
     </Box>
   );
 };

@@ -8,6 +8,8 @@ import TimeVarying from "../../ModelMixins/TimeVarying";
 import { BaseModel } from "../../Models/Definition/Model";
 import Terria from "../../Models/Terria";
 import ViewState from "../../ReactViewModels/ViewState";
+import { checkIfAccessAllowed } from "../../Core/checkIfAccessAllowed";
+import CatalogMemberMixin from "../../ModelMixins/CatalogMemberMixin";
 
 // Whether the item is being added or removed
 export enum Op {
@@ -53,11 +55,16 @@ export default async function toggleItemOnMapFromCatalog(
   const op = viewState.terria.workbench.contains(item) ? Op.Remove : Op.Add;
 
   if (op === Op.Add) {
-    (await viewState.terria.workbench.add(item)).raiseError(
-      viewState.terria,
-      undefined,
-      true // We want to force show error to user here - because this function is called when a user clicks the "Add to workbench"  buttons
-    );
+    if (
+      CatalogMemberMixin.isMixedInto(item) &&
+      checkIfAccessAllowed(item, viewState.terria)
+    ) {
+      (await viewState.terria.workbench.add(item)).raiseError(
+        viewState.terria,
+        undefined,
+        true // We want to force show error to user here - because this function is called when a user clicks the "Add to workbench"  buttons
+      );
+    }
   } else {
     await viewState.terria.workbench.remove(item);
   }

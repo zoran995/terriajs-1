@@ -21,23 +21,13 @@ type PropsType = {
   footer?: {
     onClick: () => void;
     buttonText: string;
+    disabled?: boolean;
   };
 };
 
 /** Wraps component in Portal, adds TitleBar, ErrorBoundary and Footer (PanelButton) */
 const WorkflowPanel: React.FC<PropsType> = observer((props) => {
   const viewState = props.viewState;
-
-  useEffect(function hideTerriaSidePanelOnMount() {
-    runInAction(() => {
-      viewState.terria.isWorkflowPanelActive = true;
-    });
-    return () => {
-      runInAction(() => {
-        viewState.terria.isWorkflowPanelActive = false;
-      });
-    };
-  }, []);
 
   return (
     <PortalChild viewState={viewState} portalId={WorkflowPanelPortalId}>
@@ -63,6 +53,7 @@ const WorkflowPanel: React.FC<PropsType> = observer((props) => {
           <PanelButton
             onClick={props.footer.onClick}
             title={props.footer.buttonText}
+            disabled={props.footer.disabled ?? false}
           />
         ) : null}
       </Container>
