@@ -1,6 +1,11 @@
 import { runInAction } from "mobx";
 import React from "react";
 import AugmentedVirtuality from "../../../Models/AugmentedVirtuality";
+import HistoryControls from "../../../Models/HistoryControls/HistoryControls";
+import {
+  HistoryControlsControllerBack,
+  HistoryControlsControllerForward
+} from "../../../Models/HistoryControls/HistoryControlsController";
 import ViewerMode from "../../../Models/ViewerMode";
 import ViewState from "../../../ReactViewModels/ViewState";
 import { GLYPHS } from "../../../Styled/Icon";
@@ -9,6 +14,14 @@ import {
   FeedbackButtonController,
   FEEDBACK_TOOL_ID
 } from "../../Feedback/FeedbackButtonController";
+import { DkpSearchToolController } from "../../Tools/DkpSearch/DkpSeachToolController";
+import { DKP_SEARCH_ID } from "../../Tools/DkpSearch/DkpSearch";
+import DrawingToolPanel, {
+  DRAWING_TOOL_ID
+} from "../../Tools/DrawingTool/DrawingToolPanel";
+import MeasureToolPanel, {
+  MEASURE_TOOL_ID
+} from "../../Tools/MeasureTool/MeasureToolPanel";
 import PedestrianMode, {
   PEDESTRIAN_MODE_ID
 } from "../../Tools/PedestrianMode/PedestrianMode";
@@ -91,7 +104,40 @@ export const registerMapNavigations = (viewState: ViewState) => {
     order: 4
   });
 
-  const measureTool = new MeasureTool({
+  if (
+    !terria.configParameters.disableDkpSearch ||
+    terria.configParameters.dkpSearchInNavigation
+  ) {
+    const dkpSearchToolController = new DkpSearchToolController(viewState);
+
+    mapNavigationModel.addItem({
+      id: DKP_SEARCH_ID,
+      name: "translate#dkpSearch.title",
+      title: "translate#dkpSearch.title",
+      location: "TOP",
+      screenSize: "medium",
+      controller: dkpSearchToolController,
+      order: 5
+    });
+  }
+
+  const measureToolController = new ToolButtonController({
+    toolName: MEASURE_TOOL_ID,
+    viewState: viewState,
+    getToolComponent: () => MeasureToolPanel as any,
+    icon: GLYPHS.measure
+  });
+  mapNavigationModel.addItem({
+    id: MEASURE_TOOL_ID,
+    name: "translate#measureTool.button",
+    title: "translate#measureTool.button",
+    location: "TOP",
+    screenSize: "medium",
+    controller: measureToolController,
+    order: 6
+  });
+
+  const measureToolSmall = new MeasureTool({
     terria,
     onClose: () => {
       runInAction(() => {
@@ -104,16 +150,61 @@ export const registerMapNavigations = (viewState: ViewState) => {
     name: "translate#measure.measureToolTitle",
     title: "translate#measure.measureDistance",
     location: "TOP",
-    controller: measureTool,
+    controller: measureToolSmall,
+    screenSize: "small",
+    order: 7
+  });
+
+  const drawingToolController = new ToolButtonController({
+    toolName: DRAWING_TOOL_ID,
+    viewState: viewState,
+    getToolComponent: () => DrawingToolPanel as any,
+    icon: GLYPHS.pen
+  });
+  mapNavigationModel.addItem({
+    id: DRAWING_TOOL_ID,
+    name: "translate#drawingTool.button",
+    title: "translate#drawingTool.button",
+    location: "TOP",
+    screenSize: "medium",
+    controller: drawingToolController,
+    order: 8
+  });
+
+  const historyControls = new HistoryControls(terria);
+
+  const historyBackController = new HistoryControlsControllerBack(
+    historyControls
+  );
+  mapNavigationModel.addItem({
+    id: "GoBack",
+    name: "translate#historyControl.back",
+    title: "translate#historyControl.backTitle",
+    location: "TOP",
     screenSize: undefined,
-    order: 6
+    controller: historyBackController,
+    order: 9
+  });
+
+  const historyForwardController = new HistoryControlsControllerForward(
+    historyControls
+  );
+  mapNavigationModel.addItem({
+    id: "GoForward",
+    name: "translate#historyControl.forward",
+    title: "translate#historyControl.forwardTitle",
+    location: "TOP",
+    screenSize: undefined,
+    controller: historyForwardController,
+    order: 10
   });
 
   const pedestrianModeToolController = new ToolButtonController({
     toolName: PEDESTRIAN_MODE_ID,
     viewState: viewState,
     getToolComponent: () => PedestrianMode as any,
-    icon: GLYPHS.pedestrian
+    icon: GLYPHS.pedestrian,
+    viewerMode: ViewerMode.Cesium
   });
   mapNavigationModel.addItem({
     id: PEDESTRIAN_MODE_ID,
@@ -122,7 +213,7 @@ export const registerMapNavigations = (viewState: ViewState) => {
     location: "TOP",
     screenSize: "medium",
     controller: pedestrianModeToolController,
-    order: 5
+    order: 11
   });
 
   const closeToolButtonController = new GenericMapNavigationItemController({
@@ -138,7 +229,7 @@ export const registerMapNavigations = (viewState: ViewState) => {
     screenSize: undefined,
     controller: closeToolButtonController,
     render: <CloseToolButton />,
-    order: 7
+    order: 12
   });
   closeToolButtonController.setVisible(false);
 
@@ -201,6 +292,6 @@ export const registerMapNavigations = (viewState: ViewState) => {
     location: "BOTTOM",
     screenSize: "medium",
     controller: feedbackController,
-    order: 8
+    order: 13
   });
 };

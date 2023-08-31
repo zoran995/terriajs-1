@@ -117,8 +117,8 @@ class MapInteractionWindow extends React.Component<{
 
     const isDiffTool =
       this.currentInteractionMode?.uiMode === UIMode.Difference;
-
-    return (
+    const render = this.currentInteractionMode?.render;
+    return render ? (
       <MapInteractionWindowWrapper
         className={windowClass}
         aria-hidden={!isActive}
@@ -146,7 +146,7 @@ class MapInteractionWindow extends React.Component<{
           </button>
         )}
       </MapInteractionWindowWrapper>
-    );
+    ) : null;
   }
 }
 

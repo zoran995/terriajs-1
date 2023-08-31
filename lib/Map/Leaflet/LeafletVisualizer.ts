@@ -621,13 +621,15 @@ class LeafletGeomVisualizer {
         fillColor: fillColor,
         font: font
       });
-      const imageUrl = canvas.toDataURL();
+      if (canvas) {
+        const imageUrl = canvas.toDataURL();
 
-      const img = new Image();
-      img.onload = function () {
-        drawBillboard(img, imageUrl);
-      };
-      img.src = imageUrl;
+        const img = new Image();
+        img.onload = function () {
+          drawBillboard(img, imageUrl);
+        };
+        img.src = imageUrl;
+      }
     }
   }
 

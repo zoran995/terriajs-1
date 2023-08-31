@@ -10,6 +10,12 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "initErrorTitle": "Authetication error",
+    "initErrorMessage": "An error occurred while initializing authentication service. Please try again, and if the problem persists, please report it by sending an email to {{email}}."
+  },
   "browsers": {
     "chrome": "Google Chrome",
     "firefox": "Mozilla Firefox",
@@ -50,6 +56,12 @@
     },
     "mapNavigationSplitterIcon": {
       "content": "## Compare\n\nA powerful feature of Terria is the ability to compare datasets using a split screen view. For datasets with a time-series component, such as satellite images, you can compare dates backwards and forwards in time by clicking on the date picker/selector."
+    },
+    "mapNavigationLanguageSwitcher": {
+      "content": "## Language switcher\n\nChange the language of the application."
+    },
+    "mapLocationBar": {
+      "content": "## Coordinates \n\nCheck the coordinates of mouse cursor position. Also by clicking here you can start the coordinate search tool."
     }
   },
   "measure": {
@@ -116,6 +128,12 @@
     "btnHover": "toggle hover height",
     "btnRealign": "toggle manual alignment",
     "btnResetRealign": "reset compass alignment"
+  },
+  "historyControl": {
+    "backTitle": "Back to previous view",
+    "forwardTitle": "Forward to next view",
+    "back": "Back",
+    "forward": "Forward"
   },
   "tool": {
     "closeButtonTitle": "Close {{toolName}} Tool",
@@ -187,13 +205,176 @@
       "dateButtonTitle": "Select a date"
     }
   },
+  "measureTool": {
+    "button": "Measure",
+    "buttonTitle": "Measure distances, area and coordinates",
+    "title": "Measure",
+    "exit": "Exit",
+    "text": "This tool enables measurement on the map",
+    "startMeasuring": "Start",
+    "stopMeasuring": "Stop",
+    "result": "Result",
+    "clickToMeasureCoordinate": "Click to get point coordinate.",
+    "clickToAddFirstPoint": "Click to add a point.",
+    "clickToAddAnotherPoint": "Click to add another point. Right click to start measuring again.",
+    "labels": {
+      "measureUnit": "Measure unit",
+      "measureType": "Measure type"
+    },
+    "distance": {
+      "name": "Distance",
+      "meters": {
+        "name": "Meters",
+        "label": "m"
+      },
+      "kilometers": {
+        "name": "Kilometer",
+        "label": "km"
+      }
+    },
+    "area": {
+      "name": "Area",
+      "sqMeters": {
+        "name": "Square meters",
+        "label": "m²"
+      },
+      "hectares": {
+        "name": "Hectares",
+        "label": "ha"
+      }
+    },
+    "coordinates": {
+      "name": "Point coordinate",
+      "UTM": {
+        "name": "UTM",
+        "label": "m"
+      },
+      "GK": {
+        "name": "Gaus-Krueger",
+        "label": "m"
+      },
+      "WGS": {
+        "name": "WGS84",
+        "label": "°"
+      }
+    }
+  },
+  "drawingTool": {
+    "button": "Draw",
+    "buttonTitle": "Draw points, lines and polygons on the map.",
+    "drawingElement": "Elements to draw",
+    "title": "Drawing tool",
+    "exit": "Exit",
+    "text": "This tool enables drawing of different geometry elements on the map",
+    "startDrawing": "Start drawing",
+    "stopDrawing": "Finish drawing",
+    "point": "Draw point",
+    "line": "Draw line",
+    "polygon": "Draw polygon",
+    "label": "Write text",
+    "start": "Start drawing",
+    "finish": "Finish drawing",
+    "deleteElement": "Delete element",
+    "stopDeleteElement": "Stop deleting",
+    "opacity": "Opacity: {{opacity}} %",
+    "labels": {
+      "pointColor": "Point color",
+      "lineColor": "Line color",
+      "polygonFillColor": "Polygon fill color",
+      "textColor": "Text color"
+    },
+    "pointPanel": {
+      "size": "Point size"
+    },
+    "linePanel": {
+      "width": "Line width"
+    },
+    "polygonPanel": {
+      "outlineWidth": "Outline width"
+    },
+    "textPanel": {
+      "text": "Text",
+      "font": "Font",
+      "size": "Size"
+    },
+    "clickToDelete": "Click on the drawn feature to delete it."
+  },
+  "coordinateSearch": {
+    "title": "Coordinate search",
+    "projection": "Projection",
+    "exit": "Exit",
+    "showMarker": "Show location",
+    "hideMarker": "Hide location",
+    "utm": {
+      "firstAxisNameFull": "East",
+      "secondAxisNameFull": "North",
+      "firstAxisName": "E",
+      "secondAxisName": "N"
+    },
+    "wgs84": {
+      "firstAxisNameFull": "Latitude",
+      "secondAxisNameFull": "Longitude",
+      "firstAxisName": "Lat",
+      "secondAxisName": "Lon"
+    }
+  },
+  "dkpSearch": {
+    "title": "Parcel search",
+    "exit": "Exit",
+    "text": "This tool enables parcel search",
+    "buttonLabel": "Find",
+    "labels": {
+      "municipality": "Municipality",
+      "cadastralMunicipality": "Cadastral Municipality",
+      "parcelNumber": "Cadastral unit number"
+    },
+    "errors": {
+      "missingInputErrorTitle": "Unexpected input",
+      "missingInputError": "Unexpected input, please check your entry.",
+      "connectionTimeout": "Could not establish connection with the server.",
+      "genericError": "An error occurred, please try again later.",
+      "notFound": "Parcel was not found."
+    },
+    "warnings": {
+      "wrongCharacterWarning": "Allowed characters: 0-9 and '/' (e.g. 12/1)",
+      "wrongInputWarning": "Wrong input format, see tooltip help above."
+    }
+  },
+  "printTool": {
+    "title": "Print",
+    "exit": "Exit",
+    "printButton": "Print",
+    "printPreviewButton": "Print preview",
+    "errorTitle": "Error printing",
+    "errorMessageWithText": "An error occured while printing, please try again later. If the problem persists, please report it by sending an email to {{email}}. <p>{{error}}</p>",
+    "errorMessage": "An error occured while printing, please try again later if the problem persists, please report it by sending an email to {{email}}.",
+    "cancelPrint": "Cancel",
+    "urlUndefined": "Could not establish connection to server",
+    "labels": {
+      "layout": "Layout",
+      "scale": "Scale"
+    }
+  },
+  "attributeTable": {
+    "title": "Attribute table - {{name}}",
+    "close": "Close",
+    "noData": "No data available",
+    "zoomToFeature": "Zoom to feature",
+    "search": "Search"
+  },
+  "miniMap": {
+    "show": "Show mini map",
+    "hide": "Hide mini map"
+  },
   "legend": {
     "lat": "Lat",
     "lon": "Lon",
     "zone": "ZONE",
     "e": "E",
     "n": "N",
-    "elev": "Elev"
+    "elev": "Elev",
+    "x": "X",
+    "y": "Y"
   },
   "languagePanel": {
     "changeLanguage": "Change Language"
@@ -207,6 +388,7 @@
     "printTitle": "Print Map",
     "printExplanation": "Open a printable version of this map.",
     "downloadMap": "Download map (png)",
+    "printButton": "Print",
     "printViewButton": "Show Print View",
     "btnAdvanced": "Advanced options",
     "embedTitle": "Embed map",
@@ -223,6 +405,12 @@
     "convertNotificationHelp": "If you have created the share link, check the Help menu to see tips on updating the share link.",
     "convertNotificationFeedback": "For questions or feedback, click here.",
     "convertNotificationWarningsTitle": "Technical details",
+    "printView": {
+      "legends": "Legends",
+      "datasetDetails": "Dataset Details",
+      "mapCredits": "Map Credits",
+      "printDisclaimer": "Print Disclaimer"
+    },
     "convertErrorTitle": "Could not upgrade share link to V8",
     "convertErrorMessage": "This share link is based on an older version of TerriaJS - the software powering this web map. An error has occurred trying to upgrade the share data.",
     "getShareSaveHelpMessage": "How to Bookmark Sharelinks"
@@ -243,6 +431,13 @@
   "toolsPanel": {
     "btnText": "Tool",
     "btnTitle": "Advanced toolbox"
+  },
+  "relatedApps": {
+    "btnTitle": "See related apps",
+    "btnText": "Related apps",
+    "title": "Related apps",
+    "description": "Clicking on a map below will open it in a separate window or tab.",
+    "openApp": "Open application"
   },
   "settingPanel": {
     "viewerModeLabels": {
@@ -453,7 +648,16 @@
     "viewLess": "View less {{name}} results",
     "viewMore": "View more {{name}} results",
     "placeholder": "Search for locations",
-    "searchCatalogue": "Search the catalogue"
+    "searchCatalogue": "Search the catalogue",
+    "dataCatalog": {
+      "noResults": "Sorry, no locations match your search query.",
+      "error": "An error occurred while searching.  Please check your internet connection or try again later."
+    },
+    "catalog": {
+      "noResults": "Sorry, no catalog items match your search query.",
+      "error": "An error occurred while searching.  Please check your internet connection or try again later.",
+      "name": "Catalog Items"
+    }
   },
   "mobile": {
     "toggleNavigation": "toggle navigation",
@@ -541,6 +745,8 @@
     "toggleVisibility": "Data show/hide",
     "addItemErrorTitle": "Catalog item could not be added to workbench.",
     "addItemErrorMessage": "An error occurred while loading the catalog item.",
+    "openAttributeTableTitle": "Open attribute table",
+    "openAttributeTable": "Attribute table",
     "dimensionsSelector": {
       "undefinedLabel": "Not specified"
     },
@@ -1348,6 +1554,21 @@
     },
     "urlTemplateMapServer": {
       "name": "URL Template Map Server"
+    },
+    "drawingCatalogItem": {
+      "name": "User draw data catalog item",
+      "layerName": "User drawn data",
+      "clickToAddFirstPoint": "Click to add a point",
+      "clickToAddAnotherPoint": "Click to add another point",
+      "description": "This dataset represent data user has draw on the map.",
+      "clickToDrawPoint": "Click on the map to add a point.",
+      "clickToDrawLabel": "Click on the map to add text.",
+      "clickTostartDrawingLine": "Click on the map to add a point and start drawing a line.",
+      "keepDrawingLine": "Click on the map to add another line point. Right click to save the line.",
+      "clickTostartDrawingPolygon": "Click on the map to start drawing a polygon",
+      "keepDrawingPolygon": "Click on the map to add another polygon point. Right click to save the polygon.",
+      "polygonOnePoint": "Click on the map to add another polygon point. ",
+      "lineOnePoint": "Click on the map to add another line point."
     },
     "userDrawing": {
       "devError": "Terria instance is required.",

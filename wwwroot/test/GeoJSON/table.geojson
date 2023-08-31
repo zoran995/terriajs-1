@@ -1,0 +1,66 @@
+{
+  "type": "FeatureCollection",
+  "totalFeatures": 17,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "a58544a9_86de_4c26_90db_3e7c103ded50.1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [542876.9802999999, 6898697.6111]
+      },
+      "geometry_name": "geom",
+      "properties": {
+        "status": "2",
+        "asset_numb": "BIKE1970",
+        "type": "Hoop_Big",
+        "documents": { "#1": 4, "#2": 5 }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a58544a9_86de_4c26_90db_3e7c103ded50.13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [541015.7613000004, 6895442.2138]
+      },
+      "geometry_name": "geom",
+      "properties": {
+        "status": "7",
+        "asset_numb": "BIKE1855",
+        "type": "Hoop_Half",
+        "documents": { "#1": -4, "#2": 15 }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a58544a9_86de_4c26_90db_3e7c103ded50.17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [541025.7613000004, 6895442.2138]
+      },
+      "geometry_name": "geom",
+      "properties": {
+        "status": "31",
+        "asset_numb": "BIKE1837",
+        "type": "Hoop_Half",
+        "documents": { "#1": -4, "#2": 15 }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a58544a9_86de_4c26_90db_3e7c103ded50.19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [541005.7613000004, 6895442.2138]
+      },
+      "geometry_name": "geom",
+      "properties": {
+        "status": "121",
+        "asset_numb": "BIKE1842",
+        "type": "Hoop_Half",
+        "documents": { "#1": -6, "#2": 17 }
+      }
+    }
+  ]
+}

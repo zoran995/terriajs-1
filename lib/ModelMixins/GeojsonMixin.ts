@@ -59,6 +59,8 @@ import PolylineGraphics from "terriajs-cesium/Source/DataSources/PolylineGraphic
 import Property from "terriajs-cesium/Source/DataSources/Property";
 import HeightReference from "terriajs-cesium/Source/Scene/HeightReference";
 import AbstractConstructor from "../Core/AbstractConstructor";
+import ImageryLayerFeatureInfo from "terriajs-cesium/Source/Scene/ImageryLayerFeatureInfo";
+import entityCollectionToGeoJsonAndPrintStyle from "../Core/entityCollectionToGeoJsonAndPrintStyle";
 import filterOutUndefined from "../Core/filterOutUndefined";
 import formatPropertyValue from "../Core/formatPropertyValue";
 import hashFromString from "../Core/hashFromString";
@@ -78,14 +80,18 @@ import ProtomapsImageryProvider, {
   ProtomapsData
 } from "../Map/ImageryProvider/ProtomapsImageryProvider";
 import Reproject from "../Map/Vector/Reproject";
+import zoomToEntity from "../Map/Vector/zoomToEntity";
+import zoomToFeature from "../Map/Vector/zoomToFeature";
 import CatalogMemberMixin from "../ModelMixins/CatalogMemberMixin";
 import UrlMixin from "../ModelMixins/UrlMixin";
+import { AttributeTable } from "../Models/AttributeTable";
 import proxyCatalogItemUrl from "../Models/Catalog/proxyCatalogItemUrl";
 import createStratumInstance from "../Models/Definition/createStratumInstance";
 import LoadableStratum from "../Models/Definition/LoadableStratum";
 import Model, { BaseModel } from "../Models/Definition/Model";
 import StratumOrder from "../Models/Definition/StratumOrder";
 import TerriaFeature from "../Models/Feature/Feature";
+import { PrintStyle } from "../Models/printLayers";
 import { ViewingControl } from "../Models/ViewingControls";
 import TableStylingWorkflow from "../Models/Workflows/TableStylingWorkflow";
 import createLongitudeLatitudeFeaturePerRow from "../Table/createLongitudeLatitudeFeaturePerRow";
@@ -100,6 +106,7 @@ import { ExportData } from "./ExportableMixin";
 import FeatureInfoUrlTemplateMixin from "./FeatureInfoUrlTemplateMixin";
 import { isDataSource } from "./MappableMixin";
 import TableMixin from "./TableMixin";
+import AttributeTableMixin from "./AttributeTableMixin";
 
 export const FEATURE_ID_PROP = "_id_";
 
@@ -287,6 +294,8 @@ function GeoJsonMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
         this.stopTableStyleReaction.bind(this)
       );
     }
+
+    printStyle?: PrintStyle;
 
     private startTableStyleReaction() {
       if (!this.tableStyleReactionDisposer) {
@@ -1254,6 +1263,101 @@ function GeoJsonMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
       return dataColumnMajor;
     }
 
+    @override get attributeTable(): AttributeTable | undefined {
+      if (this._dataSource) {
+        return this.createAttributeTable(this._dataSource, this.terria);
+      }
+      if (this.mapItems && this.mapItems.length > 0) {
+        const source = this.mapItems[0];
+        if (isDataSource(source))
+          return this.createAttributeTable(source, this.terria);
+      }
+      if (this.readyData) {
+        return this.createAttributeTableFromFeatureCollection(
+          this.readyData,
+          this.terria
+        );
+      }
+    }
+
+    zoomToFeature(featureID: string) {
+      if (this._dataSource) {
+        zoomToEntity(this.terria, this._dataSource.entities.getById(featureID));
+        return;
+      }
+      if (this.mapItems && this.mapItems.length > 0) {
+        const source = this.mapItems[0];
+        if (isDataSource(source))
+          zoomToEntity(this.terria, source.entities.getById(featureID));
+        return;
+      }
+
+      if (this.readyData) {
+        const feature = this.readyData.features.find((f) => f.id === featureID);
+        if (feature) {
+          zoomToFeature(this.terria, feature);
+        }
+      }
+    }
+
+    @override
+    selectWithId(featureID: string) {
+      if (this._dataSource) {
+        const entity = this._dataSource.entities.getById(featureID);
+        if (entity) {
+          this.terria.selectedFeature = TerriaFeature.fromEntity(entity);
+        }
+      } else if (this.mapItems && this.mapItems.length > 0) {
+        const dataSources: DataSource[] = this.mapItems.filter(isDataSource);
+        for (let dataSource of dataSources) {
+          const entity = dataSource.entities.getById(featureID);
+          if (entity) {
+            this.terria.selectedFeature = TerriaFeature.fromEntity(entity);
+            return;
+          }
+        }
+      }
+    }
+
+    encodeLayerForPrint() {
+      if (
+        this._dataSource?.entities &&
+        this._dataSource?.entities.values.length > 0
+      ) {
+        const geojsonAndStyle = entityCollectionToGeoJsonAndPrintStyle(
+          this.terria,
+          this._dataSource?.entities,
+          true
+        );
+        return {
+          type: "geojson",
+          geoJson: geojsonAndStyle.geojson,
+          style: this.encodePrintStyle || geojsonAndStyle.style
+        };
+      }
+    }
+
+    get encodePrintStyle(): any | undefined {
+      if (!this.printStyle) {
+        return;
+      }
+      const encodedStyle = {
+        version: "2",
+        "[geometryType(geometry)='MultiPoint' OR geometryType(geometry)='Point']":
+          {
+            symbolizers: [this.printStyle.pointStyle]
+          },
+        "[geometryType(geometry)='MultiLineString' OR geometryType(geometry)='LineString']":
+          {
+            symbolizers: [this.printStyle.lineStyle]
+          },
+        "[geometryType(geometry)='MultiPolygon' OR geometryType(geometry)='Polygon']":
+          {
+            symbolizers: [this.printStyle.polygonStyle]
+          }
+      };
+      return encodedStyle;
+    }
     /** We don't need to use TableMixin forceLoadTableData
      * We implement `get dataColumnMajor()` instead
      */
@@ -1542,7 +1646,7 @@ const simpleStyleIdentifiers = [
 ];
 
 // This next function modelled on Cesium.geoJsonDataSource's defaultDescribe.
-function describeWithoutUnderscores(
+export function describeWithoutUnderscores(
   properties: any,
   nameProperty?: string
 ): string {

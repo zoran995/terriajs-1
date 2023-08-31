@@ -40,14 +40,17 @@ class GetCapabilitiesStratum extends LoadableStratum(
         message: i18next.t("models.webMapServiceCatalogGroup.missingUrlMessage")
       });
     }
-
-    const capabilities = await WebMapServiceCapabilities.fromUrl(
-      proxyCatalogItemUrl(
-        catalogItem,
-        catalogItem.getCapabilitiesUrl,
-        catalogItem.getCapabilitiesCacheDuration
-      )
+    const proxiedUrl = proxyCatalogItemUrl(
+      catalogItem,
+      catalogItem.getCapabilitiesUrl,
+      catalogItem.getCapabilitiesCacheDuration
     );
+
+    const capabilities = await WebMapServiceCapabilities.fromUrl({
+      url: proxiedUrl,
+      terria: catalogItem.terria,
+      shouldAuth: catalogItem.isPrivate
+    });
     return new GetCapabilitiesStratum(catalogItem, capabilities);
   }
 

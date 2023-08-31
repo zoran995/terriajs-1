@@ -12,6 +12,7 @@ import React, { ChangeEvent, ComponentProps, MouseEvent } from "react";
 import { withTranslation, WithTranslation } from "react-i18next";
 import styled, { DefaultTheme, withTheme } from "styled-components";
 import SplitDirection from "terriajs-cesium/Source/Scene/SplitDirection";
+import { applyTranslationIfExists } from "../../../Language/languageHelpers";
 import MappableMixin from "../../../ModelMixins/MappableMixin";
 import Cesium from "../../../Models/Cesium";
 import { BaseModel } from "../../../Models/Definition/Model";
@@ -43,6 +44,7 @@ type PropTypes = WithTranslation & {
   refFromHOC?: React.Ref<HTMLDivElement>;
   theme: DefaultTheme;
   t: TFunction;
+  i18n: any;
 };
 
 @observer
@@ -306,7 +308,10 @@ class SettingPanel extends React.Component<PropTypes> {
               </Box>
               <Box paddedVertically={1}>
                 <Text as="label" mini>
-                  {this.activeMapName}
+                  {applyTranslationIfExists(
+                    this.activeMapName,
+                    this.props.i18n
+                  )}
                 </Text>
               </Box>
               <FlexGrid gap={1} elementsNo={4}>

@@ -39,6 +39,8 @@ function AccessControlMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
      */
     @computed
     get accessType(): string {
+      //@ts-ignore
+      if (this.keycloakToken) return "private";
       // Return the explicitly set accessType
       if (this._accessType) {
         return this._accessType;

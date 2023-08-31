@@ -1,16 +1,18 @@
 import { createTransformer } from "mobx-utils";
 import defined from "terriajs-cesium/Source/Core/defined";
+import Resource from "terriajs-cesium/Source/Core/Resource";
 import isReadOnlyArray from "../../../Core/isReadOnlyArray";
 import loadXML from "../../../Core/loadXML";
-import TerriaError, { networkRequestError } from "../../../Core/TerriaError";
+import { networkRequestError } from "../../../Core/TerriaError";
 import xml2json from "../../../ThirdParty/xml2json";
 import { RectangleTraits } from "../../../Traits/TraitsClasses/MappableTraits";
+import StratumFromTraits from "../../Definition/StratumFromTraits";
+import Terria from "../../Terria";
 import {
   CapabilitiesStyle,
   OnlineResource,
   OwsKeywordList
 } from "./OwsInterfaces";
-import StratumFromTraits from "../../Definition/StratumFromTraits";
 
 export interface CapabilitiesGeographicBoundingBox {
   readonly westBoundLongitude: number;
@@ -123,6 +125,7 @@ export interface ContactInformationContactAddress {
   StateOrProvince?: string;
   PostCode?: string;
   Country?: string;
+  ElectronicMailAddress?: string;
 }
 
 type ElementTypeIfArray<T> = T extends ReadonlyArray<infer U> ? U : T;
@@ -158,16 +161,44 @@ export function getRectangleFromLayer(
   return undefined;
 }
 
+export interface UrlTerria {
+  url: string;
+  terria: Terria;
+  shouldAuth: boolean;
+}
+
 export default class WebMapServiceCapabilities {
-  static fromUrl: (url: string) => Promise<WebMapServiceCapabilities> =
-    createTransformer((url: string) => {
-      return Promise.resolve(loadXML(url)).then(function (capabilitiesXml) {
+  static fromUrl: (urlTerria: UrlTerria) => Promise<WebMapServiceCapabilities> =
+    createTransformer((urlTerria: UrlTerria) => {
+      let authUrl: Resource;
+      if (
+        urlTerria.terria.configParameters.reverseProxyUrl &&
+        (urlTerria.shouldAuth ||
+          urlTerria.url.includes(
+            urlTerria.terria.configParameters.reverseProxyUrl
+          )) &&
+        urlTerria.terria.keycloak
+      ) {
+        urlTerria.terria.keycloak.updateToken(30);
+        authUrl = new Resource({
+          url: urlTerria.url,
+          headers: {
+            Authorization: "Bearer " + urlTerria.terria.keycloak.token
+          }
+        });
+      } else {
+        authUrl = new Resource({
+          url: urlTerria.url
+        });
+      }
+
+      return Promise.resolve(loadXML(authUrl)).then(function (capabilitiesXml) {
         const json = xml2json(capabilitiesXml);
         if (!defined(json.Capability)) {
           throw networkRequestError({
             title: "Invalid GetCapabilities",
             message:
-              `The URL ${url} was retrieved successfully but it does not appear to be a valid Web Map Service (WMS) GetCapabilities document.` +
+              `The URL ${urlTerria.url} was retrieved successfully but it does not appear to be a valid Web Map Service (WMS) GetCapabilities document.` +
               `\n\nEither the catalog file has been set up incorrectly, or the server address has changed.`
           });
         }

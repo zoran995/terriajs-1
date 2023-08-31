@@ -1,0 +1,1811 @@
+{
+  "general": {
+    "close": "Zatvori",
+    "open": "Otvori",
+    "prev": "Prethodno",
+    "next": "Sljedeće",
+    "skip": "Preskoči",
+    "back": "Nazad",
+    "delete": "Izbriši",
+    "cancel": "Otkaži",
+    "confirm": "Potvrdi"
+  },
+  "auth": {
+    "login": "Prijavi se",
+    "logout": "Odjavi se",
+    "initErrorTitle": "Greška prilikom autentifikacije",
+    "initErrorMessage": "Došlo je do greške prilikom inicijalizacije servisa za autentifikaciju. Pokušajte ponovo kasnije, ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}."
+  },
+  "trainer": {
+    "expandTrainer": "Prikaži više detalja o koraku",
+    "collapseTrainer": "Sakrij detalje koraka",
+    "showAllSteps": "Prikaži sve korake",
+    "hideAllSteps": "Sakrij sve korake"
+  },
+  "tour": {
+    "preface": {
+      "title": "Krenite u obilazak",
+      "content": "Niste sigurni odakle da započnete? Kratko obiđite glavne karakteristike našeg Geoportala i naučite neke od ključnih funkcija koje će vam pomoći da započnete sa korišćenjem aplikacije.",
+      "close": "Možda kasnije",
+      "start": "Započni obilazak"
+    },
+    "end": "Završi obilazak",
+    "finish": "Kraj",
+    "previous": "Prethodno",
+    "locationSearchInput": {
+      "content": "## Pretraga lokacija\n\nUnesite lokaciju ili adresu da jednostavno pronađete tačku od interesa na mapi."
+    },
+    "exploreMapDataButton": {
+      "content": "## Istraži podatke mape\n\nPretražite katalog dostupnih podataka i dodajte ih na mapu. Možete dodati više setova podataka u bilo kom trenutku, podatke koje dodate će vidjeti navedene ispod na radnoj ploči."
+    },
+    "sidePanelUploadButton": {
+      "content": "## Dodaj podatke\n\nMožete dodati svoj podatke na mapu da biste ih pregledali sa drugim setovima podataka. Dodajte datoteku ili link na dostupan set podataka ili servis. Podržani formati uključuju CSV, GeoJSON, KML, GPX i CZML."
+    },
+    "menuBarMapSettingsButton": {
+      "content": "## Podešavanje mape\n\nIzmjenite podešavanja mape kao što su bazna podloga, kvalitet prikaza ili uklonite teren (podlogu) da biste vidjeli podzemne objekte."
+    },
+    "menuBarStoryButton": {
+      "content": "## Priče\n\nPriče Vam omogućavaju da dodate kontekstualne informacije skupu podataka kako bi ste oživjeli priču. Kreirajte sopstvenu priču sa podacima koristeći Uređivač priča i dijelite je pomoću panela za dijeljenje kada završite."
+    },
+    "mapNavigationCompassOuterRing": {
+      "content": "## Kontrole prikaza\n\nOvdje možete promijeniti prikaz mape. Možete promijeniti orijentaciju pogleda koristeći spoljašnji prsten, ili naginjati kameru koristeći unutrašnji prsten. Dvostruki klik da biste resetovali prikaz."
+    },
+    "mapNavigationSplitterIcon": {
+      "content": "## Poređenje\n\nMoćan alat preglednika koji vam omogućava da poredite setove podataka koristiće režim podijeljenog ekrana. Za setove podataka koji imaju vremensku komponentu/4D podaci, možete raditi poređenje istog seta podataka u različitom vremenskom periodu."
+    },
+    "mapNavigationLanguageSwitcher": {
+      "content": "## Promjena jezika\n\nPromijenite jezik aplikacije."
+    },
+    "mapLocationBar": {
+      "content": "## Koordinate\n\nPregledajte koordinate pozicije kursora miša. Takođe, klikom ovdje možete pokrenuti alat za pretragu koordinata."
+    }
+  },
+  "measure": {
+    "measureTool": "Alat za mjerenje",
+    "measureToolTitle": "Mjerenje dužine",
+    "measureDistance": "Izmjerite udaljenost između lokacija"
+  },
+  "location": {
+    "errorGettingLocation": "Greška pri preuzimanju lokacije",
+    "browserCannotProvide": "Vaš internet preglednik ne može da vrati vašu lokaciju.",
+    "myLocation": "Moja lokacija",
+    "location": "Lokacija",
+    "originError": "Vaš internet preglednik može da vrati vašu lokaciju samo kada koristi https konekciju. Umjesto toga, možda ćete moći da koristite {{secureUrl}}.",
+    "centreMap": "Centrirajte mapu na vašoj trenutnoj lokaciji"
+  },
+  "splitterTool": {
+    "toggleSplitterToolTitle": "Uporedi",
+    "toggleSplitterTool": "Omogući uporedno poređenje između dva različita seta podataka",
+    "toggleSplitterToolDisabled": "Molimo vas da onemogućite druge funkcije upoređivanja kako biste omogućili standardno upoređivanje",
+    "title": "Prevucite lijevo ili desno da biste prilagodili pogled",
+    "workbench": {
+      "goleftTitle": "Prikaži na lijevoj strani",
+      "goleft": "Lijevo",
+      "bothTitle": "Prikaži na obe strane",
+      "both": "Obe strane",
+      "gorightTitle": "Prikaži na desnoj strani",
+      "goright": "Desno",
+      "copyName": "{{name}} (kopija)"
+    }
+  },
+  "zoomCotrol": {
+    "zoomIn": "Uvećaj",
+    "zoomReset": "Ponovo prilagodite uvećavanje",
+    "zoomOut": "Umanji"
+  },
+  "compass": {
+    "description": "Pomjerajte spoljni prsten: rotirajte pogled. \nPomjerajte unutrašnji žiroskop: slobodna orbita. \nDvostruki klik: resetujte prikaz.\nSAVJET: Orbitu takođe možete osloboditi držanjem tastera CTRL i povlačenjem mape.",
+    "title": "Kliknite i prevucite da biste rotirali kameru",
+    "guidanceBtnTitle": "Žiroskop vodič",
+    "guidanceBtnText": "Pogledajte detaljne instrukcije kako da koristite kompas",
+    "guidance": {
+      "title": "Kontrole žiroskopa",
+      "outerRingTitle": "Spoljni prsten",
+      "outerRingDescription": "Prevucite spoljašnji prsten u kružnom smjeru da biste rotirali pogled mape.",
+      "innerCircleTitle": "Unutrašnji krug",
+      "innerCircleDescription1": "Kliknite u centar i polako pomjerajte miša (gore, dole, lijevo ili desno) da biste naginjali i rotirali mapu u isto vrijeme.",
+      "innerCircleDescription2": "Dvostruki klik ovdje vraća podrazumijevani prikaz.",
+      "ctrlDragDescription": "Takođe možete naginjati i rotirati mapu držanjem tastera CTRL i povlačenjem mape.",
+      "dismissText": "Zatvori i ne prikazuj više"
+    }
+  },
+  "AR": {
+    "title": "Eksperimentalna funkcionalnost: proširena stvarnost",
+    "experimentalFeatureMessage": "Režim proširene stvarnosti je trenutno u beta fazi. Ovaj režim je dizajniran samo za upotrebu na najnovijim mobilnim uređajima. <br /><br />UPOZORENjE: Ovaj režim može da troši mnogo podataka, imajte na umu troškove korišćenja usluge prenosa podataka od vašeg mrežnog operatera. <br /><br />Tačnost ovog režima zavisi od tačnosti internog kompasa vašeg mobilnog uređaja.",
+    "confirmText": "Shvatio",
+    "manualAlignmentTitle": "Ručno poravnanje",
+    "manualAlignmentMessage": "Poravnajte svoj mobilni uređaj tako da odgovara trenutnom poravnanju mape, a zatim kliknite na trepćući kompas. Ako na mapi trenutno nisu vidljivi orijentiri sa kojima biste mogli da se poravnate, mapu možete da pomjerate pomoću radnji prevlačenja i uvlačenja dok prepoznatljiv orijentir nije vidljiv prije poravnavanja uređaja sa mapom. <br /><div>{{img}}</div> <br />Savjet: Sunce ili mesec su često dobri orijentiri za poravnanje ako ste na lokaciji koja vam nije poznata (pazite da ne gledate u sunce - može vam povrediti oči).",
+    "resetAlignmentTitle": "Resetujte poravnanje",
+    "resetAlignmentMessage": "Resetovanje poravnanje kompasa. Ako se poravnanje ne podudara sa stvarnošću, pokušajte mahati uređajem pokretom kao na slici 8 za ponovnu kalibraciju uređaja. To se može učiniti u bilo kom trenutku. <br /> <br />Izbjegavajte lokacije sa magnetnim poljima ili metalnim predmetima jer to može dezorijentisati kompas uređaja.",
+    "arTool": "alat za proširenu stvarnost",
+    "btnHover": "promijeni visinu lebdenja",
+    "btnRealign": "prebaci ručno poravnanje",
+    "btnResetRealign": "resetovanje poravnanja kompasa"
+  },
+  "historyControl": {
+    "backTitle": "Povratak na prethodni prikaz",
+    "forwardTitle": "Naprijed na sledeći prikaz",
+    "back": "Nazad",
+    "forward": "Naprijed"
+  },
+  "tool": {
+    "closeButtonTitle": "Zatvori alat: {{toolName}}",
+    "loadingError": {
+      "title": "Greška u učitavanju alata: {{toolName}}",
+      "message": "Došlo je do greške prilikom pokušaja učitavanja ovog alata sa servera. Pokušajte ponovo."
+    },
+    "exitBtnTitle": "Izađi",
+    "button": {
+      "open": "Izađi {{toolNameLowerCase}}",
+      "closed": "{{toolName}}"
+    }
+  },
+  "diffTool": {
+    "title": "Razlika",
+    "exit": "Izlaz",
+    "instructions": {
+      "setDateA": "Podesi datum A",
+      "setDateB": "Podesi datum B",
+      "changeDates": "Promijeni datume",
+      "paneDescription": "Vizuelizujte i uporedite razliku podataka između dva datuma na jednoj lokaciji."
+    },
+    "choosePreview": "Izaberite stil pregleda",
+    "chooseDifference": "Izaberite razliku koju je potrebno generisati",
+    "differenceResultsTitle": "Promjena rezultata otkrivanja",
+    "labels": {
+      "area": "Područje",
+      "dates": "Datumi",
+      "dateComparisonA": "Poređenje datuma A",
+      "dateComparisonB": "Poređenje datuma B",
+      "sourceDataset": "Izvorna grupa podataka",
+      "previewStyle": "Stil pregleda",
+      "differenceOutput": "Izlaz razlike",
+      "generateDiffButtonText": "Generiši otkrivanje promjena",
+      "disabledButtonPrompt": "Napomena: Za nastavak otkrivanja promjena moraju se odabrati lokacija i datumi",
+      "areaFilterSelection": "Izbor filtera područja"
+    },
+    "locationDisplay": {
+      "noLocationSelected": {
+        "title": "Nije odabrana lokacija",
+        "description": "Da biste filtrirali birač datuma po lokaciji, odaberite tačku na mapi"
+      },
+      "locationSelected": {
+        "title": "Odabrana lokacija i filtrirani datumi",
+        "description": "Da biste promijenili, izaberite drugu tačku na mapi"
+      }
+    },
+    "locationPicker": {
+      "initialMessages": {
+        "title": "Izaberite tačnu lokaciju",
+        "beforePick": "Ovo nam je potrebno za pokretanje procesa otkrivanja promjena.",
+        "afterPick": "Izaberite drugu tačku da biste promijenili izabrani region"
+      },
+      "nextMessages": {
+        "title": "Odabrali ste lokaciju {{latitude}} {{longitude}}",
+        "beforePick": "Izaberite drugu tačku da biste promijenili izbor",
+        "afterPick": "Izaberite drugu tačku da biste promijenili izbor"
+      },
+      "errorMessages": {
+        "title": "Izaberite tačnu lokaciju",
+        "beforePick": "Razrješavanje snimaka na lokaciji nije uspelo! Izaberite drugu lokaciju ili nivo uvećavanja.",
+        "afterPick": "Izaberite drugu tačku da biste promijenili izbor"
+      }
+    },
+    "datePicker": {
+      "back": "Vrati se",
+      "previousDateTitle": "Prethodni datum",
+      "nextDateTitle": "Sljedeći datum",
+      "dateButtonTitle": "Izaberite datum",
+      "dateOutOfRange": "Trenutno izvan opsega"
+    }
+  },
+  "measureTool": {
+    "button": "Mjerenje",
+    "buttonTitle": "Izmjeri udaljenost, površinu i koordinate",
+    "title": "Alat za mjerenje",
+    "exit": "Izlaz",
+    "text": "Ovaj alat omogućava mjerenje na mapi",
+    "startMeasuring": "Start",
+    "stopMeasuring": "Stop",
+    "result": "Rezultat",
+    "clickToMeasureCoordinate": "Kliknite da biste dobili koordinatu tačke.",
+    "clickToAddFirstPoint": "Kliknite da biste dodali tačku.",
+    "clickToAddAnotherPoint": "Kliknite da biste dodali još jednu tačku. Kliknite desnim tasterom da biste ponovo započeli mjerenje.",
+    "labels": {
+      "measureUnit": "Jedinica mjere",
+      "measureType": "Tip mjere"
+    },
+    "distance": {
+      "name": "Udaljenost",
+      "meters": {
+        "name": "Metar",
+        "label": "m"
+      },
+      "kilometers": {
+        "name": "Kilometar",
+        "label": "km"
+      }
+    },
+    "area": {
+      "name": "Površina",
+      "sqMeters": {
+        "name": "Kvadratni metar",
+        "label": "m²"
+      },
+      "hectares": {
+        "name": "Hektar",
+        "label": "ha"
+      }
+    },
+    "coordinates": {
+      "name": "Koordinate tačke",
+      "UTM": {
+        "name": "UTM",
+        "label": "m"
+      },
+      "GK": {
+        "name": "Gaus Krigerova projekcija",
+        "label": "m"
+      },
+      "WGS": {
+        "name": "WGS84",
+        "label": "°"
+      }
+    }
+  },
+  "drawingTool": {
+    "button": "Crtanje",
+    "buttonTitle": "Nacrtajte tačke, linije i poligone na mapi.",
+    "drawingElement": "Element za crtanje",
+    "title": "Alat za crtanje",
+    "exit": "Izlaz",
+    "text": "Ovaj alat omogućava crtanje različitih geometrijskih elemenata na mapi",
+    "startDrawing": "Započni crtanje",
+    "stopDrawing": "Završi crtanje",
+    "point": "Crtanje tačke",
+    "line": "Crtanje linije",
+    "polygon": "Crtanje poligona",
+    "label": "Napiši tekst",
+    "start": "Započni crtanje",
+    "finish": "Završi crtanje",
+    "deleteElement": "Brisanje objekata",
+    "stopDeleteElement": "Završi sa brisanjem",
+    "opacity": "Transparentnost: {{opacity}} %",
+    "labels": {
+      "pointColor": "Boja tačke",
+      "lineColor": "Boja linije",
+      "polygonFillColor": "Boja punjenja poligona",
+      "textColor": "Boja teksta"
+    },
+    "pointPanel": {
+      "size": "Veličina tačke"
+    },
+    "linePanel": {
+      "width": "Debljina linije"
+    },
+    "polygonPanel": {
+      "outlineWidth": "Debljine spoljašnje linije poligona"
+    },
+    "textPanel": {
+      "text": "Tekst",
+      "font": "Font",
+      "size": "Veličina"
+    },
+    "clickToDelete": "Kliknite na nacrtani objekat da biste ga izbrisali."
+  },
+  "coordinateSearch": {
+    "title": "Pretraga koordinata",
+    "projection": "Projekcija",
+    "exit": "Izlaz",
+    "showMarker": "Prikaži lokaciju",
+    "hideMarker": "Sakrij lokaciju",
+    "utm": {
+      "firstAxisNameFull": "Istok",
+      "secondAxisNameFull": "Sjever",
+      "firstAxisName": "E",
+      "secondAxisName": "N"
+    },
+    "wgs84": {
+      "firstAxisNameFull": "Geodetska širina",
+      "secondAxisNameFull": "Geodetska dužina",
+      "firstAxisName": "Lat",
+      "secondAxisName": "Lon"
+    }
+  },
+  "dkpSearch": {
+    "title": "Pretraga parcela",
+    "exit": "Izlaz",
+    "text": "Ovaj alat omogućava pretragu parcela",
+    "buttonLabel": "Pronađi",
+    "labels": {
+      "municipality": "Opština",
+      "cadastralMunicipality": "Katastarska opština",
+      "parcelNumber": "Broj parcele"
+    },
+    "errors": {
+      "missingInputErrorTitle": "Neočekivani unos",
+      "missingInputError": "Neočekivani unos, molimo provjerite vrijednost koju ste unijeli.",
+      "connectionTimeout": "Nije moguće uspostaviti konekciju sa serverom.",
+      "genericError": "Došlo je do greške, pokušajte ponovo kasnije.",
+      "notFound": "Parcela nije pronađena."
+    },
+    "warnings": {
+      "wrongCharacterWarning": "Dozvoljeni karakteri su: 0-9 i '/' (npr. 12/1)",
+      "wrongInputWarning": "Neispravan format unesenih podataka, pogledajte kratak opis (tooltip) iznad."
+    }
+  },
+  "printTool": {
+    "title": "Štampanje",
+    "exit": "Izlaz",
+    "printButton": "Odštampaj",
+    "printPreviewButton": "Pregled ispisa",
+    "errorTitle": "Greška pri štampanju",
+    "errorMessageWithText": "Došlo je do greške prilikom štample, pokušajte ponovo kasnije. Ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}. <p>{{error}}</p>",
+    "errorMessage": "Došlo je do greške prilikom štampe, pokušajte ponovo kasnije. Ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.",
+    "cancelPrint": "Odustani",
+    "urlUndefined": "Nije moguće uspostaviti vezu sa serverom",
+    "labels": {
+      "layout": "Izgled",
+      "scale": "Razmjera"
+    }
+  },
+  "attributeTable": {
+    "title": "Atributna tabela - {{name}}",
+    "close": "Zatvori",
+    "noData": "Podaci nisu dostupni",
+    "zoomToFeature": "Uvećaj na objekat",
+    "search": "Pretraga"
+  },
+  "miniMap": {
+    "show": "Prikaži preglednu mapu",
+    "hide": "Sakrij preglednu mapu"
+  },
+  "legend": {
+    "lat": "Lat",
+    "lon": "Lon",
+    "zone": "ZONA",
+    "e": "E",
+    "n": "N",
+    "elev": "Visina",
+    "x": "X",
+    "y": "Y"
+  },
+  "languagePanel": {
+    "changeLanguage": "Promjena jezika"
+  },
+  "share": {
+    "browserPrint": "Za bolje odštampane rezultate, koristite dugme Štampa {{appName}}'s umjesto funkcije štampanja vašeg veb preglednika.",
+    "shortLinkShortening": "Skraćivanje...",
+    "shortLinkError": "Došlo je do greške prilikom pokušaja skraćivanja URL-a. Provjerite internet vezu i pokušajte ponovo.",
+    "localDataNote": "<0><0>Napomena:</0></0><1>Sljedeći izvori podataka NEĆE se dijeliti jer sadrže podatke iz ovog lokalnog sistema. Da biste dijelili ove izvore podataka, objavite njihove podatke na veb serveru i <2> dodajte ih pomoću url-a</2>.</1>",
+    "generatingUrl": "Generiranje URL adrese za dijeljenje...",
+    "printTitle": "Štampaj mapu",
+    "printExplanation": "Otvorite verziju ove mape za štampu.",
+    "printButton": "Štampaj",
+    "printViewButton": "Prikaz štampe",
+    "creatingPrintView": "Kreiranje prikaza štampe...",
+    "btnAdvanced": "Napredne opcije",
+    "embedTitle": "Da biste ugradili, kopirajte ovaj kod da biste ugradili ovu mapu u HTML stranicu:",
+    "shortenUsingService": "Skratite URL dijeljenja pomoću veb servisa",
+    "btnCatalogShareText": "Podijelite",
+    "btnStoryShareText": "Podijelite",
+    "btnMapShareText": "Dijeljenje/štampanje",
+    "btnCatalogShareTitle": "Podijelite svoj katalog sa drugima",
+    "btnStoryShareTitle": "Podelite svoju priču sa drugima",
+    "btnMapShareTitle": "Podijelite svoju mapu sa drugima",
+    "convertNotificationTitle": "Napomena: Link za dijeljenje je ažuriran na novu verziju",
+    "convertNotificationMessage": "Ovaj link za dijeljenje je baziran na starijoj verziji geoportala. Iako smo se potrudili da održimo sve podatke iz linka, postoji mogućnost da se jave problemi prilikom vizualizacije podataka.\nUkoliko ste korisnik linka za dijeljenje, kliknite na OK da bi ste sklonili upozorenje i nastavili sa pristupom podacima.",
+    "convertNotificationHelp": "Ukoliko ste Vi kreirali link za dijeljenje, pogledajte pomoć za sugestije oko ažuriranja linka za dijeljenje.",
+    "convertNotificationFeedback": "Za pitanja ili slanje povratne informacije, kliknite ovdje.",
+    "convertNotificationWarningsTitle": "Tehnički detalji",
+    "printView": {
+      "legends": "Legenda",
+      "datasetDetails": "Detalji o setu podataka",
+      "mapCredits": "Autorska prava",
+      "printDisclaimer": "Izjava o odricanju odgovornosti"
+    },
+    "convertErrorTitle": "Nije moguće ažurirati link za dijeljenje na V8",
+    "convertErrorMessage": "<p>Ovaj link za dijeljenje je baziran na starijoj verziji TerriaJS - sistem koji obezbjeđuje ovaj preglednik. Došlo je do greške prilikom pokušaja ažuriranja podataka dijeljenja. Detalji o grešci su dostupni ispod.</p><p><pre>{{error}}</pre></p><p><details><summary>Stack trace:</summary><pre>{{stackTrace}}</pre></details></p><p>Molimo prijavite slanjem e-poruke na {{email}}.</p>"
+  },
+  "countDatasets": {
+    "btnText": "Pokrenuti",
+    "loadError": "nije uspjelo da se učita.",
+    "countingMessage": "Brojanje, sačekajte...",
+    "totals": "<div>Katalog sadrži {{items}} stavke u {{groups}} grupama</div>",
+    "subTotals": "<div> {{name}}: {{items}} stavke / {{groups}} grupe</div>",
+    "recount": "Ponovo broji",
+    "title": "Brojanje setova podataka",
+    "btnCount": "Brojanje setova podataka",
+    "noMapDataEnabled": "Nema prikazanih podataka",
+    "mapDataState_0": "{{count}} set podataka omogućen na mapi",
+    "mapDataState_1": "{{count}} seta podataka omogućeno na mapi",
+    "mapDataState_2": "{{count}} setova podataka omogućeno na mapi"
+  },
+  "toolsPanel": {
+    "btnText": "Alat",
+    "btnTitle": "Napredni alati"
+  },
+  "relatedApps": {
+    "btnTitle": "Pogledajte povezane aplikacije",
+    "btnText": "Povezane aplikacije",
+    "title": "Povezane aplikacije",
+    "description": "Klik na aplikaciju ispod će je otvoriti u novom prozoru ili tabu.",
+    "openApp": "Otvori aplikaciju"
+  },
+  "settingPanel": {
+    "none": "(nijedan)",
+    "viewerModeLabels": {
+      "CesiumTerrain": "3D Teren",
+      "CesiumEllipsoid": "3D Elipsoid",
+      "Leaflet": "2D"
+    },
+    "qualityLabels": {
+      "maximumPerformance": "Maksimalne performanse, niži kvalitet",
+      "balancedPerformance": "Uravnotežene performanse i kvalitet",
+      "lowerPerformance": "Maksimalan kvalitet, niže performanse"
+    },
+    "nativeResolutionLabel": "Pritisnite da biste prestali da koristite {{resolution1}} rezoluciju i počeli da koristite {{resolution2}} rezoluciju",
+    "native": "native",
+    "screen": "ekran",
+    "btnTitle": "Promijeni pogled",
+    "btnText": "Podešavanja mape",
+    "mapView": "Prikaz mape",
+    "baseMap": "Podloga",
+    "imageOptimisation": "Optimizacija prikaza slika",
+    "nativeResolutionHeader": "Koristi rezoluciju matičnog uređaja",
+    "mapQuality": "Kvalitet rasterske mape:",
+    "qualityLabel": "Kvalitet",
+    "performanceLabel": "Performanse",
+    "timeline": {
+      "title": "Vremenska linija",
+      "alwaysShowLabel": "Kliknite da bi se vremenska linija prikazivala samo da su dodati podaci sa vremenskom dimenzijom",
+      "hideLabel": "Kliknite da bi se vremenska linija prikazivala stalno, čak i kada nisu dodati setovi podataka sa vremenskom dimenzijom",
+      "alwaysShow": "Uvijek prikaži"
+    },
+    "terrain": {
+      "hideUnderground": "Teren prekriva podzemne objekte",
+      "showUndergroundFeatures": "Kliknite da bi ste prikazali objekte koji se nalaze ispod površine terena",
+      "hideUndergroundFeatures": "Kliknite da bi ste sakrili objekte koji se nalaze ispod površine terena",
+      "sideLabel": "Na kojoj strani se prikazuje teren",
+      "left": "Lijevo",
+      "both": "Obe strane",
+      "right": "Desno"
+    }
+  },
+  "feedback": {
+    "feedbackPreamble": "Voljeli bismo da čujemo vaše mišljenje!",
+    "title": "Povratne informacije",
+    "close": "zatvori povratne informacije",
+    "yourName": "Vaše ime (nije obavezno)",
+    "email": "Email adresa (opcionalno)<br/><em>Ne možemo da Vam pružimo podršku bez nje!</em>",
+    "commentQuestion": "Komentar ili pitanje",
+    "shareWithDevelopers": "Podijelite moj prikaz mape sa programerima",
+    "captionText": "Ovo nam pomaže da rješavamo probleme puštajući nas da vidimo šta vi vidite",
+    "cancel": "Otkaži",
+    "sending": "Slanje...",
+    "send": "Pošalji",
+    "feedbackBtnText": "Pošaljite povratne informacije",
+    "minLength": "Minimalna dužina komentara je 30 karaktera"
+  },
+  "helpPanel": {
+    "btnText": "Pomoć",
+    "menuPaneTitle": "Ovdje smo da pomognemo",
+    "menuPaneBody": "Pronađite korisne savjete o korišćenju {{appName}} tako što ćete provjeriti dole navedene vodiče ili kontaktirati tim na [info@terria.io](mailto:info@terria.io)",
+    "promptMessage": "Ovdje pronađite obilazak, video zapise sa uputstvima i drugi sadržaj pomoći",
+    "dismissText": "Shvatio, hvala!",
+    "takeTour": "Krenite u obilazak"
+  },
+  "helpMenu": {
+    "btnText": "Pomoć",
+    "btnTitle": "potražite pomoć",
+    "helpMenuHeader": "Šta biste željeli da uradite?",
+    "helpMenuOpenWelcome": "Prikaži poruku dobrodošlice",
+    "helpMenuSatelliteGuideTitle": "Pogledajte vodič za satelitske snimke",
+    "helpMenuMoreHelpTitle": "Dodatna pomoć",
+    "done": "GOTOVO",
+    "next": "DALjE"
+  },
+  "sui": {
+    "notifications": {
+      "title": "Ova mapa sadrži priču",
+      "message": "Da li želite da je pogledate sada?",
+      "confirmText": "Da",
+      "denyText": "Možda kasnije"
+    },
+    "showWorkbench": "Prikaži radnu površinu",
+    "hideWorkbench": "Sakrij radnu površinu"
+  },
+  "featureInfo": {
+    "catalogItem": {
+      "moreThanMax": "Pronađeno je više od {{maximum}} {{catalogItemName}} prostornih objekata",
+      "featuresFound": "{{featCount}} {catalogItemName} prostornih objekata je pronađeno",
+      "featureInfoShown": "Prvih {{maximum}} su prikazani ispod"
+    },
+    "download": "Preuzmi ovu tabelu",
+    "pickLocation": "Izaberite lokaciju",
+    "clickMap": "Kliknite na mapu da biste saznali više o lokaciji",
+    "noDataAvailable": "Ovdje nisu dostupni podaci - pokušajte sa drugom lokacijom.",
+    "clickToAddData": "Kliknite na '$t(addData.addDataBtnText)' da biste dodali podatke na mapu",
+    "userSelection": "Izbor korisnika",
+    "panelHeading": "Informacije o prostornim objektima",
+    "btnCloseFeature": "Zatvori tabelu podataka",
+    "satelliteSuggestionBtn": "Prikaži {{catalogItemName}} na ovoj lokaciji",
+    "locationMarker": "Oznaka lokacije",
+    "noInfoAvailable": "Informacije nisu dostupne",
+    "siteData": "Podaci o lokaciji",
+    "latLon": "Lat / Lon ",
+    "showRawData": "Prikaži sirove podatke",
+    "showCuratedData": "Prikaži organizovane podatke"
+  },
+  "welcomeMessage": {
+    "title": "Počnimo",
+    "welcomeMessage": "Zanima vas otkrivanje i istraživanje podataka?<br/>Zaronite odmah ili proverite sledeće opcije vodiča za pomoć.",
+    "tourBtnText": "Krenite u obilazak",
+    "helpBtnText": "Trebaće mi pomoć",
+    "exploreDataBtnText": "Istražite podatke mape",
+    "dismissText": "Zatvori poruku i ne prikazuj mi ovo ponovo"
+  },
+  "story": {
+    "panelTitle": "Uređivač priča",
+    "panelBody": "Kreirajte i podijelite interaktivne priče direktno sa svoje karte.",
+    "gettingStarted": "Započnite",
+    "gettingStartedTitle": "Započnite",
+    "badgeBarLabel": "Scene",
+    "share": "Podijelite",
+    "shareTitle": "podijelite priče",
+    "viewStory": "pogled",
+    "view": "Pogled",
+    "editStory": "uredi",
+    "edit": "Uredi",
+    "recaptureStory": "ponovno hvatanje",
+    "recapture": "ponovno hvatanje",
+    "deleteStory": "brisanje",
+    "delete": "Izbriši",
+    "untitledScene": "nenaslovljena scena",
+    "doesNotExist": "Priča ne postoji",
+    "message": "<2>Ovo je vaš uređivač priča</2><1>Kreirajte i delite interaktivne priče direktno sa mape <1><0><0></0>Prvi koraci </0></1></1>",
+    "removeAllStories": "Ukloni sve",
+    "removeStoryDialog": "Da li ste sigurni da želite da izbrišete '<1>{{storyName}}</1>'?",
+    "preview": "pregled priča",
+    "play": "Pokreni priču",
+    "captureSceneTitle": "uhvati trenutnu scenu",
+    "captureScene": "Snimanje scene",
+    "editor": {
+      "placeholder": "Ovdje unesite naslov",
+      "cancelBtn": "otkazati",
+      "cancelEditing": "Otkaži",
+      "saveBtn": "spremi",
+      "saveStory": "Sačuvaj"
+    },
+    "locationBtn": "centrirajte scenu",
+    "exitBtn": "izlazna priča",
+    "previousBtn": "idi na prethodnu scenu",
+    "untitled": "scena bez naslova",
+    "navBtn": "idi na priču {{title}}",
+    "nextBtn": "idi na sljedeću scenu",
+    "navBtnMobile": "idi na priču {{title}}",
+    "promptHtml1": "<0>U bilo kom trenutku možete pogledati i stvoriti priče klikom ovdje. 0>",
+    "promptHtml2": "<0><0>PREDSTAVLjAMO</0><1>Priče o podacima</1><2>Kreirajte i dijelite interaktivne priče direktno sa mape.</2></0>",
+    "story": "Priča",
+    "dismissText": "Shvatio, hvala!",
+    "mobileViewStory": "Prikaži priče {{storiesLength}}",
+    "storyEditor": "Uređivač priča",
+    "hideStoryPanel": "sakrij uređivača priča",
+    "loadSceneErrorTitle": "Greška prilikom učitavanja priče",
+    "loadSceneErrorMessage": "Došlo je do greške prilikom učitavanje scene priče: `{{title}}`.",
+    "removeAllStoriesDialog_0": "Da li ste sigurni da želite da izbrišete {{ count }} scenu?",
+    "removeAllStoriesDialog_1": "Da li ste sigurni da želite da izbrišete {{ count }} scene?",
+    "removeAllStoriesDialog_2": "Da li ste sigurni da želite da izbrišete {{ count }} scena?"
+  },
+  "satelliteGuidance": {
+    "menuTitle": "Vodičima za mape možete pristupiti u bilo kom trenutku tako što ćete potražiti <2>meni pomoći</2>.",
+    "dismissText": "Shvatio, hvala!",
+    "titleI": "Satelitski snimci: Kako da...?",
+    "bodyI": "Superbrzi vodič za maksimalno iskorišćavanje istorijskih satelitskih snimaka.",
+    "prevI": "Ne hvala",
+    "nextI": "Prikaži vodič",
+    "titleII": "Gde su moje satelitski snimci?",
+    "bodyII": "Možda ćete morati da prilagodite nivo uvećavanja kako bi satelitski snimci bile vidljive na mapi.",
+    "titleIII": "Učitavanje istorijskih snimaka",
+    "bodyIII": "U vašem radnom okruženju za podatke kliknite na padajući meni sa datumom snimanja i odaberite iz raspoloživih vremena za učitavanje istorijskih snimaka.",
+    "titleIV": "Filtriranje snimaka po lokaciji",
+    "bodyIV": "Satelitski snimci možda neće uvek biti dostupne u vaše željeno vrijeme i na lokaciji. Ako želite da pregledate snimke samo za određenu lokaciju, kliknite filtriraj prema lokaciji na radnoj površini.",
+    "titleV": "Kako da pogledam snimke u pseudo bojama?",
+    "bodyV": "Možete da primijenite niz stilova, kao što je pseudo boja, na satelitske snimke klikom na padajući meni stilova na vašoj radnoj površini."
+  },
+  "addData": {
+    "addDataBtnText": "Istraži podatke",
+    "btnHide": "Sakrij",
+    "load": "Učitaj lokalne / veb podatke",
+    "closeDataPanel": "Zatvori tabelu podataka",
+    "done": "Gotovo",
+    "myData": "Moji podaci",
+    "dataCatalogue": "Katalog podataka",
+    "searchPlaceholderWhole": "Pretraži cijeli katalog",
+    "searchPlaceholder": "Pretražite katalog",
+    "localAdd": "Dodaj lokalnu datoteku",
+    "localFileType": "<0>Korak 1:</0> Izaberite tip datoteke (opciono)",
+    "localFile": "<0>Korak 2:</0> Izaberite datoteku",
+    "webAdd": "Dodaj veb podatke",
+    "webFileType": "<0>Korak 1:</0> Izaberite tip datoteke (opcionalno)",
+    "webFile": "<0>Korak 2:</0>Unesite URL datoteke podataka ili veb servisa",
+    "urlInputBtn": "Dodaj",
+    "browse": "Pronađi...",
+    "localTitle": "Dodaj lokalne podatke",
+    "webTitle": "Dodaj veb podatke",
+    "dragDrop": "Prevuci i ispusti",
+    "infoText": "<0>Prevucite i ispustite datoteku ovde da biste je lokalno pogledali na mapi </0> <1> (neće biti sačuvana niti otpremljena na Internet) </1>",
+    "back": "Nazad",
+    "note": "<0>Napomena: </0>Ovako dodati podaci se ne čuvaju niti čine vidljivim drugima."
+  },
+  "search": {
+    "resultsLabel": "Pretraga",
+    "done": "Gotovo",
+    "data": "Podaci",
+    "searchInDataCatalog": "Pretraga <1>'{{locationSearchText}}'</1> u katalogu podataka",
+    "search": "Pretraga '{{searchText}}' u katalogu podataka",
+    "viewLess": "Vidi manje {{name}} rezultata",
+    "viewMore": "Vidi više {{name}} rezultata",
+    "placeholder": "Pretražite lokacije i parcele",
+    "searchCatalogue": "Pretražite katalog",
+    "dataCatalog": {
+      "noResults": "Žao nam je, nijedna lokacija se ne podudara sa vašim upitom za pretragu.",
+      "error": "Došlo je do greške prilikom pretraživanja. Provjerite internet vezu ili pokušajte ponovo kasnije."
+    },
+    "catalog": {
+      "noResults": "Nije pronađen nijedan sloj u katalogu koji odgovara Vašoj pretrazi.",
+      "error": "Došlo je do greške prilikom pretrage. Molimo provjerite svoju internet vezu ili pokušajte kasnije.",
+      "name": "Rezultati pretrage kataloga"
+    }
+  },
+  "mobile": {
+    "toggleNavigation": "promjena navigacije",
+    "addDataBtnText": "Podaci",
+    "doneBtnText": "Gotovo"
+  },
+  "preview": {
+    "doesNotContainGeospatialData": "Ova datoteka ne sadrži geoprostorne podatke.",
+    "selectToPreview": "<0>Izaberite skup podataka da biste vidjeli pregled </0> <1> - ILI - </1> <2> Idite na mapu </2>",
+    "loading": "UČITANjE PREGLEDA...",
+    "preview": "{{appName}} pregled",
+    "previewItemErrorTitle": "Stavka kataloga ne može biti pregledana.",
+    "previewItemErrorMessage": "Došlo je do greške prilikom učitavanja stavke kataloga.",
+    "noPreviewAvailable": "NIJE DOSTUPAN PRIKAZ",
+    "dataPreviewLoading": "UČITAVA SE PREGLED PODATAKA...",
+    "dataPreview": "PREGLED PODATAKA",
+    "dataPreviewError": "GREŠKA U PREGLEDU PODATAKA",
+    "removeFromMap": "Ukloni sa mape",
+    "addToMap": "Dodaj na mapu",
+    "disclaimer": "Izjava o odricanju od odgovornosti",
+    "dataDescription": "Opis podataka",
+    "datasetDescription": "Opis skupa podataka",
+    "serviceDescription": "Opis servisa",
+    "resourceDescription": "Opis resursa",
+    "licence": "Licenca",
+    "accessConstraints": "Ograničenja pristupa",
+    "fees": "Naknade za korišćenje",
+    "author": "Autor",
+    "contact": "Kontakt",
+    "created": "Napravljeno",
+    "modified": "Izmijenjeno",
+    "updateFrequency": "Frekvencija ažuriranja",
+    "dataCustodian": "Zadužen za održavanje podataka",
+    "mayBeExperiencingIssues": "Trenutno su mogući problemi sa korišćenjem ovog seta podataka"
+  },
+  "description": {
+    "name": "Opis",
+    "dataLocal": "Ova datoteka postoji samo u vašem pregledniku. Da biste je dijelili, morate je učitati na javni veb server.",
+    "dataNotLocal": "Molimo vas da kontaktirate dobavljača ovih podataka za više informacija, uključujući informacije o pravima na korišćenje i ograničenjima.",
+    "wms": "Ovo je <1>WMS servis</1>, koji generiše slike mape na zahtjev. Može se koristiti u GIS softveru sa ovom URL adresom:",
+    "wfs": "Ovo je <1>WFS servis</1>, koji prenosi neobrađene prostorne podatke na zahtjev. Može se koristiti u GIS softveru sa ovom URL adresom:",
+    "layerName": "Ime sloja",
+    "typeName": "Ime tipa",
+    "metadataUrls": "Veze metapodataka",
+    "dataUrl": "URL podataka",
+    "useLinkBelow": "Koristite vezu ispod za preuzimanje podataka. Pogledajte {{link}} za više informacija o prilagođavanju parametara upita URL-a.",
+    "downloadInFormat": "Preuzmite trenutno izabrane podatke u {{format}} formatu",
+    "downloadNotSupported": "Nažalost, vaš internet preglednik ne podržava funkciju potrebnu za preuzimanje ovih podataka u obliku datoteke. Molimo vas da za preuzimanje ovih podataka koristite Chrome, Firefox ili Safari.",
+    "useTheLinkToDownload": "Koristite vezu ispod za direktno preuzimanje podataka.",
+    "downloadData": "Preuzimanje podataka",
+    "dataSourceDetails": "Detalji o izvoru podataka",
+    "dataServiceDetails": "Detalji servisa podataka",
+    "dataCustodian": "Zadužen za održavanje podataka"
+  },
+  "workbench": {
+    "colorScaleRangeTitle": "Nevažeći opseg skale boja",
+    "colorScaleRangeMin": "Minimalna vrijednost mora biti broj.",
+    "colorScaleRangeMax": "Maksimalna vrijednost mora biti broj.",
+    "colorScaleRangeMinSmallerThanMax": "Minimalna vrijednost opsega boja mora biti manja od maksimalne vrijednosti.",
+    "colorScaleRange": "Raspon skale boja",
+    "rangeMax": "Maksimum:",
+    "rangeMin": "Minimum:",
+    "colorScaleUpdateRange": "Ažuriraj opseg",
+    "displayPercent": "Prikaz u procentima od ukupnog broja regija",
+    "opacity": "Transparentnost: {{opacity}} %",
+    "zoomToTitle": "Uvećaj na područje",
+    "zoomTo": "Idealno zumiranje",
+    "openFeatureTitle": "Uvećaj na podatke",
+    "openFeature": "Uvećaj na",
+    "previewItemTitle": "O ovim podacima",
+    "showMoreActionsTitle": "Prikaži više radnji",
+    "previewItem": "Detalji",
+    "splitItemTitle": "Dupliraj i prikaži alat za poređenje",
+    "splitItem": "Uporedi",
+    "diffImageTitle": "Pogledajte razlike u satelitskim snimcima između dva datuma",
+    "diffImage": "Razlika",
+    "exportDataTitle": "Izvoz podataka mape",
+    "exportData": "Izvoz",
+    "removeFromMapTitle": "Ukloni ove podatke",
+    "removeFromMap": "Ukloni",
+    "label": "Podaci",
+    "removeAll": "Ukloni sve",
+    "collapseAll": "Zatvori sve",
+    "expandAll": "Proširi sve",
+    "toggleVisibility": "Podaci se prikazuju / sakrivaju",
+    "addItemErrorTitle": "Stavka kataloga ne može biti dodata na radnu površinu.",
+    "addItemErrorMessage": "Došlo je do greške prilikom učitavanja stavke kataloga.",
+    "openAttributeTableTitle": "Otvorite atributnu tabelu",
+    "openAttributeTable": "Atributna tabela",
+    "dimensionsSelector": {
+      "undefinedLabel": "Nije specificirano"
+    },
+    "searchItem": "Pretraga",
+    "searchItemTitle": "Pretraga"
+  },
+  "dateTime": {
+    "back": "Vrati se",
+    "previous": "Prethodno vrijeme",
+    "selectTime": "Izaberite vrijeme",
+    "outOfRange": "Trenutno van dometa.",
+    "next": "Sljedeće vrijeme",
+    "useTimeline": "Koristi vremensku liniju",
+    "availableTimeChart": "Prikaži dostupna vremena na grafikonu",
+    "timeline": {
+      "textCell": "Ime skupa podataka čiji je vremenski opseg prikazan",
+      "gotoStart": "Idi na početak",
+      "togglePlay": "Reprodukuj",
+      "playSlower": "Pomjeraj sporije",
+      "playFaster": "Pomjeraj brže"
+    }
+  },
+  "satellite": {
+    "pickPoint": "Izaberite lokaciju klikom na mapu",
+    "querying": "Preuzimanje lokacije...",
+    "filterByLocation": "Filtriraj prema lokaciji",
+    "infoGroup": "Prikazuje se samo dostupno vreme snimanja za:",
+    "removeFilter": "Ukloni filter",
+    "zoomTo": "Uvećaj do",
+    "newLocation": "Nova lokacija"
+  },
+  "timer": {
+    "nextScheduledUpdateTime": "Sledeće ažuriranje podataka u {{scheduledUpdateTime}}",
+    "nextScheduledUpdateCountdown": "Sledeće ažuriranje podataka za {{timeCountdown}}"
+  },
+  "concept": {
+    "active": {
+      "edit": "Uredi stanje",
+      "remove": "Ukloni stanje"
+    },
+    "inactive": {
+      "cancel": "Otkaži",
+      "newText": "Novo stanje"
+    },
+    "summary": {
+      "addMoreText": "Dodaj uslov",
+      "addFirstText": "Dodaj novi uslov"
+    }
+  },
+  "clipboard": {
+    "success": "Kopirano u međuspremnik",
+    "unsuccessful": "Kopiranje neuspješno...",
+    "shareURL": "Dijeli URL",
+    "shareExplanation": "Svako sa ovom URL adresom moći će da pristupi ovoj mapi.",
+    "copy": "Kopiraj"
+  },
+  "dragDrop": {
+    "text": "<0>Prevuci i spusti</0><1>Vaše podatke bilo gdje da ih pogledate na mapi <1>",
+    "not": "<0>bbbb</0>"
+  },
+  "loader": {
+    "loadingMessage": "Učitavanje"
+  },
+  "emptyWorkbenchMessage": "<0><0>Vaša radna površina je prazna</0><1><strong>Odaberite '$t(addData.addDataBtnText)' above to </strong></1><2><0>pregledate katalog podataka</0><1>Učitate svoje podatke na mapu </1></2><3><0></0><strong>INFORMACIJA.</strong><2>Svi vaši aktivni podaci će biti navedeni ovdje</2></3></0>",
+  "emptyWorkbench": {
+    "emptyArea": "Vaša radna površina je prazna",
+    "helpfulHints": "Korisni savjeti",
+    "helpfulHintsOne": "Pregledajte dostupne podatke odabirom 'Istraži podatke' ili kliknite 'Učitaj' da biste dodali svoje podatke na mapu.",
+    "helpfulHintsTwo": "Jednom kada dodate podatke na mapu, vaši aktivni podaci navedeni su ovdje na vašoj radnoj površini. Radna površina će vam pomoći u interakciji sa podacima.",
+    "helpfulHintsThree": "U radnom okruženju možete uključiti i isključiti skupove podataka, promijeniti njihovu transparentnost, aktivirati poređenje podeljenog ekrana, promijeniti stilove i kretati se po datumima i vremenu, ako podaci podržavaju ovu funkciju."
+  },
+  "dataCatalog": {
+    "groupRemove": "ukloni ovu grupu",
+    "groupEmpty": "Ova grupa je prazna"
+  },
+  "catalogItem": {
+    "privateIndicatorTitle": "Privatni skup podataka",
+    "loading": "Učitavanje...",
+    "remove": "Ukloni",
+    "add": "Dodaj",
+    "trash": "Ukloni iz kataloga",
+    "removeFromMap": "Ukloni sa mape"
+  },
+  "chart": {
+    "sectionLabel": "Grafikoni",
+    "closePanel": "Zatvori panel",
+    "expand": "Proširi",
+    "download": "Preuzmi"
+  },
+  "viewModels": {
+    "searchNoLocations": "Žao nam je, nijedna lokacija se ne podudara sa vašim upitom za pretragu.",
+    "searchErrorOccurred": "Došlo je do greške tokom pretraživanja. Provjerite internet vezu ili pokušajte ponovo kasnije.",
+    "searchAddresses": "Adrese",
+    "searchPlaceNames": "Zvanična imena mjesta",
+    "searchNoPlaceNames": "Žao nam je, nijedno službeno ime mjesta se ne podudara sa vašim upitom za pretragu",
+    "searchLocations": "Mjesta",
+    "searchCatalogueItem": "Stavke u katalogu",
+    "searchNoCatalogueItem": "Žao nam je, nijedna stavka u katalogu se ne podudara sa vašim upitom za pretragu.",
+    "inMultipleLocations": "Na više lokacija, uključujući:",
+    "inDataCatalogue": "U katalogu podataka"
+  },
+  "terriaViewer": {
+    "slowWebGLAvailableTitle": "Slaba WebGL učinkovitost",
+    "slowWebGLAvailableMessage": "Vaš veb preglednik izvještava da ima problema sa performansama prikazujući {{appName}} u 3D, pa ćete vidjeti ograničeno iskustvo samo za 2D. Za potpuno 3D iskustvo, pokušajte da koristite drugi veb preglednik, nadograđujući upravljačke programe za video ili nadogradnjom operativnog sistema. ",
+    "slowWebGLAvailableMessageII": "{{appName}} najbolje funkcioniše sa veb pregledačem koji podržava {{webGL}} uključujući poslednju verziju {{chrome}}, {{firefox}} i {{safari}}. Čini se da Vaš veb preglednik ne podržava WebGL, tako da će vaš pregled biti ograničen samo na 2D iskustvo.",
+    "internetExplorer": "Internet Explorer 11",
+    "chrome": "Google Chrome",
+    "firefox": "Mozilla Firefox",
+    "safari": "Apple Safari",
+    "webGLNotSupportedTitle": "WebGL nije podržan",
+    "webGLNotSupportedOrSlowTitle": "WebGL nije podržan ili je prespor",
+    "webGLNotSupportedOrSlowMessage": "Vaš veb pregledač ne može prikazati mapu u 3D-u, bilo zato što ne podržava WebGL ili zato što je vaš veb-pregledač izvestio da će WebGL biti izuzetno spor. Pokušajte sa drugim veb-pregledačem, kao što je najnovija verzija{{chrome}}, {{firefox}}, {{safari}}. U nekim slučajevima će biti potrebno da nadogradite video upravljački program ili operativni sistem računara da biste dobili 3D prikaz u aplikaciji {{appName}}."
+  },
+  "analytics": {
+    "selectLocation": "Izaberite lokaciju",
+    "point": "Tačka (širina / dužina)",
+    "polygon": "Poligon",
+    "existingPolygon": "Postojeći poligon",
+    "nothingSelected": "Ništa nije odabrano, koristite gore navedene tipke za odabir.",
+    "runAnalysis": "Pokreni analizu",
+    "clickToDrawLine": "Kliknite da biste nacrtali liniju",
+    "enterValidCoords": "Unesite ispravne koordinate (e.g. 131.0361, -25.3450).",
+    "selectPoint": "Izaberite tačku klikom na mapu.",
+    "clickToDrawPolygon": "Kliknite da biste nacrtali poligon",
+    "shiftToDrawRectangle": "Pritisnite taster SHIFT i držite levi taster miša da biste nacrtali pravougaonik",
+    "clickToDrawRectangle": "Kliknite da biste nacrtali pravougaonik",
+    "selectedPolygon": "Odabrani poligon",
+    "regionName": "Naziv regije",
+    "selectExistingPolygon": "Izaberite postojeći poligon"
+  },
+  "core": {
+    "errors": {
+      "tooDeepAddedByUser": "Dosegnuto je 100 kataloških stavki prilikom provere addedByUser i snimanja na ID: \"{{memberId}}\"? Provjerite da li imate rekurzivnu grupu kataloga."
+    },
+    "userAddedData": "Podaci koje su dodali korisnici",
+    "chartData": "Podaci grafikona",
+    "dataUri": {
+      "errorTitle": "Internet preglednik ne podržava preuzimanje podataka",
+      "errorMessage": "Nažalost, pregledači Microsoft (uključujući sve verzije Internet Explorer i Edge) ne podržavaju funkciju uri podataka potrebnu za preuzimanje podataka u obliku datoteke. Da biste je preuzeli, kopirajte sledeći uri u drugi pregledač kao što su Chrome, Firefox ili Safari: {{href}}"
+    },
+    "dataType": {
+      "auto": "Automatsko otkrivanje (preporučeno)",
+      "wms-group": "Web Map Service (WMS)",
+      "wmts-group": "Web Map Tile Service (WMTS)",
+      "wfs-group": "Web Feature Service (WFS)",
+      "wps-getCapabilities": "Web Processing Service (WPS) server",
+      "esri-group": "Esri ArcGIS server",
+      "esri-mapServer": "Esri ArcGIS MapServer (jedan sloj)",
+      "esri-featureServer": "Esri ArcGIS FeatureServer (jedan sloj)",
+      "3d-tiles": "3D Tiles",
+      "open-street-map": "Open Street Map server",
+      "sdmx-group": "SDMX-JSON",
+      "opendatasoft-group": "Opendatasoft Portal",
+      "geojson": "GeoJSON",
+      "geoRss": "GeoRSS",
+      "kml": "KML ili KMZ",
+      "csv": "CSV",
+      "czml": "CZML",
+      "gpx": "GPX",
+      "json": "JSON",
+      "carto": "Carto",
+      "gltf": "GLTF",
+      "shp": "Shapefile (zip)",
+      "other": "Ostalo (koristi servis za konverziju)"
+    },
+    "printWindow": {
+      "errorTitle": "Greška pri štampanju",
+      "errorMessage": "Štampanje nije započelo u roku od 10 sekundi. Možda ovaj veb preglednik ne podržava štampanje?",
+      "printMediaStart": "pokretanje medija za štampu",
+      "printMediaEnd": "kraj medija za štampu",
+      "onbeforeprint": "onbeforeprint",
+      "onafterprint": "onafterprint"
+    },
+    "consoleAnalytics": {
+      "started": "ConsoleAnalytics je pokrenut",
+      "startedNoLogToConsole": "ConsoleAnalytics je pokrenut ali `userParameters.logToConsole` nije definisan ili je postavljen na false.",
+      "logStartedWithGAParameters": "ConsoleAnalytics je pokrenut ali je ključ `googleAnalyticsKey` ili `googleAnalyticsOptions` primijećen na `userParameters`"
+    },
+    "googleAnalytics": {
+      "log": "Google Analytics praćenje je onemogućeno jer terria.configParameters.googleAnalyticsKey nije definisan",
+      "logEnabledOnDevelopment": "Google Analytics je pokrenut u` razvojnom` okruženju"
+    },
+    "readText": {
+      "fileRequired": "datoteka je potrebna"
+    },
+    "readXml": {
+      "xmlError": "Datoteka ne sadrži važeći XML."
+    },
+    "serverConfig": {
+      "failedToGet": "Nije uspelo preuzimanje konfiguracije servera sa {{serverConfigUrl}}. To znači da servisi kao što su proksi, konverzija i skraćivanje URL-a možda neće funkcionisati."
+    },
+    "terriaError": {
+      "defaultTitle": "Došlo je do greške",
+      "defaultMessage": "Nepoznata greška",
+      "defaultCombineTitle": "Dogodilo se više grešaka",
+      "defaultCombineMessage": "Detalji o grešci su dostupni ispod"
+    }
+  },
+  "map": {
+    "addressGeocoder": {
+      "devError": "bulkConvertAddresses moraju biti primijenjeni u izvedenoj klasi."
+    },
+    "cesium": {
+      "devError": "cesium je potrebna.",
+      "failedToObtain": "Nije uspelo pribavljanje slike X: {{x}} Y: {{y}} Level: {{level}}.",
+      "notWebMercatorTilingScheme": "Ovaj skup podataka ne može se prikazati na 2D mapi jer ne podržava projekciju Web Mercator (EPSG:3857) ",
+      "unusalTilingScheme": "Ovaj skup podataka ne može se prikazati na 2D mapi jer koristi neobičnu tiling šemu koja nije podržana."
+    },
+    "computeRingWindingOrder": {
+      "devError": "Očekivane tačke tipa {x:number, y:number}"
+    },
+    "displayVariablesConcept": {
+      "defaultName": "Prikaz promjenljive"
+    },
+    "drawExtentHelper": {
+      "drawExtent": "Crtanje obuhvata",
+      "extent": "Obuhvat"
+    },
+    "gmlToGeoJson": {
+      "missingPos": "GML tački nedostaje pos element.",
+      "missingExteriorRing": "GML poligonu nedostaje spoljni prsten.",
+      "missingPosList": "Spoljnom prstenu GML poligona nedostaje posList.",
+      "containsUnsupportedFeatureType": "GML sadrži nepodržani tip prostornog objekta: {{type}}"
+    },
+    "geoRssToGeoJson": {
+      "containsUnsupportedFeatureType": "GeoRSS sadrži nepodržani tip prostornog objekta: {{type}}"
+    },
+    "w3cToGeoJson": {
+      "containsUnsupportedFeatureType": "GeoRSS sa W3C geometrijom sadrži nepodržani tip prostornog objekta: {{type}}"
+    },
+    "gnafAddressGeocoder": {
+      "noAddresses": "Ova struktura tabele nema adresu",
+      "noAddresses2": "Iako struktura tabele izvještava da ima kolonu adresa, nema adresa",
+      "suburb": "Predgrađe",
+      "state": "Država",
+      "postcode": "Poštanski broj",
+      "matchedAddresses": "odudarna adresa",
+      "lon": "Lon",
+      "lat": "Lat",
+      "score": "Rezultat",
+      "poBox": "po box",
+      "postOfficeBox": "poštanska kutija"
+    },
+    "imageryProviderHooks": {
+      "devError": "Nema konteksta za promjenu boje slika."
+    },
+    "mapboxVectorTileImageryProvider": {
+      "requireLayerName": "MapboxVectorTileImageryProvider zahtijeva ime sloja proslijeđeno kao options.layerName",
+      "requireStyles": "MapboxVectorTileImageryProvider zahtijeva funkciju stila koja se prosljeđuje kao options.styleFunc",
+      "moreThanFourTiles": "Pravougaonik i minimumLevel dobavljača slika ukazuju da postoj {{tileCount}} tile-ova na najmanjem nivou. Dobavljači slika sa više od četiri tile-a na minimalnom nivou nisu podržani.",
+      "maxLevelError": "Maksimalni nivo je previsok za skup podataka"
+    },
+    "regionProvider": {
+      "csvRegionMappingTitle": "Mapiranje CSV regiona",
+      "csvRegionMappingMessageZeroFound": "Pronađeno je nula imena regiona za tip regije {{regionType}}",
+      "csvRegionMappingMessageZeroBoundariesFound": "Pronađene su nulte granice regiona za region {{regionName}}",
+      "csvRegionMappingMessageLoadError": "Nije moguće učitati granice regiona za region {{regionName}} {{exception}}"
+    },
+    "extraCreditLinks": {
+      "dataAttribution": "Licence podataka",
+      "disclaimer": "Odricanje od odgovornosti",
+      "basemap": "Podloga"
+    }
+  },
+  "models": {
+    "abs": {
+      "name": "ABS.Stat",
+      "nameGroup": "ABS.Stat lista podataka",
+      "itemNotAvailableTitle": "Stavka nije dostupna",
+      "itemNotAvailableMessage": "Došlo je do greške prilikom pozivanja na {{methodName}} ABS ITT server. <p>Ova greška može ukazivati na to da stavka koju ste otvorili privremeno nije dostupna ili postoji problem sa internet vezom. Pokušajte da otvorite grupu i ako se problem nastavi, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "unexpectedFormatTitle": "Neočekivani format podataka",
+      "unexpectedFormtMessage": "Došlo je do greške prilikom pozivanja GetGenericData na ABS ITT server: format podataka se promijenio. <p>Molimo prijavite ovu grešku slanjem e-pošte na {{email}}.</p>",
+      "dataMergeErrorTitle": "Podaci se ne mogu spojiti",
+      "dataMergeErrorMessage": "Došlo je do greške prilikom pozivanja GetGenericData na ABS ITT serveru: pojedinačne datoteke podataka ne mogu se spojiti. <p>Molimo prijavite ovu grešku slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja GetCodeListValue na ABS ITT serveru. <p>Ova greška može ukazivati na to da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ukoliko problem i dalje postoji, prijavite ga slanjem e-pošte na {{email}}.</p>"
+    },
+    "userData": {
+      "addingDataErrorTitle": "Podaci ne mogu biti dodati",
+      "addingDataErrorMessage": "Navedeni podaci nisu mogli da se dodaju jer su nevažeći ili nemaju očekivani format.",
+      "fileApiNotSupportedTitle": "API datoteke nije podržan",
+      "fileApiNotSupportedMessage": "Žao nam je, vaš veb pregledač ne podržava API datoteke, koji {{appName}} zahtijevane za dodavanje podataka iz datoteke na vašem sistemu. Nadogradite veb preglednik. Za najbolje iskustvo preporučujemo posljednju verziju {{chrome}}, {{firefox}} ili {{edge}}.",
+      "internetExplorer": "Internet Explorer 11",
+      "edge": "Microsoft Edge",
+      "chrome": "Google Chrome",
+      "firefox": "Mozilla Firefox"
+    },
+    "arcGisService": {
+      "name": "ArcGIS Service grupa",
+      "invalidServerTitle": "Neispravan ArcGIS server",
+      "invalidServerMessage": "Došlo je do greške prilikom pozivanja ArcGIS REST servisa. Čini se da odgovor servera nije važeći ArcGIS REST dokument. <p>Ako ste vezu uneli ručno, provjerite da li je veza tačna. </p> <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja ArcGIS REST servisa <p>Ako ste vezu unijeli ručno, proverite da li je veza tačna. </p><p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratorima servera i zamolite ih da omoguće CORS. Ili kontaktirajte tim {{appName}} slanjem e-pošte na adresu {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji može proksirati sama aplikacija {{appName}}. <p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>"
+    },
+    "arcGisFeatureServer": {
+      "name": "ArcGIS Feature server",
+      "nameGroup": "ArcGIS Feature server grupa",
+      "invalidServiceTitle": "Neispravan ArcGIS Feature servis",
+      "invalidServiceMessage": "Došlo je do greške prilikom pozivanja ArcGIS Feature servisa. Čini se da odgovor servera nije važeći Feature Service dokument. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna. </p> <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja ArcGIS Feature servisa. <p>Ako ste vezu uneli ručno, proverite da li je veza tačna.</p> <p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS. Ili, kontaktirajte tim {{appName}} slanjem e-pošte na {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koje može proksirati sama aplikacija {{appName}}. <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi pojavljivati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>"
+    },
+    "arcGisFeatureServerCatalogGroup": {
+      "name": "ArcGIS Feature server grupa",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "copyrightText": "Tekst autorskih prava",
+      "invalidServiceTitle": "Neispravan ArcGIS Feature servis",
+      "invalidServiceMessage": "Došlo je do greške prilikom pozivanja ArcGIS Feature servisa. Čini se da odgovor servera nije važeći ArcGIS Feature servis dokument. <p>Ako ste vezu uneli ručno, provjerite da li je veza tačna. </p> <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja ArcGIS Feature servisa. <p>Ako ste vezu uneli ručno, proverite da li je veza tačna. </p> <p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS {{appName}} slanjem e-maila {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji može proksirati sama aplikacija {{appName}}. <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu, a ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "cors": "CORS"
+    },
+    "arcGisFeatureServerCatalogItem": {
+      "name": "Esri ArcGIS FeatureServer",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "copyrightText": "Tekst o autorskim pravima",
+      "missingUrlTitle": "Nije moguće učitati FeatureServer",
+      "missingUrlMessage": "Nije moguće učitati ArcGis FeatureServer jer stavka kataloga nema `url`.",
+      "invalidServiceTitle": "Nevažeći ArcGIS Feature Service sloj",
+      "invalidServiceMessage": "Došlo je do greške prilikom pozivanja ArcGIS Feature servisa. Čini se da odgovor servera nije važeći sloj ArcGIS Feature servisa.",
+      "reachedMaxFeatureLimit": "Upozorenje: Ovaj sloj je dostigao ograničenje broja FeatureService prostornih objekata.",
+      "unusableMetadataTitle": "ArcGIS FeatureServer greška",
+      "unusableMetadataDefaultMessage": "Ovaj skup podataka vratio je neupotrebljive metapodatke."
+    },
+    "arcGisMapServerCatalogGroup": {
+      "name": "ArcGIS Map server grupa",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "copyrightText": "Tekst o autorskim pravima",
+      "invalidServiceTitle": "Nevažeća ArcGIS Map servis",
+      "invalidServiceMessage": "Došlo je do greške prilikom pozivanja ArcGIS Map servisa. Čini se da odgovor servera nije važeći ArcGIS Map Service dokument. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p> <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja ArcGIS Map servisa. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna. </p> <p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS. Ili kontaktirajte tim slanjem {{appName}} slanjem e-pošte na adresu {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koje može proksirati sama aplikacija {{appName}} <p>niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "cors": "CORS"
+    },
+    "arcGisMapServerCatalogItem": {
+      "name": "Esri ArcGIS MapServer",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "copyrightText": "Tekst o autorskim pravima",
+      "invalidUrlTitle": "Nije moguće učitati MapServer",
+      "invalidUrlMessage": "Nije moguće učitati ArcGis MapServer jer stavka kataloga nema definisan `url`.",
+      "unusableMetadataTitle": "ArcGIS Mapserver greška",
+      "unusableMetadataDefaultMessage": "Ovaj skup podataka vratio je neupotrebljive metapodatke.",
+      "noLayersFoundTitle": "Nije moguće učitati ArcGIS MapServer.",
+      "noLayersFoundMessage": "Esri ArcGIS MapServer {{name}} ne sadrži nijedan sloj."
+    },
+    "bing": {
+      "name": "Bing mape"
+    },
+    "wcs": {
+      "asyncResultDescription": "Ovo je rezultat izvoza podataka iz usluge {{name}} na {{timestamp}} sa ulaznim parametrima ispod.",
+      "asyncPendingDescription": "WCS učitavanje:<br/>{{name}} usluge na{{timestamp}}.",
+      "exportFailedTitle": "Izvoz podataka nije uspeo",
+      "exportFailedMessage": "WCS eksport nije uspio",
+      "exportFailedMessageII": "WCS eksport nije uspio: {{error}}"
+    },
+    "cartoMap": {
+      "name": "Carto Map",
+      "noUrlTitle": "Nema URL",
+      "noUrlMessage": "Nije moguće pronaći korisnu URL za slojeve Carto Map."
+    },
+    "cesiumTerrain": {
+      "name": "Cesium teren",
+      "name3D": "Cesium 3D Tiles",
+      "notSupportedErrorTitle": "Nije podržano u 2D",
+      "notSupportedErrorMessage": "\"{{name}}\" ne može biti prikazano u 2D prikazu. Prebacite se na 3D i pokušajte ponovo.",
+      "errorRenderingTitle": "Greška pri prikazivanju u 3D",
+      "errorRenderingMessage": "<p>Došlo je do greške prilikom prikazivanja u 3D-u. To vjerovatno ukazuje na grešku u aplikaciji {{appName}} ili nekompatibilnost sa vašim sistemom ili veb preglednikom. Sada ćemo vas prebaciti na 2D da biste mogli da nastavite vaš rad. Bili bismo vam zahvalni ako prijavite ovu grešku slanjem e-pošte na {{email}} sa tehničkim podacima isod. Hvala Vam!</p>"
+    },
+    "ckan": {
+      "nameServer": "CKAN server",
+      "errorLoadingTitle": "Greška pri učitavanju CKAN kataloga",
+      "errorLoadingMessage": "Definicija za ovaj CKAN katalog nema važeći upit za filtriranje.",
+      "corsErrorMessage": "Nije moguće preuzeti pakete sa ovog CKAN servera.<br/><br/>Ako ste ručno uneli URL, ponovo ga proverite<br/><br/>Ako je to vaš server, napravite da je {{corsLink}} omogućen.<br/><br/> U suprotnom, ako ponovnim učitavanjem ne rešite problem, prijavite problem slanjem e-pošte na {{email}} sa tehničkim detaljima u nastavku. Hvala! <br/><br/>",
+      "name": "CKAN izvori",
+      "dataSourceErrorMessage": "Ovaj izvor podataka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "datasetDescription": "Opis grupe podataka",
+      "dataDescription": "Opis podataka",
+      "resourceDescription": "Opis izvora",
+      "datasetCustodian": "Zadužen za održavanje podataka",
+      "licence": "Licence",
+      "author": "Autor",
+      "contact_point": "Kontakti",
+      "metadata_created": "Sačinjeno",
+      "metadata_modified": "Izmijenjeno",
+      "update_freq": "Frekvencija ažuriranja",
+      "idsNotSpecifiedTitle": "resourceId ili datasetId mora biti definisan",
+      "idsNotSpecifiedMessage": "CkanCatalogItem zahtijeva da je ili resourceId ili datasetId definisan.",
+      "errorRetrievingUrlTitle": "Greška pri preuzimanju CKAN URL",
+      "errorRetrievingUrlMessage": "Nije moguće preuzeti URL kao JSON: {{url}}.",
+      "invalidCkanTitle": "Nevažeći CKAN izvor JSON",
+      "invalidCkanMessage": "Čini se da izvor koji je vraćen sa CKAN servera nema package_id.",
+      "notCompatibleTitle": "Nisu pronađeni podudarni izvori",
+      "notCompatibleMessageI": "CKAN skup podataka nema izvor sa ID-om {{resourceId}} ili ne posjeduje podržan format.",
+      "notCompatibleMessageII": "CKAN skup podataka nema izvore podataka u podržanom formatu."
+    },
+    "arcgisPortal": {
+      "nameGroup": "ArcGIS Portal grupa",
+      "errorLoadingTitle": "Greška u učitavanju ArcGIS Portal kataloga",
+      "errorLoadingMessage": "Definicija za ovaj katalog ArcGIS Portal nema važeći upit za filtriranje.",
+      "corsErrorMessage": "Nije moguće preuzeti pakete sa ovog servera ArcGIS Portal <br/><br/>Ako ste ručno uneli URL, ponovo ga proverite. <br/><br/>Ako je to vaš server, uverite se da je {{corsLink}} omogućen.<br/><br/> U suprotnom, ako ponovnim učitavanjem ne riješite problem, prijavite problem slanjem e-pošte na {{email}} sa dole navedenim tehničkim detaljima. Hvala Vam!<br/><br/>",
+      "name": "ArcGIS stavka portala",
+      "dataSourceErrorMessage": "Ovaj izvor podataka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "datasetDescription": "Opis grupe podataka",
+      "licence": "Licenca",
+      "openInPortal": "Otvori u ArcGIS portalu",
+      "idsNotSpecifiedTitle": "resourceId ili datasetId mora biti definisan",
+      "idsNotSpecifiedMessage": "ArcGIS Portal sloj zahtjeva da itemId bude definisan.",
+      "errorRetrievingUrlTitle": "Greška pri preuzimanju ArcGIS Portal URL-a",
+      "errorRetrievingUrlMessage": "Nije moguće preuzeti URL kao JSON: {{url}}."
+    },
+    "catalog": {
+      "name": "Neimenovana stavka",
+      "group": "Grupa",
+      "idForMatchingErrorTitle": "Nedostaje svojstvo",
+      "idForMatchingErrorMessage": "Objekti modela moraju imati `id`, `localId`, ili `name` atribut.",
+      "catalogMemberMustHaveName": "Novostvoreni član kataloga mora imati ime.",
+      "catalogMemberMustHaveType": "Član kataloga mora imati tip.",
+      "userAddedDataGroup": "Grupa podataka koje je korisnik dodao preko panela Dodaj podatke.",
+      "chartDataGroup": "Grupa za podatke grafikona.",
+      "dataSourceErrorMessage": "Ovaj izvor podataka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "stubCreationFailure": "Nije moguće ukloniti stavku iz kataloga {{item}}",
+      "unsupportedTypeTitle": "Nepoznati tip",
+      "unsupportedTypeMessage": "Nije moguće stvoriti nepoznati tip modela {{type}}.",
+      "unsupportedFileTypeTitle": "Nepodržani tip datoteke",
+      "unsupportedFileTypeMessage": "{{appName}} ne podržava ovaj format datoteke. Direktno podržani formati datoteka uključuju: <ul><li>.geojson</li><li>.kml,.kmz</li><li>.csv (in {{link}})</li></ul>",
+      "unsupportedFileTypeMessageII": "{{appName}} ne podržava ovaj format datoteke. Direktno podržani formati datoteka uključuju:<ul><li>.geojson</li><li>.kml,.kmz</li><li>.csv (in {{link}})</li></ul> Formati datoteka koji su podržani kroz servis za konverziju su: <ul><li>Shapefile (.zip)</li><li>MapInfo TAB (.zip)</li><li>Possibly other {{linkII}}</li></ul>",
+      "getConfirmationMessage": "{{appName}} ne podržava direktno učitavanje ove datatoteke.\n\nDa li želite da pokušate da je učitate pomoću servisa za konverziju? Ovo može raditi za male kompresovane Esri Shapefiles ili MapInfo TAB datoteke.",
+      "readyToUpload": "Spremni za otpremanje datoteke u servis za konverziju aplikacije {{appName}}?",
+      "upload": "Učitaj",
+      "cancel": "Otkaži",
+      "useConversion": "Koristiti servis za konverziju?",
+      "mustHaveType": "Svaka stavka mora imati tip.",
+      "compositesError": "Kompoziti ne mogu da sadrže složene stavke.",
+      "convertErrorTitle": "Nije moguće ažurirati katalog na V8",
+      "convertErrorMessage": "Ovaj katalog je baziran na starijoj TerriaJS verziji - sistem koji omogućava ovaj preglednik. Došlo je do greške prilikom pokušaja ažuriranja sadržaja kataloga za {{url}}."
+    },
+    "createParameter": {
+      "unsupportedErrorTitle": "Nepodržani tip parametra funkcije",
+      "unsupportedErrorMessage": "Nepoznati tip parametra funkcije: {{type}}."
+    },
+    "csv": {
+      "name": "Vrijednosti razdvojene zarezom (CSV)",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "unexpectedTypeTitle": "Neočekivani tip CSV podataka",
+      "unexpectedTypeMessage": "Očekuje se da će podaci CsvCatalogItem biti Blob, File, ili String, ali to nije bilo koji od ovih. To može ukazivati na grešku {{appName}} ili nepravilnu upotrebu {{appName}} API. Ako smatrate da je greška u {{appName}} molimo da to prijavite putem e-mail-a. ",
+      "unableToLoadTitle": "Nije moguće učitavanje CSV datoteke",
+      "unableToLoadMessage": "Vidi <a href=\"https://github.com/TerriaJS/nationalmap/wiki/csv-geo-au\">csv-geo-au</a> za podržane CSV formate.\n\n {{message}}",
+      "unableToLoadItemTitle": "CSV nije dostupan",
+      "unableToLoadItemMessage": "CSV sloj ne može biti učitan jer nije konfigurisan sa `url` ili `csvString` parametrima."
+    },
+    "csw": {
+      "name": "Katalog servisa (CSW)",
+      "unknownError": "CSW server je prijavio nepoznatu grešku.",
+      "exceptionMessage": "CSW server je prijavio grešku:\n\n {{exceptionText}}",
+      "errorLoadingTitle": "Nije moguće učitati CSW",
+      "notUseableTitle": "Katalog servisa nije upotrebljiv",
+      "notUseableMessage": "Nevažeći odgovor dobijen pozivanjem GetDomain na CSW serveru. <p>Ova greška može ukazivati na to da je kataloški server koji ste naveli privremeno nedostupan ili da postoji problem sa internet vezom. Pokušajte ponovo otvoriti server za obradu i ako se problem nastavi, prijavite ga slanjem e-pošte na ",
+      "errorLoadingRecordsTitle": "Došlo je do greške prilikom čitanja CSW zapisa.",
+      "errorLoadingRecordsMessage": "Nevažeći odgovor dobijen pozivanjem GetRecords na CSW serveru. <p>Ova greška može ukazivati na to da je kataloški server koji ste naveli privremeno nedostupan ili da postoji problem sa internet vezom. Pokušajte ponovo otvoriti server za obradu i ako se problem nastavi, prijavite ga slanjem e-pošte na ",
+      "checkCORSDomain": "Nije moguće izvršiti GetDomain na ovom CSW serveru.<br/><br/> Ako ste URL unijeli ručno, ponovo ga provjerite.<br/><br/> Ako je to vaš server, uvjerite se da je omogućen <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a> <br/><br/> U suprotnom, ako ponovnim učitavanjem ne riješite problem, prijavite problem tako što ćete poslati e-mail na {{email}} sa tehničkim detaljima u nastavku. Hvala!",
+      "checkCORSRecords": "Nije moguće izvršiti GetRecords na ovom CSW serveru.<br/><br/> Ako je to vaš server, uvjerite se da je omogućen <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a>.<br/><br/> U suprotnom, ako ponovnim učitavanjem ne riješite problem, prijavite problem tako što ćete poslati e-mail na {{email}} sa tehničkim detaljima u nastavku. Hvala!",
+      "dataResponsibility": "Odgovornost podataka",
+      "links": "Veze",
+      "metadataURL": "URL zapisa metapodataka",
+      "checkCORS": "Nije moguće izvršiti GetRecords na ovom CSW serveru.<br/><br/> Ako ste ručno unijeli URL ponovo ga provjerite.<br/><br/> Ako je to vaš server, uvjerite se da je omogućen {{cors}} <br/><br/> U suprotnom, ako ponovnim učitavanjem ne riješite problem, prijavite problem slanjem e-pošte na {{email}}",
+      "cors": "CORS",
+      "missingUrlTitle": "Nije moguće učitati Kataloški servis (CSW)",
+      "missingUrlMessage": "Nije moguće učitati Kataloški server (CSW) jer grupa kataloga nema definisan `url`."
+    },
+    "czml": {
+      "name": "Cesium jezik (CZML)",
+      "dataSourceErrorMessage": "Ovaj izvor podataka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "errorLoadingTitle": "Nije moguće učitati CZML",
+      "errorLoadingMessage": "Došlo je do greške prilikom učitavanja CZML datoteke. <p>Ako ste vezu uneli ručno, proverite da li je veza tačna. </p><p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS. Ili kontaktirajte tim '{{appName}}' slanjem e-pošte na adresu {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji mogu biti proksirani od strane same aplikacije '{{appName}}'. <p> Ako niste unesite ovu vezu ručno, ova greška može značiti da je izvor podataka koji pokušavate da dodate privremeno nedostupan ili da postoji problem sa vašom internet vezom. Pokušajte ponovo da dodate izvor podataka i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}. Pogledajte tehničke detalje u nastavku. </p>\n<pre>${stackTrace}</pre>",
+      "unableToLoadItemTitle": "CZML nije dostupan",
+      "unableToLoadItemMessage": "CZML set podataka ne može se učitati jer nije konfigurisana sa svojstvom `url`, `czmlData`, ili `czmlString`."
+    },
+    "function": {
+      "unknownFormaterTitle": "Nepoznati formater",
+      "unknownFormaterMessage": "Funkcionalni formater parametra {{formatter}} je nepoznat.\n\nVažeći formateri su:\n\n"
+    },
+    "geoJson": {
+      "name": "GeoJSON",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "errorLoadingTitle": "Greška pri učitavanju GeoJSON-a",
+      "errorParsingMessage": "Došlo je do greške prilikom raščlanjivanja podataka kao JSON. To može značiti da je datoteka nevaljana ili da je {{appName}} ne podržava. Ako želite pomoć ili dodatne informacije, pošaljite nam e-poštu na {{email}}",
+      "errorLoadingMessage": "Došlo je do greške prilikom učitavanja datoteke GeoJSON. To može značiti da je datoteka nevaljana ili da je {{appName}}. ne podržava. Ako želite pomoć ili dodatne informacije, pošaljite nam e-poštu na {{email}}",
+      "couldNotLoadTitle": "Nije moguće učitati JSON",
+      "couldNotLoadMessage": "Došlo je do greške prilikom preuzimanja podataka JSON sa pružane veze. <p>> Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p><p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS. Ili kontaktirajte tim '{{appName}}' slanjem e-maila na {{email}} i zamolite nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji mogu biti proksirani od strane same aplikacije '{{appName}}'. <p>Ako niste ručno unijeli ovu vezu, ova greška može ukazivati na to da je izvor podataka koji pokušavate da dodate privremeno nedostupan ili da postoji problem sa internet vezom. Pokušajte ponovo da dodate izvor podataka i ako se problem nastavi dešavati, prijavite slanjem e-maila na {{email}}.</p>",
+      "unableToLoadItemTitle": "GeoJSON nije dostupan",
+      "unableToLoadItemMessage": "GeoJSON set podataka se ne može učitati jer nije konfigurisan sa `url`, `geoJsonData`, ili `geoJsonString` svojstvima.",
+      "unsupportedBrowserTitle": "Nepodržan veb preglednik",
+      "unsupportedBrowserMessage": "Žao nam je, vaš veb pregledač ne podržava API datoteke, koji {{appName}} je neophodan za učitavanje ove grupe podataka. Nadogradite svoj veb pregledač. Za najbolje iskustvo preporučujemo najnovije verzije {{chrome}} ili {{firefox}}.",
+      "internetExplorer": "Internet Explorer 11",
+      "chrome": "Google Chrome",
+      "firefox": "Mozilla Firefox"
+    },
+    "shapefile": {
+      "name": "Shapefile"
+    },
+    "getToken": {
+      "errorTitle": "Token greška",
+      "invalidToken": "<p>Server tokena je odgovorio nevažećim tokenom..</p><p>Molimo da ga prijavite slanjem e-pošte na {{email}}</p>",
+      "unableToRequest": "<p>Nije moguće zatražiti token sa servera tokena. </p><p>Molimo prijavite ga slanjem e-pošte na {{email}}</p>"
+    },
+    "gltf": {
+      "name": "GL Transmission Format (glTF)",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "notSupportedErrorTitle": "Nije podržano u 2D",
+      "notSupportedErrorMessage": "\"{{name}}\" ne može biti prikazano u 2D pregledu. Prebacite na 3D i pokušajte ponovo.",
+      "error": "Greška",
+      "unableToRetrieve": "Nije moguće preuzeti detalje o funkciji sa\n\n{{url}}"
+    },
+    "googleUrlShortener": {
+      "unexpectedResult": "Neočekivani rezultat skraćivanja url-a",
+      "urlNotLocatedTitle": "Skraćeni početni URL nije pronađen",
+      "urlNotLocatedMessage": "Skraćeni URL dijeljenja koji se koristi za pokretanje aplikacije {{appName}} nije pronađen. To može ukazivati na grešku u vezi ili da servis za skraćivanje veze trenutno nije dostupan. Ako smatrate da je reč o grešci u {{appName}}, prijavite e-poštom na {{email}}"
+    },
+    "gpx": {
+      "name": "GPX",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "errorLoadingTitle": "Greška pri učitavanju GPX-a",
+      "errorLoadingMessage": "Došlo je do greške prilikom učitavanja GPX datoteke. To može značiti da je datoteka nevaljana ili da je {{appName}} ne podržava. Ako želite pomoć ili dodatne informacije, pošaljite nam e-poštu na {{email}}"
+    },
+    "georss": {
+      "name": "GeoRSS",
+      "subtitle": "Podnaslov",
+      "updated": "Ažurirano",
+      "category": "Kategorija",
+      "description": "Opis",
+      "copyrightText": "Tekst o autorskim pravima",
+      "link": "Veza",
+      "author": "Autor",
+      "errorLoadingTitle": "Nije moguće učitati GeoRSS",
+      "errorLoadingMessage": "Došlo je do greške prilikom učitavanja datoteke GeoRSS. <p>Ako ste vezu unijeli ručno, proverite da li je veza tačna. </p><p>Ova greška takođe može ukazivati na to da server ne podržava {{cors}}. Ako je ovo Vaš server provjerite da je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, obratite se administratoru servera i zamolite ih da omoguće CORS. Ili kontaktirajte tim '{{appName}}' slanjem email-a na {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji mogu biti proksirani od strane same aplikacije '{{appName}}'. <p>Ako niste unesite ovu vezu ručno, ova greška može značiti da je izvor podataka koji pokušavate da dodate privremeno nedostupan ili da postoji problem sa vašom internet vezom. Pokušajte ponovo da dodate izvor podataka i ako se problem nastavi dešavati, prijavite ga slanjem email-a na {{email}}.",
+      "unableToLoadItemTitle": "GeoRSS nije dostupan",
+      "unableToLoadItemMessage": "GeoRSS set podataka se ne može učitati zato što nije konfigurisan sa `url`, ili `geoRss` svojsvtima."
+    },
+    "imageryLayer": {
+      "intervalSupportErrorTitle": "Intervali nisu podržani",
+      "intervalSupportErrorMessage": "Oprostite, {{typeName}} ({{type}}) stavke kataloga trenutno ne mogu da se mijenjaju određivanjem svojstava \"intervals\"",
+      "resolvingAvailability": "Rješavanje dostupnosti na lokaciji...",
+      "accessingBaseMapErrorTitle": "Greška pri pristupu osnovnoj mapi",
+      "accessingBaseMapErrorMessage": "Došlo je do greške prilikom pokušaja preuzimanja tile-ova za osnovnu mapu:<p><center>{{name}}</center></p> To može ukazivati na problem sa vašom internet vezom, stavka kataloga je privremeno nedostupna ili je stavka kataloga nevažeća. Stavka kataloga je sakrivena sa mape. Možete je ponovo prikazati na tabli „Trenutno se pregledava“ da biste pokušali ponovo. Dalje tehničke detalje možete pronaći u nastavku. <br/><br/>",
+      "accessingCatalogItemErrorTitle": "Greška pri pristupu stavci kataloga",
+      "accessingCatalogItemErrorMessage": "Došlo je do greške prilikom pokušaja preuzimanja tile-ova za stavku kataloga:<p><center>{{name}}</center></p> To može ukazivati na problem sa vašom internet vezom, stavka kataloga je privremeno nedostupna ili je stavka kataloga nevažeća. Stavka kataloga je sakrivena sa mape. Možete je ponovo prikazati na tabli „Trenutno se pregledava“ da biste pokušali ponovo. Dalje tehničke detalje možete pronaći u nastavku. <br/><br/>",
+      "tileErrorTitle": "Greška tile",
+      "tileErrorMessage": "Tile sa URL:\n{{url}}\n je uspješno učitan pomoću XMLHttpRequest ali se desilo više grešaka kada je učitana direktno u Cesium ili Leaflet.\n To može značiti da je server veoma osetljiv na podatke u zaglavlju zahtjeva ili je jednostavno nepouzdan.",
+      "tileErrorMessageII": "Dobio sam odgovor 200 (OK) sa URL:\n{{url}}\n ali nije moguće učitati kao sliku.",
+      "unknownTileErrorTitle": "Nepoznata greška tile-ova",
+      "unknownTileErrorMessage": "Prilikom pristupanja URL adresi:\n{{url}}\nTo verovatno ukazuje na jedno od sledećeg: \n* Ime hosta servera nije uspelo da se riješi,\n* Server nije odgovorio na zahtjev ili \n* Server je uskratio pristup unakrsnom poreklu resursa (CORS) za pristup ovom URL (vidi https://docs.terria.io/guide/connecting-to-data/cross-origin-resource-sharing/).",
+      "unableToDisplayTitle": "Nije moguće prikazati skup podataka",
+      "unableToDisplayMessage": "{{name}} ne može biti prikazan u 2D, jer ne podržava standardnu Web Mercator projekciju (EPSG:3857). Prebacite se na 3D ako je to podržano na vašem sistemu, ažurirajte skup podataka tako da podržava projekciju, ili koristite drugi skup podataka.",
+      "unableToShowLocTitle": "Nije moguće prikazati na ovoj lokaciji",
+      "unableToShowLocMessage": "{{name}} ne može biti prikazano na ovoj lokaciji, jer su dostupna vremena snimanja nepoznata. Svojstvo {{featureTimesProperty}} nije pronađeno."
+    },
+    "invokeAnalyticsService": {
+      "invocationFailedTitle": "Pozivanje servisa nije uspjelo",
+      "invocationFailedMessage": "Došlo je do greške na serveru tokom izračunavanja {{invocationName}}."
+    },
+    "ionImagery": {
+      "name": "Cesium Ion Imagery"
+    },
+    "kml": {
+      "name": "KML ili KMZ",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "unexpectedTypeTitle": "Neočekivani KML podatak",
+      "unexpectedTypeMessage": "KmlCatalogItem.data je očekivan da bude u formatu XML Document, Blob, ili File, ali nije bio niti u jednom od pomenutih. To može ukazivati na grešku u aplikaciji {{appName}} ili nepravilnoj upotrebi API-ja{{appName}}. Ako vjerujete da je reč o grešci u aplikaciji {{appName}},prijavite je e-poštom na adresu {{email}}.",
+      "errorLoadingTitle": "Greška pri učitavanju KML ili KMZ",
+      "errorLoadingMessage": "Došlo je do greške prilikom učitavanja KML ili KMZ datoteke. Ovo može značiti da je datoteka neispravna ili da je {{appName}} ne podržava. Ako želite pomoć ili dodatne informacije, pošaljite nam e-mail na {{email}}.",
+      "unableToLoadItemTitle": "KML nije dostupan",
+      "unableToLoadItemMessage": "KML/KMZ kataloška stavka ne može se učitati jer nije konfigurisana sa svojstvom `url`, `kmlData` ili `kmlString`."
+    },
+    "magda": {
+      "name": "MAGDA distribucija",
+      "dataSourceErrorMessage": "Izvor ovog podatka nema dostupne detaljne informacije",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "distributionDesc": "Opis distribucije",
+      "idsNotSpecifiedTitle": "recordId mora biti naveden",
+      "idsNotSpecifiedMessage": "MagdaCatalogItem zahtijeva da se navede recordId.",
+      "retrieveErrorTitle": "Greška pri preuzimanju MAGDA zapisa",
+      "retrieveErrorMessage": "Nije naveden ID distribucije ili grupe podataka",
+      "notCompatibleTitle": "Nije pronađena kompatibilna distribucija",
+      "notCompatibleMessageI": "Skup podataka MAGDA nema distribuciju sa ID {{distributionId}} ili nema podržan format.",
+      "notCompatibleMessageII": "MAGDA skup podataka nema distribuciju sa podržanim formatom."
+    },
+    "mapboxMap": {
+      "name": "Mapbox Map"
+    },
+    "mapboxVectorTile": {
+      "name": "Mapbox Vector Tile"
+    },
+    "mapboxStyle": {
+      "name": "Mapbox stil"
+    },
+    "senaps": {
+      "name": "Senaps lokacije",
+      "retrieveErrorTitle": "Greška pri obradi Senaps Catalog stavki",
+      "generalErrorMessage": "Greška pri obradi Senaps podataka",
+      "missingKeyErrorMessage": "Senaps API ključ bi trebao biti dodan na server konfiguraciji koristeći appendParamToQueryString opciju",
+      "locationHeadingFeatureInfo": "Lokacija",
+      "availableStreamsHeadingFeatureInfo": "Dostupni tokovi",
+      "noStreamsMessageFeatureInfo": "Nema dostupnih tokova na ovoj lokaciji.",
+      "missingSenapsBaseUrl": "Senaps url nije definisan. Da li ste se prijavili?"
+    },
+    "ogr": {
+      "name": "Nepoznato / Pretvoreno u GeoJSON",
+      "dataSourceErrorMessage": "Ovaj izvor podatka nema dostupne detaljne informacije.",
+      "serviceErrorMessage": "Za ovaj servis nisu dostupne detaljne informacije.",
+      "legacyBrowserTitle": "Naslijeđeni pretraživač nije dostupan",
+      "legacyBrowserMessage": "Žao nam je, vaš veb pretraživač ne podržava \"FormData\" koji je zahtijevan od '{{appName}}' servisa za konverziju. Preporučujemo vam da nadogradite na najnoviju verziju {{chrome}}, {{firefox}} ili {{safari}}.",
+      "internetExplorer": "Internet Explorer 11",
+      "chrome": "Google Chrome",
+      "firefox": "Mozilla Firefox",
+      "safari": "Apple Safari",
+      "unsupportedFileTzpe": "Nepodržani tip datoteke",
+      "loadError": "Veličina datoteke je veća od ograničenog broja {{maxConversionSizeMB}} MB servisa za konverziju {{appName}}",
+      "invalidFile": "To može značiti da je datoteka nevaljana ili da servis za konverziju {{appName}} ne podržava ovu datoteku.",
+      "errorConvertingToGeoJsonTitle": "Greška prilikom konverzije datoteke u GeoJson",
+      "errorConvertingToGeoJsonMessage": "Došlo je do greške prilikom pokušaja konverzije ove datoteke u GeoJson. ",
+      "emailUs": "Ako želite pomoć ili dodatne informacije, pošaljite nam e-poštu na {{email}}"
+    },
+    "openStreetMap": {
+      "name": "Open Street Map"
+    },
+    "placesLikeMe": {
+      "regionsLikeThisName": "Regije poput ove",
+      "regionsLikeThisDescription": "Identifikuje regione koji _ liče na_ dati region u skladu sa datim skupom karakteristika.",
+      "regionTypeName": "Tip regije",
+      "regionTypeDescription": "Tip regiona za analizu.",
+      "regionName": "Regija",
+      "regionDescription": "Regija za analizu. Analiza će odrediti koji su regioni najsličniji ovom.",
+      "characteristics": "Karakteristike",
+      "characteristicsDescription": "Karakteristike regiona koje treba uključiti u analizu.",
+      "name": "Mjesta poput mene",
+      "regioNotSelectedName": "Regija nije odabrana",
+      "regioNotSelectedDescription": "Morate odabrati regiju.",
+      "placesLike": "Mjesta kao {{regionName}}",
+      "likenessesError": "Lista sličnosti i lista kodova regiona ne sadrže isti broj elemenata."
+    },
+    "raiseError": {
+      "errorTitle": "Došlo je do greške",
+      "notificationFeedback": "Za pitanja ili slanje povratne informacije, kliknite ovdje.",
+      "developerDetails": "Detalji za programere"
+    },
+    "regionMapping": {
+      "noDataForDate": "Nema podataka za odabrani datum.",
+      "noDataForRegion": "Nema podataka za odabrani region.",
+      "outdatedBrowserTitle": "Zastarjeli veb preglednik",
+      "outdatedBrowserMessage": "Koristite veoma stari veb preglednik koji ne može da prikaže skupove podataka \"region mapped\" kao što je ovaj. Nadogradite na najnoviju verziju Google Chrome, Mozilla Firefox, Microsoft Edge, ili Apple Safari što je prije moguće. Molimo da nas kontaktirate na {{email}} ukoliko imate bilo kakvih nejasnoća.",
+      "invalidServerTypeTitle": "Neadekvatan tip servera {{serverType}} u regionMapping.json",
+      "invalidServerTypeMessage": "Očekivani tip servera je \"WMS\" ili \"vector\" ali je \"{{serverType}}\"",
+      "notRecognised": "Nazivi ovih regiona su {{notRecognisedText}} ",
+      "notRecognisedText": "nije prepoznato",
+      "moreThanOneValue": "Ovi regioni su imali{{moreThanOneValueText}}",
+      "moreThanOneValueText": "više od jedne vrijednosti",
+      "msg": "Obratite se {{link}} o načinu formatiranja ove datoteke.",
+      "csvSpecification": "CSV-geo-au specifikacija",
+      "issuesLoadingTitle": "Problemi pri učitavanju {{name}}"
+    },
+    "feedback": {
+      "thanksTitle": "Hvala Vam na povratnim informacijama!",
+      "thanksMessage": "Vaše povratne aplikacije omogućavaju nam da poboljšamo {{appName}}",
+      "unableToSendTitle": "Nemogućnost slanja povratnih informacija",
+      "unableToSendMessage": "Ovo je zaista neugodno, ali došlo je do greške prilikom pokušaja slanja povratnih informacija. Umjesto toga pošaljite ih na {{email}}."
+    },
+    "resultPending": {
+      "name": "Čekanje rezultata"
+    },
+    "sensorObservationService": {
+      "procedure": "Procedura",
+      "property": "Svojstvo",
+      "sos": "SOS",
+      "alreadyLoadingTitle": "Podaci se već učitavaju",
+      "alreadyLoadingMessage": "Vaši podaci se još učitavaju. Moći ćete da promenite prikaz kada se učita",
+      "unknownError": "Server je prijavio nepoznatu grešku.",
+      "exceptionMessage": "Server je prijavio grešku: \n\n {{exceptionText}}",
+      "missingBody": "Server je odgovorio sa nedostajućim tijelom.",
+      "noFeatures": "Nema karakteristika koje se podudaraju sa vašim upitom.",
+      "unknownFormat": "Server je odgovorio sa nepoznatim formatom funkcije.",
+      "noMatchingFeatures": "Služba za posmatranje senzora nije vratila nijednu funkciju koja se podudara sa vašim upitom."
+    },
+    "openDataSoft": {
+      "viewDatasetPage": "Pogledajte stranicu seta podataka"
+    },
+    "sdmxServerStratum": {
+      "sdmxStructureLoadErrorTitle": "SDMX structure request failed",
+      "loadDataErrorTitle": "Učitavanje SDMX nije uspjelo",
+      "loadDataErrorMessage": "Server ne sadrži dataflows"
+    },
+    "sdmxJsonDataflowStratum": {
+      "loadDataErrorTitle": "Nije moguće učitati SDMX",
+      "loadDataErrorMessage": {
+        "invalidResponse": "Neispravan JSON objekat",
+        "noDatastructure": "Struktura podataka nije pronađena za dataflow {{catalogItem.dataflowId}}",
+        "noDataflow": "Dataflow {{catalogItem.dataflowId}} je neispravan"
+      },
+      "defaultUnitMeasure": "Jedinice"
+    },
+    "sdmxCatalogItem": {
+      "viewBy": {
+        "title": "Pogledaj",
+        "time": "Vremenske serije",
+        "region": "Regija"
+      },
+      "loadDataErrorTitle": "Nije moguće učitati SDMX CSV",
+      "loadDataErrorMessage": "Neispravan odgovor od {{csvUrl}}"
+    },
+    "time": {
+      "invalidDate": "Netačan datum",
+      "invalidInitialTimeSource": "Nevažeći initialTimeSource preciziran u konfiguracijskoj datoteci: {{initialTimeSource}}"
+    },
+    "shareData": {
+      "generateErrorTitle": "Nemoguće generisati kratki URL.",
+      "generateErrorMessage": "Došlo je do greške prilikom pokušaja korišćenja servisa za generisanje kratkog URL-a prilikom dijeljenja podataka. Ako smatrate da je riječ o grešci u aplikaciji {{appName}} prijavite je e-poštom na {{email}}.",
+      "expandErrorTitle": "Nemoguće proširiti URL",
+      "expandErrorMessage": "Servis za dijeljenje podataka koji se koristi za pokretanje aplikacije {{appName}} nije lociran. To može ukazivati na grešku u vezi ili na to da servis trenutno nije dostupan. Ako smatrate da je riječ o grešci u aplikaciji {{appName}}, prijavite e-poštom na {{email}}"
+    },
+    "socrataServer": {
+      "name": "Socrata server",
+      "retrieveErrorMessage": "Nije moguće preuzeti pakete sa ovog servera Socrata.<br/><br/>Ako ste URL ručno unijeli, molimo da ga ponovo provjerite.<br/><br/> U suprotnom, ako ponovno učitavanje ne otkloni problem, molimo da prijavite problem slanjem email-a na {{email}} sa tehničkim detaljima u nastavku. Hvala! <br/><br/><pre> {{formatError}}</pre>",
+      "description": "Opis",
+      "licence": "Licenca",
+      "attributes": "Karakteristike",
+      "tags": "Oznake"
+    },
+    "spatialDetailing": {
+      "name": "Prostorni detalji",
+      "description": "Predviđa karakteristike sitnozrnih regiona učenjem i korišćenjem korelacija grubozrnastih podataka sa popisnim karakteristikama.",
+      "regionTypeToPredictName": "Tip regije za predviđanje",
+      "regionTypeToPredictDescription": "Tip regiona za koji treba predvidjeti karakteristike",
+      "coarseDataRegionTypeName": "Tip područja grubih podataka",
+      "coarseDataRegionTypeDescription": "Tip regiona sa kojim su povezane grubozrnaste ulazne karakteristike.",
+      "aggregationName": "Agregacija",
+      "aggregationDescription": "Određuje kako su agregirane vrijednosti grubog regiona. Tačno ako je vrijednost srednja vrednost u celom regionu, ili Netačno ako je vrijednost zbir vrednosti u celom regionu.",
+      "aggregationTrueName": "Srednja vrijednost agregacije",
+      "aggregationTrueDescription": "Vrijednosti grubog regiona su srednja vrijednost uzoraka u regionu. Na primjer, prosječni prihod domaćinstva.",
+      "aggregationFalseName": "Zbir agregacije",
+      "aggregationFalseDescription": "Vrednosti grubog regiona su zbir uzoraka u regionu. Na primer, ukupna populacija.",
+      "characteristicToPredictName": "Karakteristike za predviđanje",
+      "characteristicToPredictDescription": "Karakteristika za predviđanje za svaki region.",
+      "spatialDetailingOf": "Prostorni detalji {{of}} u {{at}}",
+      "wrongNumberOfElements": "Lista vrednosti i lista kodova regiona ne sadrže isti broj elemenata"
+    },
+    "tableData": {
+      "noData": "Nema podataka za prikaz",
+      "unsupportedCharactersTitle": "Nevažeći znakovi u kolonama geografske širine i dužine",
+      "unsupportedCharactersMessage": "Nije moguće protumačiti par geografske širine i dužine {{longitude}}, {{latitude}}",
+      "bulkGeocoderInfoTitle": "Grupne informacije o geokoderu",
+      "bulkGeocoderInfoMessage": "CSV sadrži adrese, ali {{number}} ne može biti lociran na mapi: ",
+      "bulkGeocoderInfo2Message": "{{nullAddresses}} adrese nedostaju iz CSV.",
+      "bulkGeocoderErrorTitle": "Grupne informacije o geokoderu",
+      "bulkGeocoderErrorMessage": "Nije moguće mapirati adrese u koordinate, jer je došlo do greške prilikom preuzimanja koordinata adresa. Provjerite internet vezu ili pokušajte ponovo kasnije."
+    },
+    "terrainCatalog": {
+      "notSupportedErrorTitle": "Nije podržano u 2D",
+      "notSupportedErrorMessage": "{{name}} ne može biti prikazano u 2D pregledu. Prebacite na 3D i pokušajte ponovo"
+    },
+    "terria": {
+      "loadConfigErrorTitle": "Došlo je do greške prilikom učitavanja konfiguracije",
+      "proxyableDomainsDeprecation": "`proxyableDomainsUrl` nisu više podržani u v8",
+      "initErrorTitle": "Pokretanje servisa nije uspjelo",
+      "initErrorMessage": "Došlo je do problema sa serverom. To može dovesti do toga da neki slojevi ili servis za konverziju budu nedostupni.",
+      "urlLoadErrorTitle": "Problem sa učitavanjem URL",
+      "urlLoadErrorMessage": "Došlo je do problema prilikom pokretanja Terria sa URL parametrima.",
+      "loadModelErrorMessage": "Došlo je do greške prilikom učitavanja modela `{{model}}`.",
+      "loadingMagdaInitSourceErrorTitle": "Greška pri učitavanju izvora inicijalizacije",
+      "loadingMagdaInitSourceErrorMessage": "Došlo je do greške prilikom učitavanja informacija inicijalizacije iz Magda zapisa `{{url}}`.",
+      "loadingInitSourcesErrorTitle": "Došlo je do greške prilikom učitavanja konfiguracije mape",
+      "loadingInitSourcesErrorMessage": "Došlo je do greške prilikom učitavanja konfiguracije {{appName}} &mdash; moguće je da se ne prikaže ispravno. Molimo pokušajte učitati ponovo i ako se problem nastavi dešavati prijavite ga slanje e-poruke na {{email}}, ili pritisnite dugme ispod.",
+      "loadingInitSourceErrorTitle": "Greška pri učitavanju izvora inicijalizacije",
+      "loadingInitSourceErrorMessage": "Nije moguće učitati informacije o inicijalizaciji iz {{fragment}} jer initFragmentPaths nisu definisani.",
+      "loadingInitSourceError2Message": "Došlo je do greške prilikom učitavanja podataka o inicijalizaciji iz {{loadSource}}. To može značiti da ste sledili nevažeću vezu ili da postoji problem sa internet vezom.",
+      "loadingInitJsonMessage": "Greška prilikom učitavanja JSON datoteke {{url}}.",
+      "loadingBaseMapsErrorTitle": "Greška prilikom učitavanja podloga",
+      "loadingBaseMapErrorTitle": "Greška prilikom učitavanja podloge: `{{name}}`",
+      "loadingShareDataErrorTitle": "Greška prilikom učitavanja dijeljenih podataka",
+      "parsingStartDataErrorMessage": "Došlo je do greške prilikom parsiranja JSON inicijalizacijske datoteke.",
+      "loadingWorkbenchItemErrorTitle": "Greška prilikom učitavanja svavke na radnu površinu: `{{name}}`",
+      "disclaimer": "Odricanje od odgovornosti",
+      "buttonTitleConfirm": "Saglasan sam"
+    },
+    "terriaJSONcatalog": {
+      "name": "Terria JSON katalog funkcija",
+      "misconfiguredErrorTitle": "Pogrešno konfigurisana inicijalizaciona datoteka",
+      "misconfiguredErrorMessage": "Servis nije konfigurisan za TerriaJsonCatalogFunction HTTP 202.",
+      "misconfiguredError2Message": "HTTP 202 konfiguracija{{url}} nije prisutna u odgovoru {{xhr}}",
+      "serviceResponseErrorTitle": "Odgovor servisa nije JSON tekst",
+      "serviceResponseErrorMessage": "TerriaJsonCatalogFunction je trebalo da primi JSON niz, primljeno{{xhr}}",
+      "requestFailedTitle": "Zahtjev nije uspio",
+      "requestFailedMessage": "Zahtjev nije uspio sa statusnim kodom {{status}}.",
+      "asyncResultDescription": "Ovo je rezultat pozivanja procesa {{name}} ili servisa u {{timestamp}} sa dole navedenim parametrima.",
+      "loadingInitSourceErrorTitle": "Greška pri učitavanju izvora inicijalizacije",
+      "loadingInitSourceErrorMessage": "Greška pri učitavanju izvora inicijalizacije {{fragment}} jer initFragmentPaths nisu definisani.",
+      "loadingInitSourceError2Message": "Došlo je do greške prilikom učitavanja podataka o inicijalizaciji iz {{loadSource}}. To može značiti da ste sledili nevažeću vezu ili da postoji problem sa Vašom internet vezom.",
+      "disclaimer": "Izjava o odricanju odgovornosti",
+      "buttonTitleConfirm": "Slažem se"
+    },
+    "thredds": {
+      "nameGroup": "THREDDS Katalog grupa"
+    },
+    "threddsItem": {
+      "name": "THREDDS Sloj"
+    },
+    "urlTemplateMapServer": {
+      "name": "URL Template Map Server"
+    },
+    "drawingCatalogItem": {
+      "name": "Podaci koje su nacrtali korisnici",
+      "layerName": "Podaci koje su nacrtali korisnici",
+      "clickToAddFirstPoint": "Kliknite da biste dodali tačku",
+      "clickToAddAnotherPoint": "Kliknite da biste dodali drugu tačku",
+      "description": "Ovaj skup podataka predstavlja podatke koje je korisnik nacrtao na mapi.",
+      "clickToDrawPoint": "Kliknite na mapu da biste dodali tačku.",
+      "clickToDrawLabel": "Kliknite na mapu da biste dodali tekst.",
+      "clickTostartDrawingLine": "Kliknite na mapu da biste dodali tačku i započeli crtanje linije.",
+      "keepDrawingLine": "Kliknite na mapu da biste dodali još jednu tačku na liniju. Desni klik da sačuvate liniju.",
+      "clickTostartDrawingPolygon": "Kliknite na mapu da biste dodali tačku i započeli crtanje poligona",
+      "keepDrawingPolygon": "Kliknite na mapu da biste dodali još jednu tačku poligona. Desni klik da sačuvate poligon.",
+      "polygonOnePoint": "Kliknite na mapu da biste dodali još jednu tačku poligona. ",
+      "lineOnePoint": "Kliknite na mapu da biste dodali još jednu tačku na liniju. "
+    },
+    "userDrawing": {
+      "devError": "Terria instanca je potrebna.",
+      "messageHeader": "Nacrtaj na mapi",
+      "pointEntities": "Tačke",
+      "otherEntities": "Linije i poligoni",
+      "line": "Linije",
+      "firstPoint": "Prva tačka",
+      "btnCancel": "Otkaži",
+      "btnDone": "Gotovo",
+      "clickToAddFirstPoint": "Kliknite da biste dodali tačku",
+      "clickToAddAnotherPoint": "Kliknite da biste dodali drugu tačku",
+      "anotherPoint": "Druga tačka",
+      "userPolygon": "Korisnički poligon"
+    },
+    "webFeatureServiceCatalogGroup": {
+      "wfsServer": "Web Feature Service (WFS) server",
+      "invalidWFSServerTitle": "Nevažeći WFS server",
+      "invalidWFSServerMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WFS serveru. Čini se da odgovor servera nije važeći dokument GetCapabilities. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna. </p> <p>Ako ovu vezu niste unijeli ručno, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WFS serveru. <p>Ako ste vezu unijeli ručno, proverite da li je tačna. </p> <p>Ova greška takođe može ukazivati na to da server ne podržava <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a>. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, kontaktirajte administratora servera i zamolite ga da omogući CORS. Ili kontaktirajte tim '{{appName}}' slanjem e-pošte na {{email}} i zamolite nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji može proksirati sama aplikacija '{{appName}}'.</p> <p>> Ukoliko niste ručno unijeli u ovu vezu, ova greška može ukazivati na to da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "abstract": "WFS opis",
+      "accessConstraints": "Ograničenja pristupa WFS servisu",
+      "fees": "Naknade za korišćenje WFS servisa"
+    },
+    "webFeatureServiceCatalogItem": {
+      "wfs": "Web Feature Service (WFS)",
+      "dataDescription": "Opis podataka",
+      "abstract": "Web Feature Service Opis",
+      "serviceDescription": "Opis servisa",
+      "metadataUrls": "Veze metapodataka",
+      "accessConstraints": "Ograničenja pristupa",
+      "serviceContact": "Kontakt za servis",
+      "getCapabilitiesUrl": "GetCapabilities URL",
+      "noLayerFoundTitle": "Nije pronađen sloj",
+      "noLayerFoundMessage": "WFS set podataka '{{name}}' nema slojeve koji se podudaraju sa '{{typeNames}}'. {{suggested}} {{line}}{{line}}Ili je datoteka kataloga postavljena netačno ili se WFS server promijenio.{{line}}{{line}}Prijavite ovu grešku slanjem e-pošte na {{email}}.",
+      "missingDataTitle": "Nedostajući podaci",
+      "missingDataMessage": "WFS set podataka '{{name}}' nije vratio nikakve informacije.{{line}}{{line}}Ili je datoteka kataloga pogrešno postavljena ili je adresa servera promijenjena. {{line}}{{line}}Molimo da prijavite ovu grešku slanjem email-a na {{email}}.",
+      "missingUrlTitle": "Nije moguće učitati GetCapabilities",
+      "missingUrlMessage": "Nije moguće učitati Web Feature Service (WFS) GetCapabilities zato što sloj nema definisan `url`.",
+      "reachedMaxFeatureLimit": "Upozorenje: Ovaj sloj je dostigao ograničenje broja WFS objekata ({{maxFeatures}})"
+    },
+    "webMapServiceCatalogGroup": {
+      "wmsServer": "Web Map Service (WMS) server",
+      "invalidWMSServerTitle": "Nevažeći WMS server",
+      "invalidWMSServerMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WMS serveru. Čini se da odgovor servera nije važeći dokument GetCapabilities. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p> <p>Ako ovu vezu niste unijeli ručno, ova greška može ukazivati na to da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WMS serveru. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p> <p>Ova greška takođe može ukazivati na to da server ne podržava <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a>. Ako je ovo vaš server, provjerite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, kontaktirajte administratora servera i zamolite ga da omogući CORS. Ili kontaktirajte tim '{{appName}}' slanjem e-pošte na adresu {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji može proksirati sama aplikacija '{{appName}}'.</p> <p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "missingUrlTitle": "Nije moguće učitati GetCapabilities",
+      "missingUrlMessage": "Nije moguće učitati dokument Web Map Service (WMS) GetCapabilities zato što sloj nema definisan `url`.",
+      "abstract": "Opis WMS servisa",
+      "accessConstraints": "Ograničenja pristupa WMS servisu",
+      "fees": "Naknade za korišćenje WMS servisa"
+    },
+    "webMapServiceCatalogItem": {
+      "wms": "Web Map Service (WMS)",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "metadataUrls": "Veze metapodataka",
+      "accessConstraints": "Ograničenja pristupa",
+      "serviceContact": "Kontakt za servis",
+      "getCapabilitiesUrl": "GetCapabilities URL",
+      "defaultStyleLabel": "Osnovni stil",
+      "noLayerFoundTitle": "Nije pronađen sloj",
+      "noLayerFoundMessage": "WMS grupa podataka '{{name}}' nema sloj sa nazivom '{{layers}}'. {{suggested}} {{line}}{{line}}Ili je datoteka kataloga postavljena nepravilno ili se WMS server promijenio.{{line}}{{line}}Molimo prijavite ovu grešku slanjem e-pošte na {{email}}.",
+      "datasetScaleErrorTitle": "Skup podataka neće biti prikazan u ovoj razmjeri",
+      "datasetScaleErrorMessage": "Set podataka {{name}} neće biti prikazan kada se zumira u blizini mape, jer je administrator podataka naznačio da podaci nisu namenjeni ili pogodni za prikaz u ovoj razmjeri. Kliknite dugme Informacije o skupu podataka na karticu Sada se pregledava za više informacija o skupu podataka i čuvaru podataka.",
+      "badlyFormatedTitle": "Loše formatirana periodičnost",
+      "badlyFormatedMessage": "'{{name}}' grupa podataka ime loše formatiranu periodičnost, '{{isoSegments}}'. Kliknite dugme Informacije za skup podataka za više informacija o skupu podataka i administratoru podataka.",
+      "missingDataTitle": "Nedostajući podaci",
+      "missingDataMessage": "WMS grupa podataka '{{name}}' nije vratila nikakve povratne informacije.{{line}}{{line}}}} Ili je datoteka kataloga pogrešno postavljena ili je adresa servera promijenjena. {{line}}{{line}}Molimo prijavite ovu grešku slanjem e-pošte na {{email}}.",
+      "missingUrlTitle": "Nije moguće učitati GetCapabilities",
+      "missingUrlMessage": "Nije moguće učitati dokument Web Map Service (WMS) GetCapabilities zato što sloj nema definisan `url`."
+    },
+    "webMapTileServiceCatalogGroup": {
+      "wmtsServer": "Web Map Tile Service (WMTS) server",
+      "invalidWMTSServerTitle": "Nevažeći WMTS server",
+      "invalidWMTSServerMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WMS serveru.. Čini se da odgovor servera nije važeći GetCapabilities dokument. <p>Ako ste vezu uneli ručno, proverite da li je veza tačna..</p> <p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WMTS serveru. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p> <p>Ova greška takođe može ukazivati na to da server ne podržava <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a>. Ako je ovo vaš server, proverite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, kontaktirajte administratora servera i zamolite ga da omogući CORS. Ili nas kontaktirajte slanjem e-pošte na adresu {{email}} i zamolite nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koje može proksirati sama aplikacija '{{appName}}' </p> <p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "abstract": "Opis WMS servisa",
+      "accessConstraints": "Ograničenja pristupa WMS servisu",
+      "fees": "Naknade za korišćenje WMS servisa",
+      "invalidCapabilitiesTitle": "Neispravan GetCapabilities",
+      "invalidCapabilitiesMessage": "Odgovor sa {{url}} adrese je uspješno preuzet, ali izgleda da ne predstavlja ispravan Web Map Tile Service (WMTS) GetCapabilities dokument.\nIli element kataloga nije ispravno podešen, ili je adresa servera promijenjena."
+    },
+    "webMapTileServiceCatalogItem": {
+      "wmts": "Web Map Tile Service (WMTS)",
+      "dataDescription": "Opis podataka",
+      "serviceDescription": "Opis servisa",
+      "accessConstraints": "Ograničenja pristupa",
+      "fees": "Naknade za korišćenje WMTS servisa",
+      "serviceContact": "Kontakt za servis",
+      "getCapabilitiesUrl": "GetCapabilities URL",
+      "missingUrlTitle": "Nije moguće učitati GetCapabilities",
+      "missingUrlMessage": "Nije moguće učitati Web Map Tile Service (WMTS) GetCapabilities dokument zato što sloj nema definisan `url`.",
+      "noUsableTileMatrixTitle": "Upozorenje",
+      "noUsableTileMatrixMessage": "Ovaj WMTS sloj ne podržava Web Mercator tile matrix set - moguće da neće biti prikazan ispravno"
+    },
+    "webProcessingService": {
+      "wps": "Web Processing Service (WPS)",
+      "invalidWPSServerTitle": "Neispravan WPS server",
+      "invalidWPSServerMessage": "Došlo je do greške prilikom pozivanja {{endpoint}} na WPS serveru za ime procesa {{name}}. Čini se da odgovor servera nije važeći dokument {{endpoint}}. <p>Ova greška takođe može ukazivati da je server za obradu koji ste naveli privremeno nedostupan ili postoji problem sa vašom internet vezom. Pokušajte ponovo otvoriti server za obradu, a ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "processDescriptionErrorTitle": "Proces nema opis procesa",
+      "processDescriptionErrorMessage": "WPS DescribeProcess za ovaj proces ne uključuje ProcessDescription.",
+      "processInputErrorTitle": "Proces nema nijedan ulaz",
+      "processInputErrorMessage": "Ovaj WPS postupak ne navodi nikakve ulazne parametre.",
+      "unsupportedParameterErrorTitle": "Nepodržani tip parametra",
+      "unsupportedParameterErrorMessage": "Parametar {{identifier}} nije podržani tip parametra.",
+      "invalidResponseErrorTitle": "Nevažeći odgovor WPS servera",
+      "invalidResponseErrorMessage": "Došlo je do greške prilikom pristupa lokaciji statusa na WPS serveru za ime procesa {{name}}. Čini se da odgovor servera nije važeći dokument ExecuteResponse. <p>Ova greška takođe može ukazivati na to da server za obradu koji ste naveli privremeno nije dostupan ili da postoji problem sa internet vezom. Ako se problem nastavi pojavljivati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "invalidResponseError2Title": "Nevažeći odgovor sa WPS servera",
+      "invalidResponseError2Message": "Odgovor sa WPS servera ne sadrži element Status.",
+      "failureReasonUnknowError": "Razlog neuspjeha je nepoznat.",
+      "asyncShortReportFailed": "Pozivanje WPS servisa nije uspjelo. Više detalja je dostupno na tabli sa informacijama.",
+      "errorDetails": "Detalji o greškama",
+      "resultPendingDescription": "Ovo je rezultat pozivanja {{name}} procesa ili servisa u {{timestamp}} sa ulaznim parametrima ispod.",
+      "regionTypeDescription": "Tip regiona za analizu.",
+      "regionTypeName": "Tip regiona",
+      "regionParameterName": "Region Parameter",
+      "wpsServer": "Web Processing Service (WPS) server",
+      "wpsResult": "Web Processing Service rezultat"
+    },
+    "webProcessingServiceCatalogGroup": {
+      "typeName": "Web Processing Service (WPS) server",
+      "missingUrlTitle": "Nije moguće učitati GetCapabilities",
+      "missingUrlMessage": "Nije moguće učitati Web Processing Service (WFS) GetCapabilities zato što stavka kataloga nema definisan `url`.",
+      "invalidCapabilitiesTitle": "Neispravan GetCapabilities",
+      "invalidCapabilitiesMessage": "Odgovor sa {{url}} adrese je uspješno preuzet, ali izgleda da ne predstavlja ispravan Web Processing Service (WPS) GetCapabilities dokument.\nIli element kataloga nije ispravno podešen, ili je adresa servera promijenjena.",
+      "invalidServerTitle": "Neispravan WPS server",
+      "invalidServerMessage": "Došlo je do greške prilikom pozivanja GetCapabilities na WPS serveru. Čini se da odgovor servera nije važeći dokument GetCapabilities. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna.</p> <p>Ako ovu vezu niste unijeli ručno, ova greška može ukazivati na to da je grupa koju ste otvorili privremeno nedostupna ili postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga slanjem e-pošte na {{email}}.</p>",
+      "abstract": "Web Processing Service opis",
+      "accessConstraints": "Ograničenja pristupa WPS servisu",
+      "fees": "Naknade za korišćenje WPS servisa",
+      "providerName": "WPS servis obezbijedio",
+      "providerSite": "WPS servis obezbijedio"
+    },
+    "wfsFeatures": {
+      "featuresGroup": "Grupa prostornih podataka Web Feature Service (WFS) Server",
+      "queryErrorTitle": "Greška pri pretraživanju WFS servera",
+      "queryErrorMessage": "Došlo je do greške prilikom pozivanja GetFeature na WFS serveru. Čini se da odgovor servera nije važeći GeoJSON dokument. <p>Ako ste vezu unijeli ručno, provjerite da li je tačna.</p><p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>",
+      "groupNotAvailableTitle": "Grupa nije dostupna",
+      "groupNotAvailableMessage": "Došlo je do greške prilikom pozivanja GetFeature na WFS serveru. <p>Ako ste vezu unijeli ručno, provjerite da li je veza tačna. </p><p>Ova greška takođe može ukazivati na to da server ne podržava <a href=\"http://enable-cors.org/\" target=\"_blank\">CORS</a>. Ako je ovo vaš server, provjerite da li je CORS omogućen i omogućite ga ako nije. Ako ne kontrolišete server, kontaktirajte administratora servera i zamolite ga da omogući CORS. Ili kontaktirajte tim {{appName}} slanjem e-pošte na adresu {{email}} i zatražite od nas da dodamo ovaj server na listu servera koji ne podržavaju CORS i koji može proksirati sama aplikacija '{{appName}}'.</p><p>Ukoliko niste ručno unijeli u ovu vezu, ova greška može značiti da je grupa koju ste otvorili privremeno nedostupna ili da postoji problem sa internet vezom. Pokušajte ponovo da otvorite grupu i ako se problem nastavi dešavati, prijavite ga tako što ćete poslati e-poruku na {{email}}.</p>"
+    },
+    "shadow": {
+      "name": "Sjenke",
+      "options": {
+        "none": "Ništa",
+        "cast": "Samo emitiraj",
+        "receive": "Samo primaj",
+        "both": "Emitiraj i primaj"
+      }
+    },
+    "commonModelErrors": {
+      "3dTypeIn2dMode": "**Napomena:** Ovaj set podataka ne može biti prikazan u 2D pregledniku. Promijenite na 3D verziju preglednika.",
+      "datasetScaleErrorTitle": "Skup podataka neće biti prikazan u ovoj razmjeri",
+      "datasetScaleErrorMessage": "Skup podataka {{name}} neće biti prikazan kada se uveća u blizini mape, jer je vlasnik podataka naznačio da podaci nisu namijenjeni ili pogodni za prikaz u ovoj razmjeri. Kliknite dugme Informacije o skupu podataka na karticu Sada se pregleda za više informacija o skupu podataka i vlasniku podataka."
+    }
+  },
+  "deltaTool": {
+    "titlePrefix": "Otkrivanje promjena",
+    "description": "Ovaj alat vizualizuje razliku između snimaka snimljenih u dva odvojena vremenska momenta.",
+    "pickLocation": "Da biste pogledali dostupne snimke, odaberite svoju lokaciju koja vas zanima na suprotnoj mapi.",
+    "cancelBtn": "Otkaži",
+    "generateDeltaBtn": "Generiši mapu razlika",
+    "selectedLocation": "Izabrana lokacija",
+    "primaryImage": "Primarni snimak",
+    "secondaryImage": "Sekundarni snimak",
+    "pickerMessage": {
+      "pickFirst": "Izaberite tačku klikom na mapu",
+      "pickAnother": "Kliknite drugu tačku da biste promijenili izbor",
+      "pickError": "Greška pri pokušaju rješavanja snimaka na lokaciji! Ponovo odaberite tačku klikom na mapu."
+    },
+    "catalogItem": {
+      "description": "Ovaj sloj vizualizuje razliku između snimaka snimljenih u dve diskretne tačke u vremenu"
+    },
+    "loadingError": {
+      "title": "Greška pri učitavanju Delta alata",
+      "message": "Došlo je do greške prilikom pokušaja učitavanja Delta alata sa servera. Pokušajte ponovo."
+    }
+  },
+  "term": {
+    "missingContent": "nedostaje sadržaj"
+  },
+  "mapNavigation": {
+    "additionalTools": "Ostali alati",
+    "additionalToolsTitle": "Prikaži još alata"
+  },
+  "itemSearchTool": {
+    "toolLoadError": "Greška prilikom učitavanja alata za pretragu.",
+    "title": "Pretraži {{itemName}}",
+    "loading": "Učitavanje parametara za pretraživanje",
+    "loadError": "Greška prilikom učitavanje parametara za pretraživanje. Provjerite konzolu za detaljne informacije o grešci.",
+    "noParameters": "Nisu pronađeni parametri za pretraživanje",
+    "searching": "Pretraga u toku",
+    "searchError": "Pretraga neuspješna. Provjerite konzolu za detaljne informacije o grešci.",
+    "numericParameter": {
+      "minimum": "Minimum",
+      "maximum": "Maksimum"
+    },
+    "searchBtnText": "Pretraži",
+    "resetBtnText": "Očisti unos",
+    "backBtnText": "Pretraži ponovo",
+    "actions": {
+      "highlightAll": "Označi sve",
+      "showMatchingOnly": "Prikaži samo pronađene"
+    },
+    "resultsCount_0": "{{count}} rezultat pronađen",
+    "resultsCount_1": "{{count}} rezultata pronađena",
+    "resultsCount_2": "{{count}} rezultata pronađeno"
+  },
+  "indexedItemSearchProvider": {
+    "missingOptionIndexRootUrl": "Opcija `indexRootUrl` nedostaje u konfiguraciji pretrage stavke kataloga.",
+    "errorParsingIndexRoot": "Greška prilikom obrade indexRoot fajla: {{indexRootUrl}}."
+  },
+  "pedestrianMode": {
+    "toolButtonTitle": "Pješački mod",
+    "dropPedestrianTooltipMessage": "<b>Lijevi klik</b> da izaberete lokaciju spuštanja <br /><b>Desni klik / Esc</b> da odustanete",
+    "controls": {
+      "title": "Kontrole"
+    }
+  },
+  "notification": {
+    "title": "Poruka"
+  },
+  "toast": {
+    "mapIsZooming": "Učitavanje idealnog zuma..."
+  }
+}

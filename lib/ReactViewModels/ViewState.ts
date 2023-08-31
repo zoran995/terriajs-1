@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import {
   action,
   computed,
@@ -69,6 +70,7 @@ export default class ViewState {
   readonly terria: Terria;
   readonly relativePosition = RelativePosition;
 
+  @observable currentLanguage: string = i18next.language;
   @observable private _previewedItem: BaseModel | undefined;
   get previewedItem() {
     return this._previewedItem;
@@ -88,7 +90,8 @@ export default class ViewState {
   @observable portals: Map<string, HTMLElement | null> = new Map();
   @observable lastUploadedFiles: any[] = [];
   @observable storyBuilderShown: boolean = false;
-
+  @observable attributeTableItem: BaseModel | undefined;
+  @observable attributeTableShown: boolean = false;
   // Flesh out later
   @observable showHelpMenu: boolean = false;
   @observable showSatelliteGuidance: boolean = false;
@@ -278,6 +281,7 @@ export default class ViewState {
     this.currentTourIndex = -1;
     this.showTour = false;
   }
+
   @action
   previousTourPoint() {
     const currentIndex = this.currentTourIndex;
@@ -309,6 +313,12 @@ export default class ViewState {
   @action
   deleteAppRef(refName: string) {
     this.appRefs.delete(refName);
+  }
+
+  @action
+  removeAttributeTable() {
+    this.attributeTableItem = undefined;
+    this.attributeTableShown = false;
   }
 
   /**
@@ -355,6 +365,12 @@ export default class ViewState {
   @observable retainSharePanel: boolean = false; // The large share panel accessed via Share/Print button
 
   /**
+   * Gets or sets a value indicating whether the mini map is visible.
+   * @type {Boolean}
+   */
+  @observable miniMapIsVisible: boolean = false;
+
+  /**
    * The currently open tool
    */
   @observable currentTool?: Tool;
@@ -371,6 +387,7 @@ export default class ViewState {
   private _workbenchHasTimeWMSSubscription: IReactionDisposer;
   private _storyBeforeUnloadSubscription: IReactionDisposer;
   private _disclaimerHandler: DisclaimerHandler;
+  private _languageChangeSubscription: IReactionDisposer;
 
   constructor(options: ViewStateOptions) {
     makeObservable(this);
@@ -385,6 +402,13 @@ export default class ViewState {
       ? options.errorHandlingProvider
       : null;
     this.terria = terria;
+
+    this._languageChangeSubscription = reaction(
+      () => this.currentLanguage,
+      (language) => {
+        i18next.changeLanguage(language);
+      }
+    );
 
     // When features are picked, show the feature info panel.
     this._pickedFeaturesSubscription = reaction(
@@ -518,6 +542,7 @@ export default class ViewState {
   }
 
   dispose() {
+    this._languageChangeSubscription();
     this._pickedFeaturesSubscription();
     this._disclaimerVisibleSubscription();
     this._mobileMenuSubscription();
@@ -802,6 +827,12 @@ export default class ViewState {
       this.printWindow.close();
     }
     this.printWindow = window;
+  }
+
+  @action
+  reopenTool(tool: Tool) {
+    this.closeTool();
+    setTimeout(() => this.openTool(tool), 50);
   }
 
   @action

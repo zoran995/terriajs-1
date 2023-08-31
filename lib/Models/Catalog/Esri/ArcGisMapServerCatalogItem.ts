@@ -1,6 +1,9 @@
 import i18next from "i18next";
 import uniqWith from "lodash-es/uniqWith";
 import { computed, makeObservable, override, runInAction } from "mobx";
+import combine from "terriajs-cesium/Source/Core/combine";
+import GeographicProjection from "terriajs-cesium/Source/Core/GeographicProjection";
+import objectToQuery from "terriajs-cesium/Source/Core/objectToQuery";
 import WebMercatorTilingScheme from "terriajs-cesium/Source/Core/WebMercatorTilingScheme";
 import ArcGisMapServerImageryProvider from "terriajs-cesium/Source/Scene/ArcGisMapServerImageryProvider";
 import URI from "urijs";
@@ -19,6 +22,7 @@ import MappableMixin, {
   ImageryParts
 } from "../../../ModelMixins/MappableMixin";
 import UrlMixin from "../../../ModelMixins/UrlMixin";
+import { PrintMapSize } from "../../../ReactViews/Tools/PrintTool/PrintCapabilities";
 import ArcGisMapServerCatalogItemTraits from "../../../Traits/TraitsClasses/ArcGisMapServerCatalogItemTraits";
 import { InfoSectionTraits } from "../../../Traits/TraitsClasses/CatalogMemberTraits";
 import DiscreteTimeTraits from "../../../Traits/TraitsClasses/DiscreteTimeTraits";
@@ -587,6 +591,89 @@ export default class ArcGisMapServerCatalogItem extends UrlMixin(
     if (!stratum) return [];
 
     return filterOutUndefined(findLayers(stratum.allLayers, this.layers));
+  }
+
+  encodeLayerForPrint(pageBounds: any, printMapSize: PrintMapSize): any {
+    const imageryProvider: ArcGisMapServerImageryProvider | undefined = <any>(
+      this._currentImageryParts?.imageryProvider
+    );
+    if (imageryProvider === undefined) {
+      return undefined;
+    }
+    if (imageryProvider.usingPrecachedTiles) {
+      return this.encodeAsXYZ(imageryProvider);
+    } else {
+      this.encodeAsImage(imageryProvider, pageBounds, printMapSize);
+    }
+  }
+
+  encodeAsImage(
+    imageryProvider: ArcGisMapServerImageryProvider,
+    pageBounds: any,
+    printMapSize: PrintMapSize
+  ) {
+    const tilingScheme = imageryProvider.tilingScheme;
+    const extent = [
+      pageBounds.west,
+      pageBounds.south,
+      pageBounds.east,
+      pageBounds.north
+    ];
+    const query = combine(imageryProvider.parameters, {
+      bbox: extent.join(","),
+      size: printMapSize.width + "," + printMapSize.height,
+      format: "png",
+      transparent: true,
+      f: "image"
+    });
+
+    if (tilingScheme.projection instanceof GeographicProjection) {
+      query.bboxSR = 4326;
+      query.imageSR = 4326;
+    } else {
+      query.bboxSR = 3857;
+      query.imageSR = 3857;
+    }
+    if (imageryProvider.layers) {
+      query.layers = "show:" + imageryProvider.layers;
+    }
+
+    const url =
+      getBaseURI(this) +
+      "/export" +
+      (Object.keys(query).length > 0 ? "?" + objectToQuery(query) : "");
+    const customParams: { transparent: boolean } = {
+      transparent: true
+    };
+    const mapObject = {
+      baseURL: url,
+      extent: extent,
+      opacity: this.opacity,
+      type: "image",
+      customParams: customParams
+    };
+    return mapObject;
+  }
+
+  private encodeAsXYZ(imageryProvider: ArcGisMapServerImageryProvider) {
+    const tileSize = [imageryProvider.tileWidth, imageryProvider.tileHeight];
+    const customParams: { transparent: boolean } = {
+      transparent: true
+    };
+    const mapObject = {
+      baseURL:
+        this.url +
+        "/tile/{z}/{y}/{x}" +
+        (Object.keys(imageryProvider.parameters).length > 0
+          ? "?" + objectToQuery(imageryProvider.parameters)
+          : ""),
+      opacity: this.opacity,
+      type: "OSM",
+      imageExtension: "image/png",
+      tileSize: tileSize,
+      customParams: customParams
+    };
+    return mapObject;
   }
 }
 

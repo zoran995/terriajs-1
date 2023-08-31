@@ -17,6 +17,7 @@ describe("LangPanel", function () {
     terria = new Terria({
       baseUrl: "./"
     });
+    terria.configParameters.languageConfiguration = undefined;
 
     viewState = new ViewState({
       terria: terria,

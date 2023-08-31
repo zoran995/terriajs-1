@@ -213,6 +213,24 @@ export default abstract class GlobeOrMap {
     rectangle: Rectangle
   ): () => void;
 
+  async highlightRegion(
+    regionId: string,
+    imageryProvider: MapboxVectorTileImageryProvider
+  ) {
+    if (isDefined(this._removeHighlightCallback)) {
+      await this._removeHighlightCallback();
+      this._removeHighlightCallback = undefined;
+      this._highlightPromise = undefined;
+    }
+    const highlightImageryProvider =
+      imageryProvider.createHighlightImageryProvider(regionId);
+    this._removeHighlightCallback =
+      this.terria.currentViewer._addVectorTileHighlight(
+        highlightImageryProvider,
+        imageryProvider.rectangle
+      );
+  }
+
   async _highlightFeature(feature: TerriaFeature | undefined) {
     if (isDefined(this._removeHighlightCallback)) {
       await this._removeHighlightCallback();

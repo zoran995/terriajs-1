@@ -1770,6 +1770,9 @@ function zoomToDataSource(
       var entities = target.entities.values;
 
       var boundingSpheres = [];
+      if (!isDefined(entities) || entities.length === 0) {
+        return true;
+      }
       for (var i = 0, len = entities.length; i < len; i++) {
         var state = BoundingSphereState.PENDING;
         try {

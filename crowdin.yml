@@ -1,0 +1,5 @@
+files:
+  - source: /wwwroot/languages/en/*.json
+    translation: /lib/Language/%two_letters_code%-%locale%/%original_file_name%
+    update_option: update_as_unapproved
+    type: i18next_json

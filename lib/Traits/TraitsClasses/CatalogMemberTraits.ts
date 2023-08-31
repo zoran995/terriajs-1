@@ -118,6 +118,14 @@ class CatalogMemberTraits extends ModelTraits {
 
   @primitiveTrait({
     type: "string",
+    name: "Contact",
+    description:
+      "The contact for this catalog item. Markdown and HTML may be used."
+  })
+  contact?: string;
+
+  @primitiveTrait({
+    type: "string",
     name: "Name in catalog",
     description:
       "The name of the item to be displayed in the catalog, if it is different from the one to display in the workbench."
@@ -206,6 +214,22 @@ class CatalogMemberTraits extends ModelTraits {
     idProperty: "index"
   })
   dataUrls?: DataUrlTraits[];
+
+  @primitiveTrait({
+    type: "boolean",
+    name: "Hide the position the feature in the get feature info ",
+    description:
+      "Indicates that the position of the feature in the get feature info should be hidden."
+  })
+  hidePosition: boolean = false;
+
+  @primitiveTrait({
+    type: "boolean",
+    name: "Authenticate",
+    description:
+      "Wheter we should send keycloak authentication token with request."
+  })
+  keycloakToken: boolean = false;
 
   @primitiveTrait({
     name: "Data Custodian",

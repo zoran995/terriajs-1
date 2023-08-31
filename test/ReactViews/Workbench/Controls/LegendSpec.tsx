@@ -82,7 +82,7 @@ describe("Legend", function () {
       );
       expect(memberComponents.length).toEqual(2);
       expect(memberComponents[0].props.children[1].props.children).toEqual(
-        "1,500 to 2,000"
+        "1500 to 2000"
       );
     });
 

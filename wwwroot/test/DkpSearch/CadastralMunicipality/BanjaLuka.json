@@ -1,0 +1,1325 @@
+[
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "10",
+    "naziv": "Борковићи Горњи",
+    "naziv_lat": "Borkovići Gornji",
+    "naziv2": "Борковићи Горњи (КЗ)",
+    "naziv2_lat": "Borkovići Gornji (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "18",
+    "naziv": "Борковићи Горњи",
+    "naziv_lat": "Borkovići Gornji",
+    "naziv2": "Борковићи Горњи (КНН)",
+    "naziv2_lat": "Borkovići Gornji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "99",
+    "naziv": "Брда",
+    "naziv_lat": "Brda",
+    "naziv2": "Брда (КНН)",
+    "naziv2_lat": "Brda (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "12",
+    "naziv": "Бронзани Мајдан",
+    "naziv_lat": "Bronzani Majdan",
+    "naziv2": "Бронзани Мајдан (КЗ)",
+    "naziv2_lat": "Bronzani Majdan (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "20",
+    "naziv": "Бронзани Мајдан",
+    "naziv_lat": "Bronzani Majdan",
+    "naziv2": "Бронзани Мајдан (КНН)",
+    "naziv2_lat": "Bronzani Majdan (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "21",
+    "naziv": "Буџак",
+    "naziv_lat": "Budžak",
+    "naziv2": "Буџак (КН)",
+    "naziv2_lat": "Budžak (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "21",
+    "naziv": "Буџак",
+    "naziv_lat": "Budžak",
+    "naziv2": "Буџак (КНН)",
+    "naziv2_lat": "Budžak (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "13",
+    "naziv": "Буџак",
+    "naziv_lat": "Budžak",
+    "naziv2": "Буџак (КЗ)",
+    "naziv2_lat": "Budžak (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "14",
+    "naziv": "Буквалек",
+    "naziv_lat": "Bukvalek",
+    "naziv2": "Буквалек (КЗ)",
+    "naziv2_lat": "Bukvalek (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "22",
+    "naziv": "Буквалек",
+    "naziv_lat": "Bukvalek",
+    "naziv2": "Буквалек (КНН)",
+    "naziv2_lat": "Bukvalek (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "23",
+    "naziv": "Церици",
+    "naziv_lat": "Cerici",
+    "naziv2": "Церици (КНН)",
+    "naziv2_lat": "Cerici (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "24",
+    "naziv": "Чесма 1",
+    "naziv_lat": "Česma 1",
+    "naziv2": "Чесма 1 (КН)",
+    "naziv2_lat": "Česma 1 (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "24",
+    "naziv": "Чесма 1",
+    "naziv_lat": "Česma 1",
+    "naziv2": "Чесма 1 (КНН)",
+    "naziv2_lat": "Česma 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "25",
+    "naziv": "Чесма 2",
+    "naziv_lat": "Česma 2",
+    "naziv2": "Чесма 2 (КНН)",
+    "naziv2_lat": "Česma 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "26",
+    "naziv": "Чифлук",
+    "naziv_lat": "Čifluk",
+    "naziv2": "Чифлук (КНН)",
+    "naziv2_lat": "Čifluk (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "27",
+    "naziv": "Чокори",
+    "naziv_lat": "Čokori",
+    "naziv2": "Чокори (КНН)",
+    "naziv2_lat": "Čokori (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "28",
+    "naziv": "Дебељаци",
+    "naziv_lat": "Debeljaci",
+    "naziv2": "Дебељаци (КНН)",
+    "naziv2_lat": "Debeljaci (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "29",
+    "naziv": "Делибашино Село 1",
+    "naziv_lat": "Delibašino Selo 1",
+    "naziv2": "Делибашино Село 1 (КНН)",
+    "naziv2_lat": "Delibašino Selo 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "104",
+    "naziv": "Делибашино Село 2",
+    "naziv_lat": "Delibašino Selo 2",
+    "naziv2": "Делибашино Село 2 (КНН)",
+    "naziv2_lat": "Delibašino Selo 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "102",
+    "naziv": "Дервиши",
+    "naziv_lat": "Derviši",
+    "naziv2": "Дервиши (КНН)",
+    "naziv2_lat": "Derviši (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "31",
+    "naziv": "Дервиши",
+    "naziv_lat": "Derviši",
+    "naziv2": "Дервиши (КН)",
+    "naziv2_lat": "Derviši (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "22",
+    "naziv": "Добрња",
+    "naziv_lat": "Dobrnja",
+    "naziv2": "Добрња (КЗ)",
+    "naziv2_lat": "Dobrnja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "33",
+    "naziv": "Драгочај",
+    "naziv_lat": "Dragočaj",
+    "naziv2": "Драгочај (КНН)",
+    "naziv2_lat": "Dragočaj (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "34",
+    "naziv": "Дракулић",
+    "naziv_lat": "Drakulić",
+    "naziv2": "Дракулић (КНН)",
+    "naziv2_lat": "Drakulić (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "24",
+    "naziv": "Дракулић",
+    "naziv_lat": "Drakulić",
+    "naziv2": "Дракулић (КЗ)",
+    "naziv2_lat": "Drakulić (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "111",
+    "naziv": "Дуципоље",
+    "naziv_lat": "Ducipolje",
+    "naziv2": "Дуципоље (КНН)",
+    "naziv2_lat": "Ducipolje (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "110",
+    "naziv": "Дујаковци",
+    "naziv_lat": "Dujakovci",
+    "naziv2": "Дујаковци (КНН)",
+    "naziv2_lat": "Dujakovci (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "26",
+    "naziv": "Дујаковци",
+    "naziv_lat": "Dujakovci",
+    "naziv2": "Дујаковци (КЗ)",
+    "naziv2_lat": "Dujakovci (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "27",
+    "naziv": "Голеши",
+    "naziv_lat": "Goleši",
+    "naziv2": "Голеши (КЗ)",
+    "naziv2_lat": "Goleši (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "37",
+    "naziv": "Голеши",
+    "naziv_lat": "Goleši",
+    "naziv2": "Голеши (КНН)",
+    "naziv2_lat": "Goleši (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "38",
+    "naziv": "Градина",
+    "naziv_lat": "Gradina",
+    "naziv2": "Градина (КНН)",
+    "naziv2_lat": "Gradina (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "29",
+    "naziv": "Ивањска",
+    "naziv_lat": "Ivanjska",
+    "naziv2": "Ивањска (КЗ)",
+    "naziv2_lat": "Ivanjska (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "39",
+    "naziv": "Ивањска",
+    "naziv_lat": "Ivanjska",
+    "naziv2": "Ивањска (КНН)",
+    "naziv2_lat": "Ivanjska (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "30",
+    "naziv": "Ивањска Горња",
+    "naziv_lat": "Ivanjska Gornja",
+    "naziv2": "Ивањска Горња (КЗ)",
+    "naziv2_lat": "Ivanjska Gornja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "40",
+    "naziv": "Ивањска Горња",
+    "naziv_lat": "Ivanjska Gornja",
+    "naziv2": "Ивањска Горња (КНН)",
+    "naziv2_lat": "Ivanjska Gornja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "101",
+    "naziv": "Јагаре",
+    "naziv_lat": "Jagare",
+    "naziv2": "Јагаре (КНН)",
+    "naziv2_lat": "Jagare (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "42",
+    "naziv": "Кмећани",
+    "naziv_lat": "Kmećani",
+    "naziv2": "Кмећани (КНН)",
+    "naziv2_lat": "Kmećani (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "32",
+    "naziv": "Кмећани",
+    "naziv_lat": "Kmećani",
+    "naziv2": "Кмећани (КЗ)",
+    "naziv2_lat": "Kmećani (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "33",
+    "naziv": "Кола",
+    "naziv_lat": "Kola",
+    "naziv2": "Кола (КЗ)",
+    "naziv2_lat": "Kola (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "44",
+    "naziv": "Кола Доња",
+    "naziv_lat": "Kola Donja",
+    "naziv2": "Кола Доња (КНН)",
+    "naziv2_lat": "Kola Donja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "35",
+    "naziv": "Конатари",
+    "naziv_lat": "Konatari",
+    "naziv2": "Конатари (КЗ)",
+    "naziv2_lat": "Konatari (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "45",
+    "naziv": "Конатари",
+    "naziv_lat": "Konatari",
+    "naziv2": "Конатари (КНН)",
+    "naziv2_lat": "Konatari (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "106",
+    "naziv": "Козара",
+    "naziv_lat": "Kozara",
+    "naziv2": "Козара (КНН)",
+    "naziv2_lat": "Kozara (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "47",
+    "naziv": "Крмине",
+    "naziv_lat": "Krmine",
+    "naziv2": "Крмине (КНН)",
+    "naziv2_lat": "Krmine (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "38",
+    "naziv": "Крупа на Врбасу",
+    "naziv_lat": "Krupa na Vrbasu",
+    "naziv2": "Крупа на Врбасу (КЗ)",
+    "naziv2_lat": "Krupa na Vrbasu (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "48",
+    "naziv": "Крупа на Врбасу",
+    "naziv_lat": "Krupa na Vrbasu",
+    "naziv2": "Крупа на Врбасу (КНН)",
+    "naziv2_lat": "Krupa na Vrbasu (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "49",
+    "naziv": "Куљани",
+    "naziv_lat": "Kuljani",
+    "naziv2": "Куљани (КНН)",
+    "naziv2_lat": "Kuljani (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "52",
+    "naziv": "Љубачево",
+    "naziv_lat": "LJubačevo",
+    "naziv2": "Љубачево (КНН)",
+    "naziv2_lat": "LJubačevo (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "40",
+    "naziv": "Локвари",
+    "naziv_lat": "Lokvari",
+    "naziv2": "Локвари (КЗ)",
+    "naziv2_lat": "Lokvari (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "41",
+    "naziv": "Лусићи",
+    "naziv_lat": "Lusići",
+    "naziv2": "Лусићи (КЗ)",
+    "naziv2_lat": "Lusići (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "53",
+    "naziv": "Мађир",
+    "naziv_lat": "Mađir",
+    "naziv2": "Мађир (КНН)",
+    "naziv2_lat": "Mađir (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "54",
+    "naziv": "Марчете",
+    "naziv_lat": "Marčete",
+    "naziv2": "Марчете (КНН)",
+    "naziv2_lat": "Marčete (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "45",
+    "naziv": "Мелина Доња",
+    "naziv_lat": "Melina Donja",
+    "naziv2": "Мелина Доња (КЗ)",
+    "naziv2_lat": "Melina Donja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "55",
+    "naziv": "Мелина Доња",
+    "naziv_lat": "Melina Donja",
+    "naziv2": "Мелина Доња (КНН)",
+    "naziv2_lat": "Melina Donja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "46",
+    "naziv": "Мелина Горња",
+    "naziv_lat": "Melina Gornja",
+    "naziv2": "Мелина Горња (КЗ)",
+    "naziv2_lat": "Melina Gornja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "56",
+    "naziv": "Мелина Горња",
+    "naziv_lat": "Melina Gornja",
+    "naziv2": "Мелина Горња (КНН)",
+    "naziv2_lat": "Melina Gornja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "57",
+    "naziv": "Мишин Хан",
+    "naziv_lat": "Mišin Han",
+    "naziv2": "Мишин Хан (КНН)",
+    "naziv2_lat": "Mišin Han (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "47",
+    "naziv": "Мишин Хан",
+    "naziv_lat": "Mišin Han",
+    "naziv2": "Мишин Хан (КЗ)",
+    "naziv2_lat": "Mišin Han (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "48",
+    "naziv": "Мотике",
+    "naziv_lat": "Motike",
+    "naziv2": "Мотике (КЗ)",
+    "naziv2_lat": "Motike (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "58",
+    "naziv": "Мотике",
+    "naziv_lat": "Motike",
+    "naziv2": "Мотике (КНН)",
+    "naziv2_lat": "Motike (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "59",
+    "naziv": "Новаковићи",
+    "naziv_lat": "Novakovići",
+    "naziv2": "Новаковићи (КНН)",
+    "naziv2_lat": "Novakovići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "50",
+    "naziv": "Обровац",
+    "naziv_lat": "Obrovac",
+    "naziv2": "Обровац (КЗ)",
+    "naziv2_lat": "Obrovac (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "60",
+    "naziv": "Обровац",
+    "naziv_lat": "Obrovac",
+    "naziv2": "Обровац (КНН)",
+    "naziv2_lat": "Obrovac (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "61",
+    "naziv": "Павићи",
+    "naziv_lat": "Pavići",
+    "naziv2": "Павићи (КНН)",
+    "naziv2_lat": "Pavići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "62",
+    "naziv": "Павловац",
+    "naziv_lat": "Pavlovac",
+    "naziv2": "Павловац (КН)",
+    "naziv2_lat": "Pavlovac (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "62",
+    "naziv": "Павловац",
+    "naziv_lat": "Pavlovac",
+    "naziv2": "Павловац (КНН)",
+    "naziv2_lat": "Pavlovac (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "52",
+    "naziv": "Павловац",
+    "naziv_lat": "Pavlovac",
+    "naziv2": "Павловац (КЗ)",
+    "naziv2_lat": "Pavlovac (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "108",
+    "naziv": "Перван Доњи",
+    "naziv_lat": "Pervan Donji",
+    "naziv2": "Перван Доњи (КНН)",
+    "naziv2_lat": "Pervan Donji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "109",
+    "naziv": "Перван Горњи",
+    "naziv_lat": "Pervan Gornji",
+    "naziv2": "Перван Горњи (КНН)",
+    "naziv2_lat": "Pervan Gornji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "55",
+    "naziv": "Петричевац 1",
+    "naziv_lat": "Petričevac 1",
+    "naziv2": "Петричевац 1 (КЗ)",
+    "naziv2_lat": "Petričevac 1 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "96",
+    "naziv": "Петричевац 2",
+    "naziv_lat": "Petričevac 2",
+    "naziv2": "Петричевац 2 (КЗ)",
+    "naziv2_lat": "Petričevac 2 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "65",
+    "naziv": "Петрићевац 1",
+    "naziv_lat": "Petrićevac 1",
+    "naziv2": "Петрићевац 1 (КНН)",
+    "naziv2_lat": "Petrićevac 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "66",
+    "naziv": "Петрићевац 2",
+    "naziv_lat": "Petrićevac 2",
+    "naziv2": "Петрићевац 2 (КНН)",
+    "naziv2_lat": "Petrićevac 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "67",
+    "naziv": "Пискавица Доња",
+    "naziv_lat": "Piskavica Donja",
+    "naziv2": "Пискавица Доња (КНН)",
+    "naziv2_lat": "Piskavica Donja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "57",
+    "naziv": "Пискавица Горња",
+    "naziv_lat": "Piskavica Gornja",
+    "naziv2": "Пискавица Горња (КЗ)",
+    "naziv2_lat": "Piskavica Gornja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "68",
+    "naziv": "Пискавица Горња",
+    "naziv_lat": "Piskavica Gornja",
+    "naziv2": "Пискавица Горња (КНН)",
+    "naziv2_lat": "Piskavica Gornja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "69",
+    "naziv": "Понир",
+    "naziv_lat": "Ponir",
+    "naziv2": "Понир (КНН)",
+    "naziv2_lat": "Ponir (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "70",
+    "naziv": "Пресначе",
+    "naziv_lat": "Presnače",
+    "naziv2": "Пресначе (КНН)",
+    "naziv2_lat": "Presnače (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "71",
+    "naziv": "Пријаковци",
+    "naziv_lat": "Prijakovci",
+    "naziv2": "Пријаковци (КНН)",
+    "naziv2_lat": "Prijakovci (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "60",
+    "naziv": "Пријаковци",
+    "naziv_lat": "Prijakovci",
+    "naziv2": "Пријаковци (КЗ)",
+    "naziv2_lat": "Prijakovci (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "72",
+    "naziv": "Пријечани",
+    "naziv_lat": "Priječani",
+    "naziv2": "Пријечани (КНН)",
+    "naziv2_lat": "Priječani (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "105",
+    "naziv": "Прњавор Мали",
+    "naziv_lat": "Prnjavor Mali",
+    "naziv2": "Прњавор Мали (КНН)",
+    "naziv2_lat": "Prnjavor Mali (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "63",
+    "naziv": "Рацуне",
+    "naziv_lat": "Racune",
+    "naziv2": "Рацуне (КЗ)",
+    "naziv2_lat": "Racune (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "64",
+    "naziv": "Радманићи",
+    "naziv_lat": "Radmanići",
+    "naziv2": "Радманићи (КЗ)",
+    "naziv2_lat": "Radmanići (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "76",
+    "naziv": "Радосавска",
+    "naziv_lat": "Radosavska",
+    "naziv2": "Радосавска (КНН)",
+    "naziv2_lat": "Radosavska (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "77",
+    "naziv": "Рамићи",
+    "naziv_lat": "Ramići",
+    "naziv2": "Рамићи (КНН)",
+    "naziv2_lat": "Ramići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "66",
+    "naziv": "Рамићи",
+    "naziv_lat": "Ramići",
+    "naziv2": "Рамићи (КЗ)",
+    "naziv2_lat": "Ramići (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "78",
+    "naziv": "Ребровац 1",
+    "naziv_lat": "Rebrovac 1",
+    "naziv2": "Ребровац 1 (КНН)",
+    "naziv2_lat": "Rebrovac 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "67",
+    "naziv": "Ребровац 1",
+    "naziv_lat": "Rebrovac 1",
+    "naziv2": "Ребровац 1 (КЗ)",
+    "naziv2_lat": "Rebrovac 1 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "79",
+    "naziv": "Ребровац 2",
+    "naziv_lat": "Rebrovac 2",
+    "naziv2": "Ребровац 2 (КНН)",
+    "naziv2_lat": "Rebrovac 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "80",
+    "naziv": "Рекавица Доња",
+    "naziv_lat": "Rekavica Donja",
+    "naziv2": "Рекавица Доња (КНН)",
+    "naziv2_lat": "Rekavica Donja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "68",
+    "naziv": "Рекавица Доња",
+    "naziv_lat": "Rekavica Donja",
+    "naziv2": "Рекавица Доња (КЗ)",
+    "naziv2_lat": "Rekavica Donja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "81",
+    "naziv": "Рекавица Горња",
+    "naziv_lat": "Rekavica Gornja",
+    "naziv2": "Рекавица Горња (КН)",
+    "naziv2_lat": "Rekavica Gornja (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "69",
+    "naziv": "Рекавица Горња",
+    "naziv_lat": "Rekavica Gornja",
+    "naziv2": "Рекавица Горња (КЗ)",
+    "naziv2_lat": "Rekavica Gornja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "112",
+    "naziv": "Рекавица Горња",
+    "naziv_lat": "Rekavica Gornja",
+    "naziv2": "Рекавица Горња (КНН)",
+    "naziv2_lat": "Rekavica Gornja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "82",
+    "naziv": "Рупари",
+    "naziv_lat": "Rupari",
+    "naziv2": "Рупари (КНН)",
+    "naziv2_lat": "Rupari (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "70",
+    "naziv": "Рупари",
+    "naziv_lat": "Rupari",
+    "naziv2": "Рупари (КЗ)",
+    "naziv2_lat": "Rupari (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "83",
+    "naziv": "Сјутрашњица",
+    "naziv_lat": "Sjutrašnjica",
+    "naziv2": "Сјутрашњица (КНН)",
+    "naziv2_lat": "Sjutrašnjica (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "84",
+    "naziv": "Славићка",
+    "naziv_lat": "Slavićka",
+    "naziv2": "Славићка (КНН)",
+    "naziv2_lat": "Slavićka (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "1",
+    "naziv": "Агино Село",
+    "naziv_lat": "Agino Selo",
+    "naziv2": "Агино Село (КНН)",
+    "naziv2_lat": "Agino Selo (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "2",
+    "naziv": "Бабићи",
+    "naziv_lat": "Babići",
+    "naziv2": "Бабићи (КНН)",
+    "naziv2_lat": "Babići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "86",
+    "naziv": "Бања Лука 1",
+    "naziv_lat": "Banja Luka 1",
+    "naziv2": "Бања Лука 1 (КЗ)",
+    "naziv2_lat": "Banja Luka 1 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "4",
+    "naziv": "Бања Лука 1",
+    "naziv_lat": "Banja Luka 1",
+    "naziv2": "Бања Лука 1 (КНН)",
+    "naziv2_lat": "Banja Luka 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "5",
+    "naziv": "Бања Лука 2",
+    "naziv_lat": "Banja Luka 2",
+    "naziv2": "Бања Лука 2 (КНН)",
+    "naziv2_lat": "Banja Luka 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "88",
+    "naziv": "Бања Лука 3",
+    "naziv_lat": "Banja Luka 3",
+    "naziv2": "Бања Лука 3 (КЗ)",
+    "naziv2_lat": "Banja Luka 3 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "6",
+    "naziv": "Бања Лука 3",
+    "naziv_lat": "Banja Luka 3",
+    "naziv2": "Бања Лука 3 (КНН)",
+    "naziv2_lat": "Banja Luka 3 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "89",
+    "naziv": "Бања Лука 4",
+    "naziv_lat": "Banja Luka 4",
+    "naziv2": "Бања Лука 4 (КЗ)",
+    "naziv2_lat": "Banja Luka 4 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "7",
+    "naziv": "Бања Лука 4",
+    "naziv_lat": "Banja Luka 4",
+    "naziv2": "Бања Лука 4 (КНН)",
+    "naziv2_lat": "Banja Luka 4 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "8",
+    "naziv": "Бања Лука 5",
+    "naziv_lat": "Banja Luka 5",
+    "naziv2": "Бања Лука 5 (КНН)",
+    "naziv2_lat": "Banja Luka 5 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "90",
+    "naziv": "Бања Лука 5",
+    "naziv_lat": "Banja Luka 5",
+    "naziv2": "Бања Лука 5 (КЗ)",
+    "naziv2_lat": "Banja Luka 5 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "91",
+    "naziv": "Бања Лука 6",
+    "naziv_lat": "Banja Luka 6",
+    "naziv2": "Бања Лука 6 (КЗ)",
+    "naziv2_lat": "Banja Luka 6 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "8",
+    "naziv": "Бања Лука 6",
+    "naziv_lat": "Banja Luka 6",
+    "naziv2": "Бања Лука 6 (КН)",
+    "naziv2_lat": "Banja Luka 6 (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "3",
+    "naziv": "Бања Лука 6",
+    "naziv_lat": "Banja Luka 6",
+    "naziv2": "Бања Лука 6 (КНН)",
+    "naziv2_lat": "Banja Luka 6 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "9",
+    "naziv": "Бања Лука 7",
+    "naziv_lat": "Banja Luka 7",
+    "naziv2": "Бања Лука 7 (КНН)",
+    "naziv2_lat": "Banja Luka 7 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "92",
+    "naziv": "Бања Лука 7",
+    "naziv_lat": "Banja Luka 7",
+    "naziv2": "Бања Лука 7 (КЗ)",
+    "naziv2_lat": "Banja Luka 7 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "93",
+    "naziv": "Бања Лука 8",
+    "naziv_lat": "Banja Luka 8",
+    "naziv2": "Бања Лука 8 (КЗ)",
+    "naziv2_lat": "Banja Luka 8 (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "10",
+    "naziv": "Бања Лука 8",
+    "naziv_lat": "Banja Luka 8",
+    "naziv2": "Бања Лука 8 (КНН)",
+    "naziv2_lat": "Banja Luka 8 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "3",
+    "naziv": "Барловци",
+    "naziv_lat": "Barlovci",
+    "naziv2": "Барловци (КЗ)",
+    "naziv2_lat": "Barlovci (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "11",
+    "naziv": "Барловци",
+    "naziv_lat": "Barlovci",
+    "naziv2": "Барловци (КНН)",
+    "naziv2_lat": "Barlovci (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "12",
+    "naziv": "Бастаси",
+    "naziv_lat": "Bastasi",
+    "naziv2": "Бастаси (КНН)",
+    "naziv2_lat": "Bastasi (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "13",
+    "naziv": "Бистрица Доња",
+    "naziv_lat": "Bistrica Donja",
+    "naziv2": "Бистрица Доња (КНН)",
+    "naziv2_lat": "Bistrica Donja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "6",
+    "naziv": "Бистрица Горња",
+    "naziv_lat": "Bistrica Gornja",
+    "naziv2": "Бистрица Горња (КЗ)",
+    "naziv2_lat": "Bistrica Gornja (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "14",
+    "naziv": "Бистрица Горња",
+    "naziv_lat": "Bistrica Gornja",
+    "naziv2": "Бистрица Горња (КНН)",
+    "naziv2_lat": "Bistrica Gornja (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "15",
+    "naziv": "Бочац Доњи",
+    "naziv_lat": "Bočac Donji",
+    "naziv2": "Бочац Доњи (КНН)",
+    "naziv2_lat": "Bočac Donji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "15",
+    "naziv": "Бочац Доњи",
+    "naziv_lat": "Bočac Donji",
+    "naziv2": "Бочац Доњи (КН)",
+    "naziv2_lat": "Bočac Donji (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "103",
+    "naziv": "Бочац Горњи",
+    "naziv_lat": "Bočac Gornji",
+    "naziv2": "Бочац Горњи (КНН)",
+    "naziv2_lat": "Bočac Gornji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "17",
+    "naziv": "Борковићи Доњи",
+    "naziv_lat": "Borkovići Donji",
+    "naziv2": "Борковићи Доњи (КНН)",
+    "naziv2_lat": "Borkovići Donji (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "85",
+    "naziv": "Стратинска",
+    "naziv_lat": "Stratinska",
+    "naziv2": "Стратинска (КНН)",
+    "naziv2_lat": "Stratinska (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "73",
+    "naziv": "Стратинска",
+    "naziv_lat": "Stratinska",
+    "naziv2": "Стратинска (КЗ)",
+    "naziv2_lat": "Stratinska (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "74",
+    "naziv": "Стричићи",
+    "naziv_lat": "Stričići",
+    "naziv2": "Стричићи (КЗ)",
+    "naziv2_lat": "Stričići (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "87",
+    "naziv": "Суботица",
+    "naziv_lat": "Subotica",
+    "naziv2": "Суботица (КНН)",
+    "naziv2_lat": "Subotica (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "88",
+    "naziv": "Шарговац",
+    "naziv_lat": "Šargovac",
+    "naziv2": "Шарговац (КНН)",
+    "naziv2_lat": "Šargovac (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "76",
+    "naziv": "Шарговац",
+    "naziv_lat": "Šargovac",
+    "naziv2": "Шарговац (КЗ)",
+    "naziv2_lat": "Šargovac (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "89",
+    "naziv": "Шибови",
+    "naziv_lat": "Šibovi",
+    "naziv2": "Шибови (КНН)",
+    "naziv2_lat": "Šibovi (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "107",
+    "naziv": "Шимићи",
+    "naziv_lat": "Šimići",
+    "naziv2": "Шимићи (КНН)",
+    "naziv2_lat": "Šimići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "79",
+    "naziv": "Шљивно",
+    "naziv_lat": "Šljivno",
+    "naziv2": "Шљивно (КЗ)",
+    "naziv2_lat": "Šljivno (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "92",
+    "naziv": "Верићи",
+    "naziv_lat": "Verići",
+    "naziv2": "Верићи (КНН)",
+    "naziv2_lat": "Verići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "93",
+    "naziv": "Вилуси",
+    "naziv_lat": "Vilusi",
+    "naziv2": "Вилуси (КНН)",
+    "naziv2_lat": "Vilusi (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "81",
+    "naziv": "Вилуси",
+    "naziv_lat": "Vilusi",
+    "naziv2": "Вилуси (КЗ)",
+    "naziv2_lat": "Vilusi (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "94",
+    "naziv": "Врбања 1",
+    "naziv_lat": "Vrbanja 1",
+    "naziv2": "Врбања 1 (КНН)",
+    "naziv2_lat": "Vrbanja 1 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KN",
+    "sifraKo": "95",
+    "naziv": "Врбања 2",
+    "naziv_lat": "Vrbanja 2",
+    "naziv2": "Врбања 2 (КН)",
+    "naziv2_lat": "Vrbanja 2 (KN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "95",
+    "naziv": "Врбања 2",
+    "naziv_lat": "Vrbanja 2",
+    "naziv2": "Врбања 2 (КНН)",
+    "naziv2_lat": "Vrbanja 2 (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "100",
+    "naziv": "Вујиновићи",
+    "naziv_lat": "Vujinovići",
+    "naziv2": "Вујиновићи (КНН)",
+    "naziv2_lat": "Vujinovići (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "84",
+    "naziv": "Залужани",
+    "naziv_lat": "Zalužani",
+    "naziv2": "Залужани (КЗ)",
+    "naziv2_lat": "Zalužani (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "97",
+    "naziv": "Залужани",
+    "naziv_lat": "Zalužani",
+    "naziv2": "Залужани (КНН)",
+    "naziv2_lat": "Zalužani (KNN)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KZ",
+    "sifraKo": "85",
+    "naziv": "Зеленци",
+    "naziv_lat": "Zelenci",
+    "naziv2": "Зеленци (КЗ)",
+    "naziv2_lat": "Zelenci (KZ)"
+  },
+  {
+    "lokacija": "25",
+    "kt": "KNN",
+    "sifraKo": "98",
+    "naziv": "Зеленци",
+    "naziv_lat": "Zelenci",
+    "naziv2": "Зеленци (КНН)",
+    "naziv2_lat": "Zelenci (KNN)"
+  }
+]

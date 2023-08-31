@@ -22,6 +22,7 @@ interface IStyledMapIconButtonProps {
   splitter?: boolean;
   disabled?: boolean;
   inverted?: boolean;
+  dark?: boolean;
 }
 
 // styles half ripped from nav.scss
@@ -44,6 +45,21 @@ const StyledMapIconButton = styled(RawButton)<IStyledMapIconButtonProps>`
     vertical-align: middle;
     fill: ${(props) => props.theme.textDarker};
   }
+
+  :disabled {
+    box-shadow: none;
+    background: ${(props) => props.theme.textLightDimmed};
+  }
+
+  ${(props) =>
+    props.dark &&
+    `
+    background: ${props.theme.dark};
+    color: ${props.theme.textLight};
+    svg {
+      fill: ${props.theme.textLightDimmed};
+    }
+  `}
 
   ${(props) =>
     props.primary &&
@@ -83,6 +99,12 @@ const StyledMapIconButton = styled(RawButton)<IStyledMapIconButtonProps>`
     background-color: ${props.theme.grey};
     color: ${props.theme.grey};
     opacity: 0.7;
+  `}
+
+  ${(props) =>
+    props.splitter &&
+    props.disabled &&
+    `
     svg {
       fill: ${props.theme.textLightDimmed};
     }
@@ -95,7 +117,7 @@ interface IMapIconButtonProps extends IStyledMapIconButtonProps {
   title?: string;
   iconElement: () => JSX.Element;
   closeIconElement?: () => JSX.Element;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   children?: React.ReactNode;
   className?: string;
   buttonRef?: React.RefObject<any>;
@@ -112,6 +134,7 @@ function MapIconButton(props: IMapIconButtonProps) {
     expandInPlace,
     neverCollapse,
     primary,
+    dark,
     splitter,
     inverted,
     disabled,
@@ -133,6 +156,7 @@ function MapIconButton(props: IMapIconButtonProps) {
     <StyledMapIconButton
       ref={buttonRef}
       className={props.className}
+      dark={dark}
       primary={primary}
       splitter={splitter}
       inverted={inverted}

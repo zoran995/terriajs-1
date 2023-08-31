@@ -2,6 +2,7 @@ import i18next from "i18next";
 import { computed, makeObservable, override, runInAction } from "mobx";
 import combine from "terriajs-cesium/Source/Core/combine";
 import TerriaError from "../../../Core/TerriaError";
+import Resource from "terriajs-cesium/Source/Core/Resource";
 import containsAny from "../../../Core/containsAny";
 import isDefined from "../../../Core/isDefined";
 import isReadOnlyArray from "../../../Core/isReadOnlyArray";
@@ -47,14 +48,17 @@ export class GetCapabilitiesStratum extends LoadableStratum(
       });
     }
 
+    const proxiedUrl = proxyCatalogItemUrl(
+      catalogItem,
+      catalogItem.getCapabilitiesUrl,
+      catalogItem.getCapabilitiesCacheDuration
+    );
     if (!isDefined(capabilities))
-      capabilities = await WebFeatureServiceCapabilities.fromUrl(
-        proxyCatalogItemUrl(
-          catalogItem,
-          catalogItem.getCapabilitiesUrl,
-          catalogItem.getCapabilitiesCacheDuration
-        )
-      );
+      capabilities = await WebFeatureServiceCapabilities.fromUrl({
+        url: proxiedUrl,
+        terria: catalogItem.terria,
+        shouldAuth: catalogItem.isPrivate
+      });
 
     return new GetCapabilitiesStratum(catalogItem, capabilities);
   }
@@ -350,7 +354,15 @@ class WebFeatureServiceCatalogItem extends GetCapabilitiesMixin(
   async createGetCapabilitiesStratumFromParent(
     capabilities: WebFeatureServiceCapabilities
   ) {
-    const stratum = await GetCapabilitiesStratum.load(this, capabilities);
+    const that = this;
+    const stratum = await GetCapabilitiesStratum.load(this, capabilities).catch(
+      function (e) {
+        if (e instanceof TerriaError) {
+          that.terria.raiseErrorToUser(e);
+        }
+      }
+    );
+    if (!stratum) return;
     runInAction(() => {
       this.strata.set(GetCapabilitiesMixin.getCapabilitiesStratumName, stratum);
     });
@@ -362,7 +374,13 @@ class WebFeatureServiceCatalogItem extends GetCapabilitiesMixin(
       undefined
     )
       return;
-    const stratum = await GetCapabilitiesStratum.load(this);
+    const that = this;
+    const stratum = await GetCapabilitiesStratum.load(this).catch(function (e) {
+      if (e instanceof TerriaError) {
+        that.terria.raiseErrorToUser(e);
+      }
+    });
+    if (!stratum) return;
     runInAction(() => {
       this.strata.set(GetCapabilitiesMixin.getCapabilitiesStratumName, stratum);
     });
@@ -403,25 +421,33 @@ class WebFeatureServiceCatalogItem extends GetCapabilitiesMixin(
       });
     }
 
-    const url = this.uri
-      .clone()
-      .setSearch(
-        combine(
-          {
-            service: "WFS",
-            request: "GetFeature",
-            typeName: this.typeNames,
-            version: "1.1.0",
-            outputFormat: this.outputFormat,
-            srsName: this.srsName,
-            maxFeatures: this.maxFeatures
-          },
-          this.parameters
-        )
-      )
+    const supportsGeojson = this.supportsGeojson;
+
+    const url = this.featureUrl()
+      .setSearch({ maxFeatures: this.maxFeatures })
       .toString();
 
-    const getFeatureResponse = await loadText(proxyCatalogItemUrl(this, url));
+    let authUrl: Resource;
+    if (
+      this.terria.keycloak &&
+      this.terria.configParameters.reverseProxyUrl &&
+      (this.isPrivate ||
+        this.url?.includes(this.terria.configParameters.reverseProxyUrl))
+    ) {
+      this.terria.keycloak.updateToken(30);
+      authUrl = new Resource({
+        url: proxyCatalogItemUrl(this, url),
+        headers: {
+          Authorization: "Bearer " + this.terria.keycloak.token
+        }
+      });
+    } else {
+      authUrl = new Resource({
+        url: proxyCatalogItemUrl(this, url)
+      });
+    }
+
+    const getFeatureResponse = await loadText(authUrl);
 
     // Check for errors (if supportsGeojson and the request returns XML, OR the response includes ExceptionReport)
     if (
@@ -491,6 +517,72 @@ class WebFeatureServiceCatalogItem extends GetCapabilitiesMixin(
     }
     return undefined;
   }
+
+  /* async encodeLayerForPrint() {
+    const printParameters = {
+      srsName: "urn:ogc:def:crs:EPSG::3857"
+    };
+    const printStyle = this.geojsonCatalogItem?.encodePrintStyle;
+    const mapObject: GeojsonPrintLayer | GmlPrintLayer = this.supportsGeojson
+      ? {
+          geoJson: this.featureUrl(printParameters).toString(),
+          type: "geojson"
+        }
+      : {
+          url: this.featureUrl(printParameters).toString(),
+          type: "gml"
+        };
+    if (printStyle) {
+      mapObject.style = printStyle;
+    }
+    if (this.typeNames) mapObject.name = this.typeNames;
+    return mapObject;
+  } */
+
+  featureUrl(parameters: any = {}) {
+    return this.uri!.clone().setSearch(
+      combine(
+        combine(parameters, {
+          service: "WFS",
+          request: "GetFeature",
+          typeName: this.typeNames,
+          version: "1.1.0",
+          outputFormat: this.outputFormat,
+          srsName: this.srsName,
+          maxFeatures: this.maxFeatures
+        }),
+        this.parameters
+      )
+    );
+  }
+
+  get supportsGeojson(): boolean {
+    const getCapabilitiesStratum: GetCapabilitiesStratum | undefined =
+      this.strata.get(
+        GetCapabilitiesMixin.getCapabilitiesStratumName
+      ) as GetCapabilitiesStratum;
+    return (
+      this.hasOutputFormat(getCapabilitiesStratum.capabilities.outputTypes) ||
+      [
+        ...getCapabilitiesStratum.capabilitiesFeatureTypes.values()
+      ].reduce<boolean>(
+        (hasGeojson, current) =>
+          hasGeojson && this.hasOutputFormat(current?.OutputFormats),
+        true
+      )
+    );
+  }
+  /**
+   * Check if geojson output is supported (by checking GetCapabilities OutputTypes OR FeatureType OutputTypes)
+   * @param outputFormats
+   */
+  private hasOutputFormat = (outputFormats: string[] | undefined) => {
+    return isDefined(
+      outputFormats?.find((format) =>
+        ["json", "JSON", "application/json"].includes(format)
+      )
+    );
+  };
 }
 
 export default WebFeatureServiceCatalogItem;

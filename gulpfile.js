@@ -227,8 +227,8 @@ gulp.task(
   )
 );
 
-gulp.task("terriajs-server", function (done) {
-  // E.g. gulp terriajs-server --terriajsServerArg port=4000 --terriajsServerArg verbose=true
+gulp.task("geoportal-server", function (done) {
+  // E.g. gulp geoportal-server --terriajsServerArg port=4000 --terriajsServerArg verbose=true
   //  or gulp dev --terriajsServerArg port=3000
   const { spawn } = require("child_process");
   const fs = require("fs");
@@ -242,16 +242,16 @@ gulp.task("terriajs-server", function (done) {
   };
   const options = minimist(process.argv.slice(2), knownOptions);
 
-  const logFile = fs.openSync("./terriajs-server.log", "a");
+  const logFile = fs.openSync("./geoportal-server.log", "a");
   const serverArgs = Array.isArray(options.terriajsServerArg)
     ? options.terriajsServerArg
     : [options.terriajsServerArg];
-  // Spawn detached - attached does not make terriajs-server
+  // Spawn detached - attached does not make geoportal-server
   //  quit when the gulp task is stopped
   const child = spawn(
     "node",
     [
-      "./node_modules/.bin/terriajs-server",
+      "./node_modules/.bin/geoportal-server",
       "--port=3002",
       ...serverArgs.map((arg) => `--${arg}`)
     ],
@@ -260,14 +260,14 @@ gulp.task("terriajs-server", function (done) {
   child.on("exit", (exitCode, signal) => {
     done(
       new Error(
-        "terriajs-server quit" +
+        "geoportal-server quit" +
           (exitCode !== null ? ` with exit code: ${exitCode}` : "") +
           (signal ? ` from signal: ${signal}` : "") +
-          "\nCheck terriajs-server.log for more information."
+          "\nCheck geoportal-server.log for more information."
       )
     );
   });
-  // Intercept SIGINT, SIGTERM and SIGHUP, cleanup terriajs-server and re-send signal
+  // Intercept SIGINT, SIGTERM and SIGHUP, cleanup geoportal-server and re-send signal
   // May fail to catch some relevant signals on Windows
   // SIGINT: ctrl+c
   // SIGTERM: kill <pid>
@@ -286,9 +286,85 @@ gulp.task("terriajs-server", function (done) {
   });
 });
 
+gulp.task("cyr2lat", function (done) {
+  var fse = require("fs-extra");
+  var content = fse.readFileSync(
+    "lib/Language/sr-Cyrl/translation.json",
+    "UTF-8"
+  );
+  content = transliterate(content);
+  fse.writeFileSync("lib/Language/sr-Latn/translation.json", content, "UTF-8");
+  done();
+});
+
+var transliterate = function (text) {
+  text = text
+    .replace(/\u0410/g, "A")
+    .replace(/\u0411/g, "B")
+    .replace(/\u0412/g, "V")
+    .replace(/\u0413/g, "G")
+    .replace(/\u0414/g, "D")
+    .replace(/\u0402/g, "Đ")
+    .replace(/\u0415/g, "E")
+    .replace(/\u0416/g, "Ž")
+    .replace(/\u0417/g, "Z")
+    .replace(/\u0418/g, "I")
+    .replace(/\u0408/g, "J")
+    .replace(/\u041a/g, "K")
+    .replace(/\u041b/g, "L")
+    .replace(/\u0409/g, "Lj")
+    .replace(/\u041c/g, "M")
+    .replace(/\u041d/g, "N")
+    .replace(/\u040a/g, "Nj")
+    .replace(/\u041e/g, "O")
+    .replace(/\u041f/g, "P")
+    .replace(/\u0420/g, "R")
+    .replace(/\u0421/g, "S")
+    .replace(/\u0422/g, "T")
+    .replace(/\u040b/g, "Ć")
+    .replace(/\u0423/g, "U")
+    .replace(/\u0424/g, "F")
+    .replace(/\u0425/g, "H")
+    .replace(/\u0426/g, "C")
+    .replace(/\u0427/g, "Č")
+    .replace(/\u040f/g, "Dž")
+    .replace(/\u0428/g, "Š")
+    .replace(/\u0430/g, "a")
+    .replace(/\u0431/g, "b")
+    .replace(/\u0432/g, "v")
+    .replace(/\u0433/g, "g")
+    .replace(/\u0434/g, "d")
+    .replace(/\u0452/g, "đ")
+    .replace(/\u0435/g, "e")
+    .replace(/\u0436/g, "ž")
+    .replace(/\u0437/g, "z")
+    .replace(/\u0438/g, "i")
+    .replace(/\u0458/g, "j")
+    .replace(/\u043a/g, "k")
+    .replace(/\u043b/g, "l")
+    .replace(/\u0459/g, "lj")
+    .replace(/\u043c/g, "m")
+    .replace(/\u043d/g, "n")
+    .replace(/\u045a/g, "nj")
+    .replace(/\u043e/g, "o")
+    .replace(/\u043f/g, "p")
+    .replace(/\u0440/g, "r")
+    .replace(/\u0441/g, "s")
+    .replace(/\u0442/g, "t")
+    .replace(/\u045b/g, "ć")
+    .replace(/\u0443/g, "u")
+    .replace(/\u0444/g, "f")
+    .replace(/\u0445/g, "h")
+    .replace(/\u0446/g, "c")
+    .replace(/\u0447/g, "č")
+    .replace(/\u045f/g, "dž")
+    .replace(/\u0448/g, "š");
+  return text;
+};
+
 gulp.task("build", gulp.series("copy-cesium-assets", "build-specs"));
 gulp.task("release", gulp.series("copy-cesium-assets", "release-specs"));
 gulp.task("watch", gulp.series("copy-cesium-assets", "watch-specs"));
-gulp.task("dev", gulp.parallel("terriajs-server", "watch"));
+gulp.task("dev", gulp.parallel("geoportal-server", "watch"));
 gulp.task("post-npm-install", gulp.series("copy-cesium-assets"));
 gulp.task("default", gulp.series("lint", "build"));

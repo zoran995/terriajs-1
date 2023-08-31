@@ -24,7 +24,16 @@ import { isLatLonHeight } from "../Core/LatLonHeight";
 import TerriaError from "../Core/TerriaError";
 import ConstantColorMap from "../Map/ColorMap/ConstantColorMap";
 import RegionProvider from "../Map/Region/RegionProvider";
+import MapboxVectorTileImageryProvider from "../Map/ImageryProvider/MapboxVectorTileImageryProvider";
 import RegionProviderList from "../Map/Region/RegionProviderList";
+import zoomToEntity from "../Map/Vector/zoomToEntity";
+import {
+  AttributeTable,
+  AttributeTableColumn,
+  AttributeTableRowDataProps,
+  AttributeTableRowInterface,
+  createHeader
+} from "../Models/AttributeTable";
 import CommonStrata from "../Models/Definition/CommonStrata";
 import Model from "../Models/Definition/Model";
 import updateModelFromJson from "../Models/Definition/updateModelFromJson";
@@ -54,13 +63,16 @@ import { calculateDomain, ChartAxis, ChartItem } from "./ChartableMixin";
 import DiscretelyTimeVaryingMixin from "./DiscretelyTimeVaryingMixin";
 import ExportableMixin, { ExportData } from "./ExportableMixin";
 import MappableMixin, { ImageryParts } from "./MappableMixin";
+import AttributeTableMixin from "./AttributeTableMixin";
 
 type BaseType = Model<TableTraits>;
 
 function TableMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
   abstract class TableMixin
-    extends ExportableMixin(
-      DiscretelyTimeVaryingMixin(MappableMixin(CatalogMemberMixin(Base)))
+    extends AttributeTableMixin(
+      ExportableMixin(
+        DiscretelyTimeVaryingMixin(MappableMixin(CatalogMemberMixin(Base)))
+      )
     )
     implements SelectableDimensions, ViewingControls, FeatureInfoContext
   {
@@ -871,6 +883,88 @@ function TableMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
       createTransformer((index: number) => {
         return new TableStyle(this, index);
       });
+
+    @computed
+    get attributeTable(): AttributeTable | undefined {
+      const data: AttributeTableRowInterface[] = [];
+      const columns: AttributeTableColumn[] = [];
+      if (this.mapItems[0] instanceof CustomDataSource) {
+        return this.attributeTableLatLon;
+      }
+      const tableColumns = this.tableColumns;
+      if (!tableColumns) {
+        return new AttributeTable(columns, data);
+      }
+      this.tableColumns.forEach((column) => {
+        const col = new AttributeTableColumn({
+          Header: createHeader(column.name),
+          accessor: column.name,
+          type: column.type
+        });
+        columns.push(col);
+      });
+      const numberOfFeatures = this.tableColumns[0]?.values.length;
+      for (let i = 0; i < numberOfFeatures; i++) {
+        const result: AttributeTableRowDataProps = {};
+        this.tableColumns.forEach((column) => {
+          result[column.name] = column.values[i];
+        });
+        const id = i.toString();
+        if (id == (this.terria.selectedFeature?.data as any)?.id) {
+          result.isSelected = true;
+        }
+        result.uniqueFeatureId = i.toString();
+        data.push({ uniqueFeatureId: i.toString(), values: result });
+      }
+      return new AttributeTable(columns, data, false);
+    }
+
+    @computed
+    private get attributeTableLatLon(): AttributeTable | undefined {
+      const data: AttributeTableRowInterface[] = [];
+      const columns: AttributeTableColumn[] = [];
+      if (
+        this.mapItems &&
+        this.mapItems.length > 0 &&
+        this.mapItems[0] instanceof CustomDataSource &&
+        this.mapItems[0].entities.values
+      ) {
+        return this.createAttributeTable(this.mapItems[0], this.terria);
+      }
+      return new AttributeTable(columns, data, true);
+    }
+
+    zoomToFeature(featureID: string) {
+      if (
+        this.mapItems &&
+        this.mapItems.length > 0 &&
+        this.mapItems[0] instanceof CustomDataSource
+      ) {
+        zoomToEntity(this.terria, this.mapItems[0].entities.getById(featureID));
+      }
+    }
+
+    @action.bound
+    selectWithId(featureID: string) {
+      if (this.mapItems && this.mapItems.length > 0) {
+        if (this.mapItems[0] instanceof CustomDataSource) {
+          const entity = this.mapItems[0].entities.getById(featureID);
+          if (entity) {
+            this.terria.selectedFeature = TerriaFeature.fromEntity(entity);
+          }
+        } else if (
+          (<ImageryParts>this.mapItems[0]).imageryProvider instanceof
+          MapboxVectorTileImageryProvider
+        ) {
+          this.terria.currentViewer.highlightRegion(
+            featureID,
+            <MapboxVectorTileImageryProvider>(
+              (<ImageryParts>this.mapItems[0]).imageryProvider
+            )
+          );
+        }
+      }
+    }
   }
 
   return TableMixin;

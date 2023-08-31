@@ -1,6 +1,6 @@
 {
-  "name": "terriajs",
-  "version": "8.3.6",
+  "name": "@zoran995/geoportaljs",
+  "version": "8.3.6-geoportal-0",
   "description": "Geospatial data visualization platform.",
   "license": "Apache-2.0",
   "engines": {
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/TerriaJS/terriajs"
+  },
+  "publishConfig": {
+    "@zoran995:registry": "https://npm.pkg.github.com"
   },
   "resolutions": {
     "colors": "1.4.0",
@@ -34,6 +37,7 @@
     "@turf/circle": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/meta": "^6.5.0",
+    "@turf/projection": "6.0.1",
     "@types/arcgis-rest-api": "^10.4.5",
     "@types/create-react-class": "^15.6.2",
     "@types/d3-array": "^2.0.0",
@@ -64,6 +68,7 @@
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^17.0.2",
     "@types/react-select": "^3.1.2",
+    "@types/react-table": "^7.0.18",
     "@types/react-test-renderer": "^17.0.1",
     "@types/retry": "^0.12.0",
     "@types/shpjs": "^3.4.0",
@@ -126,6 +131,7 @@
     "interactjs": "1.4.0-alpha.17",
     "javascript-natural-sort": "^0.7.1",
     "json5": "^2.1.0",
+    "keycloak-js": "19.0.3",
     "leaflet": "^1.8.0",
     "linkify-it": "^2.0.0",
     "lodash-es": "^4.17.11",
@@ -158,6 +164,7 @@
     "react-responsive": "^5.0.0",
     "react-select": "^3.1.1",
     "react-swipeable": "^5.1.0",
+    "react-table": "^7.1.0",
     "react-transition-group": "^4.3.0",
     "react-uid": "^2.3.0",
     "react-virtual": "~2.3.2",
@@ -226,7 +233,7 @@
     "react-shallow-testutils": "^3.0.0",
     "react-test-renderer": "^16.3.2",
     "regenerator-runtime": "^0.13.2",
-    "terriajs-server": "^4.0.0",
+    "terriajs-server": "npm:@zoran995/geoportal-server@0.0.1-alpha",
     "yaml": "^1.10.0"
   },
   "scripts": {
@@ -234,7 +241,7 @@
     "postpublish": "bash -c \"if [ -z \"$GITHUB_ACTION\" ]; then git tag -a ${npm_package_version} -m \"${npm_package_version}\" && git push origin ${npm_package_version}; fi \"",
     "postinstall": "gulp post-npm-install",
     "gulp": "gulp",
-    "start": "terriajs-server --port 3002",
+    "start": "geoportal-server --port 3002",
     "hot": "webpack-dev-server --inline --config buildprocess/webpack.config.hot.js --hot --host 0.0.0.0",
     "build-tools": "webpack --config buildprocess/webpack-tools.config.js",
     "watch-tools": "webpack --watch --config buildprocess/webpack-tools.config.js",
@@ -243,6 +250,6 @@
     "pretty-quick": "pretty-quick",
     "prettier-check": "prettier --check .",
     "build-for-node": "tsc -b tsconfig-node.json",
-    "prepare": "yarn build-for-node && husky install"
+    "prepare": "husky install"
   }
 }

@@ -14,6 +14,7 @@ interface Options {
   customUi?: () => unknown;
   buttonText?: string;
   uiMode?: UIMode; // diff tool hack for now
+  render?: boolean;
   onEnable?: (viewState: ViewState) => void;
   invisible?: boolean;
 }
@@ -26,6 +27,7 @@ export default class MapInteractionMode {
 
   readonly buttonText: string;
   readonly uiMode: UIMode;
+  readonly render: boolean;
 
   readonly invisible: boolean;
 
@@ -91,6 +93,14 @@ export default class MapInteractionMode {
     /**
      * Determines whether a rectangle will be requested from the user rather than a set of pickedFeatures.
      */
+    // this.drawRectangle = defaultValue(options.drawRectangle, false);
+
+    /**
+     * Determines wheather a default MapInteractionPanel will be rendered
+     * @type {Boolean}
+     */
+    this.render = defaultValue(options.render, true);
+
     // this.drawRectangle = defaultValue(options.drawRectangle, false);
     this.onEnable = options.onEnable;
 

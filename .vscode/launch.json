@@ -5,6 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:3001",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/../../"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",

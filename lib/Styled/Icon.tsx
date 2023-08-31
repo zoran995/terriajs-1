@@ -15,6 +15,8 @@ export const GLYPHS = {
   arOn: require("../../wwwroot/images/icons/ar-on.svg"),
   arRealign: require("../../wwwroot/images/icons/ar-realign.svg"),
   arResetAlignment: require("../../wwwroot/images/icons/ar-reset-alignment.svg"),
+  arrowBack: require("../../wwwroot/images/icons/arrow-back.svg"),
+  arrowForward: require("../../wwwroot/images/icons/arrow-forward.svg"),
   arrowDown: require("../../wwwroot/images/icons/arrow-down.svg"),
   backToStart: require("../../wwwroot/images/icons/back-to-start.svg"),
   backward: require("../../wwwroot/images/icons/backward.svg"),
@@ -53,6 +55,8 @@ export const GLYPHS = {
   menu: require("../../wwwroot/images/icons/menu.svg"),
   measure: require("../../wwwroot/images/icons/measure.svg"),
   opened: require("../../wwwroot/images/icons/opened.svg"),
+  miniMapOpened: require("../../wwwroot/images/icons/overview-map-opened.svg"),
+  miniMapClosed: require("../../wwwroot/images/icons/overview-map-closed.svg"),
   pause: require("../../wwwroot/images/icons/pause.svg"),
   play: require("../../wwwroot/images/icons/play.svg"),
   playStory: require("../../wwwroot/images/icons/play-story.svg"),
@@ -115,9 +119,16 @@ export const GLYPHS = {
   zoomOut: require("../../wwwroot/images/icons/zoom-out.svg"),
   zoomReset: require("../../wwwroot/images/icons/zoom-reset.svg"),
   satellite: require("../../wwwroot/images/icons/satellite.svg"),
+  pen: require("../../wwwroot/images/icons/pen.svg"),
+  printer: require("../../wwwroot/images/icons/printer.svg"),
+  zoomTo: require("../../wwwroot/images/icons/zoom-to.svg"),
+  arrowDesc: require("../../wwwroot/images/icons/arrow-desc.svg"),
+  arrowAsc: require("../../wwwroot/images/icons/arrow-asc.svg"),
+  arrowSort: require("../../wwwroot/images/icons/arrow-sort.svg"),
+  uploadThin: require("../../wwwroot/images/icons/upload-thin.svg"),
   mapDataActive: require("../../wwwroot/images/icons/map-data-active.svg"),
   mapDataInactive: require("../../wwwroot/images/icons/map-data-inactive.svg"),
-  uploadThin: require("../../wwwroot/images/icons/upload-thin.svg"),
+  table: require("../../wwwroot/images/icons/table.svg"),
   oneTwoThree: require("../../wwwroot/images/icons/one-two-three.svg"),
   accordionOpen: require("../../wwwroot/images/icons/accordion-open.svg"),
   accordionClose: require("../../wwwroot/images/icons/accordion-close.svg"),
@@ -125,6 +136,11 @@ export const GLYPHS = {
   viewStory: require("../../wwwroot/images/icons/view-story.svg"),
   editStory: require("../../wwwroot/images/icons/edit-story.svg"),
   questionMark: require("../../wwwroot/images/icons/questionmark.svg"),
+  parcela: require("../../wwwroot/images/icons/parcela.svg"),
+  arrowRight: require("../../wwwroot/images/icons/arrow-right.svg"),
+  amblemRS: require("../../wwwroot/images/icons/republika_srpska.svg"),
+  logoGeoportalCyr: require("../../wwwroot/images/icons/logo_cyr.svg"),
+  logoGeoportalLat: require("../../wwwroot/images/icons/logo_lat.svg"),
   pedestrian: require("../../wwwroot/images/icons/pedestrian.svg"),
   minimize: require("../../wwwroot/images/icons/minimize.svg"),
   maximize: require("../../wwwroot/images/icons/maximize.svg"),
@@ -170,6 +186,8 @@ export interface IStyledIconProps {
   styledHeight?: string;
   light?: boolean;
   dark?: boolean;
+  strokeLight?: boolean;
+  strokeDark?: boolean;
   realDark?: boolean;
   fillColor?: string;
   opacity?: number;
@@ -191,6 +209,9 @@ export const StyledIcon = styled(Icon)<IStyledIconProps>`
 
   ${(props) => props.light && `fill: ${props.theme.textLight};`}
   ${(props) => props.dark && `fill: ${props.theme.textDark};`}
+
+  ${(props) => props.strokeLight && `stroke: ${props.theme.textLight};`}
+  ${(props) => props.strokeDark && `stroke: ${props.theme.textDark};`}
 
   // Until we sort out what "light / dark" means for components that have both
   // modes, use "realDark" to get real

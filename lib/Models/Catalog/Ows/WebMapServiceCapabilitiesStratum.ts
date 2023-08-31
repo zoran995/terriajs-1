@@ -61,14 +61,18 @@ export default class WebMapServiceCapabilitiesStratum extends LoadableStratum(
       });
     }
 
-    if (!isDefined(capabilities))
-      capabilities = await WebMapServiceCapabilities.fromUrl(
-        proxyCatalogItemUrl(
-          catalogItem,
-          catalogItem.getCapabilitiesUrl,
-          catalogItem.getCapabilitiesCacheDuration
-        )
+    if (!isDefined(capabilities)) {
+      const proxiedUrl = proxyCatalogItemUrl(
+        catalogItem,
+        catalogItem.getCapabilitiesUrl,
+        catalogItem.getCapabilitiesCacheDuration
       );
+      capabilities = await WebMapServiceCapabilities.fromUrl({
+        url: proxiedUrl,
+        terria: catalogItem.terria,
+        shouldAuth: catalogItem.isPrivate
+      });
+    }
 
     return new WebMapServiceCapabilitiesStratum(catalogItem, capabilities);
   }

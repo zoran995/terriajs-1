@@ -39,6 +39,9 @@
   overlay: $overlay;
   overlayInvert: $overlay-invert;
 
+  //paddings
+  paddingSmall: $padding-small;
+
   // Colours
   colorPrimary: $color-primary;
   colorSecondary: $color-secondary;
@@ -77,6 +80,15 @@
   trainerHeight: 64;
   workbenchWidth: 350;
   workflowPanelWidth: 350;
+
+  //input
+  inputHeight: $input-height;
+  inputHeightLarge: $input-height-large;
+  fieldBorder: $field-border;
+
+  //logo
+  logoHeight: $logo-height;
+  smLogoHeight: $input-height;
 
   toolPrimaryColor: $tool-primary-color;
 

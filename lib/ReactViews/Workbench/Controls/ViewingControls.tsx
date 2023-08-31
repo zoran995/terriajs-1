@@ -47,6 +47,7 @@ import SplitterTraits from "../../../Traits/TraitsClasses/SplitterTraits";
 import { exportData } from "../../Preview/ExportData";
 import LazyItemSearchTool from "../../Tools/ItemSearchTool/LazyItemSearchTool";
 import WorkbenchButton from "../WorkbenchButton";
+import AttributeTableMixin from "../../../ModelMixins/AttributeTableMixin";
 
 const BoxViewingControl = styled(Box).attrs({
   centered: true,
@@ -131,6 +132,13 @@ class ViewingControls extends React.Component<
   removeFromMap() {
     const terria = this.props.viewState.terria;
     terria.workbench.remove(this.props.item);
+    if ((this.props.item as any).onRemoveFromWorkbench) {
+      (this.props.item as any).onRemoveFromWorkbench();
+    }
+    if (this.props.item === this.props.viewState.attributeTableItem) {
+      this.props.viewState.removeAttributeTable();
+    }
+
     terria.removeSelectedFeaturesForModel(this.props.item);
     if (TimeVarying.is(this.props.item))
       this.props.viewState.terria.timelineStack.remove(this.props.item);
@@ -283,6 +291,14 @@ class ViewingControls extends React.Component<
     });
   }
 
+  openAttributeTable() {
+    const sourceItem = this.props.item;
+    runInAction(() => {
+      this.props.viewState.attributeTableItem = sourceItem;
+      this.props.viewState.attributeTableShown = true;
+    });
+  }
+
   searchItem() {
     runInAction(() => {
       const { item, viewState } = this.props;
@@ -426,6 +442,19 @@ class ViewingControls extends React.Component<
               <BoxViewingControl>
                 <StyledIcon glyph={Icon.GLYPHS.difference} />
                 <span>{t("workbench.diffImage")}</span>
+              </BoxViewingControl>
+            </ViewingControlMenuButton>
+          </li>
+        ) : null}
+        {AttributeTableMixin.isMixedInto(item) ? (
+          <li>
+            <ViewingControlMenuButton
+              onClick={this.openAttributeTable.bind(this)}
+              title={t("workbench.openAttributeTableTitle")}
+            >
+              <BoxViewingControl>
+                <StyledIcon glyph={Icon.GLYPHS.table} />
+                <span>{t("workbench.openAttributeTable")}</span>
               </BoxViewingControl>
             </ViewingControlMenuButton>
           </li>

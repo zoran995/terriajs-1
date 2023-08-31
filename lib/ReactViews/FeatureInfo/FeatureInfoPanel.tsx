@@ -3,7 +3,7 @@ import { TFunction } from "i18next";
 import { action, reaction, runInAction, makeObservable } from "mobx";
 import { disposeOnUnmount, observer } from "mobx-react";
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
 import Ellipsoid from "terriajs-cesium/Source/Core/Ellipsoid";
 import CesiumMath from "terriajs-cesium/Source/Core/Math";
@@ -12,7 +12,10 @@ import Entity from "terriajs-cesium/Source/DataSources/Entity";
 import flatten from "../../Core/flatten";
 import isDefined from "../../Core/isDefined";
 import { featureBelongsToCatalogItem } from "../../Map/PickedFeatures/PickedFeatures";
-import prettifyCoordinates from "../../Map/Vector/prettifyCoordinates";
+import prettifyCoordinates, {
+  PrettyCoordinates,
+  PrettyProjected
+} from "../../Map/Vector/prettifyCoordinates";
 import MappableMixin from "../../ModelMixins/MappableMixin";
 import TimeFilterMixin from "../../ModelMixins/TimeFilterMixin";
 import CompositeCatalogItem from "../../Models/Catalog/CatalogItems/CompositeCatalogItem";
@@ -32,13 +35,16 @@ import Loader from "../Loader";
 import { withViewState } from "../Context";
 import Styles from "./feature-info-panel.scss";
 import FeatureInfoCatalogItem from "./FeatureInfoCatalogItem";
+import CatalogMemberTraits from "../../Traits/TraitsClasses/CatalogMemberTraits";
+import hasTraits from "../../Models/Definition/hasTraits";
+import { cartographicToLatLon } from "../../Map/Vector/Projection";
+import { applyTranslationIfExists } from "../../Language/languageHelpers";
 
 const DragWrapper = require("../DragWrapper");
 
-interface Props {
+interface Props extends WithTranslation {
   viewState: ViewState;
   printView?: boolean;
-  t: TFunction;
 }
 
 @observer
@@ -226,14 +232,22 @@ class FeatureInfoPanel extends React.Component<Props> {
   }
 
   renderLocationItem(cartesianPosition: Cartesian3) {
+    const { i18n } = this.props;
+
     const cartographic =
       Ellipsoid.WGS84.cartesianToCartographic(cartesianPosition);
+    const projection = this.props.viewState.terria.projection;
     if (cartographic === undefined) {
       return <></>;
     }
-    const latitude = CesiumMath.toDegrees(cartographic.latitude);
-    const longitude = CesiumMath.toDegrees(cartographic.longitude);
-    const pretty = prettifyCoordinates(longitude, latitude);
+
+    const { latitude, longitude } = cartographicToLatLon(cartographic);
+    let pretty;
+    if (projection !== undefined) {
+      pretty = projection.project?.(cartographic);
+    } else {
+      pretty = prettifyCoordinates(longitude, latitude);
+    }
     // this.locationUpdated(longitude, latitude);
 
     const that = this;
@@ -245,21 +259,56 @@ class FeatureInfoPanel extends React.Component<Props> {
       ? Styles.btnLocationSelected
       : Styles.btnLocation;
 
+    if (!pretty) return undefined;
+
     return (
       <div className={Styles.location}>
-        <span>Lat / Lon&nbsp;</span>
-        <span>
-          {pretty.latitude + ", " + pretty.longitude}
-          {!this.props.printView && (
-            <button
-              type="button"
-              onClick={pinClicked}
-              className={locationButtonStyle}
-            >
-              <Icon glyph={Icon.GLYPHS.location} />
-            </button>
-          )}
-        </span>
+        {pretty.type === "latlon" ? (
+          <>
+            <span>Lat / Lon&nbsp;</span>
+            <span>
+              {(pretty as PrettyCoordinates).latitude +
+                ", " +
+                (pretty as PrettyCoordinates).longitude}
+              {!this.props.printView && (
+                <button
+                  type="button"
+                  onClick={pinClicked}
+                  className={locationButtonStyle}
+                >
+                  <Icon glyph={Icon.GLYPHS.location} />
+                </button>
+              )}
+            </span>
+          </>
+        ) : (
+          <>
+            <span>
+              {`${applyTranslationIfExists(
+                projection.params.firstAxisName || "E",
+                i18n
+              )} / ${applyTranslationIfExists(
+                projection.params.secondAxisName || "N",
+                i18n
+              )}`}
+              &nbsp;
+            </span>
+            <span>
+              {(pretty as PrettyProjected).east +
+                ", " +
+                (pretty as PrettyProjected).north}
+              {!this.props.printView && (
+                <button
+                  type="button"
+                  onClick={pinClicked}
+                  className={locationButtonStyle}
+                >
+                  <Icon glyph={Icon.GLYPHS.location} />
+                </button>
+              )}
+            </span>
+          </>
+        )}
       </div>
     );
   }
@@ -281,6 +330,17 @@ class FeatureInfoPanel extends React.Component<Props> {
       [Styles.isCollapsed]: viewState.featureInfoPanelIsCollapsed,
       [Styles.isVisible]: viewState.featureInfoPanelIsVisible,
       [Styles.isTranslucent]: viewState.explorerPanelIsVisible
+    });
+
+    let hidePosition = false;
+
+    catalogItems.map((catalogItem) => {
+      if (
+        isDefined(catalogItem) &&
+        hasTraits(catalogItem, CatalogMemberTraits, "hidePosition")
+      ) {
+        hidePosition = true;
+      }
     });
 
     const filterableCatalogItems = catalogItems
@@ -323,9 +383,10 @@ class FeatureInfoPanel extends React.Component<Props> {
       position = terria.pickedFeatures?.pickPosition;
     }
 
-    const locationElements = position ? (
-      <li>{this.renderLocationItem(position)}</li>
-    ) : null;
+    const locationElements =
+      position && !hidePosition ? (
+        <li>{this.renderLocationItem(position)}</li>
+      ) : null;
 
     return (
       <DragWrapper>

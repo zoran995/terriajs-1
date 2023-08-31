@@ -53,6 +53,10 @@ export default class LeafletSelectionIndicator {
     this._selectionIndicatorDomElement = (<any>this._marker)._icon.children[0];
   }
 
+  removeFromMap() {
+    this._marker.removeFrom(this._leaflet.map);
+  }
+
   setLatLng(latlng: L.LatLng) {
     this._marker.setLatLng(latlng);
   }

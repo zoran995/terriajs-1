@@ -1,0 +1,62 @@
+name: Create and publish to github packages
+
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    name: Publish to GIT
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SEVERDEPLOYKEY }}
+
+      - name: Set up Node.js for NPM
+        uses: actions/setup-node@v2
+        with:
+          registry-url: "https://npm.pkg.github.com/"
+          node-version: "14.x"
+
+      - name: Install yarn
+        run: npm install -g yarn@^1.19.0
+
+      - name: create .npmrc
+        run: |
+          echo @zoran995:https://npm.pkg.github.com/ > .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
+
+      - run: git config --global user.name "GitHub CD bot"
+      - run: git config --global user.email "zorankokeza95@gmail.com"
+
+      # upgrade npm version in package.json to the tag used in the release.
+      - name: Change version to the tag
+        run: npm version ${{ github.event.release.tag_name }}
+
+      - name: Install dependencies
+        run: yarn install --ignore-engines
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
+
+      - name: Lint terriajs
+        run: npx gulp lint release
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
+
+      - name: Publish package on NPM 📦
+        run: npm publish
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: git push
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}

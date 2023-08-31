@@ -1,11 +1,11 @@
 // import CatalogItemNameSearchProviderViewModel from "../ViewModels/CatalogItemNameSearchProviderViewModel";
 import {
-  observable,
-  reaction,
-  IReactionDisposer,
-  computed,
   action,
-  makeObservable
+  computed,
+  makeObservable,
+  IReactionDisposer,
+  observable,
+  reaction
 } from "mobx";
 import Terria from "../Models/Terria";
 import SearchProviderResults from "../Models/SearchProviders/SearchProviderResults";

@@ -31,6 +31,7 @@ import WebMapTileServiceCapabilities, {
   ResourceUrl,
   TileMatrixSetLink,
   WmtsCapabilitiesLegend,
+  TileMatrix,
   WmtsLayer
 } from "./WebMapTileServiceCapabilities";
 
@@ -38,6 +39,7 @@ interface UsableTileMatrixSets {
   identifiers: string[];
   tileWidth: number;
   tileHeight: number;
+  matrices?: TileMatrix[];
 }
 
 class GetCapabilitiesStratum extends LoadableStratum(
@@ -58,15 +60,18 @@ class GetCapabilitiesStratum extends LoadableStratum(
       });
     }
 
-    if (!isDefined(capabilities))
-      capabilities = await WebMapTileServiceCapabilities.fromUrl(
-        proxyCatalogItemUrl(
-          catalogItem,
-          catalogItem.getCapabilitiesUrl,
-          catalogItem.getCapabilitiesCacheDuration
-        )
+    if (!isDefined(capabilities)) {
+      const proxiedUrl = proxyCatalogItemUrl(
+        catalogItem,
+        catalogItem.getCapabilitiesUrl,
+        catalogItem.getCapabilitiesCacheDuration
       );
-
+      capabilities = await WebMapTileServiceCapabilities.fromUrl({
+        url: proxiedUrl,
+        terria: catalogItem.terria,
+        shouldAuth: catalogItem.isPrivate
+      });
+    }
     return new GetCapabilitiesStratum(catalogItem, capabilities);
   }
 
@@ -373,7 +378,8 @@ class GetCapabilitiesStratum extends LoadableStratum(
         usableTileMatrixSets[matrixSet.Identifier] = {
           identifiers: ids,
           tileWidth: firstTile.TileWidth,
-          tileHeight: firstTile.TileHeight
+          tileHeight: firstTile.TileHeight,
+          matrices: matrices
         };
       }
     }
@@ -565,6 +571,7 @@ class WebMapTileServiceCatalogItem extends MappableMixin(
         minLevel: number;
         tileWidth: number;
         tileHeight: number;
+        matrices?: TileMatrix[];
       }
     | undefined {
     const stratum = <GetCapabilitiesStratum>(
@@ -596,6 +603,7 @@ class WebMapTileServiceCatalogItem extends MappableMixin(
     let tileWidth: number = 256;
     let tileHeight: number = 256;
     let tileMatrixSetLabels: string[] = [];
+    let matrices: TileMatrix[] | undefined = [];
     for (let i = 0; i < tileMatrixSetLinks.length; i++) {
       const tileMatrixSet = tileMatrixSetLinks[i].TileMatrixSet;
       if (usableTileMatrixSets && usableTileMatrixSets[tileMatrixSet]) {
@@ -603,6 +611,7 @@ class WebMapTileServiceCatalogItem extends MappableMixin(
         tileMatrixSetLabels = usableTileMatrixSets[tileMatrixSet].identifiers;
         tileWidth = Number(usableTileMatrixSets[tileMatrixSet].tileWidth);
         tileHeight = Number(usableTileMatrixSets[tileMatrixSet].tileHeight);
+        matrices = usableTileMatrixSets[tileMatrixSet].matrices;
         break;
       }
     }
@@ -626,7 +635,8 @@ class WebMapTileServiceCatalogItem extends MappableMixin(
       maxLevel: maxLevel,
       minLevel: minLevel,
       tileWidth: tileWidth,
-      tileHeight: tileHeight
+      tileHeight: tileHeight,
+      matrices: matrices
     };
   }
 
@@ -665,6 +675,89 @@ class WebMapTileServiceCatalogItem extends MappableMixin(
       return undefined;
     }
   }
+
+  encodeLayerForPrint(): any {
+    let customParams: {
+      access_token?: string;
+      transparent: boolean;
+    } = {
+      transparent: true
+    };
+    if (
+      this.terria.keycloak &&
+      this.terria.configParameters.reverseProxyUrl &&
+      (this.isPrivate ||
+        this.url?.includes(this.terria.configParameters.reverseProxyUrl))
+    ) {
+      const keycloak = this.terria.keycloak;
+      keycloak.updateToken(120);
+      customParams.access_token = keycloak.token;
+    }
+    const stratum = <GetCapabilitiesStratum>(
+      this.strata.get(GetCapabilitiesMixin.getCapabilitiesStratumName)
+    );
+    const tileMatrixSet = this.tileMatrixSet;
+    if (
+      !isDefined(this.layer) ||
+      !isDefined(this.url) ||
+      !isDefined(stratum) ||
+      !isDefined(this.style) ||
+      !isDefined(tileMatrixSet) ||
+      !isDefined(tileMatrixSet.matrices)
+    ) {
+      return;
+    }
+
+    const layer = stratum.capabilitiesLayer;
+    const layerIdentifier = layer?.Identifier;
+
+    const imageryProvider = this.imageryProvider;
+    if (!imageryProvider) {
+      return;
+    }
+    const matrices = convertMatricesForPrint(tileMatrixSet.matrices);
+    const url = imageryProvider?.url;
+
+    const mapObject: any = {
+      baseURL: url.substring(url.indexOf("http://")),
+      opacity: this.opacity,
+      type: "WMTS",
+      requestEncoding: url.indexOf("{") >= 0 ? "REST" : "KVP",
+      layer: layerIdentifier,
+      style: this.style,
+      imageFormat: imageryProvider.format,
+      matrixSet: tileMatrixSet.id,
+      matrices: matrices,
+      customParams: customParams
+    };
+    return mapObject;
+  }
+}
+
+interface PrintMatrices {
+  identifier: string;
+  matrixSize: [number, number];
+  scaleDenominator: number;
+  tileSize: [number, number];
+  topLeftCorner: [number, number];
+}
+
+function convertMatricesForPrint(matrices: TileMatrix[]): PrintMatrices[] {
+  const printMatrices: PrintMatrices[] = [];
+  for (let i = 0; i < matrices.length; i++) {
+    const matrix = matrices[i];
+    const corner = matrix.TopLeftCorner.split(" ");
+    let startX = parseFloat(corner[0]);
+    let startY = parseFloat(corner[1]);
+    printMatrices.push({
+      identifier: matrix.Identifier,
+      scaleDenominator: Number(matrix.ScaleDenominator),
+      matrixSize: [Number(matrix.MatrixWidth), Number(matrix.MatrixHeight)],
+      tileSize: [Number(matrix.TileWidth), Number(matrix.TileHeight)],
+      topLeftCorner: [startX, startY]
+    });
+  }
+  return printMatrices;
 }
 
 export function getServiceContactInformation(contactInfo: ServiceProvider) {

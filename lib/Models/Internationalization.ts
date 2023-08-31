@@ -35,7 +35,7 @@ export interface LanguageConfiguration {
   enabled: boolean;
   debug: boolean;
   react: ReactOptions;
-  languages: Object;
+  languages: { [key: string]: string };
   fallbackLanguage: string;
   changeLanguageOnStartWhen: string[];
 
@@ -52,7 +52,9 @@ const defaultLanguageConfiguration = {
     useSuspense: false
   },
   languages: {
-    en: "english"
+    en: "english",
+    "sr-Cyrl": "Ћирилица",
+    "sr-Latn": "Latinica"
   },
   fallbackLanguage: "en",
   changeLanguageOnStartWhen: [
@@ -115,10 +117,10 @@ class Internationalization {
          * https://github.com/i18next/i18next/blob/80a38100d21a7e7c1f9cb2acff5f709063027b9f/src/LanguageUtils.js#L78-L80
          *
          *  */
-        nonExplicitSupportedLngs: true,
+        nonExplicitSupportedLngs: false,
 
         // to not look into a folder like /locals/en-US/... when en-US is detected, use load: "languageOnly" to avoid using Country-Code in path
-        load: "languageOnly",
+        load: "all",
         // send not translated keys to endpoint
         saveMissing: false,
         // allow loading of internal trnaslation files and backend files

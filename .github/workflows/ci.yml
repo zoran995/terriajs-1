@@ -5,7 +5,7 @@ env:
   NODE_OPTIONS: "--max_old_space_size=4096"
 
 # Controls when the action will run.
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,10 +19,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.GEOPORTAL_SERVER_PRIVATE_DEPLOY }}
+
       - uses: actions/setup-node@v2
         with:
           node-version: "14.x"
-      - run: npm install -g yarn@^1.19.0 && yarn install
+      - run: npm install -g yarn@^1.19.0 && yarn install --network-concurrency 1
 
       - name: Check formatting with prettier
         run: yarn prettier-check

@@ -1,20 +1,19 @@
+import { observer } from "mobx-react";
 import React from "react";
 import defined from "terriajs-cesium/Source/Core/defined";
-import { observer } from "mobx-react";
 
 import PropTypes from "prop-types";
 
 import classNames from "classnames";
-import MobileMenuItem from "./MobileMenuItem";
+import { runInAction } from "mobx";
+import { withTranslation } from "react-i18next";
+import { Category, HelpAction } from "../../Core/AnalyticEvents/analyticEvents";
+import { applyTranslationIfExists } from "../../Language/languageHelpers";
+// import HelpMenuPanelBasic from "../HelpScreens/HelpMenuPanelBasic";
 import SettingPanel from "../Map/Panels/SettingPanel";
 import SharePanel from "../Map/Panels/SharePanel/SharePanel";
-import { withTranslation } from "react-i18next";
-
 import Styles from "./mobile-menu.scss";
-import { runInAction } from "mobx";
-import LangPanel from "../Map/Panels/LangPanel/LangPanel";
-import { applyTranslationIfExists } from "../../Language/languageHelpers";
-import { Category, HelpAction } from "../../Core/AnalyticEvents/analyticEvents";
+import MobileMenuItem from "./MobileMenuItem";
 
 @observer
 class MobileMenu extends React.Component {
@@ -103,13 +102,23 @@ class MobileMenu extends React.Component {
       defined(this.props.terria.stories) &&
       this.props.terria.stories.length > 0;
 
+    const showLanguageSwitcher =
+      defined(this.props.terria.configParameters.languageConfiguration) &&
+      this.props.terria.configParameters.languageConfiguration.enabled &&
+      defined(
+        this.props.terria.configParameters.languageConfiguration.languages
+      ) &&
+      Object.keys(
+        this.props.terria.configParameters.languageConfiguration.languages
+      ).length > 1;
+
     const mapUserGuide = this.mapUserGuide();
 
     // return this.props.viewState.mobileMenuVisible ? (
     return (
       <div>
         <If condition={this.props.viewState.mobileMenuVisible}>
-          <div className={Styles.overlay} onClick={() => this.toggleMenu()} />
+          <div className={Styles.overlay} onClick={this.toggleMenu} />
         </If>
         <div
           className={classNames(Styles.mobileNav, {
@@ -118,19 +127,19 @@ class MobileMenu extends React.Component {
         >
           <For each="menuItem" of={this.props.menuLeftItems}>
             <div
-              onClick={() => this.hideMenu()}
+              onClick={this.hideMenu}
               key={menuItem ? menuItem.key : undefined}
             >
               {menuItem}
             </div>
           </For>
-          <div onClick={() => this.hideMenu()}>
+          <div onClick={this.hideMenu}>
             <SettingPanel
               terria={this.props.terria}
               viewState={this.props.viewState}
             />
           </div>
-          <div onClick={() => this.hideMenu()}>
+          <div onClick={this.hideMenu}>
             <SharePanel
               terria={this.props.terria}
               viewState={this.props.viewState}
@@ -138,7 +147,7 @@ class MobileMenu extends React.Component {
           </div>
           <For each="menuItem" of={this.props.menuItems}>
             <div
-              onClick={() => this.hideMenu()}
+              onClick={this.hideMenu}
               key={menuItem ? menuItem.key : undefined}
             >
               {menuItem}
@@ -147,29 +156,36 @@ class MobileMenu extends React.Component {
           {mapUserGuide && <MobileMenuItem {...mapUserGuide} />}
           <If condition={this.props.showFeedback}>
             <MobileMenuItem
-              onClick={() => this.onFeedbackFormClick()}
+              onClick={this.onFeedbackFormClick}
               caption={t("feedback.feedbackBtnText")}
             />
           </If>
           <If condition={hasStories}>
             <MobileMenuItem
-              onClick={() => this.runStories()}
+              onClick={this.runStories}
               caption={t("story.mobileViewStory", {
                 storiesLength: this.props.terria.stories.length
               })}
             />
           </If>
-          <If
-            condition={
-              this.props.terria.configParameters.languageConfiguration?.enabled
-            }
-          >
-            <div onClick={() => this.hideMenu()}>
-              <LangPanel
-                terria={this.props.terria}
-                smallScreen={this.props.viewState.useSmallScreenInterface}
-              />
-            </div>
+          <If condition={showLanguageSwitcher}>
+            <MobileMenuItem
+              caption={
+                <LanguageSwitcherSelect
+                  viewState={this.props.viewState}
+                  hideIcon
+                  aditionalAction={this.hideMenu}
+                  selectProps={{
+                    css: `
+                      border-radius: 0;
+                      margin: -15px 0;
+                      padding: 15px 0;
+                      color: inherit;
+                    `
+                  }}
+                />
+              }
+            />
           </If>
         </div>
       </div>

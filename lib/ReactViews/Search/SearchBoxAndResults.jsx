@@ -1,23 +1,20 @@
-import React from "react";
-import { removeMarker } from "../../Models/LocationMarkerUtils";
-import { reaction, runInAction } from "mobx";
-import { Trans } from "react-i18next";
-import PropTypes from "prop-types";
+import i18next from "i18next";
+import { action, reaction, runInAction } from "mobx";
 import { observer } from "mobx-react";
+import PropTypes from "prop-types";
+import React from "react";
+import { Trans } from "react-i18next";
 import styled from "styled-components";
-// import { ThemeContext } from "styled-components";
-
-import SearchBox from "../Search/SearchBox";
+import { addMarker, removeMarker } from "../../Models/LocationMarkerUtils";
+import Box from "../../Styled/Box";
+import { RawButton } from "../../Styled/Button";
+import { GLYPHS, StyledIcon } from "../../Styled/Icon";
+import Spacing from "../../Styled/Spacing";
+import Text from "../../Styled/Text";
 // import SidebarSearch from "../Search/SidebarSearch";
 import LocationSearchResults from "../Search/LocationSearchResults";
-import Icon, { StyledIcon } from "../../Styled/Icon";
-
-import Box from "../../Styled/Box";
-import Text from "../../Styled/Text";
-import Spacing from "../../Styled/Spacing";
-import { RawButton } from "../../Styled/Button";
-
-import { addMarker } from "../../Models/LocationMarkerUtils";
+// import { ThemeContext } from "styled-components";
+import SearchBox from "../Search/SearchBox";
 
 export function SearchInDataCatalog({ viewState, handleClick }) {
   const locationSearchText = viewState.searchState.locationSearchText;
@@ -35,7 +32,7 @@ export function SearchInDataCatalog({ viewState, handleClick }) {
       }}
     >
       <Box paddedRatio={2} rounded charcoalGreyBg>
-        <StyledIcon styledWidth={"14px"} glyph={Icon.GLYPHS["dataCatalog"]} />
+        <StyledIcon styledWidth={"14px"} glyph={GLYPHS["dataCatalog"]} />
         <Spacing right={2} />
         <Text textAlignLeft textLight large fullWidth>
           <Trans
@@ -45,7 +42,7 @@ export function SearchInDataCatalog({ viewState, handleClick }) {
             Search <strong>{locationSearchText}</strong> in the Data Catalogue
           </Trans>
         </Text>
-        <StyledIcon glyph={Icon.GLYPHS.right2} styledWidth={"14px"} light />
+        <StyledIcon glyph={GLYPHS.right2} styledWidth={"14px"} light />
       </Box>
     </RawButton>
   );
@@ -54,7 +51,31 @@ SearchInDataCatalog.propTypes = {
   handleClick: PropTypes.func.isRequired,
   viewState: PropTypes.object.isRequired
 };
-
+export function SearchParcels({ viewState, handleClick }) {
+  return (
+    <RawButton
+      fullWidth
+      onClick={() => {
+        // Set text here as a separate action so that it doesn't get batched up and the catalog
+        // search text has a chance to set isWaitingToStartCatalogSearch
+        handleClick && handleClick();
+      }}
+    >
+      <Box paddedRatio={2} rounded charcoalGreyBg>
+        <StyledIcon styledWidth={"14px"} glyph={GLYPHS.parcela} light />
+        <Spacing right={2} />
+        <Text textAlignLeft textLight large fullWidth>
+          {i18next.t("dkpSearch.title")}
+        </Text>
+        <StyledIcon glyph={GLYPHS.right2} styledWidth={"14px"} light />
+      </Box>
+    </RawButton>
+  );
+}
+SearchParcels.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  viewState: PropTypes.object.isRequired
+};
 const PresentationBox = styled(Box).attrs({
   fullWidth: true
 })`
@@ -115,7 +136,6 @@ export class SearchBoxAndResultsRaw extends React.Component {
     runInAction(() => {
       this.props.viewState.searchState.locationSearchText = newText;
     });
-
     if (newText.length === 0) {
       removeMarker(this.props.terria);
       runInAction(() => {
@@ -142,6 +162,26 @@ export class SearchBoxAndResultsRaw extends React.Component {
   startLocationSearch() {
     this.toggleShowLocationSearchResults(true);
   }
+
+  @action.bound
+  openParcelSearchTool() {
+    const tool = {
+      toolName: "Parcel search",
+      getToolComponent: () =>
+        import("../Tools/DkpSearch/DkpSearch").then((m) => m.default)
+    };
+    const { viewState } = this.props;
+    if (
+      viewState.currentTool &&
+      viewState.currentTool.toolName === tool.toolName
+    ) {
+      viewState.closeTool();
+    } else {
+      viewState.openTool(tool);
+      viewState.searchState.showLocationSearchResults = false;
+    }
+  }
+
   render() {
     const { viewState, placeholder } = this.props;
     const searchState = viewState.searchState;
@@ -150,21 +190,45 @@ export class SearchBoxAndResultsRaw extends React.Component {
     const shouldShowResults =
       searchState.locationSearchText.length > 0 &&
       searchState.showLocationSearchResults;
-
+    const showExtraSearchOptions =
+      searchState.showLocationSearchResults &&
+      !this.props.terria.configParameters.disableDkpSearch;
     return (
       <Text textDarker>
         <Box fullWidth>
-          <PresentationBox highlightBottom={shouldShowResults}>
+          <PresentationBox highlightBottom={showExtraSearchOptions}>
             <SearchBox
               ref={this.locationSearchRef}
               onSearchTextChanged={this.changeSearchText.bind(this)}
               onDoSearch={this.search.bind(this)}
               onFocus={this.startLocationSearch.bind(this)}
+              showClear={showExtraSearchOptions}
               searchText={searchState.locationSearchText}
               placeholder={placeholder}
             />
           </PresentationBox>
           {/* Results */}
+          <If condition={showExtraSearchOptions}>
+            <Box
+              position={"absolute"}
+              fullWidth
+              column
+              css={`
+                top: 100%;
+                background-color: ${(props) => props.theme.greyLightest};
+                max-height: calc(100vh - 120px);
+                border-radius: 0 0 ${(props) => props.theme.radius40Button}px
+                  ${(props) => props.theme.radius40Button}px;
+              `}
+            >
+              <Box column paddedRatio={2}>
+                <SearchParcels
+                  viewState={viewState}
+                  handleClick={this.openParcelSearchTool.bind(this)}
+                />
+              </Box>
+            </Box>
+          </If>
           <If condition={shouldShowResults}>
             <Box
               position="absolute"

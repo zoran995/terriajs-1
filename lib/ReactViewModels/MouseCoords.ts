@@ -1,27 +1,24 @@
 import debounce from "lodash-es/debounce";
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, runInAction } from "mobx";
 import Cartesian2 from "terriajs-cesium/Source/Core/Cartesian2";
 import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
 import Cartographic from "terriajs-cesium/Source/Core/Cartographic";
 import EllipsoidTerrainProvider from "terriajs-cesium/Source/Core/EllipsoidTerrainProvider";
 import CesiumEvent from "terriajs-cesium/Source/Core/Event";
 import Intersections2D from "terriajs-cesium/Source/Core/Intersections2D";
-import CesiumMath from "terriajs-cesium/Source/Core/Math";
 import Ray from "terriajs-cesium/Source/Core/Ray";
 import TerrainProvider from "terriajs-cesium/Source/Core/TerrainProvider";
+import sampleTerrainMostDetailed from "terriajs-cesium/Source/Core/sampleTerrainMostDetailed";
+
 import isDefined from "../Core/isDefined";
 import JSEarthGravityModel1996 from "../Map/Vector/EarthGravityModel1996";
-import prettifyCoordinates from "../Map/Vector/prettifyCoordinates";
-import prettifyProjection from "../Map/Vector/prettifyProjection";
+import { IElevation } from "../Map/Vector/Projection";
 import Terria from "../Models/Terria";
 
 // TypeScript 3.6.3 can't tell JSEarthGravityModel1996 is a class and reports
 //   Cannot use namespace 'JSEarthGravityModel1996' as a type.ts(2709)
 // This is a dodgy workaround.
 class EarthGravityModel1996 extends JSEarthGravityModel1996 {}
-
-const sampleTerrainMostDetailed =
-  require("terriajs-cesium/Source/Core/sampleTerrainMostDetailed").default;
 
 interface Cancelable {
   cancel: () => void;
@@ -37,9 +34,6 @@ const scratchCartographic = new Cartographic();
 
 export default class MouseCoords {
   readonly geoidModel: EarthGravityModel1996;
-  readonly proj4Projection: string;
-  readonly projectionUnits: string;
-  readonly proj4longlat: string;
   readonly accurateSamplingDebounceTime: number;
   readonly debounceSampleAccurateHeight: ((
     terrainProvider: TerrainProvider,
@@ -48,15 +42,8 @@ export default class MouseCoords {
     Cancelable;
   tileRequestInFlight?: unknown;
 
-  elevation?: string;
-  utmZone?: string;
-  latitude?: string;
-  longitude?: string;
-  north?: string;
-  east?: string;
+  elevation?: IElevation;
   cartographic?: Cartographic;
-
-  @observable useProjection = false;
 
   updateEvent = new CesiumEvent();
 
@@ -65,10 +52,6 @@ export default class MouseCoords {
     this.geoidModel = new EarthGravityModel1996(
       require("file-loader!../../wwwroot/data/WW15MGH.DAC")
     );
-    this.proj4Projection = "+proj=utm +ellps=GRS80 +units=m +no_defs";
-    this.projectionUnits = "m";
-    this.proj4longlat =
-      "+proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees +no_defs";
 
     this.accurateSamplingDebounceTime = 250;
     this.tileRequestInFlight = undefined;
@@ -77,12 +60,6 @@ export default class MouseCoords {
       this.sampleAccurateHeight,
       this.accurateSamplingDebounceTime
     );
-  }
-
-  @action.bound
-  toggleUseProjection() {
-    this.useProjection = !this.useProjection;
-    this.updateEvent.raiseEvent();
   }
 
   @action
@@ -95,9 +72,7 @@ export default class MouseCoords {
     const camera = scene.camera;
     const pickRay = camera.getPickRay(position, scratchRay);
     const globe = scene.globe;
-    const pickedTriangle = isDefined(pickRay)
-      ? (<any>globe).pickTriangle(pickRay, scene)
-      : undefined;
+    const pickedTriangle = (<any>globe).pickTriangle(pickRay, scene);
     if (isDefined(pickedTriangle)) {
       // Get a fast, accurate-ish height every time the mouse moves.
       const ellipsoid = globe.ellipsoid;
@@ -172,17 +147,14 @@ export default class MouseCoords {
       const terrainProvider = globe.terrainProvider;
 
       this.cartographicToFields(intersection, errorBar);
+
       if (!(terrainProvider instanceof EllipsoidTerrainProvider)) {
         this.debounceSampleAccurateHeight(terrainProvider, intersection);
       }
     } else {
       runInAction(() => {
         this.elevation = undefined;
-        this.utmZone = undefined;
-        this.latitude = undefined;
-        this.longitude = undefined;
-        this.north = undefined;
-        this.east = undefined;
+        this.cartographic = undefined;
       });
       this.updateEvent.raiseEvent();
     }
@@ -206,31 +178,13 @@ export default class MouseCoords {
 
   @action
   cartographicToFields(coordinates: Cartographic, errorBar?: number) {
-    this.cartographic = Cartographic.clone(coordinates, scratchCartographic);
+    this.cartographic = Cartographic.clone(coordinates);
 
-    const latitude = CesiumMath.toDegrees(coordinates.latitude);
-    const longitude = CesiumMath.toDegrees(coordinates.longitude);
-
-    if (this.useProjection) {
-      const prettyProjection = prettifyProjection(
-        longitude,
-        latitude,
-        this.proj4Projection,
-        this.proj4longlat,
-        this.projectionUnits
-      );
-      this.utmZone = prettyProjection.utmZone;
-      this.north = prettyProjection.north;
-      this.east = prettyProjection.east;
-    }
-
-    const prettyCoordinate = prettifyCoordinates(longitude, latitude, {
+    this.cartographic = coordinates;
+    this.elevation = {
       height: coordinates.height,
       errorBar: errorBar
-    });
-    this.latitude = prettyCoordinate.latitude;
-    this.longitude = prettyCoordinate.longitude;
-    this.elevation = prettyCoordinate.elevation;
+    };
     this.updateEvent.raiseEvent();
   }
 

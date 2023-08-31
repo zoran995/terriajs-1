@@ -110,6 +110,7 @@ const Select: React.FC<SelectProps> = (props) => {
           fillColor={props.light ? theme.textBlack : theme.textLight}
           styledWidth="16px"
           glyph={GLYPHS.arrowDown}
+          css={dropdownIconProps && dropdownIconProps.css}
           {...dropdownIconProps}
         />
       </ArrowPositioning>

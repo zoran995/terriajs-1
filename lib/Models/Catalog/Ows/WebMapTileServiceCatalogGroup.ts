@@ -43,13 +43,17 @@ class GetCapabilitiesStratum extends LoadableStratum(
       });
     }
 
-    const capabilities = await WebMapTileServiceCapabilities.fromUrl(
-      proxyCatalogItemUrl(
-        catalogItem,
-        catalogItem.getCapabilitiesUrl,
-        catalogItem.getCapabilitiesCacheDuration
-      )
+    const proxiedUrl = proxyCatalogItemUrl(
+      catalogItem,
+      catalogItem.getCapabilitiesUrl,
+      catalogItem.getCapabilitiesCacheDuration
     );
+
+    const capabilities = await WebMapTileServiceCapabilities.fromUrl({
+      url: proxiedUrl,
+      terria: catalogItem.terria,
+      shouldAuth: catalogItem.isPrivate
+    });
     return new GetCapabilitiesStratum(catalogItem, capabilities);
   }
 
@@ -164,7 +168,6 @@ class GetCapabilitiesStratum extends LoadableStratum(
         layerId,
         this.catalogGroup.terria
       );
-
       this.catalogGroup.terria.addModel(model);
     } else {
       model = existingModel;

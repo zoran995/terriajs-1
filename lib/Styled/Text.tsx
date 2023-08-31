@@ -26,6 +26,7 @@ interface ITextWeight {
   light?: boolean;
   bold?: boolean;
   semiBold?: boolean;
+  bolder?: boolean;
   extraBold?: boolean;
 }
 
@@ -49,6 +50,7 @@ export interface ITextPropsBase {
   isDisabled?: boolean;
   style?: any;
   maxLines?: boolean | number;
+  italic?: boolean;
 }
 
 export type ITextProps = ITextPropsBase &
@@ -77,10 +79,13 @@ export const Text = styled.div<ITextProps>`
     word-wrap: break-word;
   `}
 
+  ${(props) => props.italic && `font-style: italic;`}
+
   font-weight: 400;
   ${(props) => props.light && `font-weight: 300;`}
   ${(props) => props.bold && `font-weight: bold;`}
   ${(props) => props.semiBold && `font-weight: 600;`}
+  ${(props) => props.bolder && `font-weight: 700;`}
   ${(props) => props.extraBold && `font-weight: 800;`}
   ${(props) => props.uppercase && `text-transform: uppercase;`}
 

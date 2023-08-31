@@ -1,13 +1,7 @@
-export interface PrettifyOptions {
-  /**
-   * The height.
-   */
-  height?: number;
+import { IElevation } from "./Projection";
 
-  /**
-   * The error +/- for the height.
-   */
-  errorBar?: number;
+export interface PrettifyOptions {
+  elevation?: IElevation;
 
   /**
    * The number of digits to fix the lat / lon to.
@@ -16,9 +10,30 @@ export interface PrettifyOptions {
 }
 
 export interface PrettyCoordinates {
+  type: "latlon";
   longitude: string;
   latitude: string;
   elevation: string | undefined;
+}
+
+export interface PrettyProjected {
+  type: "projected";
+  /**
+   * Projection zone of the results.
+   */
+  zone?: string | number;
+  /**
+   * Coordinate in the north direction.
+   */
+  north: string;
+  /**
+   * Coordinate in the east direction.
+   */
+  east: string;
+  /**
+   * Elevation.
+   */
+  elevation?: string;
 }
 
 /**
@@ -31,24 +46,32 @@ export interface PrettyCoordinates {
 export default function prettifyCoordinates(
   longitude: number,
   latitude: number,
-  { height, errorBar, digits = 5 }: PrettifyOptions = {}
-) {
+  { elevation, digits = 5 }: PrettifyOptions = {}
+): PrettyCoordinates {
   const prettyLatitude =
     Math.abs(latitude).toFixed(digits) + "°" + (latitude < 0.0 ? "S" : "N");
   const prettyLongitude =
     Math.abs(longitude).toFixed(digits) + "°" + (longitude < 0.0 ? "W" : "E");
 
-  let prettyElevation = undefined;
-  if (height !== undefined) {
-    prettyElevation =
-      Math.round(height) +
-      (errorBar !== undefined ? "±" + Math.round(errorBar) : "") +
-      "m";
-  }
+  const prettyElevation = prettifyElevation(elevation);
 
   return {
-    longitude: prettyLongitude,
     latitude: prettyLatitude,
-    elevation: prettyElevation
+    longitude: prettyLongitude,
+    elevation: prettyElevation,
+    type: "latlon"
   };
+}
+
+export function prettifyElevation(elevation?: IElevation) {
+  if (!elevation || !elevation.height) {
+    return;
+  }
+  return (
+    Math.round(elevation.height) +
+    (elevation.errorBar !== undefined
+      ? "±" + Math.round(elevation.errorBar)
+      : "") +
+    "m"
+  );
 }

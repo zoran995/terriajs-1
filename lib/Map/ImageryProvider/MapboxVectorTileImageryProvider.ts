@@ -516,7 +516,7 @@ export default class MapboxVectorTileImageryProvider
   createHighlightImageryProvider(regionUniqueID: string) {
     const that = this;
     const styleFunc = function (feature: any) {
-      if (regionUniqueID === feature.properties[that._uniqueIdProp]) {
+      if (regionUniqueID == feature.properties[that._uniqueIdProp]) {
         // No fill, but same style border as the regions, just thicker
         const regionStyling = that._styleFunc(feature);
         if (isDefined(regionStyling)) {

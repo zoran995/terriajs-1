@@ -6,7 +6,8 @@ function getUrlForImageryTile(
   imageryProvider: ImageryProvider,
   x: number,
   y: number,
-  level: number
+  level: number,
+  accessToken?: string
 ): string | undefined {
   const oldLoadImage = ImageryProvider.loadImage;
 
@@ -26,6 +27,10 @@ function getUrlForImageryTile(
         if (ionAccessToken) {
           tileUrl = new URI(tileUrl)
             .addQuery("access_token", ionAccessToken)
+            .toString();
+        } else if (url.headers && url.headers.Authorization && accessToken) {
+          tileUrl = new URI(tileUrl)
+            .addQuery("access_token", accessToken)
             .toString();
         }
       }

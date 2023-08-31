@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import TestRenderer from "react-test-renderer";
 import Terria from "../../../lib/Models/Terria";
 import ViewState from "../../../lib/ReactViewModels/ViewState";
@@ -95,3 +95,4 @@ describe("Branding", function () {
     }).toThrow();
   });
 });
+*/

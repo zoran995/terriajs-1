@@ -1,5 +1,6 @@
 import { createTransformer } from "mobx-utils";
 import defined from "terriajs-cesium/Source/Core/defined";
+import Resource from "terriajs-cesium/Source/Core/Resource";
 import isDefined from "../../../Core/isDefined";
 import loadXML from "../../../Core/loadXML";
 import TerriaError from "../../../Core/TerriaError";
@@ -8,7 +9,8 @@ import { RectangleTraits } from "../../../Traits/TraitsClasses/MappableTraits";
 import StratumFromTraits from "../../Definition/StratumFromTraits";
 import {
   CapabilitiesGeographicBoundingBox,
-  CapabilitiesService
+  CapabilitiesService,
+  UrlTerria
 } from "./WebMapServiceCapabilities";
 import { isJsonString } from "../../../Core/Json";
 
@@ -174,22 +176,47 @@ function buildSrsNameObject(layer: any): SrsNamesForLayer {
 }
 
 export default class WebFeatureServiceCapabilities {
-  static fromUrl: (url: string) => Promise<WebFeatureServiceCapabilities> =
-    createTransformer((url: string) => {
-      return loadXML(url).then(function (capabilitiesXml: any) {
+  static fromUrl: (
+    urlTerria: UrlTerria
+  ) => Promise<WebFeatureServiceCapabilities> = createTransformer(
+    (urlTerria: UrlTerria) => {
+      let authUrl: Resource;
+      if (
+        urlTerria.terria.configParameters.reverseProxyUrl &&
+        (urlTerria.shouldAuth ||
+          urlTerria.url.includes(
+            urlTerria.terria.configParameters.reverseProxyUrl
+          )) &&
+        urlTerria.terria.keycloak
+      ) {
+        urlTerria.terria.keycloak.updateToken(30);
+        authUrl = new Resource({
+          url: urlTerria.url,
+          headers: {
+            Authorization: "Bearer " + urlTerria.terria.keycloak.token
+          }
+        });
+      } else {
+        authUrl = new Resource({
+          url: urlTerria.url
+        });
+      }
+
+      return loadXML(authUrl).then(function (capabilitiesXml: any) {
         const json = xml2json(capabilitiesXml);
         if (!defined(json.ServiceIdentification)) {
           throw new TerriaError({
             title: "Invalid GetCapabilities",
             message:
-              `The URL ${url} was retrieved successfully but it does not appear to be a valid Web Feature Service (WFS) GetCapabilities document.` +
+              `The URL ${urlTerria.url} was retrieved successfully but it does not appear to be a valid Web Feature Service (WFS) GetCapabilities document.` +
               `\n\nEither the catalog file has been set up incorrectly, or the server address has changed.`
           });
         }
 
         return new WebFeatureServiceCapabilities(capabilitiesXml, json);
       });
-    });
+    }
+  );
 
   readonly service: CapabilitiesService;
   readonly outputTypes: string[] | undefined;

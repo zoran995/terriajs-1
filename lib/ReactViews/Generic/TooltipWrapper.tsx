@@ -239,8 +239,14 @@ type ButtonLauncherProps = {
 export const TooltipWithButtonLauncher: React.SFC<ButtonLauncherProps> = (
   props
 ) => {
-  const { launcherComponent, children, dismissOnLeave, orientation, ...rest } =
-    props;
+  const {
+    launcherComponent,
+    children,
+    dismissOnLeave,
+    orientation,
+    styledWidth,
+    ...rest
+  } = props;
 
   const idForAria = `ButtonLauncher-${useUID()}`;
   const idForChildAria = `ButtonLauncher-child-${useUID()}`;
@@ -248,7 +254,7 @@ export const TooltipWithButtonLauncher: React.SFC<ButtonLauncherProps> = (
   return (
     <TooltipWrapper
       innerElementStyles={{
-        width: "350px"
+        width: props.styledWidth ? props.styledWidth : "350px"
       }}
       orientation={orientation || "below"}
       {...rest}

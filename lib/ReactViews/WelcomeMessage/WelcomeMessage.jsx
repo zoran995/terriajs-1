@@ -13,6 +13,10 @@ import { ExplorerWindowElementName } from "../ExplorerWindow/ExplorerWindow";
 import { useKeyPress } from "../Hooks/useKeyPress.js";
 import VideoGuide from "../Map/Panels/HelpPanel/VideoGuide";
 import { withViewState } from "../Context";
+import LanguageSwitcher, {
+  Direction
+} from "../LanguageSwitcher/LanguageSwitcher";
+import LanguageSwitcherSelect from "../LanguageSwitcher/LanguageSwitcherSelect";
 import { TourPortalDisplayName } from "../Tour/TourPortal";
 import FadeIn from "../Transitions/FadeIn/FadeIn";
 import SlideUpFadeIn from "../Transitions/SlideUpFadeIn/SlideUpFadeIn";
@@ -250,7 +254,12 @@ export const WelcomeMessagePure = (props) => {
                 </Text>
                 <Spacing bottom={2} />
               </If>
-              <Box fullWidth styledMinHeight={"160px"}>
+              <Box
+                fullWidth
+                styledMinHeight={
+                  !viewState.useSmallScreenInterface ? "160px" : "80px"
+                }
+              >
                 <If condition={!viewState.useSmallScreenInterface}>
                   <Box
                     col6
@@ -331,9 +340,32 @@ export const WelcomeMessagePure = (props) => {
                   )}
                 </Box>
               </Box>
-              <If condition={!viewState.useSmallScreenInterface}>
-                <Spacing bottom={13} />
-              </If>
+              {/* <Spacing bottom={13} /> */}
+              <Box
+                fullWidth
+                centered
+                paddedVertically={!viewState.useSmallScreenInterface ? 5 : 0}
+                column
+              >
+                {!viewState.useSmallScreenInterface ? (
+                  <LanguageSwitcher
+                    viewState={viewState}
+                    neverCollapse
+                    direction={Direction.Down}
+                  />
+                ) : (
+                  <>
+                    <Box
+                      css={`
+                        width: 50%;
+                      `}
+                    >
+                      <LanguageSwitcherSelect viewState={viewState} />
+                    </Box>
+                    <Spacing bottom={8} />
+                  </>
+                )}
+              </Box>
               <Box fullWidth centered>
                 <RawButton onClick={handleClose.bind(null, true)}>
                   <TextSpan textLight isLink>

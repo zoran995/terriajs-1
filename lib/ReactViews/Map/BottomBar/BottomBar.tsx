@@ -5,6 +5,7 @@ import { MapCredits } from "./Credits";
 import { DistanceLegend } from "./DistanceLegend";
 import { LocationBar } from "./LocationBar";
 import React from "react";
+import MiniMapButton from "../../MiniMap/MiniMapButton";
 
 export const BottomBar: VFC = () => {
   const viewState = useViewState();
@@ -26,6 +27,9 @@ export const BottomBar: VFC = () => {
       <Box paddedHorizontally={4} gap={2}>
         <LocationBar mouseCoords={viewState.terria.currentViewer.mouseCoords} />
         <DistanceLegend />
+        {!viewState.terria.configParameters.disableMiniMap && (
+          <MiniMapButton viewState={viewState} />
+        )}
       </Box>
     </Box>
   );

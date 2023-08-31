@@ -14,6 +14,7 @@ import MenuBar from "./MenuBar/MenuBar";
 import { ProgressBar } from "./ProgressBar";
 import { TerriaViewerWrapper } from "./TerriaViewerWrapper";
 import Toast from "./Toast";
+import AttributeTable from "../AttributeTable/AttributeTablePanel";
 
 interface IMapColumnProps {
   customFeedbacks: any;
@@ -130,6 +131,9 @@ export const MapColumn: FC<IMapColumnProps> = observer(
               viewState={viewState}
               elementConfig={viewState.terria.elements.get("bottom-dock")}
             />
+          )}
+          {!viewState.hideMapUi && viewState.attributeTableShown && (
+            <AttributeTable sourceItem={viewState.attributeTableItem} />
           )}
         </div>
       </Box>

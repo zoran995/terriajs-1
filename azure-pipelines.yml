@@ -1,0 +1,40 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "10.x"
+    displayName: "Install Node.js"
+    env:
+      NODE_OPTIONS: --max_old_space_size=8192
+  - task: InstallSSHKey@0
+    inputs:
+      knownHostsEntry: "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ"
+      sshKeySecureFile: "azure"
+      sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6oiupkZmlh0YjQLxbougoUZIAZUgCpb45xBY++Ob/fBgDcy9+XR+rd5YEG9Zv+TLALPnC3XksSyACje/k+OnYEeP7Ebb8MvYMSbM1XhfFkf8IR5TAqSaqvCicQRppvRwAXso8fWPC51k/p1wnnozd42I5be5ScChN4WsgIZI8Wj2Gvw8BydeFqMLYFNCMIGw3/I0mLebRkZeNZA4/qmSmRCCtBI+pI6NpXRMWZ73OmVwxEWgSLNG3O8PSz0cG4SZfD/XWEKxKncZQYzoHaZxV25Atc0uiTGgA0tJK0KZm/JL3iYwCBCn9wOGVbl/56udzHcxXlPHkRXFYQnZXi5qZJhfs8sGSGpIt7GWtZfIykk1chI3+ufCc5xjEjYCXDLH/MeDtCF6Le67NROg97hINTnDlg4QCMJCx0L3VDI93yELPm4rBoxA5j0FD0jOlaUsdXp9s/1rz3v2AdzMs0TXC8WNqRe8mgNRvRjKvAwTGodC0xoTv/WCycWNvX65eYGMLeado62FVRXd/W8Wyqrj+vbx+zbLA9jhYM4FAcct9eIgviOgZwXaUMkIKvvQQT6ZolHxhSTfVV8YJ8VV4FaAUlfhoDxxGIXUOVtRmYFu0J5Ym2gpbFVh77TNoIGt2BGikW48XI9/XV4fxmqpEUuYkJYgfJQj+6++FpxwvY4KN4w== zorankokeza95@gmail.com"
+  - script: |
+      sudo cp .azure-pipelines/linux/xvfb.init /etc/init.d/xvfb
+      sudo chmod +x /etc/init.d/xvfb
+      sudo update-rc.d xvfb defaults
+      sudo service xvfb start
+    displayName: "Start X Virtual Frame Buffer"
+  - script: |
+      sudo apt-get update && sudo apt-get install libgconf-2-4 -y
+      pip install wheel
+      export DISPLAY=:10
+      export NODE_OPTIONS=--max_old_space_size=8192
+      npm install
+      npm run prettier-check
+      pip install -r doc/requirements.txt
+      npm run gulp lint release --continue
+      npm run gulp test-firefox
+    displayName: "npm install and build"

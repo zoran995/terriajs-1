@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WFS_Capabilities version="2.0.0">
+  <ServiceIdentification>
+    <Title>wfs Server</Title>
+    <Abstract>web feature service foo bar test</Abstract>
+    <Keywords>
+      <Keyword>WFS</Keyword>
+    </Keywords>
+    <ServiceType>WFS</ServiceType>
+    <ServiceTypeVersion>2.0.0</ServiceTypeVersion>
+    <Fees>test</Fees>
+    <AccessConstraints>test</AccessConstraints>
+  </ServiceIdentification>
+  <ServiceProvider>
+    <ProviderName>The Ancient Geographers</ProviderName>
+    <ServiceContact>
+      <IndividualName>Claudius Ptolomaeus</IndividualName>
+      <PositionName>Chief Geographer</PositionName>
+      <ContactInfo>
+        <Phone>
+          <Voice />
+          <Facsimile />
+        </Phone>
+        <Address>
+          <DeliveryPoint />
+          <City>Alexandria</City>
+          <AdministrativeArea />
+          <PostalCode />
+          <Country>Egypt</Country>
+          <ElectronicMailAddress>claudius.ptolomaeus@gmail.com</ElectronicMailAddress>
+        </Address>
+      </ContactInfo>
+    </ServiceContact>
+  </ServiceProvider>
+  <FeatureTypeList>
+    <FeatureType xmlns:region_data="http://example.com/region_data">
+      <Name>region_data:test</Name>
+      <Title>Test dataset</Title>
+      <Abstract>Test description</Abstract>
+      <Keywords>
+        <Keyword>features</Keyword>
+        <Keyword>test</Keyword>
+      </Keywords>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::3908</DefaultCRS>
+      <WGS84BoundingBox>
+        <LowerCorner>16.477665756584347 42.5469154741991</LowerCorner>
+        <UpperCorner>19.373256348479533 45.10260826325992</UpperCorner>
+      </WGS84BoundingBox>
+    </FeatureType>
+  </FeatureTypeList>
+</WFS_Capabilities>

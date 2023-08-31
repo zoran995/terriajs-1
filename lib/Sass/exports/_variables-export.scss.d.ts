@@ -8,6 +8,7 @@ interface CssExports {
   'dark': string;
   'darkLighter': string;
   'darkWithOverlay': string;
+  'fieldBorder': string;
   'font': string;
   'fontBase': string;
   'fontFeatureInfo': string;
@@ -38,11 +39,13 @@ interface CssExports {
   'notificationWindowZIndex': string;
   'overlay': string;
   'overlayInvert': string;
+  'paddingSmall': string;
   'radius40Button': string;
   'radiusLarge': string;
   'radiusSmall': string;
   'ringWidth': string;
   'sm': string;
+  'smLogoHeight': string;
   'spacing': string;
   'textBlack': string;
   'textDark': string;

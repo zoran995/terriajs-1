@@ -24,6 +24,7 @@ import TerriaError from "../../Core/TerriaError";
 import Leaflet from "../../Models/Leaflet";
 import getUrlForImageryTile from "../ImageryProvider/getUrlForImageryTile";
 import { ProviderCoords } from "../PickedFeatures/PickedFeatures";
+import Keycloak from "keycloak-js";
 
 // We want TS to look at the type declared in lib/ThirdParty/terriajs-cesium-extra/index.d.ts
 // and import doesn't allows us to do that, so instead we use require + type casting to ensure
@@ -52,6 +53,7 @@ export default class ImageryProviderLeafletTileLayer extends L.TileLayer {
   private _requestImageError?: TileProviderError;
   private _previousCredits: Credit[] = [];
   private _leafletUpdateInterval: number;
+  private keycloak?: Keycloak.KeycloakInstance;
 
   @observable splitDirection = SplitDirection.NONE;
   @observable splitPosition: number = 0.5;
@@ -59,7 +61,8 @@ export default class ImageryProviderLeafletTileLayer extends L.TileLayer {
   constructor(
     private leaflet: Leaflet,
     readonly imageryProvider: ImageryProvider,
-    options: L.TileLayerOptions = {}
+    options: L.TileLayerOptions = {},
+    keycloak?: Keycloak.KeycloakInstance
   ) {
     super(<any>undefined, {
       ...options,
@@ -89,6 +92,7 @@ export default class ImageryProviderLeafletTileLayer extends L.TileLayer {
     )
       ? (imageryProvider as any)._leafletUpdateInterval
       : 100;
+    this.keycloak = keycloak;
 
     // Hack to fix "Space between tiles on fractional zoom levels in Webkit browsers" (https://github.com/Leaflet/Leaflet/issues/3575#issuecomment-688644225)
     this.on("tileloadstart", (event: TileEvent) => {
@@ -210,13 +214,13 @@ export default class ImageryProviderLeafletTileLayer extends L.TileLayer {
     if (level < 0) {
       return errorTileUrl;
     }
-
     return (
       getUrlForImageryTile(
         this.imageryProvider,
         tilePoint.x,
         tilePoint.y,
-        level
+        level,
+        this.keycloak?.token
       ) || errorTileUrl
     );
   }

@@ -44,6 +44,7 @@ export const SearchBox = createReactClass({
     placeholder: PropTypes.string,
     onClear: PropTypes.func,
     alwaysShowClear: PropTypes.bool,
+    showClear: PropTypes.bool,
     debounceDuration: PropTypes.number,
     inputBoxRef: PropTypes.object,
     autoFocus: PropTypes.bool,
@@ -57,6 +58,7 @@ export const SearchBox = createReactClass({
     return {
       placeholder: "Search",
       alwaysShowClear: false,
+      showClear: false,
       autoFocus: false
     };
   },
@@ -190,7 +192,10 @@ export const SearchBox = createReactClass({
             rounded
           />
         </Text>
-        {(this.props.alwaysShowClear || this.hasValue()) && clearButton}
+        {(this.props.alwaysShowClear ||
+          this.props.showClear ||
+          this.hasValue()) &&
+          clearButton}
       </form>
     );
   }

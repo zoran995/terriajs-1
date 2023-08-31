@@ -6,6 +6,7 @@ import isDefined from "../../../Core/isDefined";
 import Result from "../../../Core/Result";
 import CatalogMemberMixin from "../../../ModelMixins/CatalogMemberMixin";
 import MappableMixin, { MapItem } from "../../../ModelMixins/MappableMixin";
+import { PrintMapSize } from "../../../ReactViews/Tools/PrintTool/PrintCapabilities";
 import ModelReference from "../../../Traits/ModelReference";
 import CompositeCatalogItemTraits from "../../../Traits/TraitsClasses/CompositeCatalogItemTraits";
 import CommonStrata from "../../Definition/CommonStrata";
@@ -108,6 +109,17 @@ export default class CompositeCatalogItem extends MappableMixin(
     } else {
       this.setTrait(stratumId, "members", [member.uniqueId]);
     }
+  }
+
+  encodeLayerForPrint(pageBounds: any, printMapSize: PrintMapSize): any {
+    const models = this.memberModels;
+    const printEncoded: any = [];
+    models.forEach((model: any) => {
+      if (model.encodeLayerForPrint) {
+        printEncoded.push(model.encodeLayerForPrint(pageBounds, printMapSize));
+      }
+    });
+    return printEncoded;
   }
 
   dispose() {

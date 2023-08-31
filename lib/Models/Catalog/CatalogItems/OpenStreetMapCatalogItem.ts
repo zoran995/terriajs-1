@@ -75,6 +75,20 @@ export default class OpenStreetMapCatalogItem extends MappableMixin(
     templateUrl.path(`${path}${sep}{z}/{x}/{y}.${this.fileExtension}`);
     return decodeURI(templateUrl.toString());
   }
+
+  encodeLayerForPrint(): any {
+    const imageryProvider = this.imageryProvider;
+    const mapObject: any = {
+      baseURL: this.templateUrl,
+      opacity: this.opacity,
+      type: "OSM",
+      tileSize: [
+        imageryProvider?.tileWidth || 256,
+        imageryProvider?.tileHeight || 256
+      ]
+    };
+    return mapObject;
+  }
 }
 
 function cleanAndProxyUrl(catalogItem: any, url: string) {

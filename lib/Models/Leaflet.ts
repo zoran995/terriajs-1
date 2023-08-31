@@ -82,7 +82,7 @@ export default class Leaflet extends GlobeOrMap {
   private readonly _attributionControl: LeafletAttribution;
   private readonly _leafletVisualizer: LeafletVisualizer;
   private readonly _eventHelper: EventHelper;
-  private readonly _selectionIndicator: LeafletSelectionIndicator;
+  protected readonly _selectionIndicator: LeafletSelectionIndicator;
   private _stopRequestAnimationFrame: boolean = false;
   private _cesiumReqAnimFrameId: number | undefined;
   private _pickedFeatures: PickedFeatures | undefined = undefined;
@@ -120,7 +120,12 @@ export default class Leaflet extends GlobeOrMap {
     if (supportsImageryProviderGridLayer(ip)) {
       return new ImageryProviderLeafletGridLayer(this, ip, layerOptions);
     } else {
-      return new ImageryProviderLeafletTileLayer(this, ip, layerOptions);
+      return new ImageryProviderLeafletTileLayer(
+        this,
+        ip,
+        layerOptions,
+        this.terria.keycloak
+      );
     }
   });
 

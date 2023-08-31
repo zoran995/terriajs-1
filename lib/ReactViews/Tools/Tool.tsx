@@ -61,18 +61,21 @@ const Tool: React.FC<ToolProps> = (props) => {
 interface ToolButtonProps extends ToolProps {
   icon: { id: string };
   viewState: ViewState;
+  viewerMode?: ViewerMode;
 }
 
 export class ToolButtonController extends MapNavigationItemController {
+  private readonly _viewerMode?: ViewerMode;
   constructor(private props: ToolButtonProps) {
     super();
     makeObservable(this);
+    this._viewerMode = props.viewerMode;
   }
   get glyph() {
     return this.props.icon;
   }
   get viewerMode() {
-    return ViewerMode.Cesium;
+    return this._viewerMode;
   }
 
   get name() {
@@ -104,17 +107,21 @@ export class ToolButtonController extends MapNavigationItemController {
   }
 
   activate() {
-    this.props.viewState.openTool({
-      toolName: this.props.toolName,
-      getToolComponent: this.props.getToolComponent,
-      params: this.props.params,
-      showCloseButton: false
-    });
-    super.activate();
+    setTimeout(() => {
+      this.props.viewState.openTool({
+        toolName: this.props.toolName,
+        getToolComponent: this.props.getToolComponent,
+        params: this.props.params,
+        showCloseButton: false
+      });
+      super.activate();
+    }, 100);
   }
 
   deactivate() {
-    this.props.viewState.closeTool();
+    if (this.props.viewState.currentTool?.toolName === this.props.toolName) {
+      this.props.viewState.closeTool();
+    }
     super.deactivate();
   }
 }

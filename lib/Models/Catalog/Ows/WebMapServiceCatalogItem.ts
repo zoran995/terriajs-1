@@ -12,6 +12,7 @@ import { computed, runInAction, makeObservable, override } from "mobx";
 import combine from "terriajs-cesium/Source/Core/combine";
 import GeographicTilingScheme from "terriajs-cesium/Source/Core/GeographicTilingScheme";
 import JulianDate from "terriajs-cesium/Source/Core/JulianDate";
+import Resource from "terriajs-cesium/Source/Core/Resource";
 import WebMercatorTilingScheme from "terriajs-cesium/Source/Core/WebMercatorTilingScheme";
 import GetFeatureInfoFormat from "terriajs-cesium/Source/Scene/GetFeatureInfoFormat";
 import WebMapServiceImageryProvider from "terriajs-cesium/Source/Scene/WebMapServiceImageryProvider";
@@ -474,6 +475,39 @@ class WebMapServiceCatalogItem
       : undefined;
   }
 
+  encodeLayerForPrint(): any {
+    const time = this.currentTime;
+    let customParams: {
+      time?: any;
+      access_token?: string;
+      transparent: boolean;
+    } = {
+      transparent: true
+    };
+    if (
+      this.terria.keycloak &&
+      this.terria.configParameters.reverseProxyUrl &&
+      (this.isPrivate ||
+        this.url?.includes(this.terria.configParameters.reverseProxyUrl))
+    ) {
+      const keycloak = this.terria.keycloak;
+      keycloak.updateToken(120);
+      customParams.access_token = keycloak.token;
+    }
+    if (time) customParams.time = time;
+
+    const mapObject: any = {
+      baseURL: this.url,
+      opacity: this.opacity,
+      type: "WMS",
+      imageFormat: "image/png",
+      customParams: customParams
+    };
+    if (this.layers) mapObject.layers = this.layers.split(",");
+    if (this.styles) mapObject.styles = this.styles.split(",");
+    return mapObject;
+  }
+
   private _createImageryProvider = createTransformerAllowUndefined(
     (time: string | undefined): WebMapServiceImageryProvider | undefined => {
       // Don't show anything on the map until GetCapabilities finishes loading.
@@ -556,13 +590,38 @@ class WebMapServiceCatalogItem
         new URI(this.url)
       );
 
+      const geoportalResource = new Resource({
+        url: proxyCatalogItemUrl(this, baseUrl.toString())
+      });
+      if (
+        this.terria.keycloak &&
+        this.terria.configParameters.reverseProxyUrl &&
+        (this.isPrivate ||
+          this.url?.includes(this.terria.configParameters.reverseProxyUrl))
+      ) {
+        const token = this.terria.getAuthenticationHeader(this.terria.keycloak);
+        if (token) {
+          geoportalResource.headers.Authorization = "Bearer " + token;
+          const wms = this;
+          geoportalResource.fetchImage = function (callOptions: any) {
+            const terria = wms.terria;
+            if (terria.keycloak) {
+              this.headers.Authorization = terria.getAuthenticationHeader(
+                terria.keycloak
+              );
+            }
+            return Resource.prototype.fetchImage.call(this, callOptions);
+          };
+        }
+      }
+
       // Set CRS for WMS 1.3.0
       // Set SRS for WMS 1.1.1
       const crs = this.useWmsVersion130 ? this.crs : undefined;
       const srs = this.useWmsVersion130 ? undefined : this.crs;
 
       const imageryOptions: WebMapServiceImageryProvider.ConstructorOptions = {
-        url: proxyCatalogItemUrl(this, baseUrl.toString()),
+        url: geoportalResource,
         layers: this.validLayers.length > 0 ? this.validLayers.join(",") : "",
         parameters,
         crs,

@@ -83,5 +83,30 @@ export const defaultTourPoints = [
     positionTop: RelativePosition.RECT_TOP,
     positionLeft: RelativePosition.RECT_LEFT,
     content: "translate#tour.mapNavigationSplitterIcon.content"
+  },
+  {
+    appRefName: "MapNavigationLanguageSwitcher",
+    priority: 80,
+    caretOffsetTop: 80,
+    caretOffsetLeft: TOUR_WIDTH - 18,
+    indicatorOffsetTop: 3,
+    indicatorOffsetLeft: 17,
+    offsetTop: -105,
+    offsetLeft: -TOUR_WIDTH - 15,
+    positionTop: RelativePosition.RECT_BOTTOM,
+    positionLeft: RelativePosition.RECT_LEFT,
+    content: "translate#tour.mapNavigationLanguageSwitcher.content"
+  },
+  {
+    appRefName: "MapLocationBar",
+    priority: 90,
+    caretOffsetTop: 165,
+    caretOffsetLeft: TOUR_WIDTH - 100,
+    indicatorOffsetTop: 20,
+    offsetTop: -180,
+    offsetLeft: -TOUR_WIDTH - 30,
+    positionTop: RelativePosition.RECT_TOP,
+    positionLeft: RelativePosition.RECT_RIGHT,
+    content: "translate#tour.mapLocationBar.content"
   }
 ];

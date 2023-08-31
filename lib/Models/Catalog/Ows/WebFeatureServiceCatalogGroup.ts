@@ -43,13 +43,16 @@ class GetCapabilitiesStratum extends LoadableStratum(
       });
     }
 
-    const capabilities = await WebFeatureServiceCapabilities.fromUrl(
-      proxyCatalogItemUrl(
-        catalogItem,
-        catalogItem.getCapabilitiesUrl,
-        catalogItem.getCapabilitiesCacheDuration
-      )
+    const proxiedUrl = proxyCatalogItemUrl(
+      catalogItem,
+      catalogItem.getCapabilitiesUrl,
+      catalogItem.getCapabilitiesCacheDuration
     );
+    const capabilities = await WebFeatureServiceCapabilities.fromUrl({
+      url: proxiedUrl,
+      terria: catalogItem.terria,
+      shouldAuth: catalogItem.isPrivate
+    });
     return new GetCapabilitiesStratum(catalogItem, capabilities);
   }
 

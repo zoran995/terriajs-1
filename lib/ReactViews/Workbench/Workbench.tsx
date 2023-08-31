@@ -52,9 +52,13 @@ class Workbench extends React.Component<IProps> {
         DataSourceAction.removeAllFromWorkbench,
         getPath(item)
       );
+      if ((item as any).onRemoveFromWorkbench) {
+        (item as any).onRemoveFromWorkbench();
+      }
     });
     this.props.terria.workbench.removeAll();
     (this.props.terria.timelineStack.items as any).clear();
+    this.props.viewState.removeAttributeTable();
   }
 
   render() {

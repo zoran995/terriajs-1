@@ -34,6 +34,17 @@ export const PrintSection: FC<IPrintSectionProps> = ({ viewState }) => {
       .finally(() => setIsDownloading(false));
   };
 
+  const leafletPrint = () => {
+    viewState.openTool({
+      toolName: t("printTool.title"),
+      getToolComponent: () =>
+        import("../../../../Tools/PrintTool/PrintToolPanel").then(
+          (m) => m.default
+        ),
+      showCloseButton: false
+    });
+  };
+
   return (
     <Box column>
       <TextSpan medium>{t("share.printTitle")}</TextSpan>
@@ -47,9 +58,16 @@ export const PrintSection: FC<IPrintSectionProps> = ({ viewState }) => {
         >
           <TextSpan medium>{t("share.downloadMap")}</TextSpan>
         </PrintButton>
-        <PrintButton primary fullWidth onClick={printView}>
-          <TextSpan medium>{t("share.printViewButton")}</TextSpan>
-        </PrintButton>
+        {viewState.terria.currentViewer.type === "Leaflet" && (
+          <PrintButton primary fullWidth onClick={leafletPrint}>
+            <TextSpan medium>{t("share.printButton")}</TextSpan>
+          </PrintButton>
+        )}
+        {viewState.terria.currentViewer.type === "Cesium" && (
+          <PrintButton primary fullWidth onClick={printView}>
+            <TextSpan medium>{t("share.printViewButton")}</TextSpan>
+          </PrintButton>
+        )}
       </Box>
     </Box>
   );

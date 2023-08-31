@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <g id="pen" transform="translate(0.5 0.5)" fill-rule="evenodd">
+    <path d="M0 45.1001L44.5 0C44.5 0 51.0001 4.81366e-08 55 3.50001C59.0001 7.00001 59.9 13.9 59.9 13.9L15.5 59.0001C15.5 59.0001 17.1887 53.3952 10.9995 48C4.81036 42.6048 0 45.1001 0 45.1001Z" transform="translate(4.600464 0)" fill-rule="nonzero" stroke-rule="nonzero" stroke-width="1" stroke-linejoin="bevel" />
+    <path d="M4.59998 0L0 19L20.1 13.9" transform="translate(0 45.10001)" fill="none" stroke-rule="nonzero" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M2.29999 0L0 9.5L10.05 6.94997C10.05 6.94997 9.44526 4.45307 7.09998 2.39999C4.75465 0.34692 2.29999 0 2.29999 0Z" transform="translate(0 54.60001)" fill-rule="nonzero" stroke-rule="nonzero" stroke-width="1" />
+  </g>
+</svg>

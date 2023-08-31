@@ -1,4 +1,5 @@
 import i18next from "i18next";
+import Keycloak from "keycloak-js";
 import {
   action,
   computed,
@@ -62,6 +63,7 @@ import PickedFeatures, {
   featureBelongsToCatalogItem,
   isProviderCoordsMap
 } from "../Map/PickedFeatures/PickedFeatures";
+
 import CatalogMemberMixin, { getName } from "../ModelMixins/CatalogMemberMixin";
 import GroupMixin from "../ModelMixins/GroupMixin";
 import MappableMixin, { isDataSource } from "../ModelMixins/MappableMixin";
@@ -70,12 +72,14 @@ import TimeVarying from "../ModelMixins/TimeVarying";
 import { HelpContentItem } from "../ReactViewModels/defaultHelpContent";
 import { defaultTerms, Term } from "../ReactViewModels/defaultTerms";
 import NotificationState from "../ReactViewModels/NotificationState";
+import { UserInfo } from "../ReactViews/Auth/SignIn";
 import { ICredit } from "../ReactViews/Map/BottomBar/Credits";
 import { SHARE_VERSION } from "../ReactViews/Map/Panels/SharePanel/BuildShareLink";
 import { shareConvertNotification } from "../ReactViews/Notification/shareConvertNotification";
 import MappableTraits from "../Traits/TraitsClasses/MappableTraits";
 import MapNavigationModel from "../ViewModels/MapNavigation/MapNavigationModel";
 import TerriaViewer from "../ViewModels/TerriaViewer";
+import { RelatedAppsItemType } from "./../ReactViews/Map/Panels/RelatedAppsPanel/RelatedAppsItem";
 import { BaseMapsModel } from "./BaseMaps/BaseMapsModel";
 import CameraView from "./CameraView";
 import Catalog from "./Catalog/Catalog";
@@ -123,6 +127,11 @@ import TimelineStack from "./TimelineStack";
 import { isViewerMode, setViewerMode } from "./ViewerMode";
 import Workbench from "./Workbench";
 import SelectableDimensionWorkflow from "./Workflows/SelectableDimensionWorkflow";
+import {
+  defaultProjections,
+  Projection,
+  ProjectionParams
+} from "../Map/Vector/Projection";
 
 // import overrides from "../Overrides/defaults.jsx";
 
@@ -340,6 +349,64 @@ export interface ConfigParameters {
   plugins?: Record<string, any>;
 
   aboutButtonHrefUrl?: string | null;
+
+  reverseProxyUrl?: string;
+  hereMapsKey?: string;
+  disableHistoryControl?: boolean;
+  disableMiniMap?: boolean;
+  keycloakConfig?: KeycloakConfig;
+  mapfishPrint?: MapFishPrint;
+  printConfig?: PrintConfig;
+  print3DConfig?: Print3DConfig;
+
+  disableDkpSearch?: boolean;
+  dkpSearchInNavigation?: boolean;
+  disableMeasure?: boolean;
+  disableDrawing?: boolean;
+  relatedAppsContent?: RelatedAppsItemType[];
+  languageSwitcher?: boolean;
+  projections?: ProjectionParams[];
+}
+
+interface MapFishPrint {
+  default: {
+    url: string;
+    mapId: string;
+  };
+  [language: string]: {
+    url: string;
+    mapId: string;
+  };
+}
+
+interface PrintConfig {
+  /**
+   * Wheter only default should be used for the name of the file.
+   */
+  onlyDefaultName?: boolean;
+  /**
+   * The default name of the file.
+   */
+  defaultName?: string;
+  /**
+   * Position of the `defaultName` in the file name. Default end.
+   */
+  namePosition?: "start" | "end";
+}
+
+interface Print3DConfig {
+  /**
+   * Whether the legends should be shown.
+   */
+  showLegends?: boolean;
+  /**
+   * Whether the Dataset Details should be shown.
+   */
+  showDatasetDetails?: boolean;
+  /**
+   * Whether the Map Credits should be shown.
+   */
+  showMapCredits?: boolean;
 }
 
 interface StartOptions {
@@ -406,6 +473,15 @@ interface HomeCameraInit {
   east: number;
   south: number;
   west: number;
+}
+
+interface KeycloakConfig {
+  url: string;
+  realm: string;
+  clientId: string;
+  localeMapping?: {
+    [key: string]: string;
+  };
 }
 
 export default class Terria {
@@ -482,7 +558,8 @@ export default class Terria {
   @observable
   readonly configParameters: Complete<ConfigParameters> = {
     appName: "TerriaJS App",
-    supportEmail: "info@terria.io",
+    reverseProxyUrl: "http://geoportal.rgurs.org/preglednik/",
+    supportEmail: "zoran.kokeza@prointer.ba",
     defaultMaximumShownFeatureInfos: 100,
     catalogIndexUrl: undefined,
     regionMappingDefinitionsUrl: undefined,
@@ -493,6 +570,13 @@ export default class Terria {
     serverConfigUrl: "serverconfig/",
     shareUrl: "share",
     feedbackUrl: undefined,
+    keycloakConfig: undefined,
+    mapfishPrint: undefined,
+    printConfig: {
+      onlyDefaultName: false,
+      defaultName: "Prointer",
+      namePosition: "end"
+    },
     initFragmentPaths: ["init/"],
     storyEnabled: true,
     interceptBrowserPrint: true,
@@ -503,6 +587,7 @@ export default class Terria {
     cesiumIonAccessToken: undefined,
     useCesiumIonBingImagery: undefined,
     bingMapsKey: undefined,
+    hereMapsKey: undefined,
     hideTerriaLogo: false,
     brandBarElements: undefined,
     brandBarSmallElements: undefined,
@@ -530,7 +615,37 @@ export default class Terria {
     showInAppGuides: false,
     helpContent: [],
     helpContentTerms: defaultTerms,
-    languageConfiguration: undefined,
+    languageConfiguration: {
+      enabled: false,
+      debug: false,
+      react: {
+        useSuspense: false
+      },
+      languages: {
+        en: "english"
+      },
+      fallbackLanguage: "en",
+      changeLanguageOnStartWhen: [
+        "querystring",
+        "localStorage",
+        "navigator",
+        "htmlTag"
+      ]
+    },
+    disableHistoryControl: undefined,
+    disableMiniMap: undefined,
+    disableDkpSearch: false,
+    dkpSearchInNavigation: true,
+    disableMeasure: false,
+    disableDrawing: false,
+    languageSwitcher: true,
+    relatedAppsContent: [],
+    projections: [],
+    print3DConfig: {
+      showLegends: true,
+      showDatasetDetails: true,
+      showMapCredits: true
+    },
     customRequestSchedulerLimits: undefined,
     persistViewerMode: true,
     openAddData: false,
@@ -554,6 +669,12 @@ export default class Terria {
     aboutButtonHrefUrl: "about.html",
     plugins: undefined
   };
+
+  @observable
+  projections: Projection[] = defaultProjections;
+
+  @observable
+  projection: Projection = this.projections[0];
 
   @observable
   pickedFeatures: PickedFeatures | undefined;
@@ -655,6 +776,10 @@ export default class Terria {
    * @type {boolean}
    */
   @observable catalogReferencesLoaded: boolean = false;
+
+  @observable userInfo?: UserInfo;
+
+  keycloak?: Keycloak.KeycloakInstance;
 
   augmentedVirtuality?: any;
 
@@ -1026,6 +1151,11 @@ export default class Terria {
       this.shareDataService.init(this.serverConfig.config);
     }
 
+    if (this.configParameters.projections) {
+      this.updateProjections(this.configParameters.projections);
+    }
+    this.loadPersistedProjection();
+
     // Create catalog index if catalogIndexUrl is set
     // Note: this isn't loaded now, it is loaded in first CatalogSearchProvider.doSearch()
     if (this.configParameters.catalogIndexUrl && !this.catalogIndex) {
@@ -1061,6 +1191,14 @@ export default class Terria {
       );
     }
     this.loadPersistedMapSettings();
+    await this.initKeycloak();
+  }
+
+  initKeycloak(): void {
+    const keycloakConfig = this.configParameters.keycloakConfig;
+    if (keycloakConfig) {
+      this.keycloak = Keycloak(keycloakConfig);
+    }
   }
 
   /**
@@ -1163,6 +1301,37 @@ export default class Terria {
       }
     }
     await this.mainViewer.setBaseMap(<MappableMixin.Instance>baseMap.item);
+  }
+
+  @action
+  updateProjections(projections: ProjectionParams[]): void {
+    for (let i = 0; i < projections.length; i++) {
+      const params = projections[i];
+      this.projections.push(new Projection(params));
+    }
+
+    if (!this.projection) {
+      this.loadPersistedProjection();
+    }
+  }
+
+  @action
+  loadPersistedProjection(): void {
+    const persistedProjectionId = this.getLocalProperty("projection");
+    if (persistedProjectionId) {
+      const projectionSearch = this.projections.find(
+        (proj) => proj.params.id === persistedProjectionId
+      );
+      if (projectionSearch) {
+        this.projection = projectionSearch;
+      } else {
+        console.error(
+          `Couldn't find a projection for unique id ${persistedProjectionId}`
+        );
+      }
+    } else {
+      this.projection = this.projections[0];
+    }
   }
 
   get isLoadingInitSources(): boolean {
@@ -2063,6 +2232,12 @@ export default class Terria {
         }
       }
     });
+  }
+
+  getAuthenticationHeader(
+    keycloak: Keycloak.KeycloakInstance
+  ): string | undefined {
+    return keycloak.token;
   }
 
   async initCorsProxy(config: ConfigParameters, serverConfig: any) {

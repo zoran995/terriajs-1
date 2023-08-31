@@ -1,0 +1,317 @@
+[
+  {
+    "sifra": "25",
+    "naziv": "Бања Лука",
+    "naziv_lat": "Banja Luka"
+  },
+  {
+    "sifra": "26",
+    "naziv": "Берковићи",
+    "naziv_lat": "Berkovići"
+  },
+  {
+    "sifra": "27",
+    "naziv": "Бијељина",
+    "naziv_lat": "Bijeljina"
+  },
+  {
+    "sifra": "28",
+    "naziv": "Билећа",
+    "naziv_lat": "Bileća"
+  },
+  {
+    "sifra": "29",
+    "naziv": "Братунац",
+    "naziv_lat": "Bratunac"
+  },
+  {
+    "sifra": "30",
+    "naziv": "Брод",
+    "naziv_lat": "Brod"
+  },
+  {
+    "sifra": "31",
+    "naziv": "Чајниче",
+    "naziv_lat": "Čajniče"
+  },
+  {
+    "sifra": "32",
+    "naziv": "Челинац",
+    "naziv_lat": "Čelinac"
+  },
+  {
+    "sifra": "33",
+    "naziv": "Дервента",
+    "naziv_lat": "Derventa"
+  },
+  {
+    "sifra": "34",
+    "naziv": "Добој",
+    "naziv_lat": "Doboj"
+  },
+  {
+    "sifra": "35",
+    "naziv": "Доњи Жабар",
+    "naziv_lat": "Donji Žabar"
+  },
+  {
+    "sifra": "36",
+    "naziv": "Фоча",
+    "naziv_lat": "Foča"
+  },
+  {
+    "sifra": "37",
+    "naziv": "Гацко",
+    "naziv_lat": "Gacko"
+  },
+  {
+    "sifra": "38",
+    "naziv": "Градишка",
+    "naziv_lat": "Gradiška"
+  },
+  {
+    "sifra": "39",
+    "naziv": "Хан Пијесак",
+    "naziv_lat": "Han Pijesak"
+  },
+  {
+    "sifra": "40",
+    "naziv": "Источна Илиџа",
+    "naziv_lat": "Istočna Ilidža"
+  },
+  {
+    "sifra": "41",
+    "naziv": "Источни Дрвар",
+    "naziv_lat": "Istočni Drvar"
+  },
+  {
+    "sifra": "42",
+    "naziv": "Источни Мостар",
+    "naziv_lat": "Istočni Mostar"
+  },
+  {
+    "sifra": "43",
+    "naziv": "Источни Стари Град",
+    "naziv_lat": "Istočni Stari Grad"
+  },
+  {
+    "sifra": "44",
+    "naziv": "Источно Ново Сарајево",
+    "naziv_lat": "Istočno Novo Sarajevo"
+  },
+  {
+    "sifra": "45",
+    "naziv": "Језеро",
+    "naziv_lat": "Jezero"
+  },
+  {
+    "sifra": "46",
+    "naziv": "Калиновик",
+    "naziv_lat": "Kalinovik"
+  },
+  {
+    "sifra": "47",
+    "naziv": "Кнежево",
+    "naziv_lat": "Kneževo"
+  },
+  {
+    "sifra": "48",
+    "naziv": "Костајница",
+    "naziv_lat": "Kostajnica"
+  },
+  {
+    "sifra": "49",
+    "naziv": "Котор Варош",
+    "naziv_lat": "Kotor Varoš"
+  },
+  {
+    "sifra": "50",
+    "naziv": "Козарска Дубица",
+    "naziv_lat": "Kozarska Dubica"
+  },
+  {
+    "sifra": "51",
+    "naziv": "Крупа на Уни",
+    "naziv_lat": "Krupa na Uni"
+  },
+  {
+    "sifra": "52",
+    "naziv": "Купрес",
+    "naziv_lat": "Kupres"
+  },
+  {
+    "sifra": "53",
+    "naziv": "Лакташи",
+    "naziv_lat": "Laktaši"
+  },
+  {
+    "sifra": "54",
+    "naziv": "Љубиње",
+    "naziv_lat": "Ljubinje"
+  },
+  {
+    "sifra": "55",
+    "naziv": "Лопаре",
+    "naziv_lat": "Lopare"
+  },
+  {
+    "sifra": "56",
+    "naziv": "Милићи",
+    "naziv_lat": "Milići"
+  },
+  {
+    "sifra": "57",
+    "naziv": "Модрича",
+    "naziv_lat": "Modriča"
+  },
+  {
+    "sifra": "58",
+    "naziv": "Мркоњић Град",
+    "naziv_lat": "Mrkonjić Grad"
+  },
+  {
+    "sifra": "59",
+    "naziv": "Невесиње",
+    "naziv_lat": "Nevesinje"
+  },
+  {
+    "sifra": "60",
+    "naziv": "Нови Град",
+    "naziv_lat": "Novi Grad"
+  },
+  {
+    "sifra": "61",
+    "naziv": "Ново Горажде",
+    "naziv_lat": "Novo Goražde"
+  },
+  {
+    "sifra": "62",
+    "naziv": "Осмаци",
+    "naziv_lat": "Osmaci"
+  },
+  {
+    "sifra": "63",
+    "naziv": "Оштра Лука",
+    "naziv_lat": "Oštra Luka"
+  },
+  {
+    "sifra": "64",
+    "naziv": "Пале",
+    "naziv_lat": "Pale"
+  },
+  {
+    "sifra": "65",
+    "naziv": "Пелагићево",
+    "naziv_lat": "Pelagićevo"
+  },
+  {
+    "sifra": "66",
+    "naziv": "Петровац",
+    "naziv_lat": "Petrovac"
+  },
+  {
+    "sifra": "67",
+    "naziv": "Петрово",
+    "naziv_lat": "Petrovo"
+  },
+  {
+    "sifra": "68",
+    "naziv": "Приједор",
+    "naziv_lat": "Prijedor"
+  },
+  {
+    "sifra": "69",
+    "naziv": "Прњавор",
+    "naziv_lat": "Prnjavor"
+  },
+  {
+    "sifra": "70",
+    "naziv": "Рибник",
+    "naziv_lat": "Ribnik"
+  },
+  {
+    "sifra": "71",
+    "naziv": "Рогатица",
+    "naziv_lat": "Rogatica"
+  },
+  {
+    "sifra": "72",
+    "naziv": "Рудо",
+    "naziv_lat": "Rudo"
+  },
+  {
+    "sifra": "73",
+    "naziv": "Соколац",
+    "naziv_lat": "Sokolac"
+  },
+  {
+    "sifra": "74",
+    "naziv": "Србац",
+    "naziv_lat": "Srbac"
+  },
+  {
+    "sifra": "75",
+    "naziv": "Сребреница",
+    "naziv_lat": "Srebrenica"
+  },
+  {
+    "sifra": "76",
+    "naziv": "Станари",
+    "naziv_lat": "Stanari"
+  },
+  {
+    "sifra": "77",
+    "naziv": "Шамац",
+    "naziv_lat": "Šamac"
+  },
+  {
+    "sifra": "78",
+    "naziv": "Шековићи",
+    "naziv_lat": "Šekovići"
+  },
+  {
+    "sifra": "79",
+    "naziv": "Шипово",
+    "naziv_lat": "Šipovo"
+  },
+  {
+    "sifra": "80",
+    "naziv": "Теслић",
+    "naziv_lat": "Teslić"
+  },
+  {
+    "sifra": "81",
+    "naziv": "Требиње",
+    "naziv_lat": "Trebinje"
+  },
+  {
+    "sifra": "82",
+    "naziv": "Трново",
+    "naziv_lat": "Trnovo"
+  },
+  {
+    "sifra": "83",
+    "naziv": "Угљевик",
+    "naziv_lat": "Ugljevik"
+  },
+  {
+    "sifra": "84",
+    "naziv": "Вишеград",
+    "naziv_lat": "Višegrad"
+  },
+  {
+    "sifra": "85",
+    "naziv": "Власеница",
+    "naziv_lat": "Vlasenica"
+  },
+  {
+    "sifra": "86",
+    "naziv": "Вукосавље",
+    "naziv_lat": "Vukosavlje"
+  },
+  {
+    "sifra": "87",
+    "naziv": "Зворник",
+    "naziv_lat": "Zvornik"
+  }
+]
