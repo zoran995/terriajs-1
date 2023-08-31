@@ -140,7 +140,7 @@ class Tabs extends React.Component {
           className={Styles.tabList}
           role="tablist"
           css={`
-            background-color: ${(p) => p.theme.colorPrimary};
+            background-color: ${(p) => p.theme.darkWithOverlay};
           `}
         >
           <For each="item" index="i" of={tabs}>
@@ -192,16 +192,15 @@ const ButtonTab = styled.button`
     &:hover,
     &:focus {
       background: ${props.theme.textLight};
-      color: ${props.theme.colorPrimary};
+      color: ${props.theme.darkWithOverlay};
     }
     ${
       props.isCurrent &&
       `
       background: ${props.theme.textLight};
-      color: ${props.theme.colorPrimary};
+      color: ${props.theme.darkWithOverlay};
     `
     }
-
   `}
 `;
 

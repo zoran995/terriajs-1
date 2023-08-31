@@ -244,7 +244,7 @@ const InputLabel = (props: InputProps) => {
 };
 
 const ToolButton = styled(Button).attrs({
-  primary: true,
+  toolButton: true,
   fullWidth: true
 })``;
 

@@ -66,7 +66,7 @@ const Clipboard: React.FC<ClipboardProps> = (props) => {
       <Box>
         {source}
         <Button
-          primary
+          primary2
           css={`
             width: 80px;
             border-radius: 2px;

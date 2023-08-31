@@ -43,7 +43,8 @@ function AttributeTableMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
     ): AttributeTable {
       const data: AttributeTableRowInterface[] = [];
 
-      const values = dataSource?.entities.values;
+      const values = dataSource?.entities.values.filter((e) => !e.parent);
+      const selectedFeature = terria.selectedFeature;
       if (values && values.length > 0) {
         const columnNames = values[0].properties?.propertyNames;
         if (!isDefined(columnNames)) {
@@ -62,7 +63,7 @@ function AttributeTableMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
           });
           const uniqueFeatureId = values[i].id;
           readyData.uniqueFeatureId = uniqueFeatureId;
-          if (uniqueFeatureId === terria.selectedFeature?.id) {
+          if (uniqueFeatureId === selectedFeature?.id) {
             readyData.isSelected = true;
           } else {
             readyData.isSelected = false;

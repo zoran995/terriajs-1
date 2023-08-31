@@ -43,7 +43,12 @@ const StyledMapIconButton = styled(RawButton)<IStyledMapIconButtonProps>`
     width: 20px;
     margin: 0 auto;
     vertical-align: middle;
-    fill: ${(props) => props.theme.textDarker};
+    fill: ${(props) => props.theme.darkWithOverlay};
+  }
+
+  :disabled {
+    box-shadow: none;
+    background: ${(props) => props.theme.textLightDimmed};
   }
 
   :disabled {
@@ -62,9 +67,19 @@ const StyledMapIconButton = styled(RawButton)<IStyledMapIconButtonProps>`
   `}
 
   ${(props) =>
+    props.dark &&
+    `
+    background: ${props.theme.dark};
+    color: ${props.theme.textLight};
+    svg {
+      fill: ${props.theme.textLightDimmed};
+    }
+  `}
+
+  ${(props) =>
     props.primary &&
     `
-    background: ${props.theme.colorPrimary};
+    background: ${props.theme.darkWithOverlay};
     color: ${props.theme.textLight};
     svg {
       fill: ${props.theme.textLight};

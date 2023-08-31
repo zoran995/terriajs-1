@@ -132,9 +132,14 @@ import {
   Projection,
   ProjectionParams
 } from "../Map/Vector/Projection";
+import GeoShopMixin from "../ModelMixins/GeoshopMixin";
 
 // import overrides from "../Overrides/defaults.jsx";
 
+interface IGeoShopConfig {
+  baseApiUrl: string;
+  shopUrl: string;
+}
 export interface ConfigParameters {
   /**
    * TerriaJS uses this name whenever it needs to display the name of the application.
@@ -366,6 +371,7 @@ export interface ConfigParameters {
   relatedAppsContent?: RelatedAppsItemType[];
   languageSwitcher?: boolean;
   projections?: ProjectionParams[];
+  geoshopConfig?: IGeoShopConfig;
 }
 
 interface MapFishPrint {
@@ -616,7 +622,7 @@ export default class Terria {
     helpContent: [],
     helpContentTerms: defaultTerms,
     languageConfiguration: {
-      enabled: false,
+      enabled: true,
       debug: false,
       react: {
         useSuspense: false
@@ -652,7 +658,8 @@ export default class Terria {
     feedbackPreamble: "translate#feedback.feedbackPreamble",
     feedbackPostamble: undefined,
     feedbackMinLength: 0,
-    leafletAttributionPrefix: undefined,
+    leafletAttributionPrefix:
+      '<a target="_blank" href="https://leafletjs.com/blog.html"  rel="noreferrer">Leaflet</a>',
     extraCreditLinks: [
       // Default credit links (shown at the bottom of the Cesium map)
       {
@@ -667,7 +674,8 @@ export default class Terria {
     googleAnalyticsOptions: undefined,
     relatedMaps: defaultRelatedMaps,
     aboutButtonHrefUrl: "about.html",
-    plugins: undefined
+    plugins: undefined,
+    geoshopConfig: undefined
   };
 
   @observable
@@ -707,6 +715,12 @@ export default class Terria {
    * ```
    */
   private focusWorkbenchItemsAfterLoadingInitSources: boolean = false;
+
+  /**
+   * Gets or sets active geoshop highlight item
+   */
+  @observable
+  geoshopCatalogItem?: GeoShopMixin.Instance;
 
   @computed
   get baseMapContrastColor() {
@@ -780,7 +794,6 @@ export default class Terria {
   @observable userInfo?: UserInfo;
 
   keycloak?: Keycloak.KeycloakInstance;
-
   augmentedVirtuality?: any;
 
   readonly notificationState: NotificationState = new NotificationState();
@@ -893,6 +906,18 @@ export default class Terria {
   @computed
   get modelIds() {
     return Array.from(this.models.keys());
+  }
+
+  @computed
+  get parcelSearchAllowed() {
+    let allowed = false;
+    const items = this.workbench.items;
+    items.forEach((item: any) => {
+      if (item && item.enableParcelSearch) {
+        allowed = true;
+      }
+    });
+    return allowed;
   }
 
   getModelById<T extends BaseModel>(type: Class<T>, id: string): T | undefined {
@@ -1541,6 +1566,41 @@ export default class Terria {
               }
             }
           })
+        );
+      }
+    }
+
+    const productId = this.userProperties.get("productId");
+    if (isDefined(productId)) {
+      const products = this.modelValues.filter((model) => {
+        return `${(model as any).productId}` === productId;
+      });
+
+      const newItems: BaseModel[] = [];
+      // Maintain the model order in the workbench.
+      while (true) {
+        const model = products.shift();
+        if (model) {
+          await this.pushAndLoadMapItems(model, newItems, errors);
+        } else {
+          break;
+        }
+      }
+      runInAction(
+        () => (this.workbench.items = [...newItems, ...this.workbench.items])
+      );
+    }
+
+    const modelId = this.userProperties.get("modelId");
+    if (isDefined(modelId)) {
+      const newItems: BaseModel[] = [];
+      const model = this.getModelById(BaseModel, modelId);
+
+      if (isDefined(model)) {
+        this.pushAndLoadMapItems(model, newItems, errors);
+
+        runInAction(
+          () => (this.workbench.items = [...newItems, ...this.workbench.items])
         );
       }
     }
@@ -2233,7 +2293,6 @@ export default class Terria {
       }
     });
   }
-
   getAuthenticationHeader(
     keycloak: Keycloak.KeycloakInstance
   ): string | undefined {

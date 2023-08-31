@@ -466,9 +466,9 @@ function GeoJsonMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
      *
      * Errors can be thrown here.
      */
-    protected abstract forceLoadGeojsonData(): Promise<
-      FeatureCollectionWithCrs | undefined
-    >;
+    protected abstract forceLoadGeojsonData(
+      data?: any
+    ): Promise<FeatureCollectionWithCrs | undefined>;
 
     /** GeojsonMixin has 3 rendering modes:
      * - CZML:
@@ -1287,9 +1287,10 @@ function GeoJsonMixin<T extends AbstractConstructor<BaseType>>(Base: T) {
       }
       if (this.mapItems && this.mapItems.length > 0) {
         const source = this.mapItems[0];
-        if (isDataSource(source))
+        if (isDataSource(source)) {
           zoomToEntity(this.terria, source.entities.getById(featureID));
-        return;
+          return;
+        }
       }
 
       if (this.readyData) {
@@ -1446,10 +1447,11 @@ export function toFeatureCollection(
   if (isFeature(json)) {
     // Move CRS data from Feature to FeatureCollection
     if ("crs" in json && isJsonObject((json as any).crs)) {
-      const crs = (json as any).crs;
-      delete (json as any).crs;
+      const jsonCopy = Object.assign({}, json);
+      const crs = (jsonCopy as any).crs;
+      delete (jsonCopy as any).crs;
 
-      const fc = featureCollection([json]) as FeatureCollectionWithCrs;
+      const fc = featureCollection([jsonCopy]) as FeatureCollectionWithCrs;
       fc.crs = crs;
       return fc;
     }
@@ -1504,7 +1506,7 @@ function createPolylineFromPolygon(
   createEntitiesFromHoles(entities, hierarchy.holes, entity);
 }
 
-async function reprojectToGeographic(
+export async function reprojectToGeographic(
   geoJson: FeatureCollectionWithCrs,
   proj4ServiceBaseUrl?: string
 ): Promise<FeatureCollectionWithCrs> {

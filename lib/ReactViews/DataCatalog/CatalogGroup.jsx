@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { observer } from "mobx-react";
 import PrivateIndicator from "../PrivateIndicator/PrivateIndicator";
 import Loader from "../Loader";
@@ -17,12 +17,19 @@ const CatalogGroupButton = styled.button`
     &:focus {
       color: ${props.theme.textLight};
       background-color: ${props.theme.modalHighlight};
+      font-weight: bold;
+      svg {
+        fill: ${props.theme.textLight};
+      }
     }
     ${
       props.active &&
       `
         color: ${props.theme.textLight};
         background-color: ${props.theme.modalHighlight};
+        svg {
+          fill: ${props.theme.textLight};
+        }
       `
     }
     `}
@@ -35,6 +42,8 @@ const CatalogGroupButton = styled.button`
  */
 function CatalogGroup(props) {
   const { t } = useTranslation();
+  const theme = useTheme();
+
   return (
     <li className={Styles.root}>
       <Text fullWidth primary={!props.selected && props.isPrivate}>
@@ -90,8 +99,14 @@ function CatalogGroup(props) {
           </If>
           <Box justifySpaceBetween>
             <Box>{props.text}</Box>
-            <Box centered>
-              {props.isPrivate && <PrivateIndicator />}
+            <Box centered gap>
+              {props.isPrivate && (
+                <PrivateIndicator
+                  css={`
+                    color: ${theme.colorPrimary};
+                  `}
+                />
+              )}
               <span
                 className={classNames(Styles.caret, {
                   [Styles.offsetRight]: props.removable

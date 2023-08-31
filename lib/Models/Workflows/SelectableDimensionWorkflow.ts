@@ -47,6 +47,7 @@ export function runWorkflow(
         ? viewStateOrTerria
         : viewStateOrTerria.terria;
     terria.selectableDimensionWorkflow = workflow;
+    terria.isWorkflowPanelActive = true;
   });
 }
 

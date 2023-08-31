@@ -12,6 +12,13 @@ import ExportData from "./ExportData";
 import Styles from "./mappable-preview.scss";
 import MetadataTable from "./MetadataTable";
 import WarningBox from "./WarningBox";
+import GeoShopMixin from "../../ModelMixins/GeoshopMixin";
+import { withViewState } from "../Context";
+import toggleItemOnMapFromCatalog, {
+  Op as ToggleOnMapOp
+} from "../DataCatalog/toggleItemOnMapFromCatalog";
+import { DataSourceAction } from "../../Core/AnalyticEvents/analyticEvents";
+import { ExternalLinkIcon } from "../Custom/ExternalLink";
 
 /**
  * CatalogItem description.
@@ -21,16 +28,31 @@ class Description extends React.Component {
   static propTypes = {
     item: PropTypes.object.isRequired,
     printView: PropTypes.bool,
+    viewState: PropTypes.object.isRequired,
     t: PropTypes.func.isRequired
   };
 
+  async addToMap() {
+    await toggleItemOnMapFromCatalog(
+      this.props.viewState,
+      this.props.item,
+      false,
+      {
+        [ToggleOnMapOp.Add]: DataSourceAction.addFromCatalogue,
+        [ToggleOnMapOp.Remove]: DataSourceAction.removeFromCatalogue
+      }
+    );
+  }
+
   render() {
-    const { t } = this.props;
+    const { t, viewState } = this.props;
     const catalogItem = this.props.item;
 
     // Make sure all data and metadata URLs have `url` set
     const metadataUrls = catalogItem.metadataUrls?.filter((m) => m.url);
     const dataUrls = catalogItem.dataUrls?.filter((m) => m.url);
+
+    const alreadyOnMap = viewState.terria.workbench.contains(catalogItem);
 
     return (
       <div
@@ -58,6 +80,51 @@ class Description extends React.Component {
             })}
           </div>
         </If>
+
+        {GeoShopMixin.isMixedInto(catalogItem) && (
+          <div>
+            <h4 className={Styles.h4}>
+              {t("geoshop.catalogDescription.name")}
+            </h4>
+            <div>
+              <span>{t("geoshop.catalogDescription.description")}</span>
+              <Box column>
+                {catalogItem.isGeoShopSelectionAvailable && (
+                  <>
+                    <span>
+                      {t("geoshop.catalogDescription.selectionDescription")}
+                    </span>
+                    <Box paddedVertically={2}>
+                      <Button
+                        primary={true}
+                        onClick={this.addToMap}
+                        disabled={alreadyOnMap}
+                      >
+                        {t("geoshop.catalogDescription.selectionButton")}
+                      </Button>
+                    </Box>
+                  </>
+                )}
+                <span>
+                  <a
+                    href={`${viewState.terria.configParameters.geoshopConfig?.shopUrl}/data/${catalogItem.productId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    css={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "max-content"
+                    }}
+                  >
+                    {t("geoshop.catalogDescription.redirectText")}{" "}
+                    <ExternalLinkIcon />
+                  </a>
+                </span>
+              </Box>
+              <Box paddedVertically></Box>
+            </div>
+          </div>
+        )}
 
         <If condition={catalogItem.hasLocalData}>
           <p>{t("description.dataLocal")}</p>
@@ -294,4 +361,4 @@ class Description extends React.Component {
   }
 }
 
-export default withTranslation()(Description);
+export default withTranslation()(withViewState(Description));

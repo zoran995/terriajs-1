@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Trans } from "react-i18next";
 import styled from "styled-components";
+import TerriaError from "../../Core/TerriaError";
 import { addMarker, removeMarker } from "../../Models/LocationMarkerUtils";
 import Box from "../../Styled/Box";
 import { RawButton } from "../../Styled/Button";
@@ -177,6 +178,26 @@ export class SearchBoxAndResultsRaw extends React.Component {
     ) {
       viewState.closeTool();
     } else {
+      const terria = viewState.terria;
+      if (!terria.parcelSearchAllowed) {
+        try {
+          throw new TerriaError({
+            sender: this,
+            title: i18next.t("dkpSearch.access.title"),
+            message: i18next.t("dkpSearch.access.message", {
+              email:
+                '<a href="mailto:' +
+                terria.supportEmail +
+                '">' +
+                terria.supportEmail +
+                "</a>"
+            })
+          });
+        } catch (error) {
+          terria.raiseErrorToUser(error);
+        }
+        return;
+      }
       viewState.openTool(tool);
       viewState.searchState.showLocationSearchResults = false;
     }

@@ -17,11 +17,13 @@ import getDereferencedIfExists from "../../../Core/getDereferencedIfExists";
 import getPath from "../../../Core/getPath";
 import isDefined from "../../../Core/isDefined";
 import TerriaError from "../../../Core/TerriaError";
+import AttributeTableMixin from "../../../ModelMixins/AttributeTableMixin";
 import CatalogMemberMixin, {
   getName
 } from "../../../ModelMixins/CatalogMemberMixin";
 import DiffableMixin from "../../../ModelMixins/DiffableMixin";
 import ExportableMixin from "../../../ModelMixins/ExportableMixin";
+import GeoShopMixin from "../../../ModelMixins/GeoshopMixin";
 import MappableMixin from "../../../ModelMixins/MappableMixin";
 import SearchableItemMixin from "../../../ModelMixins/SearchableItemMixin";
 import TimeVarying from "../../../ModelMixins/TimeVarying";
@@ -32,28 +34,58 @@ import CommonStrata from "../../../Models/Definition/CommonStrata";
 import hasTraits from "../../../Models/Definition/hasTraits";
 import Model, { BaseModel } from "../../../Models/Definition/Model";
 import getAncestors from "../../../Models/getAncestors";
-import {
-  default as ViewingControlsModel,
-  ViewingControl
-} from "../../../Models/ViewingControls";
+import { ViewingControl } from "../../../Models/ViewingControls";
 import ViewState from "../../../ReactViewModels/ViewState";
 import AnimatedSpinnerIcon from "../../../Styled/AnimatedSpinnerIcon";
 import Box from "../../../Styled/Box";
 import { RawButton } from "../../../Styled/Button";
 import Icon, { StyledIcon } from "../../../Styled/Icon";
+import Text from "../../../Styled/Text";
 import Ul from "../../../Styled/List";
 import { VectorTraits } from "../../../Traits/TraitsClasses/MappableTraits";
 import SplitterTraits from "../../../Traits/TraitsClasses/SplitterTraits";
+import Prompt from "../../Generic/Prompt";
 import { exportData } from "../../Preview/ExportData";
 import LazyItemSearchTool from "../../Tools/ItemSearchTool/LazyItemSearchTool";
 import WorkbenchButton from "../WorkbenchButton";
-import AttributeTableMixin from "../../../ModelMixins/AttributeTableMixin";
+
+export const SHOP_FEATURE_PROMPT = "geoshop-feature";
 
 const BoxViewingControl = styled(Box).attrs({
   centered: true,
   left: true,
   justifySpaceBetween: true
 })``;
+
+const ViewingControlMenuLink = styled.a`
+  display: flex;
+  color: ${(props) => props.theme.textDarker};
+  background-color: ${(props) => props.theme.textLight};
+  text-decoration: none;
+
+  ${StyledIcon} {
+    width: 35px;
+  }
+
+  svg {
+    fill: ${(props) => props.theme.textDarker};
+    width: 18px;
+    height: 18px;
+  }
+
+  width: 114px;
+  // ensure we support long strings
+  min-height: 32px;
+
+  &:hover,
+  &:focus {
+    color: ${(props) => props.theme.textLight};
+    background-color: ${(props) => props.theme.colorPrimary};
+    svg {
+      fill: ${(props) => props.theme.textLight};
+    }
+  }
+`;
 
 const ViewingControlMenuButton = styled(RawButton).attrs({
   // primaryHover: true
@@ -136,7 +168,7 @@ class ViewingControls extends React.Component<
       (this.props.item as any).onRemoveFromWorkbench();
     }
     if (this.props.item === this.props.viewState.attributeTableItem) {
-      this.props.viewState.removeAttributeTable();
+      this.props.viewState.closeAttributeTable();
     }
 
     terria.removeSelectedFeaturesForModel(this.props.item);
@@ -293,9 +325,17 @@ class ViewingControls extends React.Component<
 
   openAttributeTable() {
     const sourceItem = this.props.item;
+    this.props.viewState.openAttributeTable(sourceItem);
+  }
+
+  geoshopBuy() {
+    const { viewState } = this.props;
+    const item = this.props.item as GeoShopMixin.Instance;
+
+    item.initializeBuy();
+    viewState.openAttributeTable(item.highlightItem!);
     runInAction(() => {
-      this.props.viewState.attributeTableItem = sourceItem;
-      this.props.viewState.attributeTableShown = true;
+      viewState.terria.isWorkflowPanelActive = true;
     });
   }
 
@@ -489,6 +529,34 @@ class ViewingControls extends React.Component<
             </ViewingControlMenuButton>
           </li>
         ) : null}
+        {GeoShopMixin.isMixedInto(item) && (
+          <li key={"workbench.geoshopBuy"}>
+            {item.isGeoShopSelectionAvailable ? (
+              <ViewingControlMenuButton
+                onClick={this.geoshopBuy.bind(this)}
+                title={t("workbench.geoshopBuyTitle")}
+              >
+                <BoxViewingControl>
+                  <StyledIcon glyph={Icon.GLYPHS.shoppingCart} />
+                  <span>{t("workbench.geoshopBuy")}</span>
+                </BoxViewingControl>
+              </ViewingControlMenuButton>
+            ) : (
+              <ViewingControlMenuLink
+                href={`${viewState.terria.configParameters.geoshopConfig?.shopUrl}/data/${item.productId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={t("workbench.geoshopBuyTitle")}
+              >
+                <BoxViewingControl>
+                  <StyledIcon glyph={Icon.GLYPHS.shoppingCart} />
+                  <span>{t("workbench.geoshopBuy")}</span>
+                </BoxViewingControl>
+              </ViewingControlMenuLink>
+            )}
+          </li>
+        )}
+
         <li key={"workbench.removeFromMap"}>
           <ViewingControlMenuButton
             onClick={this.removeFromMap.bind(this)}
@@ -509,6 +577,12 @@ class ViewingControls extends React.Component<
     const item = this.props.item;
     const { t } = this.props;
     const showMenu = item.uniqueId === viewState.workbenchItemWithOpenControls;
+
+    const isGeoshopItem = GeoShopMixin.isMixedInto(item);
+    if (isGeoshopItem) {
+      viewState.toggleFeaturePrompt(SHOP_FEATURE_PROMPT, true, false);
+    }
+
     return (
       <Box>
         <Ul
@@ -575,6 +649,27 @@ class ViewingControls extends React.Component<
             title={t("workbench.showMoreActionsTitle")}
             iconOnly
             iconElement={() => <Icon glyph={Icon.GLYPHS.menuDotted} />}
+          ></WorkbenchButton>
+          <Prompt
+            centered
+            isVisible={
+              GeoShopMixin.isMixedInto(item) &&
+              viewState.featurePrompts.indexOf(SHOP_FEATURE_PROMPT) >= 0
+            }
+            content={
+              <div>
+                <Text bold extraLarge textLight>
+                  {t("geoshop.feature-prompt.message")}
+                </Text>
+              </div>
+            }
+            displayDelay={500}
+            promptTopOffset={45}
+            promptLeftOffset={135}
+            dismissText={t("geoshop.feature-prompt.dismissText")}
+            dismissAction={() =>
+              viewState.toggleFeaturePrompt(SHOP_FEATURE_PROMPT, false, true)
+            }
           />
         </Ul>
         {showMenu && (

@@ -34,10 +34,10 @@ const zoomToFeature = function zoomToFeature(
   } else {
     const boundingBox = bbox(feature);
     rectangle = new Rectangle(
-      boundingBox[0],
-      boundingBox[1],
-      boundingBox[2],
-      boundingBox[3]
+      CesiumMath.toRadians(boundingBox[0]),
+      CesiumMath.toRadians(boundingBox[1]),
+      CesiumMath.toRadians(boundingBox[2]),
+      CesiumMath.toRadians(boundingBox[3])
     );
   }
   terria.currentViewer.zoomTo(rectangle, 1);

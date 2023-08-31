@@ -77,6 +77,22 @@ const StyledButton = styled.button<IStyledButtonProps>`
     border: none;
     border-radius:20px;
   `}
+  ${(props) =>
+    props.primary2 &&
+    `
+    color: #fff;
+    background-color: ${props.theme.darkWithOverlay};
+    border: none;
+    border-radius:20px;
+  `}
+  ${(props) =>
+    props.toolButton &&
+    `
+    color: ${props.theme.textLight};
+    background: ${props.theme.overlay};
+    border: none;
+    border-radius: 20px;
+  `}
   ${(props) => props.rounded && ` border-radius: 32px; `}
   ${(props) => props.roundLeft && `border-radius: 32px 0 0 32px;`}
   ${(props) => props.roundRight && `border-radius: 0 32px 32px 0;`}
@@ -108,6 +124,13 @@ const StyledButton = styled.button<IStyledButtonProps>`
     `
     background-color: ${props.theme.colorSecondary};
     color: ${props.theme.textLight};
+  `}
+
+  ${(props) =>
+    props.toolActive &&
+    `
+    background-color: ${props.theme.lightYellow};
+    color: ${props.theme.textDark};
   `}
 
   ${(props) => props.transparentBg && `background: transparent;`}

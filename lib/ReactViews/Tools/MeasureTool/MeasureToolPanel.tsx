@@ -207,7 +207,7 @@ class MeasureToolPanel extends React.Component<PropsType> {
               </MeasureButton>
             )}
             {this.drawing.isDrawing && (
-              <MeasureButton onClick={this.onMeasureButtonClick}>
+              <MeasureButton onClick={this.onMeasureButtonClick} toolActive>
                 {t("measureTool.stopMeasuring")}
               </MeasureButton>
             )}
@@ -231,7 +231,7 @@ class MeasureToolPanel extends React.Component<PropsType> {
 }
 
 const MeasureButton = styled(Button).attrs({
-  primary: true,
+  toolButton: true,
   fullWidth: true
 })``;
 

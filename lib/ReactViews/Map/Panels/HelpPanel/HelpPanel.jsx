@@ -99,7 +99,8 @@ class HelpPanel extends React.Component {
           <Text medium textDark highlightLinks>
             {parseCustomMarkdownToReact(
               t("helpPanel.menuPaneBody", {
-                supportEmail: this.props.viewState.terria.supportEmail
+                supportEmail: this.props.viewState.terria.supportEmail,
+                appName: this.props.viewState.terria.appName
               })
             )}
           </Text>

@@ -6,18 +6,21 @@ $font-mono: monospace, sans-serif;
 $font-feature-info: $font-mono;
 $font: $font-base;
 
-$color-primary: #519ac2;
+$color-primary: #b30000;
 $color-primary-disabled: #595b60;
 @function get-hover-color($base-color) {
   @return lighten($base-color, 10%);
 }
-$color-secondary: #ff6f00;
+//$color-secondary: #4b87c3;
+$color-secondary: #004c99;
 
 $animation-fast: 0.1s;
 
-$dark: #3f4854;
-$dark-with-overlay: #667080;
-$dark-lighter: #595b60;
+$color-splitter: #004c99;
+
+$dark: #003366;
+$dark-with-overlay: #004c99;
+$dark-lighter: #4b87c3;
 $grey: #888888;
 $grey-lighter: #ddd;
 // todo: Fix during overhaul
@@ -84,7 +87,7 @@ $modal-text: #000;
 $modal-secondary-bg: #f6f6f7;
 $modal-secondary-bg: #f6f6f7;
 $modal-overlay: rgba(#000, 0.7);
-$modal-highlight: $color-primary;
+$modal-highlight: $dark-with-overlay;
 // $modal-selected: $color-primary;  // Optionally define this to override $modal-highlight on the selected tab.
 $modal-border: $grey-lighter;
 $modal-content-height: 70vh;
@@ -123,6 +126,7 @@ $font-size-mid-mini: 0.7rem;
 $font-size-mini: 0.625rem;
 $font-size-credits: 0.7rem;
 
+$font-weight-extra-bold: 800;
 $font-weight-bold: 600;
 $font-weight-medium: 500;
 $font-weight-normal: 400;
@@ -173,7 +177,7 @@ $chart-darker: darken($dark, 8%);
 $chart-panel-background: $dark;
 $chart-panel-header: $chart-darker;
 
-$charcoal-grey: #3f4854;
+$charcoal-grey: #003366;
 $turquoise-blue: #08abd5;
 
 // Splitter
@@ -185,4 +189,5 @@ $legend-item-height: 16px;
 $legend-padding: $legend-item-height / 2;
 $legend-spacer-height: $legend-padding / 2;
 
-$tool-primary-color: $color-primary;
+$light-yellow: #ffff66;
+$tool-primary-color: $color-splitter;

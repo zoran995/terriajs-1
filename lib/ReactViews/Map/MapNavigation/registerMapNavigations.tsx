@@ -1,5 +1,7 @@
+import i18next from "i18next";
 import { runInAction } from "mobx";
 import React from "react";
+import TerriaError from "../../../Core/TerriaError";
 import AugmentedVirtuality from "../../../Models/AugmentedVirtuality";
 import HistoryControls from "../../../Models/HistoryControls/HistoryControls";
 import {

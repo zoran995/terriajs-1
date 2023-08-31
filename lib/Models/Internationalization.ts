@@ -3,6 +3,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi, { RequestCallback } from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 import isDefined from "../Core/isDefined";
+import translationLatn from "../Language/sr-Latn/translation.json";
+import translationCyrl from "../Language/sr-Cyrl/translation.json";
 
 export interface I18nBackendOptions {
   /**
@@ -134,6 +136,15 @@ class Internationalization {
         ns: ["translation", "languageOverrides"],
         defaultNS: "languageOverrides",
         fallbackNS: "translation",
+
+        resources: {
+          "sr-Cyrl": {
+            translation: translationCyrl
+          },
+          "sr-Latn": {
+            translation: translationLatn
+          }
+        },
 
         backend: Object.assign(
           {

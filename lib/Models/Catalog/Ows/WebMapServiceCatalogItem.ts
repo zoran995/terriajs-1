@@ -1,3 +1,4 @@
+import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
 // const mobx = require('mobx');
 // const mobxUtils = require('mobx-utils');
 // Problems in current architecture:
@@ -16,6 +17,8 @@ import Resource from "terriajs-cesium/Source/Core/Resource";
 import WebMercatorTilingScheme from "terriajs-cesium/Source/Core/WebMercatorTilingScheme";
 import GetFeatureInfoFormat from "terriajs-cesium/Source/Scene/GetFeatureInfoFormat";
 import WebMapServiceImageryProvider from "terriajs-cesium/Source/Scene/WebMapServiceImageryProvider";
+import ImageryLayerFeatureInfo from "terriajs-cesium/Source/Scene/ImageryLayerFeatureInfo";
+import WebMercatorProjection from "terriajs-cesium/Source/Core/WebMercatorProjection";
 import URI from "urijs";
 import createTransformerAllowUndefined from "../../../Core/createTransformerAllowUndefined";
 import filterOutUndefined from "../../../Core/filterOutUndefined";
@@ -50,6 +53,8 @@ import proxyCatalogItemUrl from "../proxyCatalogItemUrl";
 import WebMapServiceCapabilities from "./WebMapServiceCapabilities";
 import WebMapServiceCapabilitiesStratum from "./WebMapServiceCapabilitiesStratum";
 import WebMapServiceCatalogGroup from "./WebMapServiceCatalogGroup";
+import GeoShopMixin from "../../../ModelMixins/GeoshopMixin";
+import Cartographic from "terriajs-cesium/Source/Core/Cartographic";
 
 /** This LoadableStratum is responsible for setting WMS version based on CatalogItem.url */
 export class WebMapServiceUrlStratum extends LoadableStratum(
@@ -83,11 +88,15 @@ class WebMapServiceCatalogItem
   extends TileErrorHandlerMixin(
     ExportWebCoverageServiceMixin(
       DiffableMixin(
-        MinMaxLevelMixin(
-          GetCapabilitiesMixin(
-            UrlMixin(
-              MappableMixin(
-                CatalogMemberMixin(CreateModel(WebMapServiceCatalogItemTraits))
+        GeoShopMixin(
+          MinMaxLevelMixin(
+            GetCapabilitiesMixin(
+              UrlMixin(
+                MappableMixin(
+                  CatalogMemberMixin(
+                    CreateModel(WebMapServiceCatalogItemTraits)
+                  )
+                )
               )
             )
           )
@@ -638,12 +647,25 @@ class WebMapServiceCatalogItem
       };
 
       if (isDefined(this.getFeatureInfoFormat?.type)) {
-        imageryOptions.getFeatureInfoFormats = [
-          new GetFeatureInfoFormat(
-            this.getFeatureInfoFormat.type,
-            this.getFeatureInfoFormat.format
-          )
-        ];
+        if (
+          this.getFeatureInfoFormat.type === "json" &&
+          this.tilingScheme instanceof WebMercatorTilingScheme
+        ) {
+          imageryOptions.getFeatureInfoFormats = [
+            new GetFeatureInfoFormat(
+              this.getFeatureInfoFormat.type,
+              this.getFeatureInfoFormat.format,
+              geoJsonToFeatureInfo
+            )
+          ];
+        } else {
+          imageryOptions.getFeatureInfoFormats = [
+            new GetFeatureInfoFormat(
+              this.getFeatureInfoFormat.type,
+              this.getFeatureInfoFormat.format
+            )
+          ];
+        }
       }
 
       if (
@@ -801,6 +823,30 @@ class WebMapServiceCatalogItem
       ...this.styleSelectableDimensions
     ]);
   }
+}
+
+const projection = new WebMercatorProjection();
+function geoJsonToFeatureInfo(json: any) {
+  return json.features?.map((feature: any) => {
+    const featureInfo = new ImageryLayerFeatureInfo();
+    featureInfo.data = feature;
+    featureInfo.properties = feature.properties;
+    featureInfo.configureNameFromProperties(feature.properties);
+    featureInfo.configureDescriptionFromProperties(feature.properties);
+
+    if (isDefined(json.crs) && !isDefined(feature.crs)) {
+      feature.crs = json.crs;
+    }
+
+    // If this is a point feature, use the coordinates of the point.
+    if (isDefined(feature.geometry) && feature.geometry.type === "Point") {
+      const [x, y] = feature.geometry.coordinates;
+      const mercatorPosition = new Cartesian3(x, y, 0);
+      featureInfo.position = projection.unproject(mercatorPosition);
+    }
+
+    return featureInfo;
+  });
 }
 
 /**

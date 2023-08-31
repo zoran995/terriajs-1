@@ -157,6 +157,7 @@
   &:hover,
   &:focus {
     border: 0;
+    background: $dark-with-overlay;
     svg {
       fill: #ffffff;
     }
