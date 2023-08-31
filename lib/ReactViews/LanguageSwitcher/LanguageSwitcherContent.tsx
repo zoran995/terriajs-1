@@ -11,7 +11,10 @@ import { TextSpan } from "../../Styled/Text";
 import Hr from "../../Styled/Hr";
 import { SpacingSpan } from "../../Styled/Spacing";
 
-const StyledUl = styled(Ul)``;
+const StyledUl = styled(Ul)`
+  flex-direction: column;
+  padding: 0;
+`;
 
 interface PropsType extends WithTranslation {
   t: TFunction;

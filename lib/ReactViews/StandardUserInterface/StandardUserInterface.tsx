@@ -42,6 +42,7 @@ import SidePanelContainer from "./SidePanelContainer";
 import Styles from "./standard-user-interface.scss";
 import { terriaTheme } from "./StandardTheme";
 import WorkflowPanelPortal from "../Workflow/WorkflowPanelPortal";
+import { GeoshopWorkflow } from "../Workflow/GeoshopWorkflow";
 
 export const animationDuration = 250;
 
@@ -148,9 +149,12 @@ const StandardUserInterfaceBase: React.FC<StandardUserInterfaceProps> =
         <GlobalTerriaStyles />
         <TourPortal />
         <CollapsedNavigation />
+        <div id="about-us-panel" />
         <SatelliteHelpPrompt />
         <Medium>
           <SelectableDimensionWorkflow />
+          {props.viewState.terria.isWorkflowPanelActive &&
+            props.viewState.terria.geoshopCatalogItem && <GeoshopWorkflow />}
         </Medium>
         <div className={Styles.storyWrapper}>
           {!props.viewState.disclaimerVisible && <WelcomeMessage />}

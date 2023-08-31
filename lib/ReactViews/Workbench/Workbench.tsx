@@ -58,7 +58,7 @@ class Workbench extends React.Component<IProps> {
     });
     this.props.terria.workbench.removeAll();
     (this.props.terria.timelineStack.items as any).clear();
-    this.props.viewState.removeAttributeTable();
+    this.props.viewState.closeAttributeTable();
   }
 
   render() {

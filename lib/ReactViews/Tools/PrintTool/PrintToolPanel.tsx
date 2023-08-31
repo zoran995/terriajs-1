@@ -234,6 +234,8 @@ class PrintToolPanel extends React.Component<PropsType> {
               <Box fullWidth row>
                 {this.isPrinting ? (
                   <ToolButton
+                    toolButton
+                    toolActive
                     splitter
                     fullWidth
                     round
@@ -243,7 +245,7 @@ class PrintToolPanel extends React.Component<PropsType> {
                   </ToolButton>
                 ) : (
                   <ToolButton
-                    primary
+                    toolButton
                     fullWidth
                     round
                     onClick={this.onPrintButtonClick}

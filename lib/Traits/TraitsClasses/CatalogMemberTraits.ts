@@ -239,6 +239,13 @@ class CatalogMemberTraits extends ModelTraits {
   })
   dataCustodian?: string;
 
+  @primitiveTrait({
+    name: "Enable parcel search",
+    type: "boolean",
+    description: "When this layer is added the parcel search is enabled"
+  })
+  enableParcelSearch: boolean = false;
+
   @objectArrayTrait({
     type: EnumDimensionTraits,
     idProperty: "id",

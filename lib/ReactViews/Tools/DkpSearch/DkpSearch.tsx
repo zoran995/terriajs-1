@@ -165,6 +165,10 @@ class DkpSearch extends React.Component<PropsType> {
 
   render() {
     const { viewState, t } = this.props;
+    if (!viewState.terria.parcelSearchAllowed) {
+      removeMarker(viewState.terria);
+      return null;
+    }
     return (
       <Text large>
         <ToolPanel
@@ -307,7 +311,7 @@ function isParcelNumberCorrect(parcelNumber: string | undefined) {
 }
 
 const ToolButton = styled(Button).attrs({
-  primary: true,
+  toolButton: true,
   fullWidth: true
 })``;
 

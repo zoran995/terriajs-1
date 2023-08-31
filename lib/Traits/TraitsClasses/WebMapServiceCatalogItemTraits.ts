@@ -18,6 +18,7 @@ import LegendTraits from "./LegendTraits";
 import MappableTraits from "./MappableTraits";
 import { MinMaxLevelTraits } from "./MinMaxLevelTraits";
 import UrlTraits from "./UrlTraits";
+import GeoShopItemTraits from "./GeoShopItemTraits";
 
 export const SUPPORTED_CRS_3857 = ["EPSG:3857", "EPSG:900913"];
 export const SUPPORTED_CRS_4326 = ["EPSG:4326", "CRS:84", "EPSG:4283"];
@@ -175,7 +176,8 @@ export default class WebMapServiceCatalogItemTraits extends mixTraits(
   MappableTraits,
   CatalogMemberTraits,
   LegendOwnerTraits,
-  MinMaxLevelTraits
+  MinMaxLevelTraits,
+  GeoShopItemTraits
 ) {
   @primitiveTrait({
     type: "string",
@@ -291,6 +293,13 @@ export default class WebMapServiceCatalogItemTraits extends mixTraits(
       "Gets or sets whether this WMS server supports GetLegendGraphic requests."
   })
   supportsGetLegendGraphic: boolean = false;
+
+  @primitiveTrait({
+    type: "boolean",
+    name: "Only first legend",
+    description: "Whether only legend for first layer should be visible."
+  })
+  onlyFirstLegend: boolean = false;
 
   @primitiveTrait({
     type: "number",

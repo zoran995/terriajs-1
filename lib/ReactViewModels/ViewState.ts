@@ -316,9 +316,15 @@ export default class ViewState {
   }
 
   @action
-  removeAttributeTable() {
+  closeAttributeTable() {
     this.attributeTableItem = undefined;
     this.attributeTableShown = false;
+  }
+
+  @action
+  openAttributeTable(item: BaseModel) {
+    this.attributeTableItem = item;
+    this.attributeTableShown = true;
   }
 
   /**

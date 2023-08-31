@@ -4441,6 +4441,14 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+cache-manager@5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.2.3.tgz#b6a8b4469c57fdfdae1deed7f81ea9e057c7eade"
+  integrity sha512-9OErI8fksFkxAMJ8Mco0aiZSdphyd90HcKiOMJQncSlU1yq/9lHHxrT8PDayxrmr9IIIZPOAEfXuGSD7g29uog==
+  dependencies:
+    lodash.clonedeep "^4.5.0"
+    lru-cache "^9.1.2"
+
 call-bind@^1.0.0, call-bind@^1.0.2, call-bind@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/call-bind/-/call-bind-1.0.2.tgz#b1d4e89e688119c3c9a903ad30abb2f6a919be3c"
@@ -9157,6 +9165,11 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -9246,6 +9259,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lru-cache@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-9.1.2.tgz#255fdbc14b75589d6d0e73644ca167a8db506835"
+  integrity sha512-ERJq3FOzJTxBbFjZ7iDs+NiK4VI9Wz+RdrrAB8dio1oV+YvdPzUEE4QNiT2VD51DkIbCYRUUzCRkssXCHqSnKQ==
 
 lru-cache@~2.2.1:
   version "2.2.4"
@@ -10682,7 +10700,7 @@ point-in-polygon@^1.0.1:
   resolved "https://registry.yarnpkg.com/point-in-polygon/-/point-in-polygon-1.1.0.tgz#b0af2616c01bdee341cbf2894df643387ca03357"
   integrity sha512-3ojrFwjnnw8Q9242TzgXuTD+eKiutbzyslcq1ydfu82Db2y+Ogbmyrkpv0Hgj31qwT3lbS9+QAAO/pIQM35XRw==
 
-polylabel@^1.1.0:
+polylabel@1.1.0, polylabel@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/polylabel/-/polylabel-1.1.0.tgz#9483e64fc7a12a49f43e07e7a06752214ed2a8e7"
   integrity sha512-bxaGcA40sL3d6M4hH72Z4NdLqxpXRsCFk8AITYg6x1rn1Ei3izf00UMLklerBZTO49aPA3CYrIwVulx2Bce2pA==
@@ -13039,10 +13057,10 @@ terriajs-html2canvas@1.0.0-alpha.12-terriajs-1:
   dependencies:
     css-line-break "1.0.1"
 
-"terriajs-server@npm:@zoran995/geoportal-server@0.0.1-alpha":
-  version "0.0.1-alpha"
-  resolved "https://npm.pkg.github.com/download/@zoran995/geoportal-server/0.0.1-alpha/96028f3fe816daa0d7a90b9705c01debd02d9bee#96028f3fe816daa0d7a90b9705c01debd02d9bee"
-  integrity sha512-38ICNRr9o3pO3y5qq5AHRn1869OBI0/+a3Y0L7r9stGcIQvcJHxEvZYaEkHQJFwNfsxBLhWp3jG2/gaVR78OZQ==
+"terriajs-server@npm:@zoran995/geoportal-server-private@0.0.1-alpha-rugip-1":
+  version "0.0.1-alpha-rugip-1"
+  resolved "https://npm.pkg.github.com/download/@zoran995/geoportal-server-private/0.0.1-alpha-rugip-1/91be2ba78905761136a5a981d1cffb261c864d0a#91be2ba78905761136a5a981d1cffb261c864d0a"
+  integrity sha512-vnVtzZqZjkS8GcaLGJNocyf8IvPKwDGQ3LYGuE2rPkRVhn4qX7lylMFuaMv5YlsoFI5DFDlDxk5N3L0wpEBvLA==
   dependencies:
     "@aws-sdk/client-s3" "3.299.0"
     "@aws-sdk/node-http-handler" "3.296.0"
@@ -13055,6 +13073,7 @@ terriajs-html2canvas@1.0.0-alpha.12-terriajs-1:
     "@nestjs/swagger" "6.2.1"
     axios "github:zoran995/axios.git#geoportal"
     base-x "4.0.0"
+    cache-manager "5.2.3"
     class-transformer "0.5.1"
     class-validator "0.14.0"
     class-validator-jsonschema "5.0.0"
@@ -13063,6 +13082,7 @@ terriajs-html2canvas@1.0.0-alpha.12-terriajs-1:
     dotenv-expand "9.0.0"
     helmet "6.0.1"
     nodemailer "6.9.1"
+    polylabel "1.1.0"
     proj4-cli-defs "1.0.0"
     range_check "2.0.4"
     reflect-metadata "0.1.13"

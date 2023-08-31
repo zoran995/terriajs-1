@@ -86,7 +86,7 @@ const AttributeTablePanel: React.FC<AttributeTablePanelProps> = ({
   const theme = useTheme();
 
   const onExit = (): void => {
-    viewState.removeAttributeTable();
+    viewState.closeAttributeTable();
   };
 
   return (

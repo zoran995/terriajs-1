@@ -328,6 +328,10 @@
       "cadastralMunicipality": "Cadastral Municipality",
       "parcelNumber": "Cadastral unit number"
     },
+    "access": {
+      "title": "Parcel search",
+      "message": "You can't start the parcel search until you add the catalog item with cadastral data to the map. To add the cadastral data item to the map open the Explore data and add the cadastral parcels item from the `Katastar` group.\nIf you don't have propper rights assigned to access the cadastral parcels catalog item, you can request it by emailing us at {{email}} or using the give feedback option."
+    },
     "errors": {
       "missingInputErrorTitle": "Unexpected input",
       "missingInputError": "Unexpected input, please check your entry.",
@@ -495,7 +499,7 @@
   "helpPanel": {
     "btnText": "Help",
     "menuPaneTitle": "We're here to help",
-    "menuPaneBody": "Find useful tips on how to use TerriaJS by either checking the guides below or by contacting the team at [{{supportEmail}}]({{supportEmail}})",
+    "menuPaneBody": "Find useful tips on how to use {{appName}} by either checking the guides below or by contacting the team at [geoportal.podrska@rgurs.org](mailto:geoportal.podrska@rgurs.org)",
     "promptMessage": "Find the Tour, how-to videos & other help content here",
     "dismissText": "Got it, thanks!",
     "takeTour": "Take the tour",
@@ -1032,7 +1036,8 @@
       "dataAttribution": "Data attribution",
       "disclaimer": "Disclaimer",
       "basemap": "Basemap",
-      "dataProvider": "Data provided by:"
+      "dataProvider": "Data provided by:",
+      "about": "About"
     }
   },
   "models": {
@@ -1380,6 +1385,8 @@
       "likenessesError": "The list of likenesses and the list of region codes do not contain the same number of elements."
     },
     "raiseError": {
+      "privateDataErrorTitle": "Access rights error",
+      "privateDataErrorMessage": "You don't have permission to access catalog item: <p style=\"text-align:center\">{{name}}</p> To get persmission to access this catalog item you need to login to system with account that has appropriate permissions for this catalog item.\n\n You can request permission to access this catalog item by emailing us at {{email}} or using the give feedback option",
       "errorTitle": "An error occurred",
       "notificationFeedback": "For questions or feedback, click here.",
       "notificationFeedbackEmail": "For questions or feedback, please contact {{email}}",
@@ -1770,6 +1777,16 @@
   "mapNavigation": {
     "additionalTools": "Additional tools",
     "additionalToolsTitle": "Open additional tools"
+  },
+  "credits": {
+    "basemapName": "Basemap",
+    "about": "About"
+  },
+  "aboutPanel": {
+    "title": "About",
+    "about": "Geoportal predstavlja jedinstvenu tačku pristupa geoprostornim podacima i servisima dobijenim iz različitih izvora, od lokalnog, preko nacionalnog do globalnog nivoa, na sveobuhvatan način.\nCilj platforme jeste da se sa jednog mjesta može doći do svih geoprostornih informacija za teritoriju Republike Srpske ili bar o informacijama gdje se ti podaci nalaze i u kom formatu. Geoportal omogućava prikazivanje i dijeljenje prostornih podataka u svrhu zadovoljenja potreba na nacionalnom, ali i na Evropskom nivou u skladu sa INSPIRE direktivom.",
+    "technology": "Tehnologije",
+    "technologyText": "Geoportal Republičke uprave za geodetske-imovinsko pravne poslove (RUGIPP) je u potpunosti izgrađen na softverskim komponentama otvorenog koda. Tako je interaktivno 3D kartografsko okruženje razvijeno pomoću CesiumJS biblioteke, pozadinske procese odrađuju GeoServer i GeoWebCache, dok su podaci smješteni u PostgreSQL bazi podataka sa PostGIS proširenjem za prostorne podatke. Metapodaci su implementirani koristeći GeoNetwork softverski paket. U 2D vizuelaciji možete uživati zahvaljujući Leaflet biblioteci otvorenog koda."
   },
   "itemSearchTool": {
     "toolLoadError": "Error loading search tool.",

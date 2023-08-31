@@ -87,7 +87,7 @@ export default (props: Props) => {
           ${(p: ButtonProps) =>
             p["aria-expanded"] &&
             `&:not(.foo) {
-                      background: ${p.theme.colorPrimary};
+                      background: ${p.theme.darkWithOverlay};
                       svg {
                         fill: ${p.theme.textLight};
                       }

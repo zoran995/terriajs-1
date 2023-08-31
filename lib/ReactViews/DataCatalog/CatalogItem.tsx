@@ -8,6 +8,8 @@ import { RawButton } from "../../Styled/Button";
 import Icon from "../../Styled/Icon";
 import Text from "../../Styled/Text";
 import PrivateIndicator from "../PrivateIndicator/PrivateIndicator";
+import { ShopIndicator } from "../ShopIndicator/ShopIndicator";
+import { useTheme } from "styled-components";
 
 export enum ButtonState {
   Loading,
@@ -29,6 +31,8 @@ const STATE_TO_ICONS: Record<ButtonState, React.ReactElement> = {
 
 interface Props {
   isPrivate?: boolean;
+  geoshopProductId?: number;
+  isGeoShopSelectionAvailable?: boolean;
   title: string;
   text: string;
   selected?: boolean;
@@ -44,6 +48,8 @@ interface Props {
 /** Dumb catalog item */
 function CatalogItem(props: Props) {
   const { t } = useTranslation();
+  const theme = useTheme();
+
   const STATE_TO_TITLE = {
     [ButtonState.Loading]: t("catalogItem.loading"),
     [ButtonState.Remove]: t("catalogItem.remove"),
@@ -68,8 +74,32 @@ function CatalogItem(props: Props) {
           {props.text}
         </ItemTitleButton>
       </Text>
-      <Box>
-        {props.isPrivate && <PrivateIndicator />}
+      <Box
+        gap={2}
+        css={`
+          padding-right: 5px;
+        `}
+      >
+        {props.geoshopProductId && (
+          <StyledLinkIcon
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://geoshop.prointer.ba/data/${props.geoshopProductId}`}
+          >
+            {props.isGeoShopSelectionAvailable && !props.isPrivate ? (
+              <ShopIndicator title="translate#geoshop.catalogLinkSelectionTitle" />
+            ) : (
+              <ShopIndicator title="translate#geoshop.catalogLinkRedirectTitle" />
+            )}
+          </StyledLinkIcon>
+        )}
+        {props.isPrivate && (
+          <PrivateIndicator
+            css={`
+              color: ${theme.colorPrimary};
+            `}
+          />
+        )}
         <ActionButton
           type="button"
           onClick={props.onBtnClick}
@@ -109,9 +139,16 @@ const ItemTitleButton = styled(RawButton)<{
   &:focus,
   &:hover {
     color: ${(p) => p.theme.modalHighlight};
+    font-weight: 800;
+    f
   }
 
-  ${(p) => p.selected && `color: ${p.theme.modalHighlight};`}
+  ${(p) =>
+    p.selected &&
+    `
+    color: ${p.theme.modalHighlight};
+    font-weight: 800;
+  `}
 
   @media (max-width: ${(p) => p.theme.sm}px) {
     font-size: 0.9rem;
@@ -122,10 +159,12 @@ const ItemTitleButton = styled(RawButton)<{
 `;
 
 const ActionButton = styled(RawButton)`
+  display: flex;
+  align-items: center;
+
   svg {
     height: 20px;
     width: 20px;
-    margin: 5px;
     fill: ${(p) => p.theme.charcoalGrey};
   }
 
@@ -134,6 +173,17 @@ const ActionButton = styled(RawButton)`
     svg {
       fill: ${(p) => p.theme.modalHighlight};
     }
+  }
+`;
+
+const StyledLinkIcon = styled.a`
+  display: flex;
+  align-items: center;
+  color: ${(p) => p.theme.colorPrimary};
+
+  svg {
+    height: 18px;
+    width: 18px;
   }
 `;
 

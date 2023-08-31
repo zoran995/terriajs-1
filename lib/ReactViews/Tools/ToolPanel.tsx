@@ -132,7 +132,7 @@ export const MainPanel = styled(Box).attrs({
   paddedRatio: 2
 })<ToolPanelWrapperProps>`
   ${({ theme }) => theme.borderRadiusBottom(theme.radius40Button)}
-  background-color: ${(p) => p.theme.darkWithOverlay};
+  background-color: ${(p) => p.theme.dark};
 `;
 
 export const Selector = (props: any) => (

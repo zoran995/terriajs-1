@@ -10,6 +10,7 @@ import { DataAttributionModal } from "./DataAttribution/DataAttributionModal";
 import { Spacer } from "./Spacer";
 import { TerriaLogo } from "./TerriaLogo";
 import { MapCreditLogo } from "./MapCreditLogo";
+import { AboutPanelButton } from "./AboutPanelButton";
 
 interface IMapCreditsProps {
   hideTerriaLogo: boolean;
@@ -53,6 +54,8 @@ export const MapCredits: FC<IMapCreditsProps> = observer(
         {!hideTerriaLogo ? <TerriaLogo /> : null}
         <MapCreditLogo currentViewer={currentViewer} />
         <Credits credits={credits}></Credits>
+        <Spacer />
+        <AboutPanelButton />
         <Spacer />
         {currentViewer.attributions && currentViewer.attributions.length > 0 ? (
           <a onClick={showDataAttribution}>

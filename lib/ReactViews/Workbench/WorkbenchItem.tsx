@@ -25,6 +25,8 @@ import { TextSpan } from "../../Styled/Text";
 import Loader from "../Loader";
 import PrivateIndicator from "../PrivateIndicator/PrivateIndicator";
 import WorkbenchItemControls from "./Controls/WorkbenchItemControls";
+import GeoShopMixin from "../../ModelMixins/GeoshopMixin";
+import { ShopIndicator } from "../ShopIndicator/ShopIndicator";
 
 interface IProps extends WithTranslation {
   theme: DefaultTheme;
@@ -148,13 +150,18 @@ class WorkbenchItemRaw extends React.Component<IProps> {
             </Box>
           </Box>
           {CatalogMemberMixin.isMixedInto(item) ? (
-            <Box centered paddedHorizontally>
+            <Box centered paddedHorizontally gap>
+              {GeoShopMixin.isMixedInto(item) && (
+                <BoxSpan paddedHorizontally>
+                  <ShopIndicator />
+                </BoxSpan>
+              )}
+              {item.isPrivate && (
+                <BoxSpan paddedHorizontally>
+                  <PrivateIndicator inWorkbench />
+                </BoxSpan>
+              )}
               <RawButton onClick={() => this.toggleDisplay()}>
-                {item.isPrivate && (
-                  <BoxSpan paddedHorizontally>
-                    <PrivateIndicator inWorkbench />
-                  </BoxSpan>
-                )}
                 <BoxSpan padded>
                   {this.isOpen ? (
                     <StyledIcon
