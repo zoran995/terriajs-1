@@ -139,6 +139,7 @@ import GeoShopMixin from "../ModelMixins/GeoshopMixin";
 interface IGeoShopConfig {
   baseApiUrl: string;
   shopUrl: string;
+  showNotificationBox: boolean;
 }
 export interface ConfigParameters {
   /**

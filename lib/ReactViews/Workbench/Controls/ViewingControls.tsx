@@ -653,6 +653,8 @@ class ViewingControls extends React.Component<
           <Prompt
             centered
             isVisible={
+              viewState.terria.configParameters.geoshopConfig
+                ?.showNotificationBox &&
               GeoShopMixin.isMixedInto(item) &&
               viewState.featurePrompts.indexOf(SHOP_FEATURE_PROMPT) >= 0
             }
